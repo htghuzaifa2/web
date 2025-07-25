@@ -24,7 +24,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
     });
   };
 
-  const images = [product.image, ...product.additionalImages];
+  const images = [product.image, ...product.additionalImages].filter(Boolean);
 
   return (
     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">

@@ -8,7 +8,7 @@
     "description": "A timeless classic, this 100% cotton t-shirt is a must-have for any wardrobe. Soft, breathable, and durable.",
     "category": "shirts",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=1-1", "https://placehold.co/600x600?text=1-2", "https://placehold.co/600x600?text=1-3"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.5, "count": 120 }
   },
   {
@@ -19,7 +19,7 @@
     "description": "Our slim fit chinos offer a modern silhouette and all-day comfort. Made with a hint of stretch for the perfect fit.",
     "category": "pants",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=2-1", "https://placehold.co/600x600?text=2-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.7, "count": 95 }
   },
   {
@@ -30,7 +30,7 @@
     "description": "Crafted from genuine leather, these Derby shoes are the perfect blend of elegance and durability.",
     "category": "shoes",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=3-1", "https://placehold.co/600x600?text=3-2", "https://placehold.co/600x600?text=3-3"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.8, "count": 75 }
   },
   {
@@ -52,7 +52,7 @@
     "description": "Make a statement with our unique graphic print shirts. Soft-touch jersey and a comfortable fit.",
     "category": "shirts",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=5-1"],
+    "additionalImages": ["https://placehold.co/600x600"],
     "rating": { "rate": 4.6, "count": 210 }
   },
   {
@@ -63,7 +63,7 @@
     "description": "Functional and stylish, these cargo trousers feature multiple pockets and a relaxed fit.",
     "category": "pants",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=6-1", "https://placehold.co/600x600?text=6-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.3, "count": 88 }
   },
   {
@@ -74,7 +74,7 @@
     "description": "Your go-to for casual days. These canvas sneakers are lightweight, comfortable, and versatile.",
     "category": "shoes",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=7-1", "https://placehold.co/600x600?text=7-2", "https://placehold.co/600x600?text=7-3"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.9, "count": 350 }
   },
   {
@@ -96,7 +96,7 @@
     "description": "Stay cool and comfortable in our linen long-sleeve shirt. Perfect for warm weather.",
     "category": "shirts",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=9-1", "https://placehold.co/600x600?text=9-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.4, "count": 80 }
   },
   {
@@ -107,7 +107,7 @@
     "description": "A wardrobe staple. Our denim jeans are made from premium fabric for a great fit and feel.",
     "category": "pants",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=10-1", "https://placehold.co/600x600?text=10-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.6, "count": 400 }
   },
   {
@@ -118,7 +118,7 @@
     "description": "Effortlessly stylish, these suede loafers are perfect for smart-casual occasions.",
     "category": "shoes",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=11-1", "https://placehold.co/600x600?text=11-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.5, "count": 110 }
   },
   {
@@ -129,7 +129,7 @@
     "description": "Protect your eyes in style with our designer sunglasses, offering 100% UV protection.",
     "category": "accessories",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=12-1"],
+    "additionalImages": ["https://placehold.co/600x600"],
     "rating": { "rate": 4.9, "count": 65 }
   },
   {
@@ -140,7 +140,7 @@
     "description": "The classic polo shirt, updated with a modern fit and soft pique cotton.",
     "category": "shirts",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=13-1", "https://placehold.co/600x600?text=13-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.7, "count": 250 }
   },
   {
@@ -151,7 +151,7 @@
     "description": "Sharpen up your look with these expertly tailored trousers, perfect for the office or formal events.",
     "category": "pants",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=14-1", "https://placehold.co/600x600?text=14-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.8, "count": 90 }
   },
   {
@@ -162,7 +162,7 @@
     "description": "Engineered for performance, these running trainers provide support and cushioning where you need it most.",
     "category": "shoes",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=15-1", "https://placehold.co/600x600?text=15-2", "https://placehold.co/600x600?text=15-3"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.9, "count": 180 }
   },
   {
@@ -184,7 +184,7 @@
     "description": "A versatile Oxford shirt that can be dressed up or down. Features a button-down collar.",
     "category": "shirts",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=17-1", "https://placehold.co/600x600?text=17-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.7, "count": 320 }
   },
   {
@@ -195,7 +195,7 @@
     "description": "Comfortable and casual, these drawstring shorts are perfect for relaxing or a day at the beach.",
     "category": "pants",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=18-1", "https://placehold.co/600x600?text=18-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.4, "count": 130 }
   },
   {
@@ -206,7 +206,7 @@
     "description": "Durable and stylish, these leather boots are built to last and will complement any outfit.",
     "category": "shoes",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=19-1", "https://placehold.co/600x600?text=19-2", "https://placehold.co/600x600?text=19-3"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.7, "count": 220 }
   },
   {
@@ -217,7 +217,7 @@
     "description": "Keep warm with this soft and comfortable beanie hat. A stylish essential for winter.",
     "category": "hats",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=20-1"],
+    "additionalImages": ["https://placehold.co/600x600"],
     "rating": { "rate": 4.6, "count": 190 }
   },
   {
@@ -228,7 +228,7 @@
     "description": "A classic flannel shirt in a timeless check pattern. Made from soft, brushed cotton.",
     "category": "shirts",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=21-1", "https://placehold.co/600x600?text=21-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.8, "count": 280 }
   },
   {
@@ -239,7 +239,7 @@
     "description": "The ultimate in comfort. Our sweatpants are perfect for lounging or working out.",
     "category": "pants",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=22-1", "https://placehold.co/600x600?text=22-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.5, "count": 160 }
   },
   {
@@ -261,7 +261,7 @@
     "description": "A timeless timepiece with a leather strap and stainless steel case. A sophisticated addition to any collection.",
     "category": "accessories",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=24-1", "https://placehold.co/600x600?text=24-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.9, "count": 85 }
   },
   {
@@ -272,7 +272,7 @@
     "description": "An iconic piece of outerwear, the denim jacket is a versatile layer for any season.",
     "category": "jackets",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=25-1", "https://placehold.co/600x600?text=25-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.7, "count": 310 }
   },
   {
@@ -283,7 +283,7 @@
     "description": "A modern bomber jacket with a sleek design. Perfect for a cool, casual look.",
     "category": "jackets",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=26-1", "https://placehold.co/600x600?text=26-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.8, "count": 150 }
   },
   {
@@ -294,7 +294,7 @@
     "description": "Stay warm and dry with our insulated parka jacket, featuring a faux-fur hood.",
     "category": "jackets",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=27-1", "https://placehold.co/600x600?text=27-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.9, "count": 110 }
   },
   {
@@ -338,7 +338,7 @@
     "description": "Wrap yourself in warmth with this ultra-soft fleece hoodie. Perfect for chilly evenings.",
     "category": "hoodies",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=31-1", "https://placehold.co/600x600?text=31-2"],
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
     "rating": { "rate": 4.9, "count": 210 }
   },
   {
@@ -349,7 +349,95 @@
     "description": "A timeless baseball cap made from durable cotton twill. Adjustable strap for a perfect fit.",
     "category": "hats",
     "image": "https://placehold.co/600x600",
-    "additionalImages": ["https://placehold.co/600x600?text=32-1"],
+    "additionalImages": ["https://placehold.co/600x600"],
     "rating": { "rate": 4.6, "count": 180 }
+  },
+  {
+    "id": 33,
+    "name": "Wool Peacoat",
+    "slug": "wool-peacoat",
+    "price": 63000.00,
+    "description": "A classic double-breasted peacoat crafted from a warm wool blend. A sophisticated winter essential.",
+    "category": "jackets",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
+    "rating": { "rate": 4.9, "count": 95 }
+  },
+  {
+    "id": 34,
+    "name": "V-Neck Sweater",
+    "slug": "v-neck-sweater",
+    "price": 16800.00,
+    "description": "A versatile V-neck sweater made from soft merino wool. Perfect for layering.",
+    "category": "sweaters",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
+    "rating": { "rate": 4.7, "count": 130 }
+  },
+  {
+    "id": 35,
+    "name": "Leather Backpack",
+    "slug": "leather-backpack",
+    "price": 44800.00,
+    "description": "A stylish and functional backpack made from genuine leather, with multiple compartments.",
+    "category": "accessories",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
+    "rating": { "rate": 4.8, "count": 70 }
+  },
+  {
+    "id": 36,
+    "name": "High-Top Sneakers",
+    "slug": "high-top-sneakers",
+    "price": 25200.00,
+    "description": "Retro-inspired high-top sneakers that combine style and comfort.",
+    "category": "shoes",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
+    "rating": { "rate": 4.6, "count": 150 }
+  },
+  {
+    "id": 37,
+    "name": "Turtleneck Sweater",
+    "slug": "turtleneck-sweater",
+    "price": 18200.00,
+    "description": "A classic turtleneck sweater for a sophisticated and warm look.",
+    "category": "sweaters",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
+    "rating": { "rate": 4.5, "count": 100 }
+  },
+  {
+    "id": 38,
+    "name": "Corduroy Pants",
+    "slug": "corduroy-pants",
+    "price": 19600.00,
+    "description": "Soft and durable corduroy pants for a timeless, textured look.",
+    "category": "pants",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
+    "rating": { "rate": 4.4, "count": 120 }
+  },
+  {
+    "id": 39,
+    "name": "Aviator Sunglasses",
+    "slug": "aviator-sunglasses",
+    "price": 35000.00,
+    "description": "Classic aviator sunglasses with a modern twist. Lightweight and stylish.",
+    "category": "accessories",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600"],
+    "rating": { "rate": 4.7, "count": 90 }
+  },
+  {
+    "id": 40,
+    "name": "Zip-Up Hoodie",
+    "slug": "zip-up-hoodie",
+    "price": 22400.00,
+    "description": "A versatile zip-up hoodie made from a soft cotton blend.",
+    "category": "hoodies",
+    "image": "https://placehold.co/600x600",
+    "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
+    "rating": { "rate": 4.8, "count": 180 }
   }
 ]

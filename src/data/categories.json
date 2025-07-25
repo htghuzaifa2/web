@@ -47,5 +47,11 @@
     "name": "Hats",
     "slug": "hats",
     "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 9,
+    "name": "Sweaters",
+    "slug": "sweaters",
+    "image": "https://placehold.co/600x400"
   }
 ]
