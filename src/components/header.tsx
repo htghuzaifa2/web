@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Shirt } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { CartSheet } from "./cart-sheet";
+import { LogoIcon } from "./icons";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,7 +21,7 @@ export default function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Shirt className="h-6 w-6" />
+            <LogoIcon className="h-6 w-6" />
             <span className="hidden font-bold sm:inline-block font-headline">
               huzi.pk
             </span>
@@ -49,7 +50,7 @@ export default function Header() {
                 </SheetTrigger>
                 <SheetContent side="left" className="pr-0">
                   <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                     <Shirt className="h-6 w-6" />
+                     <LogoIcon className="h-6 w-6" />
                      <span className="font-bold font-headline">huzi.pk</span>
                   </Link>
                   <nav className="flex flex-col space-y-4">
@@ -63,7 +64,7 @@ export default function Header() {
               </Sheet>
           </div>
           <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <Shirt className="h-6 w-6" />
+            <LogoIcon className="h-6 w-6" />
             <span className="font-bold font-headline">huzi.pk</span>
           </Link>
           <div className="flex items-center">

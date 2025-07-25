@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Shirt, Facebook, Twitter, Instagram } from "lucide-react";
+import { Facebook, Twitter, Instagram } from "lucide-react";
+import { LogoIcon } from "./icons";
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <Shirt className="h-8 w-8 text-primary" />
+              <LogoIcon className="h-8 w-8" />
               <span className="text-xl font-bold font-headline">huzi.pk</span>
             </Link>
             <p className="text-sm text-muted-foreground">
