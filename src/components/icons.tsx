@@ -19,6 +19,8 @@ export function WhatsappIcon(props: SVGProps<SVGSVGElement>) {
     )
 }
 
+// The LogoIcon is no longer used, but is kept here for reference.
+// You will need to add a `public/logo.webp` file for the new logo to work.
 export function LogoIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg
