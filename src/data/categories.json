@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Shirts",
+    "slug": "shirts",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 2,
+    "name": "Pants",
+    "slug": "pants",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 3,
+    "name": "Shoes",
+    "slug": "shoes",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 4,
+    "name": "Accessories",
+    "slug": "accessories",
+    "image": "https://placehold.co/600x400"
+  }
+]
