@@ -50,7 +50,7 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const products: Product[] = productsData;
-  const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 5);
+  const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 10);
 
   const currentPage = Number(searchParams.page) || 1;
   const pageSize = 10;
