@@ -18,29 +18,32 @@ const getProductsForPage = (page: number, pageSize: number) => {
 
 const getPaginationItems = (currentPage: number, totalPages: number) => {
   const pageNumbers = [];
-  const pagesToShow = 5; // Total number of page links to show
+  const pagesToShow = 5; 
   const halfPages = Math.floor(pagesToShow / 2);
 
   if (totalPages <= pagesToShow) {
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(i);
     }
-  } else {
-    pageNumbers.push(1);
-    if (currentPage > halfPages + 1) {
-      pageNumbers.push('...');
-    }
-
-    let start = Math.max(2, currentPage - halfPages + (currentPage > totalPages - halfPages ? currentPage - (totalPages - halfPages) : 1));
-    let end = Math.min(totalPages - 1, currentPage + halfPages - (currentPage <= halfPages ? halfPages - currentPage + 1 : 0));
-
-    for (let i = start; i <= end; i++) {
+  } else if (currentPage <= halfPages + 1) {
+    for (let i = 1; i <= pagesToShow - 1; i++) {
       pageNumbers.push(i);
     }
-
-    if (currentPage < totalPages - halfPages) {
-      pageNumbers.push('...');
+    pageNumbers.push('...');
+    pageNumbers.push(totalPages);
+  } else if (currentPage >= totalPages - halfPages) {
+    pageNumbers.push(1);
+    pageNumbers.push('...');
+    for (let i = totalPages - (pagesToShow - 2); i <= totalPages; i++) {
+      pageNumbers.push(i);
     }
+  } else {
+    pageNumbers.push(1);
+    pageNumbers.push('...');
+    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+      pageNumbers.push(i);
+    }
+    pageNumbers.push('...');
     pageNumbers.push(totalPages);
   }
 
@@ -53,7 +56,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
   const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 10);
 
   const currentPage = Number(searchParams.page) || 1;
-  const pageSize = 100;
+  const pageSize = 20;
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
   const paginationItems = getPaginationItems(currentPage, totalPages);
 
@@ -84,7 +87,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Featured Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5 md:gap-6 lg:gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -97,7 +100,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Our Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 md:gap-6 lg:gap-8">
             {paginatedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
