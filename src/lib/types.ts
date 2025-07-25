@@ -18,3 +18,7 @@ export interface Category {
   slug: string;
   image: string;
 }
+
+export interface CartItem extends Product {
+  quantity: number;
+}

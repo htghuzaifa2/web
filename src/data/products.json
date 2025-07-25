@@ -1,3 +1,4 @@
+
 [
   {
     "id": 1,
@@ -195,7 +196,7 @@
     "slug": "beanie-hat",
     "price": 22.00,
     "description": "Keep warm with this soft and comfortable beanie hat. A stylish essential for winter.",
-    "category": "accessories",
+    "category": "hats",
     "image": "https://placehold.co/600x400",
     "rating": { "rate": 4.6, "count": 190 }
   },
@@ -298,5 +299,25 @@
     "category": "digital-goods",
     "image": "https://placehold.co/600x400",
     "rating": { "rate": 4.7, "count": 800 }
+  },
+  {
+    "id": 31,
+    "name": "Cozy Fleece Hoodie",
+    "slug": "cozy-fleece-hoodie",
+    "price": 72.00,
+    "description": "Wrap yourself in warmth with this ultra-soft fleece hoodie. Perfect for chilly evenings.",
+    "category": "hoodies",
+    "image": "https://placehold.co/600x400",
+    "rating": { "rate": 4.9, "count": 210 }
+  },
+  {
+    "id": 32,
+    "name": "Classic Baseball Cap",
+    "slug": "classic-baseball-cap",
+    "price": 28.00,
+    "description": "A timeless baseball cap made from durable cotton twill. Adjustable strap for a perfect fit.",
+    "category": "hats",
+    "image": "https://placehold.co/600x400",
+    "rating": { "rate": 4.6, "count": 180 }
   }
 ]

@@ -1,3 +1,4 @@
+
 [
   {
     "id": 1,
@@ -33,6 +34,18 @@
     "id": 6,
     "name": "Digital Goods",
     "slug": "digital-goods",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 7,
+    "name": "Hoodies",
+    "slug": "hoodies",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 8,
+    "name": "Hats",
+    "slug": "hats",
     "image": "https://placehold.co/600x400"
   }
 ]

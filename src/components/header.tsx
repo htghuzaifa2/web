@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, ShoppingCart, Shirt } from "lucide-react";
+import { Menu, Shirt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { CartSheet } from "./cart-sheet";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -64,10 +65,7 @@ export default function Header() {
             <span className="font-bold font-headline">Huzi Pakistan</span>
           </Link>
           <div className="flex items-center">
-            <Button variant="ghost" size="icon">
-              <ShoppingCart className="h-5 w-5" />
-              <span className="sr-only">Shopping Cart</span>
-            </Button>
+            <CartSheet />
             <ThemeToggle />
           </div>
         </div>
