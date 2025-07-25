@@ -53,7 +53,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
   const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 10);
 
   const currentPage = Number(searchParams.page) || 1;
-  const pageSize = 10;
+  const pageSize = 100;
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
   const paginationItems = getPaginationItems(currentPage, totalPages);
 
@@ -102,35 +102,37 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-          <div className="mt-12">
-            <Pagination>
-              <PaginationContent>
-                {currentPage > 1 && (
-                  <PaginationItem>
-                    <PaginationPrevious href={`/?page=${currentPage - 1}`} />
-                  </PaginationItem>
-                )}
-                
-                {paginationItems.map((page, index) => (
-                  <PaginationItem key={index}>
-                    {typeof page === 'number' ? (
-                      <PaginationLink href={`/?page=${page}`} isActive={page === currentPage}>
-                        {page}
-                      </PaginationLink>
-                    ) : (
-                      <PaginationEllipsis />
-                    )}
-                  </PaginationItem>
-                ))}
+          {totalPages > 1 && (
+            <div className="mt-12">
+              <Pagination>
+                <PaginationContent>
+                  {currentPage > 1 && (
+                    <PaginationItem>
+                      <PaginationPrevious href={`/?page=${currentPage - 1}`} />
+                    </PaginationItem>
+                  )}
+                  
+                  {paginationItems.map((page, index) => (
+                    <PaginationItem key={index}>
+                      {typeof page === 'number' ? (
+                        <PaginationLink href={`/?page=${page}`} isActive={page === currentPage}>
+                          {page}
+                        </PaginationLink>
+                      ) : (
+                        <PaginationEllipsis />
+                      )}
+                    </PaginationItem>
+                  ))}
 
-                {currentPage < totalPages && (
-                  <PaginationItem>
-                    <PaginationNext href={`/?page=${currentPage + 1}`} />
-                  </PaginationItem>
-                )}
-              </PaginationContent>
-            </Pagination>
-          </div>
+                  {currentPage < totalPages && (
+                    <PaginationItem>
+                      <PaginationNext href={`/?page=${currentPage + 1}`} />
+                    </PaginationItem>
+                  )}
+                </PaginationContent>
+              </Pagination>
+            </div>
+          )}
         </div>
       </section>
     </div>
