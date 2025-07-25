@@ -31,7 +31,11 @@ export function LogoIcon(props: SVGProps<SVGSVGElement>) {
             strokeLinecap="round"
             strokeLinejoin="round"
         >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            <path d="M12 2L3 8.35a1 1 0 00-.5.85v10.3a1 1 0 001 1h17a1 1 0 001-1V9.2a1 1 0 00-.5-.85L12 2z" fill="hsl(var(--primary))"/>
+            <path d="M21.5 9.2L12 15 2.5 9.2"/>
+            <path d="M12 15V22"/>
+            <path d="M12 2l-4.5 3.15" stroke="hsl(var(--primary-foreground))" strokeWidth="1.5"/>
+            <path d="M12 2l4.5 3.15" stroke="hsl(var(--primary-foreground))" strokeWidth="1.5"/>
         </svg>
     );
 }
