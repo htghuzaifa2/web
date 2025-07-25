@@ -15,7 +15,7 @@ const getShuffledProducts = () => {
 
 export default function Home() {
   const shuffledProducts = getShuffledProducts();
-  const displayProducts = shuffledProducts.slice(0, 25);
+  const displayProducts = shuffledProducts.slice(0, 10);
 
   return (
     <div className="bg-background">
@@ -31,7 +31,7 @@ export default function Home() {
         <div className="relative z-10 flex h-full flex-col items-center justify-center bg-black/50 p-4 text-center">
           <h1 className="font-headline text-5xl font-bold md:text-7xl">Discover Your Style</h1>
           <p className="font-body mt-4 max-w-2xl text-lg md:text-xl">
-            Explore our curated collection of high-quality apparel.
+            Explore our curated collection of high-quality apparel and digital goods.
           </p>
           <Button asChild size="lg" className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/categories">Shop Now</Link>

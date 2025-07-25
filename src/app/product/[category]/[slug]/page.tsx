@@ -61,7 +61,7 @@ export default function ProductPage({ params }: { params: { category: string, sl
             alt={product.name}
             fill
             className="object-cover"
-            data-ai-hint={`${product.category} clothing product`}
+            data-ai-hint={`${product.category} product`}
           />
         </div>
         <div className="flex flex-col justify-center">
@@ -69,7 +69,7 @@ export default function ProductPage({ params }: { params: { category: string, sl
           <div className="flex items-center gap-2 mt-2">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className={`h-5 w-5 ${i < Math.round(product.rating.rate) ? 'text-accent-foreground fill-current' : 'text-muted-foreground'}`} />
+                <Star key={i} className={`h-5 w-5 ${i < Math.round(product.rating.rate) ? 'text-primary fill-current' : 'text-muted-foreground'}`} />
               ))}
             </div>
             <span className="text-muted-foreground text-sm">({product.rating.count} reviews)</span>

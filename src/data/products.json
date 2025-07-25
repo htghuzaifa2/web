@@ -245,8 +245,58 @@
     "slug": "denim-jacket",
     "price": 95.00,
     "description": "An iconic piece of outerwear, the denim jacket is a versatile layer for any season.",
-    "category": "shirts",
+    "category": "jackets",
     "image": "https://placehold.co/600x400",
     "rating": { "rate": 4.7, "count": 310 }
+  },
+  {
+    "id": 26,
+    "name": "Bomber Jacket",
+    "slug": "bomber-jacket",
+    "price": 115.00,
+    "description": "A modern bomber jacket with a sleek design. Perfect for a cool, casual look.",
+    "category": "jackets",
+    "image": "https://placehold.co/600x400",
+    "rating": { "rate": 4.8, "count": 150 }
+  },
+  {
+    "id": 27,
+    "name": "Parka Jacket",
+    "slug": "parka-jacket",
+    "price": 195.00,
+    "description": "Stay warm and dry with our insulated parka jacket, featuring a faux-fur hood.",
+    "category": "jackets",
+    "image": "https://placehold.co/600x400",
+    "rating": { "rate": 4.9, "count": 110 }
+  },
+  {
+    "id": 28,
+    "name": "eBook: The Art of Style",
+    "slug": "ebook-art-of-style",
+    "price": 12.99,
+    "description": "A digital guide to mastering your personal style. Instant download.",
+    "category": "digital-goods",
+    "image": "https://placehold.co/600x400",
+    "rating": { "rate": 4.9, "count": 550 }
+  },
+  {
+    "id": 29,
+    "name": "Online Styling Course",
+    "slug": "online-styling-course",
+    "price": 99.00,
+    "description": "Access our exclusive online course and learn from fashion experts. Available worldwide.",
+    "category": "digital-goods",
+    "image": "https://placehold.co/600x400",
+    "rating": { "rate": 4.8, "count": 250 }
+  },
+  {
+    "id": 30,
+    "name": "Digital Magazine Subscription",
+    "slug": "digital-magazine-subscription",
+    "price": 5.99,
+    "description": "Monthly digital issue of Huzi Style magazine. Delivered to your inbox.",
+    "category": "digital-goods",
+    "image": "https://placehold.co/600x400",
+    "rating": { "rate": 4.7, "count": 800 }
   }
 ]

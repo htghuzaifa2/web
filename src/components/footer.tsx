@@ -12,10 +12,10 @@ export default function Footer() {
               <span className="text-xl font-bold font-headline">Huzi Pakistan</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Your destination for premium quality modern clothing.
+              Your destination for premium quality modern clothing. Delivering physical products across Pakistan and digital products worldwide.
             </p>
             <div className="text-sm text-muted-foreground">
-                <p>123 Fashion Ave, Karachi</p>
+                <p>123 Fashion Ave, Karachi, Pakistan</p>
                 <p>contact@huzi.pk</p>
             </div>
           </div>
@@ -24,8 +24,10 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               <li><Link href="/category/shirts" className="text-muted-foreground hover:text-primary transition-colors">Shirts</Link></li>
               <li><Link href="/category/pants" className="text-muted-foreground hover:text-primary transition-colors">Pants</Link></li>
+              <li><Link href="/category/jackets" className="text-muted-foreground hover:text-primary transition-colors">Jackets</Link></li>
               <li><Link href="/category/shoes" className="text-muted-foreground hover:text-primary transition-colors">Shoes</Link></li>
               <li><Link href="/category/accessories" className="text-muted-foreground hover:text-primary transition-colors">Accessories</Link></li>
+              <li><Link href="/category/digital-goods" className="text-muted-foreground hover:text-primary transition-colors">Digital Goods</Link></li>
             </ul>
           </div>
           <div>

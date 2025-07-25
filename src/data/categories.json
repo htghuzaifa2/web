@@ -22,5 +22,17 @@
     "name": "Accessories",
     "slug": "accessories",
     "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 5,
+    "name": "Jackets",
+    "slug": "jackets",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "id": 6,
+    "name": "Digital Goods",
+    "slug": "digital-goods",
+    "image": "https://placehold.co/600x400"
   }
 ]
