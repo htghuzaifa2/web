@@ -30,15 +30,12 @@ export default function ShippingPolicyPage() {
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Payment Methods</h2>
                     <p>
-                        To streamline our order process and ensure security, we are currently only accepting online payments.
-                    </p>
-                    <p>
-                        <strong>Please note: We do not offer Cash on Delivery (COD) at this time.</strong> All orders must be paid for in full at the time of purchase through our available online payment gateways.
+                        We are currently accepting payments via <strong>Easypaisa, Jazzcash, or Bank Transfer</strong>. All orders must be paid for in full at the time of purchase.
                     </p>
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Delivery Time</h2>
                     <p>
-                        Orders are typically processed and dispatched within 1-2 business days. Delivery times vary based on your location in Pakistan but generally take between 3-7 business days.
+                        Orders are typically processed and dispatched within 1-2 business days. Delivery times vary based on your location in Pakistan but generally take between 7-11 business days.
                     </p>
 
                      <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Questions</h2>
