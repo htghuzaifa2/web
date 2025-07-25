@@ -9,7 +9,6 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <Image src="/logo.webp" alt="huzi.pk logo" width={32} height={32} />
               <span className="text-xl font-bold font-headline">huzi.pk</span>
             </Link>
             <p className="text-sm text-muted-foreground">

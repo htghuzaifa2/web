@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { CartSheet } from "./cart-sheet";
-import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -21,8 +20,7 @@ export default function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Image src="/logo.webp" alt="huzi.pk logo" width={40} height={40} />
-            <span className="hidden font-bold sm:inline-block font-headline">
+            <span className="font-bold sm:inline-block font-headline text-2xl">
               huzi.pk
             </span>
           </Link>
@@ -50,8 +48,7 @@ export default function Header() {
                 </SheetTrigger>
                 <SheetContent side="left" className="pr-0">
                   <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                    <Image src="/logo.webp" alt="huzi.pk logo" width={32} height={32} />
-                    <span className="font-bold font-headline">huzi.pk</span>
+                    <span className="font-bold font-headline text-xl">huzi.pk</span>
                   </Link>
                   <nav className="flex flex-col space-y-4">
                   {navLinks.map(({ href, label }) => (
@@ -64,8 +61,7 @@ export default function Header() {
               </Sheet>
           </div>
           <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <Image src="/logo.webp" alt="huzi.pk logo" width={32} height={32} />
-            <span className="font-bold font-headline">huzi.pk</span>
+            <span className="font-bold font-headline text-lg">huzi.pk</span>
           </Link>
           <div className="flex items-center">
             <CartSheet />
