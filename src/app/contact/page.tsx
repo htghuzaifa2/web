@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Contact Us - huzi.pk",
-    description: "Get in touch with huzi.pk. Find our contact details, office address, and send us a message for any inquiries.",
+    description: "Get in touch with huzi.pk. Find our contact details and send us a message for any inquiries.",
 };
 
 export default function ContactPage() {
@@ -15,21 +15,18 @@ export default function ContactPage() {
                     We'd love to hear from you! Whether you have a question about our products, an order, or just want to say hello, feel free to reach out.
                 </p>
 
-                <div className="grid md:grid-cols-3 gap-8 text-center">
-                    <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
-                        <Mail className="h-10 w-10 text-primary mb-4" />
-                        <h2 className="font-headline text-xl font-semibold mb-2">Email Us</h2>
-                        <a href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</a>
-                    </div>
-                    <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
-                        <Phone className="h-10 w-10 text-primary mb-4" />
-                        <h2 className="font-headline text-xl font-semibold mb-2">Call Us</h2>
-                        <p className="text-muted-foreground">+92 300 1234567</p>
-                    </div>
-                    <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
-                        <MapPin className="h-10 w-10 text-primary mb-4" />
-                        <h2 className="font-headline text-xl font-semibold mb-2">Visit Us</h2>
-                        <p className="text-muted-foreground">123 Fashion Avenue, Karachi, Pakistan</p>
+                <div className="flex justify-center">
+                    <div className="grid md:grid-cols-2 gap-8 text-center max-w-2xl">
+                        <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
+                            <Mail className="h-10 w-10 text-primary mb-4" />
+                            <h2 className="font-headline text-xl font-semibold mb-2">Email Us</h2>
+                            <a href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</a>
+                        </div>
+                        <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
+                            <Phone className="h-10 w-10 text-primary mb-4" />
+                            <h2 className="font-headline text-xl font-semibold mb-2">Call Us</h2>
+                            <p className="text-muted-foreground">+92 321 9486948</p>
+                        </div>
                     </div>
                 </div>
 
