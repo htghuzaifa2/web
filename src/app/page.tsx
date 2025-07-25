@@ -4,10 +4,10 @@ import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 
 const getProductsForPage = (page: number, pageSize: number) => {
-  const products: Product[] = productsData;
+  const products: Product[] = [...productsData].reverse(); // Reverse to show latest first
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   return {
