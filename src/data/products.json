@@ -16,7 +16,8 @@
     "category": "shirts",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.5, "count": 120 }
+    "rating": { "rate": 4.5, "count": 120 },
+    "stock": 150
   },
   {
     "id": 2,
@@ -34,7 +35,8 @@
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.7, "count": 95 }
+    "rating": { "rate": 4.7, "count": 95 },
+    "stock": 80
   },
   {
     "id": 3,
@@ -45,7 +47,8 @@
     "category": "shoes",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.8, "count": 75 }
+    "rating": { "rate": 4.8, "count": 75 },
+    "stock": 50
   },
   {
     "id": 4,
@@ -56,7 +59,8 @@
     "category": "accessories",
     "image": "https://placehold.co/600x600",
     "additionalImages": [],
-    "rating": { "rate": 4.2, "count": 50 }
+    "rating": { "rate": 4.2, "count": 50 },
+    "stock": 0
   },
   {
     "id": 5,
@@ -67,7 +71,8 @@
     "category": "shirts",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600"],
-    "rating": { "rate": 4.6, "count": 210 }
+    "rating": { "rate": 4.6, "count": 210 },
+    "stock": 120
   },
   {
     "id": 6,
@@ -78,7 +83,8 @@
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.3, "count": 88 }
+    "rating": { "rate": 4.3, "count": 88 },
+    "stock": 70
   },
   {
     "id": 7,
@@ -89,7 +95,8 @@
     "category": "shoes",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.9, "count": 350 }
+    "rating": { "rate": 4.9, "count": 350 },
+    "stock": 200
   },
   {
     "id": 8,
@@ -100,7 +107,8 @@
     "category": "accessories",
     "image": "https://placehold.co/600x600",
     "additionalImages": [],
-    "rating": { "rate": 4.7, "count": 150 }
+    "rating": { "rate": 4.7, "count": 150 },
+    "stock": 100
   },
   {
     "id": 9,
@@ -111,7 +119,8 @@
     "category": "shirts",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.4, "count": 80 }
+    "rating": { "rate": 4.4, "count": 80 },
+    "stock": 60
   },
   {
     "id": 10,
@@ -122,7 +131,8 @@
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.6, "count": 400 }
+    "rating": { "rate": 4.6, "count": 400 },
+    "stock": 150
   },
   {
     "id": 11,
@@ -133,7 +143,8 @@
     "category": "shoes",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.5, "count": 110 }
+    "rating": { "rate": 4.5, "count": 110 },
+    "stock": 40
   },
   {
     "id": 12,
@@ -144,7 +155,8 @@
     "category": "accessories",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600"],
-    "rating": { "rate": 4.9, "count": 65 }
+    "rating": { "rate": 4.9, "count": 65 },
+    "stock": 0
   },
   {
     "id": 13,
@@ -155,7 +167,8 @@
     "category": "shirts",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.7, "count": 250 }
+    "rating": { "rate": 4.7, "count": 250 },
+    "stock": 300
   },
   {
     "id": 14,
@@ -166,7 +179,8 @@
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.8, "count": 90 }
+    "rating": { "rate": 4.8, "count": 90 },
+    "stock": 50
   },
   {
     "id": 15,
@@ -177,7 +191,8 @@
     "category": "shoes",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.9, "count": 180 }
+    "rating": { "rate": 4.9, "count": 180 },
+    "stock": 120
   },
   {
     "id": 16,
@@ -188,7 +203,8 @@
     "category": "accessories",
     "image": "https://placehold.co/600x600",
     "additionalImages": [],
-    "rating": { "rate": 4.8, "count": 40 }
+    "rating": { "rate": 4.8, "count": 40 },
+    "stock": 80
   },
   {
     "id": 17,
@@ -199,7 +215,8 @@
     "category": "shirts",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.7, "count": 320 }
+    "rating": { "rate": 4.7, "count": 320 },
+    "stock": 250
   },
   {
     "id": 18,
@@ -210,7 +227,8 @@
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.4, "count": 130 }
+    "rating": { "rate": 4.4, "count": 130 },
+    "stock": 180
   },
   {
     "id": 19,
@@ -221,7 +239,8 @@
     "category": "shoes",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.7, "count": 220 }
+    "rating": { "rate": 4.7, "count": 220 },
+    "stock": 60
   },
   {
     "id": 20,
@@ -232,7 +251,8 @@
     "category": "hats",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600"],
-    "rating": { "rate": 4.6, "count": 190 }
+    "rating": { "rate": 4.6, "count": 190 },
+    "stock": 200
   },
   {
     "id": 21,
@@ -243,7 +263,8 @@
     "category": "shirts",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.8, "count": 280 }
+    "rating": { "rate": 4.8, "count": 280 },
+    "stock": 100
   },
   {
     "id": 22,
@@ -254,7 +275,8 @@
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.5, "count": 160 }
+    "rating": { "rate": 4.5, "count": 160 },
+    "stock": 200
   },
   {
     "id": 23,
@@ -265,7 +287,8 @@
     "category": "shoes",
     "image": "https://placehold.co/600x600",
     "additionalImages": [],
-    "rating": { "rate": 4.3, "count": 115 }
+    "rating": { "rate": 4.3, "count": 115 },
+    "stock": 300
   },
   {
     "id": 24,
@@ -276,7 +299,8 @@
     "category": "accessories",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.9, "count": 85 }
+    "rating": { "rate": 4.9, "count": 85 },
+    "stock": 30
   },
   {
     "id": 25,
@@ -287,7 +311,8 @@
     "category": "jackets",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.7, "count": 310 }
+    "rating": { "rate": 4.7, "count": 310 },
+    "stock": 80
   },
   {
     "id": 26,
@@ -298,7 +323,8 @@
     "category": "jackets",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.8, "count": 150 }
+    "rating": { "rate": 4.8, "count": 150 },
+    "stock": 60
   },
   {
     "id": 27,
@@ -309,7 +335,8 @@
     "category": "jackets",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.9, "count": 110 }
+    "rating": { "rate": 4.9, "count": 110 },
+    "stock": 40
   },
   {
     "id": 28,
@@ -320,7 +347,8 @@
     "category": "digital-goods",
     "image": "https://placehold.co/600x600",
     "additionalImages": [],
-    "rating": { "rate": 4.9, "count": 550 }
+    "rating": { "rate": 4.9, "count": 550 },
+    "stock": 9999
   },
   {
     "id": 29,
@@ -331,7 +359,8 @@
     "category": "digital-goods",
     "image": "https://placehold.co/600x600",
     "additionalImages": [],
-    "rating": { "rate": 4.8, "count": 250 }
+    "rating": { "rate": 4.8, "count": 250 },
+    "stock": 9999
   },
   {
     "id": 30,
@@ -342,7 +371,8 @@
     "category": "digital-goods",
     "image": "https://placehold.co/600x600",
     "additionalImages": [],
-    "rating": { "rate": 4.7, "count": 800 }
+    "rating": { "rate": 4.7, "count": 800 },
+    "stock": 9999
   },
   {
     "id": 31,
@@ -353,7 +383,8 @@
     "category": "hoodies",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.9, "count": 210 }
+    "rating": { "rate": 4.9, "count": 210 },
+    "stock": 100
   },
   {
     "id": 32,
@@ -364,7 +395,8 @@
     "category": "hats",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600"],
-    "rating": { "rate": 4.6, "count": 180 }
+    "rating": { "rate": 4.6, "count": 180 },
+    "stock": 150
   },
   {
     "id": 33,
@@ -375,7 +407,8 @@
     "category": "jackets",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.9, "count": 95 }
+    "rating": { "rate": 4.9, "count": 95 },
+    "stock": 30
   },
   {
     "id": 34,
@@ -386,7 +419,8 @@
     "category": "sweaters",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.7, "count": 130 }
+    "rating": { "rate": 4.7, "count": 130 },
+    "stock": 90
   },
   {
     "id": 35,
@@ -397,7 +431,8 @@
     "category": "accessories",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.8, "count": 70 }
+    "rating": { "rate": 4.8, "count": 70 },
+    "stock": 45
   },
   {
     "id": 36,
@@ -408,7 +443,8 @@
     "category": "shoes",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.6, "count": 150 }
+    "rating": { "rate": 4.6, "count": 150 },
+    "stock": 110
   },
   {
     "id": 37,
@@ -419,7 +455,8 @@
     "category": "sweaters",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.5, "count": 100 }
+    "rating": { "rate": 4.5, "count": 100 },
+    "stock": 80
   },
   {
     "id": 38,
@@ -430,7 +467,8 @@
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.4, "count": 120 }
+    "rating": { "rate": 4.4, "count": 120 },
+    "stock": 90
   },
   {
     "id": 39,
@@ -441,7 +479,8 @@
     "category": "accessories",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600"],
-    "rating": { "rate": 4.7, "count": 90 }
+    "rating": { "rate": 4.7, "count": 90 },
+    "stock": 70
   },
   {
     "id": 40,
@@ -452,6 +491,7 @@
     "category": "hoodies",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
-    "rating": { "rate": 4.8, "count": 180 }
+    "rating": { "rate": 4.8, "count": 180 },
+    "stock": 120
   }
 ]
