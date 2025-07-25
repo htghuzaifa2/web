@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import DateDisplay from "@/components/ui/date-display";
 
 export const metadata: Metadata = {
     title: "Privacy Policy - huzi.pk",
@@ -11,7 +12,7 @@ export default function PrivacyPolicyPage() {
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-center font-headline text-4xl font-bold mb-8">Privacy Policy</h1>
                 <div className="prose prose-lg max-w-none text-muted-foreground">
-                    <p><strong>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</strong></p>
+                    <p><strong>Last Updated: <DateDisplay /></strong></p>
                     
                     <p>
                         huzi.pk ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by huzi.pk.

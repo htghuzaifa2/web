@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import DateDisplay from "@/components/ui/date-display";
 
 export const metadata: Metadata = {
     title: "Terms of Service - huzi.pk",
@@ -11,7 +12,7 @@ export default function TermsOfServicePage() {
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-center font-headline text-4xl font-bold mb-8">Terms of Service</h1>
                 <div className="prose prose-lg max-w-none text-muted-foreground">
-                    <p><strong>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</strong></p>
+                    <p><strong>Last Updated: <DateDisplay /></strong></p>
 
                     <p>
                         Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the huzi.pk website (the "Service") operated by huzi.pk ("us", "we", or "our").
