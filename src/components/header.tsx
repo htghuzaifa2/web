@@ -10,6 +10,8 @@ import { CartSheet } from "./cart-sheet";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/categories", label: "Categories" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {

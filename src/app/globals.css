@@ -66,6 +66,9 @@
   .lightbox-zoom-out {
     animation: zoom-out 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+  .whatsapp-float {
+    animation: whatsapp-pulse 2s infinite;
+  }
   @keyframes zoom-in {
     from {
       opacity: 0;
@@ -84,6 +87,20 @@
     to {
       opacity: 0;
       transform: scale(0.95);
+    }
+  }
+  @keyframes whatsapp-pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+      transform: scale(1.1);
+      box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
   }
 }
