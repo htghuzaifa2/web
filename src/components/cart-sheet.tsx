@@ -37,7 +37,7 @@ export function CartSheet() {
                 <div className="flex flex-col gap-4 py-4">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center gap-4">
-                      <Link href={`/product/${item.category}/${item.slug}`} className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+                      <Link href={`/product/${item.category}/${item.slug}`} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -46,28 +46,30 @@ export function CartSheet() {
                         />
                       </Link>
                       <div className="flex-1">
-                        <Link href={`/product/${item.category}/${item.slug}`}>
-                          <h4 className="font-semibold hover:underline">{item.name}</h4>
+                        <Link href={`/product/${item.category}/${item.slug}`} className="font-semibold hover:underline">
+                          {item.name}
                         </Link>
-                        <p className="text-sm text-muted-foreground">
-                          PKR {item.price.toFixed(2)}
-                        </p>
-                        <div className="mt-2 flex items-center gap-2">
-                          <Input
-                            type="number"
-                            min="1"
-                            value={item.quantity}
-                            onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
-                            className="h-8 w-16"
-                          />
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => removeFromCart(item.id)}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
+                        <div className="flex items-center justify-between mt-1">
+                          <p className="text-sm text-muted-foreground">
+                            PKR {item.price.toFixed(2)}
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <Input
+                              type="number"
+                              min="1"
+                              value={item.quantity}
+                              onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                              className="h-8 w-16"
+                            />
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8"
+                              onClick={() => removeFromCart(item.id)}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </div>

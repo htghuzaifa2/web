@@ -21,7 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               data-ai-hint={`${product.category} clothing`}
             />
           </div>
-          <div className="p-4">
+          <div className="p-4 text-center">
             <h3 className="font-headline text-md font-semibold truncate">{product.name}</h3>
             <p className="text-sm text-muted-foreground">{`PKR ${product.price.toFixed(2)}`}</p>
           </div>

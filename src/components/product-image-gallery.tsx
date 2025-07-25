@@ -17,19 +17,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   useEffect(() => {
     setSelectedImage(images[0]);
+    setCurrentIndex(0);
   }, [images]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (lightboxOpen) {
-        if (e.key === "Escape") setLightboxOpen(false);
-        if (e.key === "ArrowRight") showNextImage();
-        if (e.key === "ArrowLeft") showPrevImage();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxOpen, currentIndex, images.length]);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -44,6 +33,19 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
   
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxOpen) {
+        if (e.key === "Escape") setLightboxOpen(false);
+        if (e.key === "ArrowRight") showNextImage();
+        if (e.key === "ArrowLeft") showPrevImage();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightboxOpen, currentIndex]);
+
   const handleShare = async () => {
     const shareData = {
       title: productName,
@@ -51,11 +53,16 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       url: window.location.href,
     };
     try {
-      await navigator.share(shareData);
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+      }
     } catch (err) {
       console.error("Share failed:", err);
       // Fallback for browsers that don't support navigator.share
-      navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(window.location.href);
       alert("Link copied to clipboard!");
     }
   };
