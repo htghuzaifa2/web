@@ -16,6 +16,10 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    setSelectedImage(images[0]);
+  }, [images]);
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (lightboxOpen) {
         if (e.key === "Escape") setLightboxOpen(false);
@@ -25,7 +29,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxOpen, currentIndex]);
+  }, [lightboxOpen, currentIndex, images.length]);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -57,27 +61,30 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   return (
-    <div className="flex flex-col-reverse md:flex-row gap-4">
-      <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto pr-2">
-        {images.map((img, index) => (
-          <button
-            key={index}
-            className={`relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 ${selectedImage === img ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"}`}
-            onClick={() => setSelectedImage(img)}
-          >
-            <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
-          </button>
-        ))}
-      </div>
+    <div className="flex flex-col gap-4">
       <div className="relative aspect-square w-full overflow-hidden rounded-lg shadow-lg group cursor-pointer" onClick={() => openLightbox(images.indexOf(selectedImage))}>
         <Image
           src={selectedImage}
           alt={productName}
           fill
-          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+          className="object-cover transition-all duration-300"
         />
         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <ZoomIn className="h-12 w-12 text-white" />
+        </div>
+      </div>
+      
+      <div className="overflow-x-auto">
+        <div className="flex gap-2 pb-2">
+            {images.map((img, index) => (
+            <button
+                key={index}
+                className={`relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 ${selectedImage === img ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"}`}
+                onClick={() => setSelectedImage(img)}
+            >
+                <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
+            </button>
+            ))}
         </div>
       </div>
 
