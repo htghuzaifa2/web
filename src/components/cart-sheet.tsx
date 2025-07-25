@@ -47,7 +47,7 @@ export function CartSheet() {
                       <div className="flex-1">
                         <h4 className="font-semibold">{item.name}</h4>
                         <p className="text-sm text-muted-foreground">
-                          ${item.price.toFixed(2)}
+                          PKR {item.price.toFixed(2)}
                         </p>
                         <div className="mt-2 flex items-center gap-2">
                           <Input
@@ -83,7 +83,7 @@ export function CartSheet() {
             <div className="flex w-full flex-col gap-2">
               <div className="flex justify-between text-lg font-semibold">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>PKR {total.toFixed(2)}</span>
               </div>
               <Button className="w-full">Proceed to Checkout</Button>
             </div>
