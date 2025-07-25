@@ -6,6 +6,13 @@
     "slug": "classic-cotton-tee",
     "price": 7277.22,
     "description": "A timeless classic, this 100% cotton t-shirt is a must-have for any wardrobe. Soft, breathable, and durable.",
+    "longDescription": "Our Classic Cotton Tee is the foundation of any modern wardrobe. Crafted from premium 100% long-staple cotton, it offers unparalleled softness and breathability. The fabric is pre-shrunk to ensure a consistent fit wash after wash. Featuring a classic crew neck, a tailored fit that's not too tight and not too loose, and double-stitched seams for added durability, this t-shirt is designed for both comfort and longevity. It's the perfect versatile piece to wear on its own or as a layering essential.",
+    "specifications": {
+      "Material": "100% Long-Staple Cotton",
+      "Fit": "Modern Tailored Fit",
+      "Neckline": "Crew Neck",
+      "Care": "Machine wash cold, tumble dry low"
+    },
     "category": "shirts",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
@@ -17,6 +24,13 @@
     "slug": "slim-fit-chinos",
     "price": 16797.22,
     "description": "Our slim fit chinos offer a modern silhouette and all-day comfort. Made with a hint of stretch for the perfect fit.",
+    "longDescription": "Elevate your smart-casual look with our Slim Fit Chinos. These trousers are engineered with a high-quality cotton twill fabric that includes a touch of elastane for comfortable stretch and freedom of movement. The slim-fit cut provides a sharp, contemporary silhouette that tapers from the knee to the ankle. Features include classic four-pocket styling, a zip fly with a button closure, and a durable construction that holds its shape throughout the day. Perfect for the office or a weekend outing.",
+    "specifications": {
+      "Material": "98% Cotton, 2% Elastane",
+      "Fit": "Slim Fit",
+      "Pockets": "4-pocket styling",
+      "Closure": "Zip fly with button closure"
+    },
     "category": "pants",
     "image": "https://placehold.co/600x600",
     "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],

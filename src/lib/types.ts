@@ -4,6 +4,8 @@ export interface Product {
   slug: string;
   price: number;
   description: string;
+  longDescription?: string;
+  specifications?: Record<string, string>;
   category: string;
   image: string;
   additionalImages: string[];

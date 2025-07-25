@@ -3,6 +3,7 @@ import productsData from "@/data/products.json";
 import type { Product } from "@/lib/types";
 import ProductDetailsClient from "./product-details-client";
 import ProductCard from "@/components/product-card";
+import { Separator } from "@/components/ui/separator";
 
 export async function generateStaticParams() {
   const products: Product[] = productsData;
@@ -38,7 +39,7 @@ const getProductData = (category: string, slug: string) => {
   const relatedProducts = products
     .filter(p => p.category === category && p.id !== product.id)
     .sort(() => 0.5 - Math.random())
-    .slice(0, 5);
+    .slice(0, 8); // Updated to 8 products
 
   return { product, relatedProducts };
 }
@@ -54,14 +55,45 @@ export default function ProductPage({ params }: { params: { category: string, sl
     <div className="container mx-auto px-4 py-12">
       <ProductDetailsClient product={product} />
 
-      <div className="mt-16 md:mt-24">
-        <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8">
-            {relatedProducts.map(relatedProduct => (
-                <ProductCard key={relatedProduct.id} product={relatedProduct} />
-            ))}
+      {(product.longDescription || product.specifications) && (
+        <div className="my-12 md:my-16">
+            <Separator />
+            <div className="mt-12 md:mt-16 grid gap-12 md:gap-16 lg:grid-cols-5">
+                {product.longDescription && (
+                    <div className="lg:col-span-3">
+                        <h2 className="font-headline text-2xl font-bold mb-4">Full Description</h2>
+                        <div className="prose prose-lg max-w-none text-muted-foreground">
+                            <p>{product.longDescription}</p>
+                        </div>
+                    </div>
+                )}
+                 {product.specifications && Object.keys(product.specifications).length > 0 && (
+                    <div className="lg:col-span-2">
+                        <h2 className="font-headline text-2xl font-bold mb-4">Specifications</h2>
+                        <ul className="space-y-2 text-muted-foreground">
+                            {Object.entries(product.specifications).map(([key, value]) => (
+                                <li key={key} className="flex justify-between border-b pb-2">
+                                    <span className="font-semibold text-foreground">{key}</span>
+                                    <span>{value}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
         </div>
-      </div>
+      )}
+
+      {relatedProducts.length > 0 && (
+         <div className="mt-16 md:mt-24">
+            <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                {relatedProducts.map(relatedProduct => (
+                    <ProductCard key={relatedProduct.id} product={relatedProduct} />
+                ))}
+            </div>
+        </div>
+      )}
     </div>
   );
 }
