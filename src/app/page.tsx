@@ -65,7 +65,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
       <section className="relative h-[60vh] w-full text-white">
         <Image
           src="https://placehold.co/1600x900"
-          alt="Hero background"
+          alt="Stylish model wearing modern clothing in a vibrant city setting"
           layout="fill"
           objectFit="cover"
           className="absolute z-0"
