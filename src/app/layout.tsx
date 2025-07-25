@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 import { Toaster } from "@/components/ui/toaster"
 import { CartProvider } from '@/context/cart-context';
 import Link from 'next/link';
-import { WhatsappIcon } from '@/components/icons';
+import { WhatsappIcon } from '@/components/whatsapp-icon';
 
 export const metadata: Metadata = {
   title: 'huzi.pk - Modern Clothing & More',

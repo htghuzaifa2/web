@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/context/cart-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,16 +37,18 @@ export function CartSheet() {
                 <div className="flex flex-col gap-4 py-4">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center gap-4">
-                      <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
+                      <Link href={`/product/${item.category}/${item.slug}`} className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
                         <Image
                           src={item.image}
                           alt={item.name}
                           fill
                           className="object-cover"
                         />
-                      </div>
+                      </Link>
                       <div className="flex-1">
-                        <h4 className="font-semibold">{item.name}</h4>
+                        <Link href={`/product/${item.category}/${item.slug}`}>
+                          <h4 className="font-semibold hover:underline">{item.name}</h4>
+                        </Link>
                         <p className="text-sm text-muted-foreground">
                           PKR {item.price.toFixed(2)}
                         </p>
