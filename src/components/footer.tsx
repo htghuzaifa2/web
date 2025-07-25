@@ -15,7 +15,6 @@ export default function Footer() {
               Your destination for premium quality modern clothing. Delivering physical products across Pakistan and digital products worldwide.
             </p>
             <div className="text-sm text-muted-foreground">
-                <p>123 Fashion Ave, Karachi, Pakistan</p>
                 <p>contact@huzi.pk</p>
             </div>
           </div>
@@ -35,6 +34,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
               <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link href="/shipping-policy" className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</Link></li>
               <li><Link href="/terms-of-service" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
               <li><Link href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
             </ul>
