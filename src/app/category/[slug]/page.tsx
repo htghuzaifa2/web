@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${category.name} - Huzi Pakistan`,
-    description: `Shop for ${category.name} at Huzi Pakistan.`,
+    title: `${category.name} - huzi.pk`,
+    description: `Shop for ${category.name} at huzi.pk.`,
   };
 }
 

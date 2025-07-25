@@ -7,8 +7,8 @@ import { Toaster } from "@/components/ui/toaster"
 import { CartProvider } from '@/context/cart-context';
 
 export const metadata: Metadata = {
-  title: 'Huzi Pakistan - Modern Clothing & More',
-  description: 'Huzi.pk is a premier e-commerce store in Pakistan, delivering physical products nationwide and digital products worldwide. Shop for modern clothing, accessories, and more.',
+  title: 'huzi.pk - Modern Clothing & More',
+  description: 'huzi.pk is a premier e-commerce store in Pakistan, delivering physical products nationwide and digital products worldwide. Shop for modern clothing, accessories, and more.',
 };
 
 export default function RootLayout({

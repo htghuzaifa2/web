@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <Shirt className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold font-headline">Huzi Pakistan</span>
+              <span className="text-xl font-bold font-headline">huzi.pk</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Your destination for premium quality modern clothing. Delivering physical products across Pakistan and digital products worldwide.
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-4 text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Huzi Pakistan. All Rights Reserved.
+          &copy; {new Date().getFullYear()} huzi.pk. All Rights Reserved.
         </div>
       </div>
     </footer>

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { category: string,
   }
 
   return {
-    title: `${product.name} - Huzi Pakistan`,
+    title: `${product.name} - huzi.pk`,
     description: product.description,
   }
 }
