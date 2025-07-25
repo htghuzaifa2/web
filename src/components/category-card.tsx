@@ -17,7 +17,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
           width={600}
           height={400}
           className="h-auto w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-          data-ai-hint={`${category.name} category`}
+          data-ai-hint={`${category.slug} fashion`}
         />
         <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60" />
         <div className="absolute inset-0 flex items-center justify-center">

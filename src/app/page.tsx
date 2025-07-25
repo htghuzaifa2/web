@@ -4,7 +4,7 @@ import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination';
 
 const getProductsForPage = (page: number, pageSize: number) => {
   const products: Product[] = [...productsData].reverse(); // Reverse to show latest first
@@ -16,6 +16,38 @@ const getProductsForPage = (page: number, pageSize: number) => {
   };
 };
 
+const getPaginationItems = (currentPage: number, totalPages: number) => {
+  const pageNumbers = [];
+  const pagesToShow = 5; // Total number of page links to show
+  const halfPages = Math.floor(pagesToShow / 2);
+
+  if (totalPages <= pagesToShow) {
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    pageNumbers.push(1);
+    if (currentPage > halfPages + 1) {
+      pageNumbers.push('...');
+    }
+
+    let start = Math.max(2, currentPage - halfPages + (currentPage > totalPages - halfPages ? currentPage - (totalPages - halfPages) : 1));
+    let end = Math.min(totalPages - 1, currentPage + halfPages - (currentPage <= halfPages ? halfPages - currentPage + 1 : 0));
+
+    for (let i = start; i <= end; i++) {
+      pageNumbers.push(i);
+    }
+
+    if (currentPage < totalPages - halfPages) {
+      pageNumbers.push('...');
+    }
+    pageNumbers.push(totalPages);
+  }
+
+  return pageNumbers;
+};
+
+
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const products: Product[] = productsData;
   const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 5);
@@ -23,6 +55,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
   const currentPage = Number(searchParams.page) || 1;
   const pageSize = 10;
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
+  const paginationItems = getPaginationItems(currentPage, totalPages);
 
   return (
     <div className="bg-background">
@@ -78,12 +111,16 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
                   </PaginationItem>
                 )}
                 
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                    <PaginationItem key={page}>
-                        <PaginationLink href={`/?page=${page}`} isActive={page === currentPage}>
+                {paginationItems.map((page, index) => (
+                  <PaginationItem key={index}>
+                    {typeof page === 'number' ? (
+                      <PaginationLink href={`/?page=${page}`} isActive={page === currentPage}>
                         {page}
-                        </PaginationLink>
-                    </PaginationItem>
+                      </PaginationLink>
+                    ) : (
+                      <PaginationEllipsis />
+                    )}
+                  </PaginationItem>
                 ))}
 
                 {currentPage < totalPages && (

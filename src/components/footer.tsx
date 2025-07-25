@@ -26,6 +26,9 @@ export default function Footer() {
               <li><Link href="/category/jackets" className="text-muted-foreground hover:text-primary transition-colors">Jackets</Link></li>
               <li><Link href="/category/shoes" className="text-muted-foreground hover:text-primary transition-colors">Shoes</Link></li>
               <li><Link href="/category/accessories" className="text-muted-foreground hover:text-primary transition-colors">Accessories</Link></li>
+              <li><Link href="/category/hoodies" className="text-muted-foreground hover:text-primary transition-colors">Hoodies</Link></li>
+              <li><Link href="/category/hats" className="text-muted-foreground hover:text-primary transition-colors">Hats</Link></li>
+              <li><Link href="/category/sweaters" className="text-muted-foreground hover:text-primary transition-colors">Sweaters</Link></li>
               <li><Link href="/category/digital-goods" className="text-muted-foreground hover:text-primary transition-colors">Digital Goods</Link></li>
             </ul>
           </div>
