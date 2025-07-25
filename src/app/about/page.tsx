@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "About Us - huzi.pk",
@@ -11,15 +10,6 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 py-12">
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-center font-headline text-4xl font-bold mb-8">About huzi.pk</h1>
-                <div className="relative h-64 w-full rounded-lg overflow-hidden mb-8 shadow-lg">
-                    <Image 
-                        src="https://placehold.co/1200x400"
-                        alt="Huzi.pk team or office"
-                        layout="fill"
-                        objectFit="cover"
-                        data-ai-hint="team workspace"
-                    />
-                </div>
                 <div className="prose prose-lg max-w-none text-muted-foreground">
                     <p>
                         Welcome to huzi.pk, your premier destination for modern fashion and digital goods. Founded in 2024, our mission is to bring high-quality, stylish, and affordable products to customers across Pakistan and around the globe.
