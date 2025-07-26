@@ -8,7 +8,7 @@
       "3. Change the values for the new category:",
       "   - 'id': A new, unique number (e.g., if the last one is 9, make this 10).",
       "   - 'name': The display name for your category (e.g., 'T-Shirts').",
-      "   - 'slug': A URL-friendly version of the name. Must be unique, all lowercase, and use hyphens for spaces (e.g., 't-shirts'). This is very important for linking products.",
+      "   - 'slug': A URL-friendly version of the name. MUST BE UNIQUE, all lowercase, and use hyphens for spaces (e.g., 't-shirts'). If a slug already exists, add a number (e.g., 't-shirts-2').",
       "   - 'image': The URL for the category's image. You can use 'https://placehold.co/600x400' as a temporary placeholder."
     ]
   },
