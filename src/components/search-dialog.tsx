@@ -4,11 +4,12 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Search, ShoppingBag, File, History, X } from "lucide-react";
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
 import type { Product, Category } from "@/lib/types";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 const staticPages = [
     { name: "About Us", path: "/about" },
@@ -47,14 +48,17 @@ export function SearchDialog() {
     }, []);
 
     const updateSearchHistory = (newQuery: string) => {
-        if (!newQuery.trim() || searchHistory.includes(newQuery)) return;
+        const trimmedQuery = newQuery.trim();
+        if (!trimmedQuery) return;
         
-        const newHistory = [newQuery, ...searchHistory.filter(h => h !== newQuery)].slice(0, 5);
+        const newHistory = [trimmedQuery, ...searchHistory.filter(h => h.toLowerCase() !== trimmedQuery.toLowerCase())].slice(0, 5);
         setSearchHistory(newHistory);
         localStorage.setItem("searchHistory", JSON.stringify(newHistory));
     };
     
-    const removeFromHistory = (itemToRemove: string) => {
+    const removeFromHistory = (e: React.MouseEvent<HTMLButtonElement>, itemToRemove: string) => {
+        e.preventDefault();
+        e.stopPropagation();
         const newHistory = searchHistory.filter(item => item !== itemToRemove);
         setSearchHistory(newHistory);
         localStorage.setItem("searchHistory", JSON.stringify(newHistory));
@@ -62,10 +66,14 @@ export function SearchDialog() {
 
     const handleSelect = (path: string) => {
         updateSearchHistory(query);
-        setOpen(false);
-        setQuery("");
         router.push(path);
+        setOpen(false);
     };
+
+    const runCommand = React.useCallback((command: () => unknown) => {
+        setOpen(false)
+        command()
+    }, [])
 
     return (
         <>
@@ -74,6 +82,7 @@ export function SearchDialog() {
                 <span className="sr-only">Search</span>
             </Button>
             <CommandDialog open={open} onOpenChange={setOpen}>
+                <DialogTitle className="sr-only">Search</DialogTitle>
                 <CommandInput 
                     placeholder="Search products, categories, or pages..." 
                     value={query}
@@ -87,8 +96,8 @@ export function SearchDialog() {
                             {searchHistory.map((historyItem) => (
                                 <CommandItem 
                                     key={historyItem} 
-                                    onSelect={() => setQuery(historyItem)}
-                                    className="flex justify-between items-center"
+                                    onSelect={() => runCommand(() => setQuery(historyItem))}
+                                    className="group flex justify-between items-center"
                                 >
                                     <div className="flex items-center">
                                        <History className="mr-2 h-4 w-4" />
@@ -97,8 +106,8 @@ export function SearchDialog() {
                                     <Button 
                                        variant="ghost" 
                                        size="icon" 
-                                       className="h-6 w-6" 
-                                       onClick={(e) => { e.stopPropagation(); removeFromHistory(historyItem); }}
+                                       className="h-6 w-6 opacity-0 group-hover:opacity-100" 
+                                       onClick={(e) => removeFromHistory(e, historyItem)}
                                     >
                                        <X className="h-3 w-3" />
                                     </Button>
@@ -106,48 +115,55 @@ export function SearchDialog() {
                             ))}
                         </CommandGroup>
                     )}
-
-                    <CommandGroup heading="Products">
-                        {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
-                            <CommandItem
-                                key={`product-${product.id}`}
-                                value={product.name}
-                                onSelect={() => handleSelect(`/product/${product.category}/${product.slug}`)}
-                            >
-                                <ShoppingBag className="mr-2 h-4 w-4" />
-                                <span>{product.name}</span>
-                            </CommandItem>
-                        ))}
-                    </CommandGroup>
                     
-                    <CommandGroup heading="Categories">
-                        {categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((category) => (
-                            <CommandItem
-                                key={`category-${category.id}`}
-                                value={category.name}
-                                onSelect={() => handleSelect(`/category/${category.slug}`)}
-                            >
-                                <File className="mr-2 h-4 w-4" />
-                                <span>{category.name}</span>
-                            </CommandItem>
-                        ))}
-                    </CommandGroup>
+                    {query.length > 0 && (
+                      <>
+                        <CommandGroup heading="Products">
+                            {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
+                                <CommandItem
+                                    key={`product-${product.id}`}
+                                    value={`Product: ${product.name}`}
+                                    onSelect={() => runCommand(() => handleSelect(`/product/${product.category}/${product.slug}`))}
+                                >
+                                    <ShoppingBag className="mr-2 h-4 w-4" />
+                                    <span>{product.name}</span>
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
+                        
+                        <CommandSeparator />
 
-                    <CommandGroup heading="Pages">
-                        {staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((page) => (
-                            <CommandItem
-                                key={`page-${page.path}`}
-                                value={page.name}
-                                onSelect={() => handleSelect(page.path)}
-                            >
-                                <File className="mr-2 h-4 w-4" />
-                                <span>{page.name}</span>
-                            </CommandItem>
-                        ))}
-                    </CommandGroup>
+                        <CommandGroup heading="Categories">
+                            {categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((category) => (
+                                <CommandItem
+                                    key={`category-${category.id}`}
+                                    value={`Category: ${category.name}`}
+                                    onSelect={() => runCommand(() => handleSelect(`/category/${category.slug}`))}
+                                >
+                                    <File className="mr-2 h-4 w-4" />
+                                    <span>{category.name}</span>
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
+                        
+                        <CommandSeparator />
+
+                        <CommandGroup heading="Pages">
+                            {staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((page) => (
+                                <CommandItem
+                                    key={`page-${page.path}`}
+                                    value={`Page: ${page.name}`}
+                                    onSelect={() => runCommand(() => handleSelect(page.path))}
+                                >
+                                    <File className="mr-2 h-4 w-4" />
+                                    <span>{page.name}</span>
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
+                      </>
+                    )}
                 </CommandList>
             </CommandDialog>
         </>
     );
 }
-
