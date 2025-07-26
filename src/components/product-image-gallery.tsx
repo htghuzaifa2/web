@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, X, Share2, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Share2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "./ui/carousel";
@@ -21,8 +21,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [mainApi, setMainApi] = useState<CarouselApi>()
   const [thumbApi, setThumbApi] = useState<CarouselApi>()
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [canScrollPrevThumb, setCanScrollPrevThumb] = useState(false)
-  const [canScrollNextThumb, setCanScrollNextThumb] = useState(false)
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -43,26 +41,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     thumbApi.scrollTo(mainApi.selectedScrollSnap())
   }, [mainApi, thumbApi, setSelectedIndex])
 
-  const onThumbSelect = useCallback((api: CarouselApi) => {
-    if (!api) return
-    setCanScrollPrevThumb(api.canScrollPrev())
-    setCanScrollNextThumb(api.canScrollNext())
-  }, [])
-
-
   useEffect(() => {
     if (!mainApi) return
     onSelect()
     mainApi.on('select', onSelect)
     mainApi.on('reInit', onSelect)
   }, [mainApi, onSelect])
-
-  useEffect(() => {
-    if (!thumbApi) return
-    onThumbSelect(thumbApi)
-    thumbApi.on('select', onThumbSelect)
-    thumbApi.on('reInit', onThumbSelect)
-  }, [thumbApi, onThumbSelect])
 
 
   const showNextLightboxImage = useCallback(() => {
@@ -107,40 +91,9 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   return (
-    <div className="grid md:grid-cols-[80px_1fr] gap-4">
-      {/* Thumbnails */}
-      <div className="hidden md:flex flex-col items-center gap-2">
-        {canScrollPrevThumb && (
-            <Button size="icon" variant="ghost" className="h-8 w-8" onClick={() => thumbApi?.scrollPrev()}>
-                <ChevronUp className="h-5 w-5" />
-            </Button>
-        )}
-        <Carousel setApi={setThumbApi} orientation="vertical" className="w-full" opts={{align: "start"}}>
-            <CarouselContent className="-mt-2 h-96">
-                {images.map((img, index) => (
-                    <CarouselItem key={index} className="pt-2 basis-1/4">
-                         <button
-                            onClick={() => onThumbClick(index)}
-                            className={cn(
-                                "relative aspect-square w-full h-auto flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
-                                index === selectedIndex ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
-                            )}
-                        >
-                            <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
-                        </button>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-        </Carousel>
-        {canScrollNextThumb && (
-            <Button size="icon" variant="ghost" className="h-8 w-8" onClick={() => thumbApi?.scrollNext()}>
-                <ChevronDown className="h-5 w-5" />
-            </Button>
-        )}
-      </div>
-
+    <div className="flex flex-col gap-4">
        {/* Main Image Carousel */}
-      <div className="relative w-full overflow-hidden rounded-lg group flex-1">
+      <div className="relative w-full overflow-hidden rounded-lg group">
         <Carousel setApi={setMainApi} opts={{loop: true}}>
             <CarouselContent>
                 {images.map((img, index) => (
@@ -183,26 +136,28 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         </Carousel>
       </div>
       
-       {/* Mobile Thumbnails */}
-      <div className="md:hidden w-full">
-          <Carousel setApi={setThumbApi} className="w-full">
-              <CarouselContent>
-                  {images.map((img, index) => (
-                      <CarouselItem key={index} className="pl-2 basis-1/4">
-                          <button
-                              onClick={() => onThumbClick(index)}
-                              className={cn(
-                                  "relative aspect-square w-full h-auto flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
-                                  index === selectedIndex ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
-                              )}
-                          >
-                              <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
-                          </button>
-                      </CarouselItem>
-                  ))}
-              </CarouselContent>
-          </Carousel>
-      </div>
+       {/* Thumbnails */}
+      {images.length > 1 && (
+        <div className="w-full">
+            <Carousel setApi={setThumbApi} opts={{ align: "start", containScroll: "keepSnaps" }}>
+                <CarouselContent className="-ml-2">
+                    {images.map((img, index) => (
+                        <CarouselItem key={index} className="pl-2 basis-1/4 sm:basis-1/5">
+                            <button
+                                onClick={() => onThumbClick(index)}
+                                className={cn(
+                                    "relative aspect-square w-full h-auto flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
+                                    index === selectedIndex ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+                                )}
+                            >
+                                <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
+                            </button>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+            </Carousel>
+        </div>
+      )}
 
 
       {lightboxOpen && (
