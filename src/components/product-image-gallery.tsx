@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "./ui/carousel";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 
 
 interface ProductImageGalleryProps {
@@ -113,32 +113,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            {images.length > 1 && (
-                <>
-                    <Button
-                        size="icon"
-                        variant="ghost"
-                        className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80"
-                        onClick={() => mainApi?.scrollPrev()}
-                    >
-                        <ChevronLeft />
-                    </Button>
-                    <Button
-                        size="icon"
-                        variant="ghost"
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80"
-                        onClick={() => mainApi?.scrollNext()}
-                    >
-                        <ChevronRight />
-                    </Button>
-                </>
-            )}
         </Carousel>
       </div>
       
        {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="w-full">
+        <div className="relative w-full">
             <Carousel setApi={setThumbApi} opts={{ align: "start", containScroll: "keepSnaps" }}>
                 <CarouselContent className="-ml-2">
                     {images.map((img, index) => (
@@ -155,6 +135,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                         </CarouselItem>
                     ))}
                 </CarouselContent>
+                 <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2" />
+                 <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2" />
             </Carousel>
         </div>
       )}
