@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -102,7 +103,9 @@ export function CartSheet() {
                 <span>Total</span>
                 <span>PKR {Math.round(total)}</span>
               </div>
-              <Button className="w-full">Proceed to Checkout</Button>
+              <Button asChild className="w-full">
+                <Link href="/checkout">Proceed to Checkout</Link>
+              </Button>
             </div>
           </SheetFooter>
         )}
