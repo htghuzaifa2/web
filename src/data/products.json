@@ -1,7 +1,7 @@
 
 {
   "_tutorial": {
-    "info": "This file contains all the products for your store.",
+    "info": "This file contains all the products for your store. To add a new product, copy an existing product block and paste it at the end of the list, then change the values. IMPORTANT: The 'slug' must be unique for every product!",
     "how_to_add_a_new_product": [
       "1. Copy an existing product block (from the opening '{' to the closing '}').",
       "2. Paste it at the end of the list, just before the closing ']' bracket.",
