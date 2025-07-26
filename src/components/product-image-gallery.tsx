@@ -158,9 +158,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
           fill
           className="object-cover transition-all duration-300"
         />
-        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <ZoomIn className="h-12 w-12 text-white" />
-        </div>
       </div>
 
       {lightboxOpen && (

@@ -8,7 +8,7 @@
       "3. Change the values for the new product:",
       "   - 'id': A new, unique number.",
       "   - 'name': The product's title.",
-      "   - 'slug': A unique, URL-friendly version of the name (e.g., 'classic-blue-jeans'). If a slug already exists, add a number to it (e.g., 'classic-blue-jeans-2'). THIS IS VERY IMPORTANT.",
+      "   - 'slug': A unique, URL-friendly version of the name (e.g., 'classic-blue-jeans'). If a slug already exists, add a number to it (e.g., 'classic-blue-jeans-2'). THIS IS VERY IMPORTANT and MUST be done manually.",
       "   - 'price': The product price, as a whole number (no decimals).",
       "   - 'description': A short description for product lists.",
       "   - 'longDescription': A more detailed description for the product page. This is optional.",
@@ -35,7 +35,7 @@
       },
       "category": "shirts",
       "image": "https://placehold.co/600x600",
-      "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
+      "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 150
     },
     {
@@ -65,7 +65,14 @@
       "category": "shoes",
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
-      "stock": 50
+      "stock": 50,
+      "longDescription": "A timeless footwear staple, our Leather Derby Shoes are expertly crafted from premium, full-grain calfskin leather. The open-lacing system provides a comfortable fit for a wider range of foot shapes. Featuring a durable Goodyear welt construction, a cushioned leather insole, and a sturdy rubber outsole for excellent grip and longevity, these shoes are the epitome of classic style and robust construction.",
+      "specifications": {
+        "Upper": "Full-Grain Calfskin Leather",
+        "Lining": "Full Leather",
+        "Sole": "Goodyear Welted Rubber",
+        "Construction": "Hand-stitched"
+      }
     },
     {
       "id": 4,
@@ -126,7 +133,7 @@
       },
       "category": "accessories",
       "image": "https://placehold.co/600x600",
-      "additionalImages": [],
+      "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 100
     },
     {
