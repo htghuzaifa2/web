@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -5,7 +6,6 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, X, Share2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useEmblaCarousel from 'embla-carousel-react'
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "./ui/carousel";
 
 
