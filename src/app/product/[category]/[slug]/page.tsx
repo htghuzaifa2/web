@@ -5,6 +5,7 @@ import type { Product } from "@/lib/types";
 import ProductDetailsClient from "./product-details-client";
 import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
+import ProductInfoTabs from "./product-info-tabs";
 
 export async function generateStaticParams() {
   const products: Product[] = productsData.products;
@@ -40,7 +41,7 @@ const getProductData = (category: string, slug: string) => {
   const relatedProducts = products
     .filter(p => p.category === category && p.id !== product.id)
     .sort(() => 0.5 - Math.random())
-    .slice(0, 8); // Updated to 8 products
+    .slice(0, 8); 
 
   return { product, relatedProducts };
 }
@@ -59,28 +60,11 @@ export default function ProductPage({ params }: { params: { category: string, sl
       {(product.longDescription || (product.specifications && Object.keys(product.specifications).length > 0)) && (
         <div className="my-12 md:my-16">
             <Separator />
-            <div className="mt-12 md:mt-16 grid gap-12 md:gap-16 lg:grid-cols-5">
-                {product.longDescription && (
-                    <div className="lg:col-span-3">
-                        <h2 className="font-headline text-2xl font-bold mb-4">Full Description</h2>
-                        <div className="prose prose-lg max-w-none text-muted-foreground">
-                            <p>{product.longDescription}</p>
-                        </div>
-                    </div>
-                )}
-                 {product.specifications && Object.keys(product.specifications).length > 0 && (
-                    <div className="lg:col-span-2">
-                        <h2 className="font-headline text-2xl font-bold mb-4">Specifications</h2>
-                        <ul className="space-y-2 text-muted-foreground">
-                            {Object.entries(product.specifications).map(([key, value]) => (
-                                <li key={key} className="flex justify-between border-b pb-2">
-                                    <span className="font-semibold text-foreground">{key}</span>
-                                    <span>{value}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+            <div className="mt-12 md:mt-16">
+              <ProductInfoTabs 
+                description={product.longDescription} 
+                specifications={product.specifications} 
+              />
             </div>
         </div>
       )}
