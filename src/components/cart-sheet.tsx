@@ -51,7 +51,7 @@ export function CartSheet() {
                         </Link>
                         <div className="flex items-center justify-between mt-1">
                           <p className="text-sm text-muted-foreground">
-                            PKR {item.price.toFixed(2)}
+                            PKR {Math.round(item.price)}
                           </p>
                           <div className="flex items-center gap-2">
                             <Input
@@ -88,7 +88,7 @@ export function CartSheet() {
             <div className="flex w-full flex-col gap-2">
               <div className="flex justify-between text-lg font-semibold">
                 <span>Total</span>
-                <span>PKR {total.toFixed(2)}</span>
+                <span>PKR {Math.round(total)}</span>
               </div>
               <Button className="w-full">Proceed to Checkout</Button>
             </div>

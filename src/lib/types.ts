@@ -9,10 +9,6 @@ export interface Product {
   category: string;
   image: string;
   additionalImages: string[];
-  rating: {
-    rate: number;
-    count: number;
-  };
   stock?: number;
 }
 
