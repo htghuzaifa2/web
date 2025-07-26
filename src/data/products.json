@@ -133,7 +133,7 @@
       },
       "category": "accessories",
       "image": "https://placehold.co/600x600",
-      "additionalImages": ["https://placehold.co/600x600/333/fff", "https://placehold.co/600x600/555/fff", "https://placehold.co/600x600/777/fff", "https://placehold.co/600x600/999/fff"],
+      "additionalImages": ["https://placehold.co/600x600/333/fff", "https://placehold.co/600x600/555/fff", "https://placehold.co/600x600/777/fff", "https://placehold.co/600x600/999/fff", "https://placehold.co/600x600/aaa/fff", "https://placehold.co/600x600/bbb/fff", "https://placehold.co/600x600/ccc/fff", "https://placehold.co/600x600/ddd/fff", "https://placehold.co/600x600/eee/fff", "https://placehold.co/600x600/a0a0a0/fff", "https://placehold.co/600x600/b0b0b0/fff", "https://placehold.co/600x600/c0c0c0/fff", "https://placehold.co/600x600/d0d0d0/fff"],
       "stock": 100
     },
     {
