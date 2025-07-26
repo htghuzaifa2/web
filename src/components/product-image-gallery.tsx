@@ -21,6 +21,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [mainApi, setMainApi] = useState<CarouselApi>()
   const [thumbApi, setThumbApi] = useState<CarouselApi>()
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [canScrollPrevThumb, setCanScrollPrevThumb] = useState(false)
+  const [canScrollNextThumb, setCanScrollNextThumb] = useState(false)
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -41,6 +43,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     thumbApi.scrollTo(mainApi.selectedScrollSnap())
   }, [mainApi, thumbApi, setSelectedIndex])
 
+  const onThumbSelect = useCallback((api: CarouselApi) => {
+    if (!api) return
+    setCanScrollPrevThumb(api.canScrollPrev())
+    setCanScrollNextThumb(api.canScrollNext())
+  }, [])
+
 
   useEffect(() => {
     if (!mainApi) return
@@ -48,6 +56,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     mainApi.on('select', onSelect)
     mainApi.on('reInit', onSelect)
   }, [mainApi, onSelect])
+
+  useEffect(() => {
+    if (!thumbApi) return
+    onThumbSelect(thumbApi)
+    thumbApi.on('select', onThumbSelect)
+    thumbApi.on('reInit', onThumbSelect)
+  }, [thumbApi, onThumbSelect])
 
 
   const showNextLightboxImage = useCallback(() => {
@@ -95,8 +110,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     <div className="grid md:grid-cols-[80px_1fr] gap-4">
       {/* Thumbnails */}
       <div className="hidden md:flex flex-col items-center gap-2">
-        <Carousel setApi={setThumbApi} orientation="vertical" className="w-full">
-            <CarouselContent className="h-96">
+        {canScrollPrevThumb && (
+            <Button size="icon" variant="ghost" className="h-8 w-8" onClick={() => thumbApi?.scrollPrev()}>
+                <ChevronUp className="h-5 w-5" />
+            </Button>
+        )}
+        <Carousel setApi={setThumbApi} orientation="vertical" className="w-full" opts={{align: "start"}}>
+            <CarouselContent className="-mt-2 h-96">
                 {images.map((img, index) => (
                     <CarouselItem key={index} className="pt-2 basis-1/4">
                          <button
@@ -112,6 +132,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 ))}
             </CarouselContent>
         </Carousel>
+        {canScrollNextThumb && (
+            <Button size="icon" variant="ghost" className="h-8 w-8" onClick={() => thumbApi?.scrollNext()}>
+                <ChevronDown className="h-5 w-5" />
+            </Button>
+        )}
       </div>
 
        {/* Main Image Carousel */}
