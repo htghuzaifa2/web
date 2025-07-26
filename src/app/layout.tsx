@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
 };
 
-function WhatsappIcon(props: SVGProps<SVGSVGElement>) {
+export function WhatsappIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg 
       {...props}
