@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
 import type { Product, Category } from "@/lib/types";
-import { DialogTitle } from "@radix-ui/react-dialog";
 
 const staticPages = [
     { name: "About Us", path: "/about" },
@@ -82,7 +81,6 @@ export function SearchDialog() {
                 <span className="sr-only">Search</span>
             </Button>
             <CommandDialog open={open} onOpenChange={setOpen}>
-                <DialogTitle className="sr-only">Search</DialogTitle>
                 <CommandInput 
                     placeholder="Search products, categories, or pages..." 
                     value={query}
