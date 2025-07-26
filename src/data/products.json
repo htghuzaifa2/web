@@ -35,7 +35,7 @@
       },
       "category": "shirts",
       "image": "https://placehold.co/600x600",
-      "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
+      "additionalImages": ["https://placehold.co/600x600/333/fff", "https://placehold.co/600x600/555/fff", "https://placehold.co/600x600/777/fff", "https://placehold.co/600x600/999/fff", "https://placehold.co/600x600/bbb/fff"],
       "stock": 150
     },
     {

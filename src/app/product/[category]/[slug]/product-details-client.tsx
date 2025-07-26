@@ -31,7 +31,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
   return (
     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
       <ProductImageGallery images={images} productName={product.name} />
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-start">
         <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
         <div className="flex items-center gap-4 mt-4">
             <p className="font-headline text-3xl">PKR {Math.round(product.price)}</p>
