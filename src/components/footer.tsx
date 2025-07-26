@@ -47,16 +47,16 @@ export default function Footer() {
           <div>
             <h3 className="font-headline text-lg font-semibold">Follow Us</h3>
             <div className="mt-4 flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
+              <Link href="https://youtube.com/@huzi.pk_website?si=BtT-sxl2VxceXRa3" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
                 <Youtube className="h-6 w-6" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
+              <Link href="https://www.facebook.com/profile.php?id=61576677910935" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
                 <Facebook className="h-6 w-6" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
+              <Link href="https://www.instagram.com/website_huzi.pk/profilecard/?igsh=am04eHZjcTBzMjFh" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
                 <Instagram className="h-6 w-6" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
+              <Link href="https://wa.me/message/BY3URMYOW3OMH1" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-transform hover:scale-110">
                  <WhatsappIcon className="h-6 w-6" />
               </Link>
             </div>
