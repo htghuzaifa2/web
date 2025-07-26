@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, ZoomIn, Share2, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, X, ZoomIn, Share2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -14,6 +15,9 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
+
+  const imagesToShow = 4;
 
   useEffect(() => {
     setSelectedImage(images[0]);
@@ -67,9 +71,87 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     }
   };
 
+  const handleThumbnailClick = (img: string, index: number) => {
+    setSelectedImage(img);
+    setCurrentIndex(images.indexOf(img));
+  }
+
+  const scrollThumbnails = (direction: 'up' | 'down') => {
+    if (direction === 'down') {
+      setThumbnailStartIndex(prev => Math.min(prev + 1, images.length - imagesToShow));
+    } else {
+      setThumbnailStartIndex(prev => Math.max(prev - 1, 0));
+    }
+  }
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg shadow-lg group cursor-pointer" onClick={() => openLightbox(images.indexOf(selectedImage))}>
+    <div className="flex flex-col-reverse md:flex-row gap-4">
+      {/* Thumbnails */}
+      <div className="flex md:flex-col items-center gap-2">
+        {images.length > imagesToShow && (
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={() => scrollThumbnails('up')}
+            disabled={thumbnailStartIndex === 0}
+            className="hidden md:block"
+          >
+            <ChevronUp />
+          </Button>
+        )}
+        
+        {/* Horizontal scroll for mobile */}
+        <div className="md:hidden w-full overflow-x-auto">
+            <div className="flex gap-2 pb-2">
+                {images.map((img, index) => (
+                    <button
+                        key={index}
+                        className={cn(
+                            "relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
+                            selectedImage === img ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+                        )}
+                        onClick={() => handleThumbnailClick(img, index)}
+                    >
+                        <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        {/* Vertical thumbnails for desktop */}
+        <div className="hidden md:flex md:flex-col gap-2">
+          {images.slice(thumbnailStartIndex, thumbnailStartIndex + imagesToShow).map((img, index) => {
+             const actualIndex = thumbnailStartIndex + index;
+             return (
+                <button
+                    key={actualIndex}
+                    className={cn(
+                        "relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
+                        selectedImage === img ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+                    )}
+                    onClick={() => handleThumbnailClick(img, actualIndex)}
+                >
+                    <Image src={img} alt={`${productName} thumbnail ${actualIndex + 1}`} fill className="object-cover" />
+                </button>
+             );
+          })}
+        </div>
+
+        {images.length > imagesToShow && (
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={() => scrollThumbnails('down')}
+            disabled={thumbnailStartIndex >= images.length - imagesToShow}
+            className="hidden md:block"
+          >
+            <ChevronDown />
+          </Button>
+        )}
+      </div>
+
+      {/* Main Image */}
+      <div className="relative aspect-square w-full overflow-hidden rounded-lg shadow-lg group cursor-pointer flex-1" onClick={() => openLightbox(images.indexOf(selectedImage))}>
         <Image
           src={selectedImage}
           alt={productName}
@@ -78,20 +160,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         />
         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <ZoomIn className="h-12 w-12 text-white" />
-        </div>
-      </div>
-      
-      <div className="overflow-x-auto">
-        <div className="flex gap-2 pb-2">
-            {images.map((img, index) => (
-            <button
-                key={index}
-                className={`relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 ${selectedImage === img ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"}`}
-                onClick={() => setSelectedImage(img)}
-            >
-                <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
-            </button>
-            ))}
         </div>
       </div>
 

@@ -50,6 +50,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
             Add to Cart
           </Button>
         </div>
+         <p className="text-sm text-muted-foreground mt-4">Product ID: {product.id}</p>
       </div>
     </div>
   );
