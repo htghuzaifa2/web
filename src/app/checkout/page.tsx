@@ -27,7 +27,7 @@ const checkoutSchema = z.object({
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 export default function CheckoutPage() {
-  const { items, total, clearCart } = useCart();
+  const { items, total } = useCart();
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
@@ -65,8 +65,6 @@ export default function CheckoutPage() {
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
     
-    // Clear the cart after preparing the message
-    clearCart();
     // Redirect to WhatsApp
     window.open(whatsappUrl, '_blank');
     // Optionally, redirect user to a thank you page
