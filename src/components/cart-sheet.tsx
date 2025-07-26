@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useCart } from "@/context/cart-context";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
 import { Badge } from "./ui/badge";
 
@@ -103,9 +103,11 @@ export function CartSheet() {
                 <span>Total</span>
                 <span>PKR {Math.round(total)}</span>
               </div>
-              <Button asChild className="w-full">
-                <Link href="/checkout">Proceed to Checkout</Link>
-              </Button>
+              <SheetClose asChild>
+                <Button asChild className="w-full">
+                  <Link href="/checkout">Proceed to Checkout</Link>
+                </Button>
+              </SheetClose>
             </div>
           </SheetFooter>
         )}
