@@ -19,6 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               alt={product.name}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
               data-ai-hint={`${product.category} clothing`}
             />
           </div>

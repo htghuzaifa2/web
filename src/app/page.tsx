@@ -71,6 +71,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           objectFit="cover"
           className="absolute z-0"
           data-ai-hint="fashion clothes"
+          priority
         />
         <div className="relative z-10 flex h-full flex-col items-center justify-center bg-black/50 p-4 text-center">
           <h1 className="font-headline text-5xl font-bold md:text-7xl">Discover Your Style</h1>

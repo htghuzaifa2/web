@@ -18,12 +18,13 @@ export default function CategoryCard({ category }: CategoryCardProps) {
             alt={category.name}
             fill
             className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             data-ai-hint={`${category.slug} fashion`}
           />
         </div>
         <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h3 className="font-headline text-3xl font-bold text-white shadow-lg">
+        <div className="absolute inset-0 flex items-center justify-center p-4">
+          <h3 className="font-headline text-3xl font-bold text-white text-center shadow-lg">
             {category.name}
           </h3>
         </div>

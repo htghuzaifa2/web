@@ -108,6 +108,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                 fill
                                 className="object-cover transition-all duration-300"
                                 priority={index === 0}
+                                sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
                     </CarouselItem>
@@ -130,7 +131,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     index === selectedIndex ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                                 )}
                             >
-                                <Image src={img} alt={`${productName} thumbnail ${index + 1}`} fill className="object-cover" />
+                                <Image 
+                                    src={img} 
+                                    alt={`${productName} thumbnail ${index + 1}`} 
+                                    fill 
+                                    className="object-cover" 
+                                    sizes="20vw"
+                                />
                             </button>
                         </CarouselItem>
                     ))}
