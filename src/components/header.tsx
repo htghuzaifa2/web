@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { CartSheet } from "./cart-sheet";
+import { SearchDialog } from "./search-dialog";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -18,13 +19,36 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <div className="mr-4 hidden md:flex">
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle Menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="pr-0">
+              <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
+                <span className="font-bold font-headline text-xl">huzi.pk</span>
+              </Link>
+              <nav className="flex flex-col space-y-4">
+                {navLinks.map(({ href, label }) => (
+                  <Link key={label} href={href} className="text-sm font-medium transition-colors hover:text-primary">
+                    {label}
+                  </Link>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+        
+        <div className="flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <span className="font-bold sm:inline-block font-headline text-2xl">
               huzi.pk
             </span>
           </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             {navLinks.map(({ href, label }) => (
               <Link
                 key={label}
@@ -37,33 +61,9 @@ export default function Header() {
           </nav>
         </div>
         
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="md:hidden">
-             <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="h-5 w-5" />
-                    <span className="sr-only">Toggle Menu</span>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="pr-0">
-                  <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                    <span className="font-bold font-headline text-xl">huzi.pk</span>
-                  </Link>
-                  <nav className="flex flex-col space-y-4">
-                  {navLinks.map(({ href, label }) => (
-                    <Link key={label} href={href} className="text-sm font-medium transition-colors hover:text-primary">
-                      {label}
-                    </Link>
-                  ))}
-                  </nav>
-                </SheetContent>
-              </Sheet>
-          </div>
-          <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <span className="font-bold font-headline text-lg">huzi.pk</span>
-          </Link>
+        <div className="flex flex-1 items-center justify-end space-x-2">
           <div className="flex items-center">
+            <SearchDialog />
             <CartSheet />
             <ThemeToggle />
           </div>
