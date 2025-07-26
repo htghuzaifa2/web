@@ -1,57 +1,71 @@
 
-[
-  {
-    "id": 1,
-    "name": "Shirts",
-    "slug": "shirts",
-    "image": "https://placehold.co/600x400"
+{
+  "_tutorial": {
+    "info": "This file contains all the product categories for your store.",
+    "how_to_add_a_new_category": [
+      "1. Copy an existing category block (from the opening '{' to the closing '}').",
+      "2. Paste it at the end of the list, just before the closing ']' bracket.",
+      "3. Change the values for the new category:",
+      "   - 'id': A new, unique number (e.g., if the last one is 9, make this 10).",
+      "   - 'name': The display name for your category (e.g., 'T-Shirts').",
+      "   - 'slug': A URL-friendly version of the name. Must be unique, all lowercase, and use hyphens for spaces (e.g., 't-shirts'). This is very important for linking products.",
+      "   - 'image': The URL for the category's image. You can use 'https://placehold.co/600x400' as a temporary placeholder."
+    ]
   },
-  {
-    "id": 2,
-    "name": "Pants",
-    "slug": "pants",
-    "image": "https://placehold.co/600x400"
-  },
-  {
-    "id": 3,
-    "name": "Shoes",
-    "slug": "shoes",
-    "image": "https://placehold.co/600x400"
-  },
-  {
-    "id": 4,
-    "name": "Accessories",
-    "slug": "accessories",
-    "image": "https://placehold.co/600x400"
-  },
-  {
-    "id": 5,
-    "name": "Jackets",
-    "slug": "jackets",
-    "image": "https://placehold.co/600x400"
-  },
-  {
-    "id": 6,
-    "name": "Digital Goods",
-    "slug": "digital-goods",
-    "image": "https://placehold.co/600x400"
-  },
-  {
-    "id": 7,
-    "name": "Hoodies",
-    "slug": "hoodies",
-    "image": "https://placehold.co/600x400"
-  },
-  {
-    "id": 8,
-    "name": "Hats",
-    "slug": "hats",
-    "image": "https://placehold.co/600x400"
-  },
-  {
-    "id": 9,
-    "name": "Sweaters",
-    "slug": "sweaters",
-    "image": "https://placehold.co/600x400"
-  }
-]
+  "categories": [
+    {
+      "id": 1,
+      "name": "Shirts",
+      "slug": "shirts",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 2,
+      "name": "Pants",
+      "slug": "pants",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 3,
+      "name": "Shoes",
+      "slug": "shoes",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 4,
+      "name": "Accessories",
+      "slug": "accessories",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 5,
+      "name": "Jackets",
+      "slug": "jackets",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 6,
+      "name": "Digital Goods",
+      "slug": "digital-goods",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 7,
+      "name": "Hoodies",
+      "slug": "hoodies",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 8,
+      "name": "Hats",
+      "slug": "hats",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 9,
+      "name": "Sweaters",
+      "slug": "sweaters",
+      "image": "https://placehold.co/600x400"
+    }
+  ]
+}

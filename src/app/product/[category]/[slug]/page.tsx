@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import productsData from "@/data/products.json";
 import type { Product } from "@/lib/types";
@@ -6,7 +7,7 @@ import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
 
 export async function generateStaticParams() {
-  const products: Product[] = productsData;
+  const products: Product[] = productsData.products;
   return products.map((product) => ({
     category: product.category,
     slug: product.slug,
@@ -14,7 +15,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { category: string, slug: string } }) {
-  const products: Product[] = productsData;
+  const products: Product[] = productsData.products;
   const product = products.find(p => p.slug === params.slug && p.category === params.category);
 
   if (!product) {
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: { params: { category: string,
 }
 
 const getProductData = (category: string, slug: string) => {
-  const products: Product[] = productsData;
+  const products: Product[] = productsData.products;
   const product = products.find(p => p.category === category && p.slug === slug);
   if (!product) {
     return { product: null, relatedProducts: [] };
@@ -55,7 +56,7 @@ export default function ProductPage({ params }: { params: { category: string, sl
     <div className="container mx-auto px-4 py-12">
       <ProductDetailsClient product={product} />
 
-      {(product.longDescription || product.specifications) && (
+      {(product.longDescription || (product.specifications && Object.keys(product.specifications).length > 0)) && (
         <div className="my-12 md:my-16">
             <Separator />
             <div className="mt-12 md:mt-16 grid gap-12 md:gap-16 lg:grid-cols-5">

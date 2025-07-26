@@ -1,3 +1,4 @@
+
 import CategoryCard from "@/components/category-card";
 import categoriesData from "@/data/categories.json";
 import type { Category } from "@/lib/types";
@@ -8,7 +9,7 @@ export const metadata = {
 };
 
 export default function CategoriesPage() {
-  const categories: Category[] = categoriesData;
+  const categories: Category[] = categoriesData.categories;
 
   return (
     <div className="container mx-auto px-4 py-12">

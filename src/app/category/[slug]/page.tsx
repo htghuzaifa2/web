@@ -1,3 +1,4 @@
+
 import ProductCard from "@/components/product-card";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
@@ -5,14 +6,14 @@ import type { Category, Product } from "@/lib/types";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const categories: Category[] = categoriesData;
+  const categories: Category[] = categoriesData.categories;
   return categories.map((category) => ({
     slug: category.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const categories: Category[] = categoriesData;
+  const categories: Category[] = categoriesData.categories;
   const category = categories.find((c) => c.slug === params.slug);
 
   if (!category) {
@@ -29,8 +30,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const categories: Category[] = categoriesData;
-  const products: Product[] = productsData;
+  const categories: Category[] = categoriesData.categories;
+  const products: Product[] = productsData.products;
 
   const category = categories.find((c) => c.slug === slug);
 

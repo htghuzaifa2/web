@@ -1,3 +1,4 @@
+
 import ProductCard from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
@@ -7,7 +8,7 @@ import Image from 'next/image';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination';
 
 const getProductsForPage = (page: number, pageSize: number) => {
-  const products: Product[] = [...productsData].reverse(); // Reverse to show latest first
+  const products: Product[] = [...productsData.products].reverse(); // Reverse to show latest first
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   return {
@@ -52,7 +53,7 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 
 
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
-  const products: Product[] = productsData;
+  const products: Product[] = productsData.products;
   const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 10);
 
   const currentPage = Number(searchParams.page) || 1;
