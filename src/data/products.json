@@ -36,12 +36,12 @@
       "category": [
         "men"
       ],
-      "image": "https://i.ibb.co/k5qN7bN/1.webp",
+      "image": "https://placehold.co/600x600.png",
       "additionalImages": [
-        "https://i.ibb.co/GvxY3Sg/2.webp",
-        "https://i.ibb.co/FzN9xP5/3.webp",
-        "https://i.ibb.co/wJtW7G3/4.webp",
-        "https://i.ibb.co/gDFsCqs/5.webp"
+        "https://placehold.co/600x600.png",
+        "https://placehold.co/600x600.png",
+        "https://placehold.co/600x600.png",
+        "https://placehold.co/600x600.png"
       ],
       "stock": 100
     }
