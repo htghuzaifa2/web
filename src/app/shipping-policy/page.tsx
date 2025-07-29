@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Shipping Policy - huzi.pk",
-    description: "Learn about our shipping policies and free delivery across Pakistan. We deliver nationwide with no shipping charges.",
+    description: "Learn about our shipping policies. We charge a flat rate of PKR 250 for delivery across Pakistan.",
 };
 
 export default function ShippingPolicyPage() {
@@ -19,7 +19,7 @@ export default function ShippingPolicyPage() {
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Shipping Charges</h2>
                     <p>
-                        We are excited to offer **free delivery all over Pakistan** on all orders. There are no hidden charges. The price you see for the product is the price you pay.
+                        We offer a **flat shipping rate of PKR 250** on all orders across Pakistan, regardless of the number of items or the total weight of your order. The price you see for the products plus the flat shipping fee is the total amount you will pay.
                     </p>
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Payment Methods</h2>

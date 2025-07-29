@@ -30,6 +30,9 @@ export default function CheckoutPage() {
   const { items, total } = useCart();
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
+  
+  const shippingFee = 250;
+  const finalTotal = total + shippingFee;
 
   useEffect(() => {
     setIsClient(true);
@@ -59,16 +62,16 @@ export default function CheckoutPage() {
     items.forEach(item => {
       message += `- ${item.name} (x${item.quantity}) - PKR ${Math.round(item.price * item.quantity)}\n`;
     });
-
-    message += `\n*Total: PKR ${Math.round(total)}*\n\n`;
+    
+    message += `\nSubtotal: PKR ${Math.round(total)}\n`;
+    message += `Shipping: PKR ${shippingFee}\n`;
+    message += `*Total: PKR ${Math.round(finalTotal)}*\n\n`;
     message += `Please confirm payment method (Easypaisa, Jazzcash, or Bank Transfer).`;
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
     
     // Redirect to WhatsApp
     window.open(whatsappUrl, '_blank');
-    // Optionally, redirect user to a thank you page
-    router.push('/');
   };
 
   if (!isClient) {
@@ -186,9 +189,19 @@ export default function CheckoutPage() {
                 ))}
               </div>
               <Separator className="my-6" />
-              <div className="flex justify-between font-bold text-lg">
-                <p>Total</p>
-                <p>PKR {Math.round(total)}</p>
+              <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <p>Subtotal</p>
+                    <p>PKR {Math.round(total)}</p>
+                  </div>
+                   <div className="flex justify-between">
+                    <p>Shipping Fee</p>
+                    <p>PKR {shippingFee}</p>
+                  </div>
+                  <div className="flex justify-between font-bold text-lg">
+                    <p>Total</p>
+                    <p>PKR {Math.round(finalTotal)}</p>
+                  </div>
               </div>
               <div className="mt-4 text-sm text-muted-foreground text-center">
                   You will be redirected to WhatsApp to confirm your order.
