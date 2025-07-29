@@ -9,18 +9,14 @@ import ProductInfoTabs from "./product-info-tabs";
 
 export async function generateStaticParams() {
   const products: Product[] = productsData.products;
-  const params: { category: string, slug: string }[] = [];
-  products.forEach((product) => {
-    product.category.forEach(category => {
-        params.push({ category, slug: product.slug });
-    })
-  });
-  return params;
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
 }
 
-export async function generateMetadata({ params }: { params: { category: string, slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const products: Product[] = productsData.products;
-  const product = products.find(p => p.slug === params.slug && p.category.includes(params.category));
+  const product = products.find(p => p.slug === params.slug);
 
   if (!product) {
     return {
@@ -34,23 +30,25 @@ export async function generateMetadata({ params }: { params: { category: string,
   }
 }
 
-const getProductData = (category: string, slug: string) => {
+const getProductData = (slug: string) => {
   const products: Product[] = productsData.products;
-  const product = products.find(p => p.slug === slug && p.category.includes(category));
+  const product = products.find(p => p.slug === slug);
   if (!product) {
     return { product: null, relatedProducts: [] };
   }
   
+  // Find related products from the first category
+  const primaryCategory = product.category[0];
   const relatedProducts = products
-    .filter(p => p.category.includes(category) && p.id !== product.id)
+    .filter(p => p.category.includes(primaryCategory) && p.id !== product.id)
     .sort(() => 0.5 - Math.random())
     .slice(0, 8); 
 
   return { product, relatedProducts };
 }
 
-export default function ProductPage({ params }: { params: { category: string, slug: string } }) {
-  const { product, relatedProducts } = getProductData(params.category, params.slug);
+export default function ProductPage({ params }: { params: { slug: string } }) {
+  const { product, relatedProducts } = getProductData(params.slug);
 
   if (!product) {
     notFound();

@@ -121,7 +121,7 @@ export function SearchDialog() {
                                 <CommandItem
                                     key={`product-${product.id}`}
                                     value={`Product: ${product.name}`}
-                                    onSelect={() => runCommand(() => handleSelect(`/product/${product.category}/${product.slug}`))}
+                                    onSelect={() => runCommand(() => handleSelect(`/product/${product.category[0]}/${product.slug}`))}
                                 >
                                     <ShoppingBag className="mr-2 h-4 w-4" />
                                     <span>{product.name}</span>

@@ -40,7 +40,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   }
 
   const categoryProducts = products.filter(
-    (product) => product.category === slug
+    (product) => product.category.includes(slug)
   );
 
   return (

@@ -13,7 +13,7 @@
       "   - 'description': A short description for product lists.",
       "   - 'longDescription': A more detailed description for the product page. This is optional.",
       "   - 'specifications': A list of key-value pairs for product specs. This is optional. Add or remove as needed.",
-      "   - 'category': The 'slug' of the category this product belongs to. This MUST exactly match a slug from categories.json.",
+      "   - 'category': An array of category slugs this product belongs to (e.g., [\"shirts\", \"new-arrivals\"]). This MUST exactly match slugs from categories.json.",
       "   - 'image': The URL for the main product image. Use a placeholder like 'https://placehold.co/600x600'.",
       "   - 'additionalImages': A list of URLs for more product images. Can be empty [].",
       "   - 'stock': The number of items in stock. Set to 0 for 'Out of Stock'."
@@ -33,7 +33,7 @@
         "Neckline": "Crew Neck",
         "Care": "Machine wash cold, tumble dry low"
       },
-      "category": "shirts",
+      "category": ["shirts"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600/333/fff", "https://placehold.co/600x600/555/fff", "https://placehold.co/600x600/777/fff", "https://placehold.co/600x600/999/fff", "https://placehold.co/600x600/bbb/fff"],
       "stock": 150
@@ -51,7 +51,7 @@
         "Pockets": "4-pocket styling",
         "Closure": "Zip fly with button closure"
       },
-      "category": "pants",
+      "category": ["pants"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 80
@@ -62,7 +62,7 @@
       "slug": "leather-derby-shoes",
       "price": 33600,
       "description": "Crafted from genuine leather, these Derby shoes are the perfect blend of elegance and durability.",
-      "category": "shoes",
+      "category": ["shoes"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 50,
@@ -80,7 +80,7 @@
       "slug": "silk-tie",
       "price": 9940,
       "description": "Add a touch of sophistication to your look with this 100% silk tie, available in various colors.",
-      "category": "accessories",
+      "category": ["accessories"],
       "image": "https://placehold.co/600x600",
       "additionalImages": [],
       "stock": 0
@@ -91,7 +91,7 @@
       "slug": "graphic-print-shirt",
       "price": 9237,
       "description": "Make a statement with our unique graphic print shirts. Soft-touch jersey and a comfortable fit.",
-      "category": "shirts",
+      "category": ["shirts"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600"],
       "stock": 120
@@ -102,7 +102,7 @@
       "slug": "cargo-trousers",
       "price": 18200,
       "description": "Functional and stylish, these cargo trousers feature multiple pockets and a relaxed fit.",
-      "category": "pants",
+      "category": ["pants"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 70
@@ -113,7 +113,7 @@
       "slug": "canvas-sneakers",
       "price": 21000,
       "description": "Your go-to for casual days. These canvas sneakers are lightweight, comfortable, and versatile.",
-      "category": "shoes",
+      "category": ["shoes"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 200
@@ -131,7 +131,7 @@
         "Width": "1.5 inches (3.8 cm)",
         "Care": "Wipe clean with a damp cloth"
       },
-      "category": "accessories",
+      "category": ["accessories"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600/333/fff", "https://placehold.co/600x600/555/fff", "https://placehold.co/600x600/777/fff", "https://placehold.co/600x600/999/fff", "https://placehold.co/600x600/aaa/fff", "https://placehold.co/600x600/bbb/fff", "https://placehold.co/600x600/ccc/fff", "https://placehold.co/600x600/ddd/fff", "https://placehold.co/600x600/eee/fff", "https://placehold.co/600x600/a0a0a0/fff", "https://placehold.co/600x600/b0b0b0/fff", "https://placehold.co/600x600/c0c0c0/fff", "https://placehold.co/600x600/d0d0d0/fff"],
       "stock": 100
@@ -142,7 +142,7 @@
       "slug": "linen-long-sleeve",
       "price": 11900,
       "description": "Stay cool and comfortable in our linen long-sleeve shirt. Perfect for warm weather.",
-      "category": "shirts",
+      "category": ["shirts"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 60
@@ -153,7 +153,7 @@
       "slug": "denim-jeans",
       "price": 25197,
       "description": "A wardrobe staple. Our denim jeans are made from premium fabric for a great fit and feel.",
-      "category": "pants",
+      "category": ["pants"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 150
@@ -164,7 +164,7 @@
       "slug": "suede-loafers",
       "price": 26600,
       "description": "Effortlessly stylish, these suede loafers are perfect for smart-casual occasions.",
-      "category": "shoes",
+      "category": ["shoes"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 40
@@ -175,7 +175,7 @@
       "slug": "designer-sunglasses",
       "price": 42000,
       "description": "Protect your eyes in style with our designer sunglasses, offering 100% UV protection.",
-      "category": "accessories",
+      "category": ["accessories"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600"],
       "stock": 0
@@ -186,7 +186,7 @@
       "slug": "polo-shirt",
       "price": 10640,
       "description": "The classic polo shirt, updated with a modern fit and soft pique cotton.",
-      "category": "shirts",
+      "category": ["shirts"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 300
@@ -197,7 +197,7 @@
       "slug": "tailored-trousers",
       "price": 27720,
       "description": "Sharpen up your look with these expertly tailored trousers, perfect for the office or formal events.",
-      "category": "pants",
+      "category": ["pants"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 50
@@ -208,7 +208,7 @@
       "slug": "running-trainers",
       "price": 30800,
       "description": "Engineered for performance, these running trainers provide support and cushioning where you need it most.",
-      "category": "shoes",
+      "category": ["shoes"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 120
@@ -219,7 +219,7 @@
       "slug": "cashmere-scarf",
       "price": 23800,
       "description": "Luxuriously soft, our cashmere scarf is the perfect accessory for colder months.",
-      "category": "accessories",
+      "category": ["accessories"],
       "image": "https://placehold.co/600x600",
       "additionalImages": [],
       "stock": 80
@@ -230,7 +230,7 @@
       "slug": "oxford-shirt",
       "price": 13860,
       "description": "A versatile Oxford shirt that can be dressed up or down. Features a button-down collar.",
-      "category": "shirts",
+      "category": ["shirts"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 250
@@ -241,7 +241,7 @@
       "slug": "drawstring-shorts",
       "price": 11197,
       "description": "Comfortable and casual, these drawstring shorts are perfect for relaxing or a day at the beach.",
-      "category": "pants",
+      "category": ["pants"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 180
@@ -252,7 +252,7 @@
       "slug": "leather-boots",
       "price": 50400,
       "description": "Durable and stylish, these leather boots are built to last and will complement any outfit.",
-      "category": "shoes",
+      "category": ["shoes"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 60
@@ -263,7 +263,7 @@
       "slug": "beanie-hat",
       "price": 6160,
       "description": "Keep warm with this soft and comfortable beanie hat. A stylish essential for winter.",
-      "category": "hats",
+      "category": ["hats"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600"],
       "stock": 200
@@ -274,7 +274,7 @@
       "slug": "flannel-shirt",
       "price": 15400,
       "description": "A classic flannel shirt in a timeless check pattern. Made from soft, brushed cotton.",
-      "category": "shirts",
+      "category": ["shirts"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 100
@@ -285,7 +285,7 @@
       "slug": "sweatpants",
       "price": 13440,
       "description": "The ultimate in comfort. Our sweatpants are perfect for lounging or working out.",
-      "category": "pants",
+      "category": ["pants"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 200
@@ -296,7 +296,7 @@
       "slug": "slides",
       "price": 8400,
       "description": "Easy to wear and comfortable, these slides are perfect for the pool or just relaxing.",
-      "category": "shoes",
+      "category": ["shoes"],
       "image": "https://placehold.co/600x600",
       "additionalImages": [],
       "stock": 300
@@ -307,7 +307,7 @@
       "slug": "classic-watch",
       "price": 70000,
       "description": "A timeless timepiece with a leather strap and stainless steel case. A sophisticated addition to any collection.",
-      "category": "accessories",
+      "category": ["accessories"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 30
@@ -318,7 +318,7 @@
       "slug": "denim-jacket",
       "price": 26600,
       "description": "An iconic piece of outerwear, the denim jacket is a versatile layer for any season.",
-      "category": "jackets",
+      "category": ["jackets"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 80
@@ -329,7 +329,7 @@
       "slug": "bomber-jacket",
       "price": 32200,
       "description": "A modern bomber jacket with a sleek design. Perfect for a cool, casual look.",
-      "category": "jackets",
+      "category": ["jackets"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 60
@@ -340,7 +340,7 @@
       "slug": "parka-jacket",
       "price": 54600,
       "description": "Stay warm and dry with our insulated parka jacket, featuring a faux-fur hood.",
-      "category": "jackets",
+      "category": ["jackets"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 40
@@ -351,7 +351,7 @@
       "slug": "ebook-art-of-style",
       "price": 3637,
       "description": "A digital guide to mastering your personal style. Instant download.",
-      "category": "digital-goods",
+      "category": ["digital-goods"],
       "image": "https://placehold.co/600x600",
       "additionalImages": [],
       "stock": 9999
@@ -362,7 +362,7 @@
       "slug": "online-styling-course",
       "price": 27720,
       "description": "Access our exclusive online course and learn from fashion experts. Available worldwide.",
-      "category": "digital-goods",
+      "category": ["digital-goods"],
       "image": "https://placehold.co/600x600",
       "additionalImages": [],
       "stock": 9999
@@ -373,7 +373,7 @@
       "slug": "digital-magazine-subscription",
       "price": 1677,
       "description": "Monthly digital issue of Huzi Style magazine. Delivered to your inbox.",
-      "category": "digital-goods",
+      "category": ["digital-goods"],
       "image": "https://placehold.co/600x600",
       "additionalImages": [],
       "stock": 9999
@@ -384,7 +384,7 @@
       "slug": "cozy-fleece-hoodie",
       "price": 20160,
       "description": "Wrap yourself in warmth with this ultra-soft fleece hoodie. Perfect for chilly evenings.",
-      "category": "hoodies",
+      "category": ["hoodies"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 100
@@ -395,7 +395,7 @@
       "slug": "classic-baseball-cap",
       "price": 7840,
       "description": "A timeless baseball cap made from durable cotton twill. Adjustable strap for a perfect fit.",
-      "category": "hats",
+      "category": ["hats"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600"],
       "stock": 150
@@ -406,7 +406,7 @@
       "slug": "wool-peacoat",
       "price": 63000,
       "description": "A classic double-breasted peacoat crafted from a warm wool blend. A sophisticated winter essential.",
-      "category": "jackets",
+      "category": ["jackets"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 30
@@ -417,7 +417,7 @@
       "slug": "v-neck-sweater",
       "price": 16800,
       "description": "A versatile V-neck sweater made from soft merino wool. Perfect for layering.",
-      "category": "sweaters",
+      "category": ["sweaters"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 90
@@ -428,7 +428,7 @@
       "slug": "leather-backpack",
       "price": 44800,
       "description": "A stylish and functional backpack made from genuine leather, with multiple compartments.",
-      "category": "accessories",
+      "category": ["accessories"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 45
@@ -439,7 +439,7 @@
       "slug": "high-top-sneakers",
       "price": 25200,
       "description": "Retro-inspired high-top sneakers that combine style and comfort.",
-      "category": "shoes",
+      "category": ["shoes"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 110
@@ -450,7 +450,7 @@
       "slug": "turtleneck-sweater",
       "price": 18200,
       "description": "A classic turtleneck sweater for a sophisticated and warm look.",
-      "category": "sweaters",
+      "category": ["sweaters"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 80
@@ -461,7 +461,7 @@
       "slug": "corduroy-pants",
       "price": 19600,
       "description": "Soft and durable corduroy pants for a timeless, textured look.",
-      "category": "pants",
+      "category": ["pants"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 90
@@ -472,7 +472,7 @@
       "slug": "aviator-sunglasses",
       "price": 35000,
       "description": "Classic aviator sunglasses with a modern twist. Lightweight and stylish.",
-      "category": "accessories",
+      "category": ["accessories"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600"],
       "stock": 70
@@ -483,7 +483,7 @@
       "slug": "zip-up-hoodie",
       "price": 22400,
       "description": "A versatile zip-up hoodie made from a soft cotton blend.",
-      "category": "hoodies",
+      "category": ["hoodies"],
       "image": "https://placehold.co/600x600",
       "additionalImages": ["https://placehold.co/600x600", "https://placehold.co/600x600"],
       "stock": 120

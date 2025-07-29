@@ -9,8 +9,11 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  // Use the first category for the URL, but the link will still go to the universal /product/[slug] page
+  const categorySlug = product.category[0] || 'general';
+
   return (
-    <Link href={`/product/${product.category}/${product.slug}`} className="group block">
+    <Link href={`/product/${categorySlug}/${product.slug}`} className="group block">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <CardContent className="p-0">
           <div className="relative aspect-square w-full overflow-hidden">
@@ -20,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-              data-ai-hint={`${product.category} clothing`}
+              data-ai-hint={`${product.category[0]} clothing`}
             />
           </div>
           <div className="p-4 text-center">
