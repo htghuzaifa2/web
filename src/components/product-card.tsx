@@ -9,11 +9,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  // Use the first category for the URL, but the link will still go to the universal /product/[slug] page
-  const categorySlug = product.category[0] || 'general';
-
   return (
-    <Link href={`/product/${categorySlug}/${product.slug}`} className="group block">
+    <Link href={`/product/${product.slug}`} className="group block">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <CardContent className="p-0">
           <div className="relative aspect-square w-full overflow-hidden">
