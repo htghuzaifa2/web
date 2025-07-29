@@ -19,5 +19,31 @@
       "   - 'stock': The number of items in stock. Set to 0 for 'Out of Stock'."
     ]
   },
-  "products": []
+  "products": [
+    {
+      "id": 1,
+      "name": "Polo Republica Men's Essentials 24/7 Pony Knit Boxers",
+      "slug": "polo-republica-mens-essentials-247-pony-knit-boxers",
+      "price": 600,
+      "description": "Introducing our new line of men's underwear, designed for ultimate comfort and versatility. Soft enough to sleep in.",
+      "longDescription": "Whether you're running errands or lounging at home, these boxer shorts will keep you feeling cool and comfortable all day long.\n\nMade with a poly/cotton blend, our underwear is ultra-soft and gentle on your skin. The high-quality imported elastic waistband ensures a perfect fit, while the pony logo adds a touch of style.\n\nThese boxer shorts are perfect for everyday wear, but they're also great for sleeping in thanks to their ultra-soft fabric. Say goodbye to discomfort and hello to all-day comfort with our new line of men's underwear.\n\nMachine Wash",
+      "specifications": {
+        "Size Available": "S, M, L, XL, 2XL",
+        "Material": "Poly/Cotton Blend",
+        "Waistband": "High-quality imported elastic",
+        "Care": "Machine Wash"
+      },
+      "category": [
+        "men"
+      ],
+      "image": "https://i.ibb.co/k5qN7bN/1.webp",
+      "additionalImages": [
+        "https://i.ibb.co/GvxY3Sg/2.webp",
+        "https://i.ibb.co/FzN9xP5/3.webp",
+        "https://i.ibb.co/wJtW7G3/4.webp",
+        "https://i.ibb.co/gDFsCqs/5.webp"
+      ],
+      "stock": 100
+    }
+  ]
 }
