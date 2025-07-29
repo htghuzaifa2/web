@@ -13,9 +13,7 @@ import type { Product, Category } from "@/lib/types";
 const staticPages = [
     { name: "About Us", path: "/about" },
     { name: "Contact Us", path: "/contact" },
-    { name: "Privacy Policy", path: "/privacy-policy" },
     { name: "Shipping Policy", path: "/shipping-policy" },
-    { name: "Terms of Service", path: "/terms-of-service" },
     { name: "All Categories", path: "/categories" },
 ];
 
