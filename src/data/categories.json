@@ -15,56 +15,62 @@
   "categories": [
     {
       "id": 1,
-      "name": "Shirts",
-      "slug": "shirts",
+      "name": "Men",
+      "slug": "men",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 2,
-      "name": "Pants",
-      "slug": "pants",
+      "name": "Women",
+      "slug": "women",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 3,
-      "name": "Shoes",
-      "slug": "shoes",
+      "name": "Kids",
+      "slug": "kids",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 4,
-      "name": "Accessories",
-      "slug": "accessories",
+      "name": "Electronics",
+      "slug": "electronics",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 5,
-      "name": "Jackets",
-      "slug": "jackets",
+      "name": "Home & Kitchen",
+      "slug": "home-and-kitchen",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 6,
-      "name": "Digital Goods",
-      "slug": "digital-goods",
+      "name": "Books",
+      "slug": "books",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 7,
-      "name": "Hoodies",
-      "slug": "hoodies",
+      "name": "Beauty & Personal Care",
+      "slug": "beauty-and-personal-care",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 8,
-      "name": "Hats",
-      "slug": "hats",
+      "name": "Sports & Outdoors",
+      "slug": "sports-and-outdoors",
       "image": "https://placehold.co/600x400"
     },
     {
       "id": 9,
-      "name": "Sweaters",
-      "slug": "sweaters",
+      "name": "New Arrivals",
+      "slug": "new-arrivals",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "id": 10,
+      "name": "Sale",
+      "slug": "sale",
       "image": "https://placehold.co/600x400"
     }
   ]
