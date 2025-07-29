@@ -1,12 +1,57 @@
-import { Metadata } from "next";
-import { Mail, Phone } from "lucide-react";
 
-export const metadata: Metadata = {
-    title: "Contact Us - huzi.pk",
-    description: "Get in touch with huzi.pk. Find our contact details and send us a message for any inquiries.",
-};
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Mail, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
+
+const contactSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
+
+type ContactFormValues = z.infer<typeof contactSchema>;
 
 export default function ContactPage() {
+    const { toast } = useToast();
+
+    const form = useForm<ContactFormValues>({
+        resolver: zodResolver(contactSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            message: "",
+        },
+    });
+
+    const onSubmit = (data: ContactFormValues) => {
+        const myWhatsAppNumber = "923219486948";
+        let message = `*New Contact Inquiry from huzi.pk*\n\n`;
+        message += `*Name:* ${data.name}\n`;
+        message += `*Email:* ${data.email}\n`;
+        message += `*Message:*\n${data.message}`;
+
+        const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappUrl, '_blank');
+        
+        toast({
+          title: "Message Prepared",
+          description: "Please send the message in WhatsApp to complete your inquiry.",
+        });
+
+        form.reset();
+    };
+
+
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="max-w-4xl mx-auto">
@@ -30,14 +75,58 @@ export default function ContactPage() {
                     </div>
                 </div>
 
-                {/* A simple placeholder for a contact form */}
                 <div className="mt-16">
-                    <h2 className="text-center font-headline text-3xl font-bold mb-8">Send us a Message</h2>
-                    <div className="max-w-lg mx-auto p-8 border rounded-lg bg-card text-card-foreground shadow-sm">
-                        <p className="text-center text-muted-foreground">
-                            For a more detailed inquiry, please use our contact form which is coming soon. In the meantime, please use the contact methods above or our live WhatsApp chat.
-                        </p>
-                    </div>
+                    <Card className="max-w-lg mx-auto">
+                        <CardHeader>
+                            <CardTitle className="text-center font-headline text-3xl font-bold">Send us a Message</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                             <Form {...form}>
+                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="name"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Full Name</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="Your full name" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="email"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Email Address</FormLabel>
+                                                <FormControl>
+                                                    <Input type="email" placeholder="Your email address" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="message"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Your Message</FormLabel>
+                                                <FormControl>
+                                                    <Textarea placeholder="Type your message here..." {...field} rows={5} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <Button type="submit" className="w-full" size="lg">Send Message via WhatsApp</Button>
+                                </form>
+                            </Form>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         </div>
