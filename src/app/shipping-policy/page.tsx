@@ -1,9 +1,10 @@
+
 import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Shipping Policy - huzi.pk",
-    description: "Learn about our shipping policies, delivery charges, and payment methods at huzi.pk. We deliver nationwide across Pakistan.",
+    description: "Learn about our shipping policies and free delivery across Pakistan. We deliver nationwide with no shipping charges.",
 };
 
 export default function ShippingPolicyPage() {
@@ -18,16 +19,9 @@ export default function ShippingPolicyPage() {
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Shipping Charges</h2>
                     <p>
-                        Our standard shipping charge for most orders is a flat rate of **PKR 300**.
+                        We are excited to offer **free delivery all over Pakistan** on all orders. There are no hidden charges. The price you see for the product is the price you pay.
                     </p>
-                    <p>
-                        However, please note that this is a base rate. Shipping costs are calculated based on the weight and dimensions of your order.
-                    </p>
-                    <ul>
-                        <li><strong>Standard Weight:</strong> For many of our items, we can ship 3-4 products together for the standard rate of PKR 300. This is ideal for lightweight products like t-shirts or accessories.</li>
-                        <li><strong>Heavy Items:</strong> For products that are heavier or bulkier, such as jackets or shoes, the shipping cost may increase. The final shipping cost will be calculated at checkout.</li>
-                    </ul>
-
+                    
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Payment Methods</h2>
                     <p>
                         We are currently accepting payments via <strong>Easypaisa, Jazzcash, or Bank Transfer</strong>. All orders must be paid for in full at the time of purchase.
