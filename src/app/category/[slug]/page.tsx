@@ -5,6 +5,7 @@ import productsData from "@/data/products.json";
 import type { Category, Product } from "@/lib/types";
 import { notFound } from "next/navigation";
 
+// This function generates static pages for all categories defined in categories.json
 export async function generateStaticParams() {
   const categories: Category[] = categoriesData.categories;
   return categories.map((category) => ({
@@ -12,19 +13,18 @@ export async function generateStaticParams() {
   }));
 }
 
+// This function generates metadata for the category page
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const categories: Category[] = categoriesData.categories;
   const category = categories.find((c) => c.slug === params.slug);
 
-  if (!category) {
-    return {
-      title: "Category Not Found",
-    };
-  }
+  // If category is not found in JSON, create a generic title
+  const title = category ? `${category.name} - huzi.pk` : `${params.slug} - huzi.pk`;
+  const description = category ? `Shop for ${category.name} at huzi.pk.` : `Shop for ${params.slug} at huzi.pk.`;
 
   return {
-    title: `${category.name} - huzi.pk`,
-    description: `Shop for ${category.name} at huzi.pk.`,
+    title,
+    description,
   };
 }
 
@@ -33,12 +33,21 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   const categories: Category[] = categoriesData.categories;
   const products: Product[] = productsData.products;
 
-  const category = categories.find((c) => c.slug === slug);
-
+  // Find the category from the JSON file
+  let category = categories.find((c) => c.slug === slug);
+  
+  // If the category is not found, we create a temporary one.
+  // This allows creating categories just by adding them to products.
   if (!category) {
-    notFound();
+    category = {
+      id: 0,
+      name: slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+      slug: slug,
+      image: '' // No image needed for temporary category
+    }
   }
 
+  // Filter products that include the current category slug in their `category` array
   const categoryProducts = products.filter(
     (product) => product.category.includes(slug)
   );
