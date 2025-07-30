@@ -26,14 +26,23 @@ export default function HowToPayPage() {
                                 <span>Bank Transfer</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-3 text-muted-foreground">
-                            <p>Pay directly into our Meezan Bank account:</p>
-                            <ul className="space-y-2 text-sm pl-4">
-                                <li><strong>Bank:</strong> Meezan Bank Limited</li>
-                                <li><strong>Account Title:</strong> Muhammad Huzaifa Tanveer</li>
-                                <li><strong>Account Number:</strong> 0030 0112 4498 20</li>
-                                <li><strong>IBAN:</strong> PK95MEZN0000300112449820</li>
-                            </ul>
+                        <CardContent className="space-y-4 text-muted-foreground">
+                            <div>
+                                <p className="font-semibold text-foreground">Bank</p>
+                                <p>Meezan Bank Limited</p>
+                            </div>
+                            <div>
+                                <p className="font-semibold text-foreground">Account Title</p>
+                                <p>Muhammad Huzaifa Tanveer</p>
+                            </div>
+                            <div>
+                                <p className="font-semibold text-foreground">Account Number</p>
+                                <p className="font-mono text-base tracking-wider">00300112449820</p>
+                            </div>
+                             <div>
+                                <p className="font-semibold text-foreground">IBAN</p>
+                                <p className="font-mono text-base tracking-wider">PK95MEZN0000300112449820</p>
+                            </div>
                         </CardContent>
                     </Card>
                      <Card>
@@ -43,12 +52,15 @@ export default function HowToPayPage() {
                                 <span>JazzCash / EasyPaisa</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-3 text-muted-foreground">
-                           <p>Make payments conveniently via JazzCash or EasyPaisa:</p>
-                            <ul className="space-y-2 text-sm pl-4">
-                               <li><strong>Account Title:</strong> Muhammad Huzaifa Tanveer</li>
-                               <li><strong>Account Number:</strong> 0321-9486948</li>
-                            </ul>
+                        <CardContent className="space-y-4 text-muted-foreground">
+                           <div>
+                                <p className="font-semibold text-foreground">Account Title</p>
+                                <p>Muhammad Huzaifa Tanveer</p>
+                            </div>
+                            <div>
+                                <p className="font-semibold text-foreground">Account Number</p>
+                                <p className="font-mono text-base tracking-wider">0321-9486948</p>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
