@@ -23,7 +23,9 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
   
-  const fallbackImage = images[0] || "https://placehold.co/600x600";
+  const fallbackImage = images[0] || "https://placehold.co/600x600?text=Image+Not+Found";
+  const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmM2YzIi8+PC9zdmc+";
+
 
   const openLightbox = (index: number) => {
     setMainImageIndex(index);
@@ -81,6 +83,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             className="object-cover transition-all duration-300"
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
+            placeholder="blur"
+            blurDataURL={placeholderImage}
             fallbackSrc={fallbackImage}
           />
         </div>
@@ -103,6 +107,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 fill
                 className="object-cover"
                 sizes="20vw"
+                placeholder="blur"
+                blurDataURL={placeholderImage}
                 fallbackSrc={fallbackImage}
               />
             </button>
@@ -112,13 +118,15 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in">
-          <div className="relative w-full h-full max-w-5xl max-h-5xl">
+          <div className="relative w-full h-full max-w-5xl max-h-5xl p-4">
             <ImageWithFallback
               src={images[mainImageIndex]}
               alt={productName}
               fill
               className="object-contain"
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={placeholderImage}
               fallbackSrc={fallbackImage}
             />
           </div>
