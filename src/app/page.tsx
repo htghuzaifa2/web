@@ -65,10 +65,10 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const products: Product[] = productsData.products;
-  const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 5);
+  const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 6);
 
   const currentPage = Number(searchParams.page) || 1;
-  const pageSize = 10;
+  const pageSize = 12;
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
   const paginationItems = getPaginationItems(currentPage, totalPages);
 
@@ -102,7 +102,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Featured Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6 lg:gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -115,7 +115,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Our Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6 lg:gap-8">
             {paginatedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

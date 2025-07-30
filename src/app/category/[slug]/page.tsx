@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 }
 
 // This function generates metadata for the category page
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug:string } }): Promise<Metadata> {
   const categories: Category[] = categoriesData.categories;
   const category = categories.find((c) => c.slug === params.slug);
 
@@ -64,7 +64,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
       </p>
 
       {categoryProducts.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 md:gap-6 lg:gap-8">
           {categoryProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
