@@ -72,23 +72,25 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
 
   return (
     <div className="bg-background">
-      <section className="relative h-[60vh] w-full text-white">
-        <Image
-          src="https://huzi.pk/images/Polo%20Republica%20Men's%20Essentials-main.webp"
-          alt="Stylish model wearing modern clothing in a vibrant city setting"
-          fill
-          className="absolute z-0 object-cover"
-          data-ai-hint="fashion clothes"
-          priority
-        />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center bg-black/50 p-4 text-center">
-          <h1 className="font-headline text-5xl font-bold md:text-7xl">Discover Your Style</h1>
-          <p className="font-body mt-4 max-w-2xl text-lg md:text-xl">
+       <section className="relative w-full overflow-hidden bg-muted/30 py-24 md:py-32">
+        <div className="container relative z-10 mx-auto px-4 text-center">
+          <h1 className="font-headline text-5xl font-bold md:text-7xl text-foreground">Discover Your Style</h1>
+          <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
             Explore our curated collection of high-quality apparel and digital goods.
           </p>
-          <Button asChild size="lg" className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button asChild size="lg" className="mt-8">
             <Link href="/categories">Shop Now</Link>
           </Button>
+        </div>
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            <div className="text-center">
+                <h2 className="text-[12vw] lg:text-[10vw] font-black text-foreground/5 leading-none tracking-tighter">
+                    huzi.pk
+                </h2>
+                <p className="text-[4vw] lg:text-[3vw] font-bold text-foreground/5 leading-none tracking-wider -mt-[2vw]">
+                    name build with trust
+                </p>
+            </div>
         </div>
       </section>
       
