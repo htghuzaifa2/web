@@ -27,9 +27,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
   };
 
   // Combine main image and additional images into a single array for the gallery
-  const images = [product.image, ...(product.additionalImages || [])].filter(
-    (img): img is string => !!img
-  );
+  const images = [product.image, ...(product.additionalImages || [])];
 
   return (
     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
