@@ -3,14 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
+import { slugify } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const productSlug = slugify(product.name);
   return (
-    <Link href={`/product/${product.slug}`} className="group block">
+    <Link href={`/product/${productSlug}`} className="group block">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <CardContent className="p-0">
           <div className="relative aspect-square w-full overflow-hidden">

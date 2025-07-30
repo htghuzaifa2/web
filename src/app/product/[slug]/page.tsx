@@ -6,17 +6,19 @@ import ProductDetailsClient from "./product-details-client";
 import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
 import ProductInfoTabs from "./product-info-tabs";
+import { slugify } from "@/lib/utils";
 
+// This function generates static pages for all products
 export async function generateStaticParams() {
   const products: Product[] = productsData.products;
   return products.map((product) => ({
-    slug: product.slug,
+    slug: slugify(product.name),
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const products: Product[] = productsData.products;
-  const product = products.find(p => p.slug === params.slug);
+  const product = products.find(p => slugify(p.name) === params.slug);
 
   if (!product) {
     return {
@@ -32,7 +34,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 const getProductData = (slug: string) => {
   const products: Product[] = productsData.products;
-  const product = products.find(p => p.slug === slug);
+  const product = products.find(p => slugify(p.name) === slug);
+  
   if (!product) {
     return { product: null, relatedProducts: [] };
   }

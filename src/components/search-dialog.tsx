@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
 import type { Product, Category } from "@/lib/types";
+import { slugify } from "@/lib/utils";
 
 const staticPages = [
     { name: "About Us", path: "/about" },
@@ -82,7 +83,7 @@ export function SearchDialog() {
                 <CommandInput 
                     placeholder="Search products, categories, or pages..." 
                     value={query}
-                    onValueChange={setQuery}
+                    onValuechange={setQuery}
                 />
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
@@ -119,7 +120,7 @@ export function SearchDialog() {
                                 <CommandItem
                                     key={`product-${product.id}`}
                                     value={`Product: ${product.name}`}
-                                    onSelect={() => runCommand(() => handleSelect(`/product/${product.slug}`))}
+                                    onSelect={() => runCommand(() => handleSelect(`/product/${slugify(product.name)}`))}
                                 >
                                     <ShoppingBag className="mr-2 h-4 w-4" />
                                     <span>{product.name}</span>

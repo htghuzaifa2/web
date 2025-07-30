@@ -1,19 +1,18 @@
 
 {
   "_tutorial": {
-    "info": "This file contains all the products for your store. To add a new product, copy an existing product block and paste it at the end of the list, then change the values. IMPORTANT: The 'slug' must be unique for every product!",
+    "info": "This file contains all the products for your store. To add a new product, copy an existing product block and paste it at the end of the list, then change the values. The 'slug' is now automatically generated from the 'name' field.",
     "how_to_add_a_new_product": [
       "1. Copy an existing product block (from the opening '{' to the closing '}').",
       "2. Paste it at the end of the list, just before the closing ']' bracket.",
       "3. Change the values for the new product:",
       "   - 'id': A new, unique number.",
-      "   - 'name': The product's title.",
-      "   - 'slug': A unique, URL-friendly version of the name (e.g., 'classic-blue-jeans'). If a slug already exists, add a number to it (e.g., 'classic-blue-jeans-2'). THIS IS VERY IMPORTANT and MUST be done manually.",
+      "   - 'name': The product's title. The URL slug will be auto-generated from this.",
       "   - 'price': The product price, as a whole number (no decimals).",
       "   - 'description': A short description for product lists.",
       "   - 'longDescription': A more detailed description for the product page. This is optional.",
       "   - 'specifications': A list of key-value pairs for product specs. This is optional. Add or remove as needed.",
-      "   - 'category': An array of category slugs this product belongs to (e.g., [\"shirts\", \"new-arrivals\"]). This MUST exactly match slugs from categories.json.",
+      "   - 'category': An array of category slugs this product belongs to (e.g., [\"men\", \"new-arrivals\"]). This MUST exactly match slugs from categories.json.",
       "   - 'image': The URL for the main product image. Use a placeholder like 'https://placehold.co/600x600'.",
       "   - 'additionalImages': A list of URLs for more product images. Can be empty [].",
       "   - 'stock': The number of items in stock. Set to 0 for 'Out of Stock'."
@@ -23,7 +22,6 @@
     {
       "id": 1,
       "name": "Polo Republica Men's Essentials 24/7 Pony Knit Boxers",
-      "slug": "polo-republica-mens-essentials-247-pony-knit-boxers",
       "price": 600,
       "description": "Introducing our new line of men's underwear, designed for ultimate comfort and versatility. Soft enough to sleep in.",
       "longDescription": "Whether you're running errands or lounging at home, these boxer shorts will keep you feeling cool and comfortable all day long.\n\nMade with a poly/cotton blend, our underwear is ultra-soft and gentle on your skin. The high-quality imported elastic waistband ensures a perfect fit, while the pony logo adds a touch of style.\n\nThese boxer shorts are perfect for everyday wear, but they're also great for sleeping in thanks to their ultra-soft fabric. Say goodbye to discomfort and hello to all-day comfort with our new line of men's underwear.\n\nMachine Wash",
