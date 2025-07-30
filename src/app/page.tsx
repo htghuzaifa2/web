@@ -113,7 +113,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Our Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6 lg:gap-8">
             {paginatedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

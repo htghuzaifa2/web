@@ -93,8 +93,8 @@ export default function CheckoutPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-center font-headline text-4xl font-bold mb-8">Checkout</h1>
-      <div className="grid md:grid-cols-2 gap-12">
-        <div>
+      <div className="grid lg:grid-cols-2 gap-12">
+        <div className="lg:order-1">
           <Card>
             <CardHeader>
               <CardTitle>Shipping Information</CardTitle>

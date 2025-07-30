@@ -56,12 +56,19 @@ export function SearchDialog() {
         localStorage.setItem("searchHistory", JSON.stringify(newHistory));
     };
     
-    const removeFromHistory = (e: React.MouseEvent<HTMLButtonElement>, itemToRemove: string) => {
+    const removeFromHistory = (e: React.MouseEvent, itemToRemove: string) => {
         e.preventDefault();
         e.stopPropagation();
         const newHistory = searchHistory.filter(item => item !== itemToRemove);
         setSearchHistory(newHistory);
         localStorage.setItem("searchHistory", JSON.stringify(newHistory));
+    };
+
+    const clearHistory = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setSearchHistory([]);
+        localStorage.removeItem("searchHistory");
     }
 
     const runCommand = React.useCallback((command: () => unknown) => {
@@ -91,25 +98,33 @@ export function SearchDialog() {
                     <CommandEmpty>No results found.</CommandEmpty>
                     
                     {query.length === 0 && searchHistory.length > 0 && (
-                        <CommandGroup heading="Recent Searches">
+                        <CommandGroup heading={
+                            <div className="flex justify-between items-center">
+                                <span>Recent Searches</span>
+                                <Button variant="link" className="text-xs p-0 h-auto" onClick={clearHistory}>
+                                    Clear
+                                </Button>
+                            </div>
+                        }>
                             {searchHistory.map((historyItem) => (
                                 <CommandItem 
                                     key={historyItem} 
                                     onSelect={() => runCommand(() => setQuery(historyItem))}
-                                    className="group flex justify-between items-center"
+                                    className="group"
                                 >
-                                    <div className="flex items-center">
-                                       <History className="mr-2 h-4 w-4" />
-                                       <span>{historyItem}</span>
+                                    <div className="flex items-center justify-between w-full">
+                                        <div className="flex items-center">
+                                            <History className="mr-2 h-4 w-4" />
+                                            <span>{historyItem}</span>
+                                        </div>
+                                        <button 
+                                            className="h-6 w-6 opacity-0 group-hover:opacity-100 p-1 rounded-full hover:bg-muted"
+                                            onClick={(e) => removeFromHistory(e, historyItem)}
+                                            aria-label="Remove from history"
+                                        >
+                                            <X className="h-3 w-3" />
+                                        </button>
                                     </div>
-                                    <Button 
-                                       variant="ghost" 
-                                       size="icon" 
-                                       className="h-6 w-6 opacity-0 group-hover:opacity-100" 
-                                       onClick={(e) => removeFromHistory(e, historyItem)}
-                                    >
-                                       <X className="h-3 w-3" />
-                                    </Button>
                                 </CommandItem>
                             ))}
                         </CommandGroup>
