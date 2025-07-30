@@ -1,5 +1,11 @@
-# Firebase Studio
+# 🚨 Private Project Notice
 
-This is a NextJS starter in Firebase Studio.
+This repository is a **private project** and is **NOT open source**.  
 
-To get started, take a look at src/app/page.tsx.
+✅ Unauthorized use, copying, editing, redistribution, or redeployment of any part of this project is strictly prohibited.  
+
+⚠️ Any attempt to modify, republish, or misuse this code **without explicit permission** may result in **legal action or other serious consequences**.
+
+---
+
+© 2025 huzi.pk – All rights reserved.
