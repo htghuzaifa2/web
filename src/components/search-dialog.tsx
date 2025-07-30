@@ -16,6 +16,8 @@ const staticPages = [
     { name: "Contact Us", path: "/contact" },
     { name: "Shipping Policy", path: "/shipping-policy" },
     { name: "All Categories", path: "/categories" },
+    { name: "FAQ", path: "/faq"},
+    { name: "How to Pay", path: "/how-to-pay"}
 ];
 
 export function SearchDialog() {
@@ -62,16 +64,16 @@ export function SearchDialog() {
         localStorage.setItem("searchHistory", JSON.stringify(newHistory));
     }
 
+    const runCommand = React.useCallback((command: () => unknown) => {
+        setOpen(false);
+        command();
+    }, []);
+
     const handleSelect = (path: string) => {
         updateSearchHistory(query);
         router.push(path);
-        setOpen(false);
+        runCommand(() => {});
     };
-
-    const runCommand = React.useCallback((command: () => unknown) => {
-        setOpen(false)
-        command()
-    }, [])
 
     return (
         <>
@@ -83,7 +85,7 @@ export function SearchDialog() {
                 <CommandInput 
                     placeholder="Search products, categories, or pages..." 
                     value={query}
-                    onValuechange={setQuery}
+                    onValueChange={setQuery}
                 />
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
@@ -120,7 +122,7 @@ export function SearchDialog() {
                                 <CommandItem
                                     key={`product-${product.id}`}
                                     value={`Product: ${product.name}`}
-                                    onSelect={() => runCommand(() => handleSelect(`/product/${slugify(product.name)}`))}
+                                    onSelect={() => handleSelect(`/product/${slugify(product.name)}`)}
                                 >
                                     <ShoppingBag className="mr-2 h-4 w-4" />
                                     <span>{product.name}</span>
@@ -135,7 +137,7 @@ export function SearchDialog() {
                                 <CommandItem
                                     key={`category-${category.id}`}
                                     value={`Category: ${category.name}`}
-                                    onSelect={() => runCommand(() => handleSelect(`/category/${category.slug}`))}
+                                    onSelect={() => handleSelect(`/category/${category.slug}`)}
                                 >
                                     <File className="mr-2 h-4 w-4" />
                                     <span>{category.name}</span>
@@ -150,7 +152,7 @@ export function SearchDialog() {
                                 <CommandItem
                                     key={`page-${page.path}`}
                                     value={`Page: ${page.name}`}
-                                    onSelect={() => runCommand(() => handleSelect(page.path))}
+                                    onSelect={() => handleSelect(page.path)}
                                 >
                                     <File className="mr-2 h-4 w-4" />
                                     <span>{page.name}</span>
