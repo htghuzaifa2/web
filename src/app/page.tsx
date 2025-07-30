@@ -80,7 +80,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
             src="https://imgs.search.brave.com/9qvxfN-V9pQalH0exSZ4LABRYUM0qd93Mgt02oMXveg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvMTkyMHgxMDgw/LWFlc3RoZXRpYy1n/bHJmazBudHNwejN0/dnhnLmpwZw"
             alt="Modern fashion hero image"
             fill
-            className="object-cover"
+            className="object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
             priority
             data-ai-hint="fashion model"
           />
