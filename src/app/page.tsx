@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination';
 
+export const runtime = 'edge';
+
 const getProductsForPage = (page: number, pageSize: number) => {
   const products: Product[] = [...productsData.products].reverse(); // Reverse to show latest first
   const startIndex = (page - 1) * pageSize;
