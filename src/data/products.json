@@ -42,6 +42,44 @@
         "https://huzi.pk/images/Polo%20Republica%20Men's%20Essentials-white.webp"
       ],
       "stock": 100
+    },
+    {
+      "id": 2,
+      "name": "Polo Republica Men's Nobitu V-Neck Sweat Shirt",
+      "price": 1800,
+      "description": "Fabric: 50% Cotton 50% Polyester, Rib",
+      "longDescription": "Product fabric may vary according to GSM. Made with a 50% cotton and 50% polyester blend, this V-neck sweatshirt offers a balance of comfort and durability. Ideal for casual wear with ribbed cuffs and bottom for a secure fit.",
+      "specifications": {
+        "Neckline": "V-Neck",
+        "Details": "Ribbed cuff & bottom",
+        "Features": "Comfortable and durable",
+        "Quality": "Top-quality",
+        "Size Available": "S, M, L, XL",
+        "Material": "50% Cotton, 50% Polyester"
+      },
+      "category": [
+        "men"
+      ],
+      "image": "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-gray-color.webp",
+      "additionalImages": [
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-1.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-3.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-4.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-5.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-7.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-9.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-blue-2.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-dark-white.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-gey-2.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-gray.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-light-blue.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-red.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-red2.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-vavy-blue.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt-white.webp",
+        "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt1.webp"
+      ],
+      "stock": 100
     }
   ]
 }
