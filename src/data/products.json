@@ -35,11 +35,13 @@
         "men",
         "new-arrivals"
       ],
-      "image": "https://huzi.pk/images/polo-repulica-mens-essentials-1.webp",
+      "image": "https://huzi.pk/images//polo-repulica-mens-essentials-1.webp",
       "additionalImages": [
         "https://huzi.pk/images/polo-republica-mens-essentials-black.webp",
         "https://huzi.pk/images/polo-republica-mens-essentials-blue.webp",
-        "https://huzi.pk/images/polo-republica-mens-essentials-light-blue.webp"
+        "https://huzi.pk/images/polo-republica-mens-essentials-light-blue.webp",
+        "https://huzi.pk/images/polo-republica-mens-essentials-main.webp",
+        "https://huzi.pk/images/polo-republica-mens-essentials-white.webp"
       ],
       "stock": 100
     },
@@ -111,8 +113,7 @@
         "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-maroon.webp",
         "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-purple.webp",
         "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-white.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt.webp"
+        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp"
       ],
       "stock": 100
     }
