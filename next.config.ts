@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
         hostname: 'imgs.search.brave.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.elo.shopping',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
