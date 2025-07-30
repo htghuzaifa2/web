@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import { WhatsappIcon } from "@/app/layout";
@@ -25,6 +26,7 @@ export default function Footer() {
               <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
               <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
               <li><Link href="/shipping-policy" className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</Link></li>
+              <li><Link href="/how-to-pay" className="text-muted-foreground hover:text-primary transition-colors">How to Pay</Link></li>
               <li><Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
             </ul>
           </div>
