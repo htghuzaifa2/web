@@ -35,12 +35,12 @@
         "men",
         "new-arrivals"
       ],
-      "image": "https://huzi.pk/images/polo-republica-mens-essentials-main.webp",
+      "image": "https://huzi.pk/images/polo-republica-mens-essentials-white.webp",
       "additionalImages": [
         "https://huzi.pk/images/polo-republica-mens-essentials-black.webp",
         "https://huzi.pk/images/polo-republica-mens-essentials-blue.webp",
         "https://huzi.pk/images/polo-republica-mens-essentials-light-blue.webp",
-        "https://huzi.pk/images/polo-republica-mens-essentials-white.webp"
+        "https://huzi.pk/images/polo-republica-mens-essentials-main.webp"
       ],
       "stock": 100
     },
