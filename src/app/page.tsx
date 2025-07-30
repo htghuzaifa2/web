@@ -20,46 +20,46 @@ const getProductsForPage = (page: number, pageSize: number) => {
 };
 
 const getPaginationItems = (currentPage: number, totalPages: number) => {
-    const pageNumbers = [];
-    const pagesToShow = 5; 
+    if (totalPages <= 1) return [1];
+
+    const pageNumbers: (number | string)[] = [];
+    const pagesToShow = 5;
     
-    // Always show the first page
+    if (totalPages <= pagesToShow) {
+        for (let i = 1; i <= totalPages; i++) {
+            pageNumbers.push(i);
+        }
+        return pageNumbers;
+    }
+
     pageNumbers.push(1);
 
-    // Determine the middle range of pages
     let startPage = Math.max(2, currentPage - 1);
     let endPage = Math.min(totalPages - 1, currentPage + 1);
-    
+
     if (currentPage <= 3) {
         startPage = 2;
-        endPage = Math.min(totalPages - 1, pagesToShow-1);
+        endPage = Math.min(totalPages - 1, pagesToShow - 2);
     } else if (currentPage >= totalPages - 2) {
         startPage = Math.max(2, totalPages - (pagesToShow - 2));
         endPage = totalPages - 1;
     }
 
-    // Add ellipsis if there's a gap after the first page
     if (startPage > 2) {
         pageNumbers.push('...');
     }
 
-    // Add the middle page numbers
     for (let i = startPage; i <= endPage; i++) {
         pageNumbers.push(i);
     }
 
-    // Add ellipsis if there's a gap before the last page
     if (endPage < totalPages - 1) {
         pageNumbers.push('...');
     }
     
-    // Always show the last page if there is more than one page
-    if (totalPages > 1) {
-        pageNumbers.push(totalPages);
-    }
+    pageNumbers.push(totalPages);
 
-    // Remove duplicates, in case of small number of pages (e.g. totalPages=2)
-    return [...new Set(pageNumbers)];
+    return pageNumbers;
 };
 
 
