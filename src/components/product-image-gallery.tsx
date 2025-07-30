@@ -18,36 +18,26 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const [mainApi, setMainApi] = useState<CarouselApi>()
-  const [thumbApi, setThumbApi] = useState<CarouselApi>()
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+ 
+    setCurrent(api.selectedScrollSnap() + 1)
+ 
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
-  
-  const onThumbClick = useCallback(
-    (index: number) => {
-      if (!mainApi || !thumbApi) return
-      mainApi.scrollTo(index)
-    },
-    [mainApi, thumbApi]
-  )
-
-  const onSelect = useCallback(() => {
-    if (!mainApi || !thumbApi) return
-    setSelectedIndex(mainApi.selectedScrollSnap())
-    thumbApi.scrollTo(mainApi.selectedScrollSnap())
-  }, [mainApi, thumbApi, setSelectedIndex])
-
-  useEffect(() => {
-    if (!mainApi) return
-    onSelect()
-    mainApi.on('select', onSelect)
-    mainApi.on('reInit', onSelect)
-  }, [mainApi, onSelect])
-
 
   const showNextLightboxImage = useCallback(() => {
     setLightboxIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -90,11 +80,15 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     }
   };
 
+  const handleThumbnailClick = (index: number) => {
+    api?.scrollTo(index);
+  }
+
   return (
     <div className="flex flex-col gap-4">
        {/* Main Image Carousel */}
       <div className="relative w-full overflow-hidden rounded-lg group">
-        <Carousel setApi={setMainApi} opts={{loop: true}}>
+        <Carousel setApi={setApi} opts={{loop: true}}>
             <CarouselContent>
                 {images.map((img, index) => (
                     <CarouselItem key={index}>
@@ -114,37 +108,36 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                     </CarouselItem>
                 ))}
             </CarouselContent>
+            {images.length > 1 && (
+              <>
+                <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
+              </>
+            )}
         </Carousel>
       </div>
       
        {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="relative w-full">
-            <Carousel setApi={setThumbApi} opts={{ align: "start", containScroll: "keepSnaps" }}>
-                <CarouselContent className="-ml-2">
-                    {images.map((img, index) => (
-                        <CarouselItem key={index} className="pl-2 basis-1/4 sm:basis-1/5">
-                            <button
-                                onClick={() => onThumbClick(index)}
-                                className={cn(
-                                    "relative aspect-square w-full h-auto flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
-                                    index === selectedIndex ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
-                                )}
-                            >
-                                <Image 
-                                    src={img} 
-                                    alt={`${productName} thumbnail ${index + 1}`} 
-                                    fill 
-                                    className="object-cover" 
-                                    sizes="20vw"
-                                />
-                            </button>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                 <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2" />
-                 <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2" />
-            </Carousel>
+        <div className="grid grid-cols-5 gap-2">
+          {images.map((img, index) => (
+            <button
+              key={index}
+              onClick={() => handleThumbnailClick(index)}
+              className={cn(
+                "relative aspect-square w-full h-auto flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
+                current === index + 1 ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+              )}
+            >
+              <Image 
+                src={img} 
+                alt={`${productName} thumbnail ${index + 1}`} 
+                fill 
+                className="object-cover" 
+                sizes="20vw"
+              />
+            </button>
+          ))}
         </div>
       )}
 
