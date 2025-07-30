@@ -99,7 +99,8 @@
         "Material": "52% Polyester, 48% Cotton (Pique 210GSM)"
       },
       "category": [
-        "men", "new-arrivals"
+        "men",
+        "new-arrivals"
       ],
       "image": "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp",
       "additionalImages": [
@@ -111,8 +112,7 @@
         "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-maroon.webp",
         "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-purple.webp",
         "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-white.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt.webp"
+        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp"
       ],
       "stock": 100
     }
