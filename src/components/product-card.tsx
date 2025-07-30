@@ -22,6 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1280px) 20vw, 16vw"
+              key={product.image} 
             />
           </div>
           <div className="p-3 text-center flex-grow flex flex-col justify-between">
