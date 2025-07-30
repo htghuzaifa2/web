@@ -87,7 +87,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="font-headline text-5xl font-bold md:text-7xl">Discover Your Style</h1>
+          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold">Discover Your Style</h1>
           <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90">
             Explore our curated collection of high-quality apparel and digital goods.
           </p>
@@ -102,7 +102,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Featured Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -115,7 +115,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Our Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
             {paginatedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

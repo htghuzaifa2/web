@@ -93,7 +93,56 @@ export default function CheckoutPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-center font-headline text-4xl font-bold mb-8">Checkout</h1>
-      <div className="grid lg:grid-cols-2 gap-12">
+      <div className="grid lg:grid-cols-2 lg:gap-12 gap-8">
+        <div className="lg:order-2">
+           <Card>
+            <CardHeader>
+              <CardTitle>Order Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {items.map(item => (
+                  <div key={item.id} className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                       <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                            <p className="font-semibold">{item.name}</p>
+                            <p className="text-sm text-muted-foreground">Quantity: {item.quantity}</p>
+                        </div>
+                    </div>
+                    <p className="font-medium">PKR {Math.round(item.price * item.quantity)}</p>
+                  </div>
+                ))}
+              </div>
+              <Separator className="my-6" />
+              <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <p>Subtotal</p>
+                    <p>PKR {Math.round(total)}</p>
+                  </div>
+                   <div className="flex justify-between">
+                    <p>Shipping Fee</p>
+                    <p>PKR {shippingFee}</p>
+                  </div>
+                  <div className="flex justify-between font-bold text-lg">
+                    <p>Total</p>
+                    <p>PKR {Math.round(finalTotal)}</p>
+                  </div>
+              </div>
+              <div className="mt-4 text-sm text-muted-foreground text-center">
+                  You will be redirected to WhatsApp to confirm your order.
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        
         <div className="lg:order-1">
           <Card>
             <CardHeader>
@@ -157,55 +206,6 @@ export default function CheckoutPage() {
                   <Button type="submit" className="w-full" size="lg">Place Order on WhatsApp</Button>
                 </form>
               </Form>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div>
-          <Card>
-            <CardHeader>
-              <CardTitle>Order Summary</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {items.map(item => (
-                  <div key={item.id} className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                       <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div>
-                            <p className="font-semibold">{item.name}</p>
-                            <p className="text-sm text-muted-foreground">Quantity: {item.quantity}</p>
-                        </div>
-                    </div>
-                    <p className="font-medium">PKR {Math.round(item.price * item.quantity)}</p>
-                  </div>
-                ))}
-              </div>
-              <Separator className="my-6" />
-              <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <p>Subtotal</p>
-                    <p>PKR {Math.round(total)}</p>
-                  </div>
-                   <div className="flex justify-between">
-                    <p>Shipping Fee</p>
-                    <p>PKR {shippingFee}</p>
-                  </div>
-                  <div className="flex justify-between font-bold text-lg">
-                    <p>Total</p>
-                    <p>PKR {Math.round(finalTotal)}</p>
-                  </div>
-              </div>
-              <div className="mt-4 text-sm text-muted-foreground text-center">
-                  You will be redirected to WhatsApp to confirm your order.
-              </div>
             </CardContent>
           </Card>
         </div>
