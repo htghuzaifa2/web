@@ -13,7 +13,7 @@ const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk", // Replace with your actual domain
   description: "huzi.pk is a premier e-commerce store in Pakistan, delivering physical products nationwide and digital products worldwide. Shop for modern clothing, accessories, and more.",
-  ogImage: "/logo.webp", // Place your logo.webp in the public folder
+  ogImage: "https://huzi.pk/images/logo.webp", // Place your logo.webp in the public folder
 };
 
 export const metadata: Metadata = {
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: "/logo.webp",
-    shortcut: "/logo.webp",
-    apple: "/logo.webp",
+    icon: siteConfig.ogImage,
+    shortcut: siteConfig.ogImage,
+    apple: siteConfig.ogImage,
   },
   metadataBase: new URL(siteConfig.url),
   openGraph: {
