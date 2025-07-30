@@ -80,6 +80,38 @@
         "https://huzi.pk/images/Polo%20Republica%20Men's%20Nobitu%20V-Neck%20Sweat%20Shirt1.webp"
       ],
       "stock": 100
+    },
+    {
+      "id": 3,
+      "name": "PRT Vonboni Short Sleeve Men's Polo Shirt",
+      "price": 1800,
+      "description": "Fabric: 52% Polyester 48% Cotton, Pique (PK) 210GSM",
+      "longDescription": "This PRT Vonboni Short Sleeve Men's Polo Shirt is made from a premium blend of 52% polyester and 48% cotton, with a 210GSM pique fabric for lasting comfort. Featuring a classic collar, short sleeves, and a three-button placket, it is designed for style and everyday wear. A size chart is provided in the photos to ensure the perfect fit.",
+      "specifications": {
+        "Collar": "Classic collar",
+        "Sleeves": "Short sleeve",
+        "Placket": "Three-button placket",
+        "Cuffs": "Flat knitted cuffs",
+        "Hem": "Hammed bottom",
+        "Size Chart": "Provided in photos",
+        "Material": "52% Polyester, 48% Cotton (Pique 210GSM)"
+      },
+      "category": [
+        "men"
+      ],
+      "image": "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt.webp",
+      "additionalImages": [
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-white.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-black.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-blue.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-green.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-grey.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-light-blue.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-maroon.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-purpuple.webp",
+        "https://huzi.pk/images/PRT%20Vonboni%20Short%20Sleeve%20Men's%20Polo%20Shirt-yellow.webp"
+      ],
+      "stock": 100
     }
   ]
 }
