@@ -29,6 +29,12 @@ const nextConfig: NextConfig = {
         hostname: 'picjumbo.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'huzi.pk',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

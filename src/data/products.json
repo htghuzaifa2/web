@@ -1,7 +1,7 @@
 
 {
   "_tutorial": {
-    "info": "This file contains all the products for your store. To add a new product, copy an existing product block and paste it at the end of the list, then change the values. The 'slug' is now automatically generated from the 'name' field.",
+    "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
     "how_to_add_a_new_product": [
       "1. Copy an existing product block (from the opening '{' to the closing '}').",
       "2. Paste it at the end of the list, just before the closing ']' bracket.",
@@ -34,7 +34,7 @@
       "category": [
         "men"
       ],
-      "image": "https://placehold.co/600x600",
+      "image": "https://huzi.pk/images/Polo%20Republica%20Men's%20Essentials-main.webp",
       "additionalImages": [
         "https://placehold.co/600x600",
         "https://placehold.co/600x600",
