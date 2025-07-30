@@ -1,3 +1,4 @@
+
 {
   "_tutorial": {
     "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
@@ -101,17 +102,13 @@
         "men",
         "new-arrivals"
       ],
-      "image": "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp",
+      "image": "https://huzi.pk/images/polo-republica-mens-essentials-blue.webp",
       "additionalImages": [
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-black.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-blue.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-green.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-grey.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-light-blue.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-maroon.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-purple.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-white.webp",
-        "https://huzi.pk/images/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp"
+        "https://huzi.pk/images/polo-republica-mens-essentials-black.webp",
+        "https://huzi.pk/images/polo-republica-mens-essentials-blue.webp",
+        "https://huzi.pk/images/polo-republica-mens-essentials-light-blue.webp",
+        "https://huzi.pk/images/polo-republica-mens-essentials-main.webp",
+        "https://huzi.pk/images/polo-republica-mens-essentials-white.webp"
       ],
       "stock": 100
     }
