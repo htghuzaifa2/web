@@ -11,17 +11,18 @@ import { SVGProps } from 'react';
 
 const siteConfig = {
   name: "huzi.pk",
-  url: "https://huzi.pk", // Replace with your actual domain
+  url: "https://huzi.pk",
   description: "huzi.pk is a premier e-commerce store in Pakistan, delivering physical products nationwide and digital products worldwide. Shop for modern clothing, accessories, and more.",
-  ogImage: "https://huzi.pk/images/logo.webp", // Place your logo.webp in the public folder
+  ogImage: "https://huzi.pk/images/logo.webp",
 };
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
+    default: `${siteConfig.name} - Modern Fashion & Digital Goods in Pakistan`,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear"],
   icons: {
     icon: siteConfig.ogImage,
     shortcut: siteConfig.ogImage,
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_PK",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,

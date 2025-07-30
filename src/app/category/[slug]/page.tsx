@@ -4,6 +4,7 @@ import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
 import type { Category, Product } from "@/lib/types";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 // This function generates static pages for all categories defined in categories.json
 export async function generateStaticParams() {
@@ -14,7 +15,7 @@ export async function generateStaticParams() {
 }
 
 // This function generates metadata for the category page
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const categories: Category[] = categoriesData.categories;
   const category = categories.find((c) => c.slug === params.slug);
 
@@ -22,12 +23,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       notFound();
   }
 
-  const title = `${category.name} - huzi.pk`;
-  const description = `Shop for ${category.name} at huzi.pk.`;
+  const title = `Shop for ${category.name} in Pakistan - huzi.pk`;
+  const description = `Explore our collection of ${category.name} and get fast delivery all over Pakistan. High-quality products at the best prices.`;
 
   return {
     title,
     description,
+    openGraph: {
+        title,
+        description,
+        url: `/category/${category.slug}`
+    }
   };
 }
 

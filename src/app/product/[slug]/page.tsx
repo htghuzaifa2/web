@@ -7,6 +7,7 @@ import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
 import ProductInfoTabs from "./product-info-tabs";
 import { slugify } from "@/lib/utils";
+import { Metadata } from "next";
 
 // This function generates static pages for all products
 export async function generateStaticParams() {
@@ -16,7 +17,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const products: Product[] = productsData.products;
   const product = products.find(p => slugify(p.name) === params.slug);
 
@@ -26,12 +27,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }
 
+  const title = `${product.name} - huzi.pk`;
+  const description = `Shop for ${product.name} at huzi.pk. ${product.description}. We deliver physical products all over Pakistan and digital products worldwide.`;
+
   return {
-    title: `${product.name} - huzi.pk`,
-    description: product.description,
+    title,
+    description,
     openGraph: {
-      title: `${product.name} - huzi.pk`,
-      description: product.description,
+      title,
+      description,
       images: [
         {
           url: product.image,
@@ -39,12 +43,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
           height: 1200,
           alt: product.name,
         }
-      ]
+      ],
+      type: 'product',
+      siteName: 'huzi.pk'
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} - huzi.pk`,
-      description: product.description,
+      title,
+      description,
       images: [product.image],
     }
   }
@@ -58,7 +64,6 @@ const getProductData = (slug: string) => {
     return { product: null, relatedProducts: [] };
   }
   
-  // Find related products from the first category
   const primaryCategory = product.category[0];
   const relatedProducts = products
     .filter(p => p.category.includes(primaryCategory) && p.id !== product.id)
@@ -75,8 +80,33 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: product.image,
+    description: product.description,
+    sku: product.id.toString(),
+    offers: {
+      '@type': 'Offer',
+      price: product.price.toFixed(2),
+      priceCurrency: 'PKR',
+      availability: (product.stock && product.stock > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      url: `https://huzi.pk/product/${slugify(product.name)}`,
+    },
+    brand: {
+      '@type': 'Brand',
+      name: 'huzi.pk'
+    }
+  };
+
+
   return (
     <div className="container mx-auto px-4 py-6 md:py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ProductDetailsClient product={product} />
 
       {(product.longDescription || (product.specifications && Object.keys(product.specifications).length > 0)) && (
