@@ -76,9 +76,8 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
         <Image
           src="https://huzi.pk/images/Polo%20Republica%20Men's%20Essentials-main.webp"
           alt="Stylish model wearing modern clothing in a vibrant city setting"
-          layout="fill"
-          objectFit="cover"
-          className="absolute z-0"
+          fill
+          className="absolute z-0 object-cover"
           data-ai-hint="fashion clothes"
           priority
         />

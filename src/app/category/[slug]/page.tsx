@@ -18,9 +18,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const categories: Category[] = categoriesData.categories;
   const category = categories.find((c) => c.slug === params.slug);
 
-  // If category is not found in JSON, create a generic title
-  const title = category ? `${category.name} - huzi.pk` : `${params.slug} - huzi.pk`;
-  const description = category ? `Shop for ${category.name} at huzi.pk.` : `Shop for ${params.slug} at huzi.pk.`;
+  if (!category) {
+      notFound();
+  }
+
+  const title = `${category.name} - huzi.pk`;
+  const description = `Shop for ${category.name} at huzi.pk.`;
 
   return {
     title,
@@ -34,17 +37,10 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   const products: Product[] = productsData.products;
 
   // Find the category from the JSON file
-  let category = categories.find((c) => c.slug === slug);
+  const category = categories.find((c) => c.slug === slug);
   
-  // If the category is not found, we create a temporary one.
-  // This allows creating categories just by adding them to products.
   if (!category) {
-    category = {
-      id: 0,
-      name: slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
-      slug: slug,
-      image: '' // No image needed for temporary category
-    }
+    notFound();
   }
 
   // Filter products that include the current category slug in their `category` array

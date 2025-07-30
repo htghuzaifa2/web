@@ -29,6 +29,24 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${product.name} - huzi.pk`,
     description: product.description,
+    openGraph: {
+      title: `${product.name} - huzi.pk`,
+      description: product.description,
+      images: [
+        {
+          url: product.image,
+          width: 1200,
+          height: 1200,
+          alt: product.name,
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} - huzi.pk`,
+      description: product.description,
+      images: [product.image],
+    }
   }
 }
 
@@ -58,7 +76,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-6 pb-12">
+    <div className="container mx-auto px-4 py-6 md:py-8">
       <ProductDetailsClient product={product} />
 
       {(product.longDescription || (product.specifications && Object.keys(product.specifications).length > 0)) && (
