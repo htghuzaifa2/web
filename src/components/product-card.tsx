@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           </div>
           <div className="p-3 text-center flex-grow flex flex-col justify-between">
-            <h3 className="font-headline text-base font-semibold leading-tight mb-2 h-10 overflow-hidden text-ellipsis">
+            <h3 className="font-headline text-base font-semibold leading-tight mb-2 h-10 overflow-hidden text-ellipsis break-words">
               {product.name}
             </h3>
             <p className="text-sm font-medium text-muted-foreground mt-auto">{`PKR ${Math.round(product.price)}`}</p>
