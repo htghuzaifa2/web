@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
           alt: product.name,
         }
       ],
-      type: 'product',
+      type: 'article',
       siteName: 'huzi.pk'
     },
     twitter: {
