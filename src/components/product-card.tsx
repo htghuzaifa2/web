@@ -26,10 +26,10 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           </div>
           <div className="p-3 text-center flex-grow flex flex-col justify-between">
-            <div>
-                <h3 className="font-headline text-base font-semibold leading-tight mb-2 truncate">{product.name}</h3>
-            </div>
-            <p className="text-sm font-medium text-muted-foreground">{`PKR ${Math.round(product.price)}`}</p>
+            <h3 className="font-headline text-base font-semibold leading-tight mb-2 h-10 overflow-hidden text-ellipsis">
+              {product.name}
+            </h3>
+            <p className="text-sm font-medium text-muted-foreground mt-auto">{`PKR ${Math.round(product.price)}`}</p>
           </div>
         </CardContent>
       </Card>

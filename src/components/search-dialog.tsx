@@ -76,8 +76,8 @@ export function SearchDialog() {
         command();
     }, []);
 
-    const handleSelect = (path: string) => {
-        updateSearchHistory(query);
+    const handleSelect = (path: string, currentQuery: string) => {
+        updateSearchHistory(currentQuery);
         router.push(path);
         runCommand(() => {});
     };
@@ -130,14 +130,14 @@ export function SearchDialog() {
                         </CommandGroup>
                     )}
                     
-                    {query.length > 0 && (
+                    {query.trim().length > 0 && (
                       <>
                         <CommandGroup heading="Products">
                             {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
                                 <CommandItem
                                     key={`product-${product.id}`}
                                     value={`Product: ${product.name}`}
-                                    onSelect={() => handleSelect(`/product/${slugify(product.name)}`)}
+                                    onSelect={() => handleSelect(`/product/${slugify(product.name)}`, query)}
                                 >
                                     <ShoppingBag className="mr-2 h-4 w-4" />
                                     <span>{product.name}</span>
@@ -152,7 +152,7 @@ export function SearchDialog() {
                                 <CommandItem
                                     key={`category-${category.id}`}
                                     value={`Category: ${category.name}`}
-                                    onSelect={() => handleSelect(`/category/${category.slug}`)}
+                                    onSelect={() => handleSelect(`/category/${category.slug}`, query)}
                                 >
                                     <File className="mr-2 h-4 w-4" />
                                     <span>{category.name}</span>
@@ -167,7 +167,7 @@ export function SearchDialog() {
                                 <CommandItem
                                     key={`page-${page.path}`}
                                     value={`Page: ${page.name}`}
-                                    onSelect={() => handleSelect(page.path)}
+                                    onSelect={() => handleSelect(page.path, query)}
                                 >
                                     <File className="mr-2 h-4 w-4" />
                                     <span>{page.name}</span>

@@ -12,9 +12,18 @@ interface ProductImageGalleryProps {
   productName: string;
 }
 
+const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: React.ComponentProps<typeof Image> & { fallbackSrc: string }) => {
+    const [error, setError] = useState(false);
+    const handleError = () => setError(true);
+    return <Image src={error ? fallbackSrc : src} alt={alt} onError={handleError} {...props} />;
+}
+
+
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
+  
+  const fallbackImage = images[0] || "https://placehold.co/600x600";
 
   const openLightbox = (index: number) => {
     setMainImageIndex(index);
@@ -57,13 +66,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     }
   };
 
-  const ImageWithFallback = ({ src, alt, ...props }: React.ComponentProps<typeof Image>) => {
-    const [error, setError] = useState(false);
-    const handleError = () => setError(true);
-    const fallbackSrc = images[0] || "https://placehold.co/600x600";
-    return <Image src={error ? fallbackSrc : src} alt={alt} onError={handleError} {...props} />;
-  }
-
   return (
     <div className="flex flex-col gap-4">
       <div className="relative w-full overflow-hidden rounded-lg group">
@@ -79,6 +81,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             className="object-cover transition-all duration-300"
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
+            fallbackSrc={fallbackImage}
           />
         </div>
       </div>
@@ -100,6 +103,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 fill
                 className="object-cover"
                 sizes="20vw"
+                fallbackSrc={fallbackImage}
               />
             </button>
           ))}
@@ -115,6 +119,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               fill
               className="object-contain"
               sizes="100vw"
+              fallbackSrc={fallbackImage}
             />
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
