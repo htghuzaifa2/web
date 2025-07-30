@@ -13,10 +13,11 @@ const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
   description: "huzi.pk is a premier e-commerce store in Pakistan, delivering physical products nationwide and digital products worldwide. Shop for modern clothing, accessories, and more.",
-  ogImage: "https://huzi.pk/images/logo.webp",
+  logo: "https://huzi.pk/images/logo.webp",
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} - Modern Fashion & Digital Goods in Pakistan`,
     template: `%s - ${siteConfig.name}`,
@@ -24,11 +25,10 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear"],
   icons: {
-    icon: siteConfig.ogImage,
-    shortcut: siteConfig.ogImage,
-    apple: siteConfig.ogImage,
+    icon: siteConfig.logo,
+    shortcut: siteConfig.logo,
+    apple: siteConfig.logo,
   },
-  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
     locale: "en_PK",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: siteConfig.ogImage,
+        url: siteConfig.logo,
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
+    images: [siteConfig.logo],
   },
 };
 
