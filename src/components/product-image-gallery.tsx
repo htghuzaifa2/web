@@ -57,6 +57,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     }
   };
 
+  const ImageWithFallback = ({ src, alt, ...props }: React.ComponentProps<typeof Image>) => {
+    const [error, setError] = useState(false);
+    const handleError = () => setError(true);
+    const fallbackSrc = images[0] || "https://placehold.co/600x600";
+    return <Image src={error ? fallbackSrc : src} alt={alt} onError={handleError} {...props} />;
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="relative w-full overflow-hidden rounded-lg group">
@@ -64,7 +71,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
           className="relative aspect-square w-full cursor-pointer"
           onClick={() => openLightbox(mainImageIndex)}
         >
-          <Image
+          <ImageWithFallback
             key={images[mainImageIndex]}
             src={images[mainImageIndex]}
             alt={`${productName} image ${mainImageIndex + 1}`}
@@ -87,7 +94,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
               )}
             >
-              <Image
+              <ImageWithFallback
                 src={img}
                 alt={`${productName} thumbnail ${index + 1}`}
                 fill
@@ -102,7 +109,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in">
           <div className="relative w-full h-full max-w-5xl max-h-5xl">
-            <Image
+            <ImageWithFallback
               src={images[mainImageIndex]}
               alt={productName}
               fill
