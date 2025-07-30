@@ -58,7 +58,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
       </p>
 
       {categoryProducts.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 md:gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6 lg:gap-8">
           {categoryProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

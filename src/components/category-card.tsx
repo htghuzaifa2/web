@@ -19,7 +19,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
             fill
             className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            data-ai-hint={`${category.slug} fashion`}
+            data-ai-hint={`${category.slug} clothing`}
           />
         </div>
         <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60" />
