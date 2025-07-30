@@ -74,7 +74,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
     <div className="bg-background">
       <section className="relative h-[60vh] w-full text-white">
         <Image
-          src="https://placehold.co/1600x900"
+          src="https://huzi.pk/images/Polo%20Republica%20Men's%20Essentials-main.webp"
           alt="Stylish model wearing modern clothing in a vibrant city setting"
           layout="fill"
           objectFit="cover"

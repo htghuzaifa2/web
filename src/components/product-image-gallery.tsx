@@ -38,7 +38,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const onSelect = useCallback(() => {
     if (!mainApi || !thumbApi) return
     setSelectedIndex(mainApi.selectedScrollSnap())
-    thumbApi.scrollTo(mainApi.selectedScrollSnap())
+    thumbApi.scrollTo(mainai.selectedScrollSnap())
   }, [mainApi, thumbApi, setSelectedIndex])
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                         >
                             <Image
                                 src={img}
-                                alt={`${productName} image ${index+1}`}
+                                alt={`${productName} image ${index + 1}`}
                                 fill
                                 className="object-cover transition-all duration-300"
                                 priority={index === 0}
