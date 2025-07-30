@@ -29,7 +29,6 @@ type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 export default function CheckoutPage() {
   const { items, total } = useCart();
   const [isClient, setIsClient] = useState(false);
-  const router = useRouter();
   
   const shippingFee = 250;
   const finalTotal = total + shippingFee;

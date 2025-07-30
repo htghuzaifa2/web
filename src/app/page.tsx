@@ -20,7 +20,7 @@ const getProductsForPage = (page: number, pageSize: number) => {
 };
 
 const getPaginationItems = (currentPage: number, totalPages: number) => {
-    if (totalPages <= 1) return [1];
+    if (totalPages <= 1) return [];
 
     const pageNumbers: (number | string)[] = [];
     const pagesToShow = 5;
@@ -41,7 +41,7 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
         startPage = 2;
         endPage = Math.min(totalPages - 1, pagesToShow - 2);
     } else if (currentPage >= totalPages - 2) {
-        startPage = Math.max(2, totalPages - (pagesToShow - 2));
+        startPage = Math.max(2, totalPages - (pagesToShow - 3));
         endPage = totalPages - 1;
     }
 
@@ -124,11 +124,9 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
             <div className="mt-12">
               <Pagination>
                 <PaginationContent>
-                  {currentPage > 1 && (
-                    <PaginationItem>
-                      <PaginationPrevious href={`/?page=${currentPage - 1}`} />
-                    </PaginationItem>
-                  )}
+                  <PaginationItem>
+                    <PaginationPrevious href={currentPage > 1 ? `/?page=${currentPage - 1}`: '#'} aria-disabled={currentPage <= 1} />
+                  </PaginationItem>
                   
                   {paginationItems.map((page, index) => (
                     <PaginationItem key={index}>
@@ -142,11 +140,9 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
                     </PaginationItem>
                   ))}
 
-                  {currentPage < totalPages && (
-                    <PaginationItem>
-                      <PaginationNext href={`/?page=${currentPage + 1}`} />
-                    </PaginationItem>
-                  )}
+                  <PaginationItem>
+                    <PaginationNext href={currentPage < totalPages ? `/?page=${currentPage + 1}` : '#'} aria-disabled={currentPage >= totalPages} />
+                  </PaginationItem>
                 </PaginationContent>
               </Pagination>
             </div>
