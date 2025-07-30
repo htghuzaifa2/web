@@ -6,8 +6,6 @@ import type { Category, Product } from "@/lib/types";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
-export const runtime = 'edge';
-
 // This function generates static pages for all categories defined in categories.json
 export async function generateStaticParams() {
   const categories: Category[] = categoriesData.categories;

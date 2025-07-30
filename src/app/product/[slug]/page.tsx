@@ -9,8 +9,6 @@ import ProductInfoTabs from "./product-info-tabs";
 import { slugify } from "@/lib/utils";
 import { Metadata } from "next";
 
-export const runtime = 'edge';
-
 // This function generates static pages for all products
 export async function generateStaticParams() {
   const products: Product[] = productsData.products;
