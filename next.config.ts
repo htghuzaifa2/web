@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.elo.shopping',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.postimg.cc',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
