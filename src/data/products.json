@@ -1,4 +1,3 @@
-
 {
   "_tutorial": {
     "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
@@ -35,7 +34,7 @@
         "men",
         "new-arrivals"
       ],
-      "image": "https://huzi.pk/images/polo-republica-mens-essentials-white.webp",
+      "image": "https://huzi.pk/images/polo-republica-mens-essentials-main.webp",
       "additionalImages": [
         "https://huzi.pk/images/polo-republica-mens-essentials-black.webp",
         "https://huzi.pk/images/polo-republica-mens-essentials-blue.webp",
