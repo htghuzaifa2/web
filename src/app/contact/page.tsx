@@ -11,7 +11,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Metadata } from "next";
 
 const contactSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -20,12 +19,6 @@ const contactSchema = z.object({
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
-
-// This metadata object is not used in a client component, but good to have for static analysis
-export const metadata: Metadata = {
-    title: "Contact Us - huzi.pk",
-    description: "Get in touch with huzi.pk. Whether you have a question about our products, an order, or just want to say hello, we'd love to hear from you.",
-};
 
 export default function ContactPage() {
     const { toast } = useToast();
