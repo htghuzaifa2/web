@@ -38,7 +38,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const onSelect = useCallback(() => {
     if (!mainApi || !thumbApi) return
     setSelectedIndex(mainApi.selectedScrollSnap())
-    thumbApi.scrollTo(mainai.selectedScrollSnap())
+    thumbApi.scrollTo(mainApi.selectedScrollSnap())
   }, [mainApi, thumbApi, setSelectedIndex])
 
   useEffect(() => {
