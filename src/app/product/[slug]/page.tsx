@@ -58,7 +58,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 pt-6 pb-12">
       <ProductDetailsClient product={product} />
 
       {(product.longDescription || (product.specifications && Object.keys(product.specifications).length > 0)) && (
