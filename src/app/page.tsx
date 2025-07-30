@@ -75,7 +75,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
        <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://placehold.co/1920x1080"
+            src="https://imgs.search.brave.com/9qvxfN-V9pQalH0exSZ4LABRYUM0qd93Mgt02oMXveg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvMTkyMHgxMDgw/LWFlc3RoZXRpYy1n/bHJmazBudHNwejN0/dnhnLmpwZw"
             alt="Modern fashion hero image"
             fill
             className="object-cover"
