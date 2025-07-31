@@ -8,10 +8,17 @@ import { Toaster } from "@/components/ui/toaster"
 import { CartProvider } from '@/context/cart-context';
 import Link from 'next/link';
 import { SVGProps } from 'react';
+import { Alegreya } from 'next/font/google';
 
 // This is the key change to make pages load instantly.
 // It tells Next.js to treat all pages as static by default.
 export const dynamic = 'force-static'
+
+const alegreya = Alegreya({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
+});
 
 const siteConfig = {
   name: "huzi.pk",
@@ -78,12 +85,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" suppressHydrationWarning className={`${alegreya.variable}`}>
+      <head />
       <body className="font-body antialiased">
         <ThemeProvider
           attribute="class"
