@@ -70,7 +70,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
 
   return (
     <div className="bg-background">
-      <section className="relative w-full h-[50vh] md:h-[40vh] flex items-center justify-center text-white bg-gray-950">
+      <section className="relative w-full h-[50vh] md:h-[40vh] flex items-center justify-center text-white bg-gray-900">
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold">Discover Your Style</h1>
           <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90">
