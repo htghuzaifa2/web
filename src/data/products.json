@@ -1,3 +1,4 @@
+
 {
   "_tutorial": {
     "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
@@ -19,61 +20,204 @@
   },
   "products": [
     {
-      "id": 5,
-      "name": "LE Men's Long-Sleeve Crew Neck Tee",
-      "price": 1500,
-      "description": "Discover the Essence of Premium Quality with Our 100% Natural Combed Cotton Crew-Neck Tee Long Sleeves Tee – A Luxury within Reach",
-      "longDescription": "Designed for the contemporary man who values quality and ethical standards in his clothing, this long-sleeve crew neck tee stands as a testament to sophisticated dressing without compromise. Lower East doesn't just create clothes; we create statements of sustainable elegance.",
-      "specifications": {
-        "Luxurious Comfort": "Feel the superior softness of 100% BCI Combed Cotton, designed for the conscientious and stylish man.",
-        "Flattering Classic Fit": "Our crew neck and long sleeves silhouette ensures a perfect fit, making any look effortlessly sharp.",
-        "Exceptional Value": "Priced at only Rs.799, our tee offers unmatched quality compared to similar high-end shirts valued at Rs.4,000 on Amazon, ensuring you get premium luxury for less.",
-        "Lasting Durability": "Crafted with excellence, our tees are built to last, marrying durability with timeless style."
-      },
-      "category": [
-        "men"
-      ],
-      "image": "https://huzi.pk/img/Dw58j3gz/le-men-long-sleeve-crew-nexk-tees-shirt-1.webp",
-      "additionalImages": [
-        "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp",
-        "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp",
-        "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp",
-        "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp",
-        "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp",
-        "https://huzi.pk/img/pV8yNFZ4/le-men-long-sleeve-crew-nexk-tees-shirt-8.webp",
-        "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp",
-        "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp",
-        "https://huzi.pk/img/nhnXGhq5/le-men-long-sleeve-crew-nexk-tees-shirt4.webp",
-        "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp"
-      ],
+      "id": 101,
+      "name": "Classic Men's Denim Jacket",
+      "price": 4500,
+      "description": "A timeless denim jacket for a rugged, stylish look. Perfect for any season.",
+      "category": ["men", "new-arrivals"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 50
+    },
+    {
+      "id": 102,
+      "name": "Elegant Women's Maxi Dress",
+      "price": 5500,
+      "description": "Flowy and comfortable maxi dress, ideal for summer evenings.",
+      "category": ["women"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 30
+    },
+    {
+      "id": 103,
+      "name": "Kids' Dino-Mite T-Shirt",
+      "price": 1200,
+      "description": "Fun and colorful dinosaur-themed t-shirt for kids.",
+      "category": ["kids"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
       "stock": 100
     },
     {
-      "id": 4,
-      "name": "Men's Bonified Minor Fault Sweat Shirt",
-      "price": 999,
-      "description": "Fabric: 80% Cotton 20% Polyester",
-      "longDescription": "A comfortable and durable sweatshirt perfect for any casual occasion. Made with a blend of cotton and polyester for maximum comfort and longevity.",
-      "specifications": {
-        "Material": "80% Cotton, 20% Polyester",
-        "Style": "Sweatshirt",
-        "Features": "Comfortable, durable, and versatile"
-      },
-      "category": [
-        "men"
-      ],
-      "image": "https://huzi.pk/img/4dW7YkYM/mens-bonified.webp",
-      "additionalImages": [
-        "https://huzi.pk/img/RCPKFffF/mens-2.webp",
-        "https://huzi.pk/img/3JdpDRCZ/mens-3.webp",
-        "https://huzi.pk/img/c4237SFG/mens-4.webp",
-        "https://huzi.pk/img/ZqhygLkf/mens-5.webp",
-        "https://huzi.pk/img/9Q97JnkR/mens-6.webp",
-        "https://huzi.pk/img/LsBZMZ2m/mens-7.webp",
-        "https://huzi.pk/img/Twd52Y3g/mens-9.webp",
-        "https://huzi.pk/img/NFLyTJT0/mens-bonified-1.webp"
-      ],
-      "stock": 100
+      "id": 104,
+      "name": "Wireless Noise-Cancelling Headphones",
+      "price": 8999,
+      "description": "Immerse yourself in sound with these high-fidelity wireless headphones.",
+      "category": ["electronics"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 40
+    },
+    {
+      "id": 105,
+      "name": "Modern Stainless Steel Cookware Set",
+      "price": 12500,
+      "description": "A complete 10-piece cookware set for the modern kitchen.",
+      "category": ["home-and-kitchen"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 25
+    },
+    {
+      "id": 106,
+      "name": "The Art of Programming (Hardcover)",
+      "price": 3500,
+      "description": "A must-read for any aspiring or professional developer.",
+      "category": ["books"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 80
+    },
+    {
+      "id": 107,
+      "name": "Organic Vitamin C Face Serum",
+      "price": 2200,
+      "description": "Brighten and rejuvenate your skin with this organic face serum.",
+      "category": ["beauty-and-personal-care"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 120
+    },
+    {
+      "id": 108,
+      "name": "Professional Yoga Mat",
+      "price": 3000,
+      "description": "High-grip, non-slip yoga mat for your daily practice.",
+      "category": ["sports-and-outdoors"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 90
+    },
+    {
+      "id": 109,
+      "name": "Men's Leather Wallet",
+      "price": 2500,
+      "description": "A sleek and durable leather wallet with multiple compartments.",
+      "category": ["men", "new-arrivals"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 150
+    },
+    {
+      "id": 110,
+      "name": "Women's Chic Handbag",
+      "price": 4800,
+      "description": "A stylish and spacious handbag for everyday use.",
+      "category": ["women", "sale"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 60
+    },
+    {
+      "id": 111,
+      "name": "Kids' Building Blocks Set (500 pcs)",
+      "price": 4000,
+      "description": "Unleash creativity with this large set of colorful building blocks.",
+      "category": ["kids"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 70
+    },
+    {
+      "id": 112,
+      "name": "Smartwatch with Heart Rate Monitor",
+      "price": 6500,
+      "description": "Track your fitness and stay connected with this feature-packed smartwatch.",
+      "category": ["electronics", "sports-and-outdoors"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 55
+    },
+    {
+      "id": 113,
+      "name": "Espresso Coffee Machine",
+      "price": 15000,
+      "description": "Brew barista-quality espresso at home with this premium machine.",
+      "category": ["home-and-kitchen"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 20
+    },
+    {
+      "id": 114,
+      "name": "Sci-Fi Classics Collection (Paperback)",
+      "price": 2800,
+      "description": "A collection of five timeless science fiction novels.",
+      "category": ["books"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 110
+    },
+    {
+      "id": 115,
+      "name": "Natural Hydrating Moisturizer",
+      "price": 1800,
+      "description": "A daily moisturizer for soft, supple, and hydrated skin.",
+      "category": ["beauty-and-personal-care"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 200
+    },
+    {
+      "id": 116,
+      "name": "Adjustable Dumbbell Set",
+      "price": 9500,
+      "description": "A versatile and space-saving adjustable dumbbell set for home workouts.",
+      "category": ["sports-and-outdoors"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 45
+    },
+    {
+      "id": 117,
+      "name": "Men's Graphic Tee",
+      "price": 1800,
+      "description": "Comfortable cotton tee with a unique graphic print.",
+      "category": ["men", "sale"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 85
+    },
+    {
+      "id": 118,
+      "name": "Women's High-Waisted Jeans",
+      "price": 3800,
+      "description": "Flattering and comfortable high-waisted jeans for a modern silhouette.",
+      "category": ["women", "new-arrivals"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 65
+    },
+    {
+      "id": 119,
+      "name": "Portable Bluetooth Speaker",
+      "price": 4500,
+      "description": "Compact, waterproof, and powerful Bluetooth speaker for music on the go.",
+      "category": ["electronics"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 75
+    },
+    {
+      "id": 120,
+      "name": "Air Fryer (5.5L)",
+      "price": 11000,
+      "description": "Enjoy healthier fried food with this large-capacity air fryer.",
+      "category": ["home-and-kitchen"],
+      "image": "https://placehold.co/600x600",
+      "additionalImages": [],
+      "stock": 35
     }
   ]
 }
