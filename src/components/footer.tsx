@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import { WhatsappIcon } from "@/app/layout";
+import Image from "next/image";
 
 
 export default function Footer() {
@@ -10,6 +11,9 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
+             <Link href="/" className="inline-block">
+               <Image src="/logo.webp" alt="huzi.pk logo" width={120} height={40} className="dark:invert"/>
+            </Link>
             <p className="text-sm text-muted-foreground">
               Your destination for premium quality modern clothing. Delivering physical products across Pakistan and digital products worldwide.
             </p>

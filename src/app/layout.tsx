@@ -18,6 +18,7 @@ const alegreya = Alegreya({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
+  preload: true,
 });
 
 const siteConfig = {
@@ -34,17 +35,24 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear"],
+  icons: {
+    icon: '/logo.webp',
+    shortcut: '/logo.webp',
+    apple: '/logo.webp',
+  },
   openGraph: {
     type: "website",
     locale: "en_PK",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
+    images: [`${siteConfig.url}/logo.webp`],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
+    images: [`${siteConfig.url}/logo.webp`],
   },
 };
 
