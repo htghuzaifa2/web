@@ -109,9 +109,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       />
       <ProductDetailsClient product={product} />
 
-      <div className="my-12 md:my-16">
+      <div className="my-8 md:my-12">
           <Separator />
-          <div className="mt-12 md:mt-16 max-w-4xl mx-auto">
+          <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
             <ProductInfoAccordion
               description={product.longDescription} 
               specifications={product.specifications} 
