@@ -9,6 +9,7 @@ import { CartProvider } from '@/context/cart-context';
 import Link from 'next/link';
 import { SVGProps } from 'react';
 import { Alegreya } from 'next/font/google';
+import { ScrollToTop } from '@/components/scroll-to-top';
 
 const alegreya = Alegreya({
   subsets: ['latin'],
@@ -90,6 +91,7 @@ export default function RootLayout({
               <Footer />
             </div>
             <Toaster />
+            <ScrollToTop />
             <Link
                 href="https://wa.me/message/BY3URMYOW3OMH1"
                 target="_blank"
