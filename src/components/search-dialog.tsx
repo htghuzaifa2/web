@@ -117,7 +117,6 @@ export function SearchDialog() {
         }
     };
     
-    // Reset query when closing the dialog
     const onOpenChange = (isOpen: boolean) => {
         if (!isOpen) {
             setQuery("");
@@ -132,7 +131,7 @@ export function SearchDialog() {
                 <span className="sr-only">Search</span>
             </Button>
             <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false} data-mobile={isMobile}>
-                 <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
+                 <div className="flex items-center border-b px-3 pr-12" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
                     <input
                         value={query}
