@@ -26,7 +26,6 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
     });
   };
 
-  // Combine main image and additional images into a single array for the gallery
   const images = [product.image, ...(product.additionalImages || [])];
 
   return (
@@ -37,7 +36,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
       <div className="flex flex-col justify-start">
         <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
         <div className="flex items-center gap-4 mt-4">
-            <p className="font-headline text-3xl">PKR {Math.round(product.price)}</p>
+            <p className="font-headline text-4xl font-bold text-price">{Math.round(product.price)}</p>
             <Badge variant={isOutOfStock ? "destructive" : "default"}>
                 {isOutOfStock ? "Out of Stock" : "In Stock"}
             </Badge>

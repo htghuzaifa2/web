@@ -24,6 +24,7 @@
     --input: 0 0% 89.8%;
     --ring: 215 100% 28%;
     --radius: 0.5rem;
+    --price: 24 96% 51%; /* Orange for price */
   }
 
   .dark {
@@ -46,6 +47,7 @@
     --border: 0 0% 25%;
     --input: 0 0% 25%;
     --ring: 33 100% 50%;
+    --price: 33 100% 50%; /* Orange for price in dark mode */
   }
 }
 
