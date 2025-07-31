@@ -10,10 +10,6 @@ import Link from 'next/link';
 import { SVGProps } from 'react';
 import { Alegreya } from 'next/font/google';
 
-// This is the key change to make pages load instantly.
-// It tells Next.js to treat all pages as static by default.
-export const dynamic = 'force-static'
-
 const alegreya = Alegreya({
   subsets: ['latin'],
   display: 'swap',

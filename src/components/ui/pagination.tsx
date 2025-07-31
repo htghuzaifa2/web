@@ -67,13 +67,16 @@ const PaginationPrevious = ({
   className,
   ...props
 }: React.ComponentProps<typeof Link>) => (
-  <Link
+   <Link
     aria-label="Go to previous page"
     className={cn(buttonVariants({
         variant: "ghost",
         size: "default",
       }),
-      "gap-1 pl-2.5", {"cursor-not-allowed opacity-50": props["aria-disabled"]}, className)}
+      "gap-1 pl-2.5",
+      props["aria-disabled"] && "cursor-not-allowed opacity-50",
+      className
+    )}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
@@ -92,7 +95,10 @@ const PaginationNext = ({
         variant: "ghost",
         size: "default",
       }),
-      "gap-1 pr-2.5", {"cursor-not-allowed opacity-50": props["aria-disabled"]}, className)}
+      "gap-1 pr-2.5",
+      props["aria-disabled"] && "cursor-not-allowed opacity-50",
+      className
+    )}
     {...props}
   >
     <span>Next</span>

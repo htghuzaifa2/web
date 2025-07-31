@@ -20,276 +20,202 @@
   },
   "products": [
     {
-      "id": 101,
+      "id": 1,
       "name": "Classic Men's Denim Jacket",
       "price": 4500,
       "description": "A timeless denim jacket for a rugged, stylish look. Perfect for any season.",
-      "category": [
-        "men",
-        "new-arrivals"
-      ],
+      "category": ["men", "new-arrivals"],
       "image": "https://placehold.co/600x601",
-      "additionalImages": [
-        "https://placehold.co/600x602",
-        "https://placehold.co/600x603"
-      ],
+      "additionalImages": ["https://placehold.co/600x701", "https://placehold.co/600x702"],
       "stock": 50
     },
     {
-      "id": 102,
+      "id": 2,
       "name": "Elegant Women's Maxi Dress",
       "price": 5500,
       "description": "Flowy and comfortable maxi dress, ideal for summer evenings.",
-      "category": [
-        "women"
-      ],
-      "image": "https://placehold.co/600x604",
-      "additionalImages": [
-        "https://placehold.co/600x605"
-      ],
+      "category": ["women"],
+      "image": "https://placehold.co/600x602",
+      "additionalImages": ["https://placehold.co/600x703"],
       "stock": 30
     },
     {
-      "id": 103,
+      "id": 3,
       "name": "Kids' Dino-Mite T-Shirt",
       "price": 1200,
       "description": "Fun and colorful dinosaur-themed t-shirt for kids.",
-      "category": [
-        "kids"
-      ],
-      "image": "https://placehold.co/600x606",
+      "category": ["kids"],
+      "image": "https://placehold.co/600x603",
       "additionalImages": [],
       "stock": 100
     },
     {
-      "id": 104,
+      "id": 4,
       "name": "Wireless Noise-Cancelling Headphones",
       "price": 8999,
       "description": "Immerse yourself in sound with these high-fidelity wireless headphones.",
-      "category": [
-        "electronics"
-      ],
-      "image": "https://placehold.co/600x607",
-      "additionalImages": [
-        "https://placehold.co/600x608",
-        "https://placehold.co/600x609",
-        "https://placehold.co/600x610"
-      ],
+      "category": ["electronics"],
+      "image": "https://placehold.co/600x604",
+      "additionalImages": ["https://placehold.co/600x704", "https://placehold.co/600x705", "https://placehold.co/600x706"],
       "stock": 40
     },
     {
-      "id": 105,
+      "id": 5,
       "name": "Modern Stainless Steel Cookware Set",
       "price": 12500,
       "description": "A complete 10-piece cookware set for the modern kitchen.",
-      "category": [
-        "home-and-kitchen"
-      ],
-      "image": "https://placehold.co/600x611",
+      "category": ["home-and-kitchen"],
+      "image": "https://placehold.co/600x605",
       "additionalImages": [],
       "stock": 25
     },
     {
-      "id": 106,
+      "id": 6,
       "name": "The Art of Programming (Hardcover)",
       "price": 3500,
       "description": "A must-read for any aspiring or professional developer.",
-      "category": [
-        "books"
-      ],
-      "image": "https://placehold.co/600x612",
-      "additionalImages": [
-        "https://placehold.co/600x613"
-      ],
+      "category": ["books"],
+      "image": "https://placehold.co/600x606",
+      "additionalImages": ["https://placehold.co/600x707"],
       "stock": 80
     },
     {
-      "id": 107,
+      "id": 7,
       "name": "Organic Vitamin C Face Serum",
       "price": 2200,
       "description": "Brighten and rejuvenate your skin with this organic face serum.",
-      "category": [
-        "beauty-and-personal-care"
-      ],
-      "image": "https://placehold.co/600x614",
+      "category": ["beauty-and-personal-care"],
+      "image": "https://placehold.co/600x607",
       "additionalImages": [],
       "stock": 120
     },
     {
-      "id": 108,
+      "id": 8,
       "name": "Professional Yoga Mat",
       "price": 3000,
       "description": "High-grip, non-slip yoga mat for your daily practice.",
-      "category": [
-        "sports-and-outdoors"
-      ],
-      "image": "https://placehold.co/600x615",
-      "additionalImages": [
-        "https://placehold.co/600x616"
-      ],
+      "category": ["sports-and-outdoors"],
+      "image": "https://placehold.co/600x608",
+      "additionalImages": ["https://placehold.co/600x708"],
       "stock": 90
     },
     {
-      "id": 109,
+      "id": 9,
       "name": "Men's Leather Wallet",
       "price": 2500,
       "description": "A sleek and durable leather wallet with multiple compartments.",
-      "category": [
-        "men",
-        "new-arrivals"
-      ],
-      "image": "https://placehold.co/600x617",
+      "category": ["men", "new-arrivals"],
+      "image": "https://placehold.co/600x609",
       "additionalImages": [],
       "stock": 150
     },
     {
-      "id": 110,
+      "id": 10,
       "name": "Women's Chic Handbag",
       "price": 4800,
       "description": "A stylish and spacious handbag for everyday use.",
-      "category": [
-        "women",
-        "sale"
-      ],
-      "image": "https://placehold.co/600x618",
-      "additionalImages": [
-        "https://placehold.co/600x619",
-        "https://placehold.co/600x620"
-      ],
+      "category": ["women", "sale"],
+      "image": "https://placehold.co/600x610",
+      "additionalImages": ["https://placehold.co/600x709", "https://placehold.co/600x710"],
       "stock": 60
     },
     {
-      "id": 111,
+      "id": 11,
       "name": "Kids' Building Blocks Set (500 pcs)",
       "price": 4000,
       "description": "Unleash creativity with this large set of colorful building blocks.",
-      "category": [
-        "kids"
-      ],
-      "image": "https://placehold.co/600x621",
+      "category": ["kids"],
+      "image": "https://placehold.co/600x611",
       "additionalImages": [],
       "stock": 70
     },
     {
-      "id": 112,
+      "id": 12,
       "name": "Smartwatch with Heart Rate Monitor",
       "price": 6500,
       "description": "Track your fitness and stay connected with this feature-packed smartwatch.",
-      "category": [
-        "electronics",
-        "sports-and-outdoors"
-      ],
-      "image": "https://placehold.co/600x622",
-      "additionalImages": [
-        "https://placehold.co/600x623"
-      ],
+      "category": ["electronics", "sports-and-outdoors"],
+      "image": "https://placehold.co/600x612",
+      "additionalImages": ["https://placehold.co/600x711"],
       "stock": 55
     },
     {
-      "id": 113,
+      "id": 13,
       "name": "Espresso Coffee Machine",
       "price": 15000,
       "description": "Brew barista-quality espresso at home with this premium machine.",
-      "category": [
-        "home-and-kitchen"
-      ],
-      "image": "https://placehold.co/600x624",
-      "additionalImages": [
-        "https://placehold.co/600x625",
-        "https://placehold.co/600x626"
-      ],
+      "category": ["home-and-kitchen"],
+      "image": "https://placehold.co/600x613",
+      "additionalImages": ["https://placehold.co/600x712", "https://placehold.co/600x713"],
       "stock": 20
     },
     {
-      "id": 114,
+      "id": 14,
       "name": "Sci-Fi Classics Collection (Paperback)",
       "price": 2800,
       "description": "A collection of five timeless science fiction novels.",
-      "category": [
-        "books"
-      ],
-      "image": "https://placehold.co/600x627",
+      "category": ["books"],
+      "image": "https://placehold.co/600x614",
       "additionalImages": [],
       "stock": 110
     },
     {
-      "id": 115,
+      "id": 15,
       "name": "Natural Hydrating Moisturizer",
       "price": 1800,
       "description": "A daily moisturizer for soft, supple, and hydrated skin.",
-      "category": [
-        "beauty-and-personal-care"
-      ],
-      "image": "https://placehold.co/600x628",
-      "additionalImages": [
-        "https://placehold.co/600x629"
-      ],
+      "category": ["beauty-and-personal-care"],
+      "image": "https://placehold.co/600x615",
+      "additionalImages": ["https://placehold.co/600x714"],
       "stock": 200
     },
     {
-      "id": 116,
+      "id": 16,
       "name": "Adjustable Dumbbell Set",
       "price": 9500,
       "description": "A versatile and space-saving adjustable dumbbell set for home workouts.",
-      "category": [
-        "sports-and-outdoors"
-      ],
-      "image": "https://placehold.co/600x630",
+      "category": ["sports-and-outdoors"],
+      "image": "https://placehold.co/600x616",
       "additionalImages": [],
       "stock": 45
     },
     {
-      "id": 117,
+      "id": 17,
       "name": "Men's Graphic Tee",
       "price": 1800,
       "description": "Comfortable cotton tee with a unique graphic print.",
-      "category": [
-        "men",
-        "sale"
-      ],
-      "image": "https://placehold.co/600x631",
-      "additionalImages": [
-        "https://placehold.co/600x632"
-      ],
+      "category": ["men", "sale"],
+      "image": "https://placehold.co/600x617",
+      "additionalImages": ["https://placehold.co/600x715"],
       "stock": 85
     },
     {
-      "id": 118,
+      "id": 18,
       "name": "Women's High-Waisted Jeans",
       "price": 3800,
       "description": "Flattering and comfortable high-waisted jeans for a modern silhouette.",
-      "category": [
-        "women",
-        "new-arrivals"
-      ],
-      "image": "https://placehold.co/600x633",
+      "category": ["women", "new-arrivals"],
+      "image": "https://placehold.co/600x618",
       "additionalImages": [],
       "stock": 65
     },
     {
-      "id": 119,
+      "id": 19,
       "name": "Portable Bluetooth Speaker",
       "price": 4500,
       "description": "Compact, waterproof, and powerful Bluetooth speaker for music on the go.",
-      "category": [
-        "electronics"
-      ],
-      "image": "https://placehold.co/600x634",
-      "additionalImages": [
-        "https://placehold.co/600x635",
-        "https://placehold.co/600x636"
-      ],
+      "category": ["electronics"],
+      "image": "https://placehold.co/600x619",
+      "additionalImages": ["https://placehold.co/600x716", "https://placehold.co/600x717"],
       "stock": 75
     },
     {
-      "id": 120,
+      "id": 20,
       "name": "Air Fryer (5.5L)",
       "price": 11000,
       "description": "Enjoy healthier fried food with this large-capacity air fryer.",
-      "category": [
-        "home-and-kitchen"
-      ],
-      "image": "https://placehold.co/600x637",
+      "category": ["home-and-kitchen"],
+      "image": "https://placehold.co/600x620",
       "additionalImages": [],
       "stock": 35
     }

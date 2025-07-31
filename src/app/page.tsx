@@ -4,9 +4,15 @@ import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 import Link from 'next/link';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationEllipsis } from '@/components/ui/pagination';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export const runtime = 'edge';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const getProductsForPage = (page: number, pageSize: number) => {
   const products: Product[] = [...productsData.products].reverse(); // Reverse to show latest first
@@ -61,12 +67,19 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
     return pageNumbers;
 };
 
+const getFeaturedProducts = () => {
+    const products: Product[] = productsData.products;
+    const shuffled = [...products].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 8);
+}
+
 
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
   const pageSize = 18;
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
   const paginationItems = getPaginationItems(currentPage, totalPages);
+  const featuredProducts = getFeaturedProducts();
 
   return (
     <div className="bg-background">
@@ -82,10 +95,25 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
         </div>
       </section>
 
+      <section className="py-8 md:py-16">
+        <div className="container mx-auto px-4">
+            <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
+                Featured Products
+            </h2>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 md:gap-6">
+                 {featuredProducts.map((product) => (
+                  <ProductCard key={`featured-${product.id}`} product={product} />
+                ))}
+            </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 md:my-12" />
+
       <section className="py-8 md:py-16 bg-muted/50">
         <div className="container mx-auto px-4">
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
-            Our Products
+            All Products
           </h2>
            {paginatedProducts.length > 0 ? (
             <>
@@ -99,7 +127,18 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
                   <Pagination>
                     <PaginationContent>
                       <PaginationItem>
-                        <PaginationPrevious href={currentPage > 1 ? `/?page=${currentPage - 1}` : '#'} aria-disabled={currentPage <= 1} />
+                         <Link
+                            href={currentPage > 1 ? `/?page=${currentPage - 1}` : '#'}
+                            aria-disabled={currentPage <= 1}
+                            className={cn(
+                                buttonVariants({ variant: 'ghost', size: 'default' }),
+                                'gap-1 pl-2.5',
+                                currentPage <= 1 && 'cursor-not-allowed opacity-50'
+                            )}
+                            >
+                            <ChevronLeft className="h-4 w-4" />
+                            <span>Previous</span>
+                        </Link>
                       </PaginationItem>
                       
                       {paginationItems.map((page, index) => (
@@ -115,7 +154,18 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
                       ))}
 
                       <PaginationItem>
-                        <PaginationNext href={currentPage < totalPages ? `/?page=${currentPage + 1}` : '#'} aria-disabled={currentPage >= totalPages} />
+                         <Link
+                            href={currentPage < totalPages ? `/?page=${currentPage + 1}` : '#'}
+                            aria-disabled={currentPage >= totalPages}
+                            className={cn(
+                                buttonVariants({ variant: 'ghost', size: 'default' }),
+                                'gap-1 pr-2.5',
+                                currentPage >= totalPages && 'cursor-not-allowed opacity-50'
+                            )}
+                            >
+                            <span>Next</span>
+                            <ChevronRight className="h-4 w-4" />
+                        </Link>
                       </PaginationItem>
                     </PaginationContent>
                   </Pagination>
