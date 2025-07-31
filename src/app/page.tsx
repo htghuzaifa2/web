@@ -74,7 +74,7 @@ const getFeaturedProducts = () => {
 }
 
 
-export default function Home({ searchParams }: { searchParams: { page?: string } }) {
+export default async function Home({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
   const pageSize = 20; // 5 rows of 4 on PC, adjusts responsively
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
