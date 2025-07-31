@@ -30,11 +30,11 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
   const images = [product.image, ...(product.additionalImages || [])];
 
   return (
-    <div className="grid md:grid-cols-5 gap-8 lg:gap-12">
-      <div className="md:col-span-3">
+    <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+      <div>
         <ProductImageGallery images={images} productName={product.name} />
       </div>
-      <div className="md:col-span-2 flex flex-col justify-start">
+      <div className="flex flex-col justify-start">
         <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
         <div className="flex items-center gap-4 mt-4">
             <p className="font-headline text-3xl">PKR {Math.round(product.price)}</p>
