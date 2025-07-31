@@ -117,6 +117,33 @@
         "https://huzi.pk/img/9MLvZ0TG/prt-vonboni-short-sleeve-mens-polo-shirt-yellow.webp?force=1"
       ],
       "stock": 100
+    },
+    {
+      "id": 4,
+      "name": "Men's Bonified Minor Fault Sweat Shirt",
+      "price": 999,
+      "description": "Fabric: 80% Cotton 20% Polyester",
+      "longDescription": "",
+      "specifications": {
+        "Material": "80% Cotton, 20% Polyester",
+        "Style": "Sweatshirt",
+        "Features": "Comfortable, durable, and versatile"
+      },
+      "category": [
+        "men"
+      ],
+      "image": "https://huzi.pk/img/4dW7YkYM/mens-bonified.webp?force=1",
+      "additionalImages": [
+        "https://huzi.pk/img/RCPKFffF/mens-2.webp?force=1",
+        "https://huzi.pk/img/3JdpDRCZ/mens-3.webp?force=1",
+        "https://huzi.pk/img/c4237SFG/mens-4.webp?force=1",
+        "https://huzi.pk/img/ZqhygLkf/mens-5.webp?force=1",
+        "https://huzi.pk/img/9Q97JnkR/mens-6.webp?force=1",
+        "https://huzi.pk/img/LsBZMZ2m/mens-7.webp?force=1",
+        "https://huzi.pk/img/Twd52Y3g/mens-9.webp?force=1",
+        "https://huzi.pk/img/NFLyTJT0/mens-bonified-1.webp?force=1"
+      ],
+      "stock": 100
     }
   ]
 }
