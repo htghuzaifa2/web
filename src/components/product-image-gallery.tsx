@@ -69,8 +69,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="relative w-full overflow-hidden rounded-lg group">
+    <div className="flex flex-row-reverse gap-4">
+      <div className="relative flex-1 w-full overflow-hidden rounded-lg group">
         <div
           className="relative aspect-square w-full cursor-pointer"
           onClick={() => openLightbox(mainImageIndex)}
@@ -91,7 +91,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       </div>
 
       {images.length > 1 && (
-        <div className="grid grid-cols-5 gap-2">
+        <div className="flex flex-col gap-2 w-20 flex-shrink-0">
           {images.map((img, index) => (
             <button
               key={index}
