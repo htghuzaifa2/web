@@ -52,7 +52,7 @@ export function CartSheet() {
                         </Link>
                         <div className="flex items-center justify-between mt-1">
                           <p className="text-sm font-bold text-price">
-                            {Math.round(item.price)}
+                            {`PKR ${Math.round(item.price)}`}
                           </p>
                           <div className="flex items-center gap-2">
                              <div className="flex items-center gap-1">
@@ -103,7 +103,7 @@ export function CartSheet() {
             <div className="flex w-full flex-col gap-2">
               <div className="flex justify-between text-lg font-semibold">
                 <span>Total</span>
-                <span className="text-price">{Math.round(total)}</span>
+                <span className="text-price">{`PKR ${Math.round(total)}`}</span>
               </div>
               <SheetClose asChild>
                 <Button asChild className="w-full">

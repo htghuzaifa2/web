@@ -116,7 +116,7 @@ export default function CheckoutPage() {
                             <p className="text-sm text-muted-foreground">Quantity: {item.quantity}</p>
                         </div>
                     </div>
-                    <p className="font-medium text-price">{Math.round(item.price * item.quantity)}</p>
+                    <p className="font-medium text-price">{`PKR ${Math.round(item.price * item.quantity)}`}</p>
                   </div>
                 ))}
               </div>
@@ -124,15 +124,15 @@ export default function CheckoutPage() {
               <div className="space-y-2">
                   <div className="flex justify-between">
                     <p>Subtotal</p>
-                    <p className="font-medium text-price">{Math.round(total)}</p>
+                    <p className="font-medium text-price">{`PKR ${Math.round(total)}`}</p>
                   </div>
                    <div className="flex justify-between">
                     <p>Shipping Fee</p>
-                    <p className="font-medium text-price">{shippingFee}</p>
+                    <p className="font-medium text-price">{`PKR ${shippingFee}`}</p>
                   </div>
                   <div className="flex justify-between font-bold text-lg">
                     <p>Total</p>
-                    <p className="text-price">{Math.round(finalTotal)}</p>
+                    <p className="text-price">{`PKR ${Math.round(finalTotal)}`}</p>
                   </div>
               </div>
               <div className="mt-4 text-sm text-muted-foreground text-center">

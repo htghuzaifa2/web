@@ -33,7 +33,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem]">
               {product.name}
             </h3>
-            <p className="text-base font-bold text-price mt-auto">{`${Math.round(product.price)}`}</p>
+            <p className="text-base font-bold text-price mt-auto">{`PKR ${Math.round(product.price)}`}</p>
           </div>
         </CardContent>
       </Card>
