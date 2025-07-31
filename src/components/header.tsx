@@ -46,9 +46,7 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="pr-0">
-              <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                <span className="font-bold font-headline text-xl">huzi.pk</span>
-              </Link>
+              <div className="mr-6 mb-6 h-10"></div>
               <nav className="flex flex-col space-y-2">
                 {allNavLinks.map(({ href, label }) => (
                   <SheetClose asChild key={label}>
@@ -63,11 +61,6 @@ export default function Header() {
         </div>
         
         <div className="flex items-center">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold sm:inline-block font-headline text-2xl">
-              huzi.pk
-            </span>
-          </Link>
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             {mainNavLinks.map(({ href, label }) => (
               <Link

@@ -49,7 +49,7 @@ export function SearchDialog() {
         return () => document.removeEventListener("keydown", down);
     }, []);
 
-    const updateSearchHistory = React.useCallback((newQuery: string) => {
+    const updateSearchHistory = (newQuery: string) => {
         const trimmedQuery = newQuery.trim();
         if (!trimmedQuery) return;
         
@@ -58,7 +58,7 @@ export function SearchDialog() {
             localStorage.setItem("searchHistory", JSON.stringify(newHistory));
             return newHistory;
         });
-    }, []);
+    };
     
     const removeFromHistory = (e: React.MouseEvent, itemToRemove: string) => {
         e.preventDefault();
@@ -75,10 +75,10 @@ export function SearchDialog() {
         localStorage.removeItem("searchHistory");
     }
 
-    const runCommand = React.useCallback((command: () => unknown) => {
+    const runCommand = (command: () => unknown) => {
         setOpen(false);
         command();
-    }, []);
+    };
 
     const handleSelect = (path: string, currentQuery?: string) => {
         if (currentQuery) {

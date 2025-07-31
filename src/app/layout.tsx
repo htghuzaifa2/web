@@ -24,7 +24,6 @@ const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
   description: "huzi.pk is a premier e-commerce store in Pakistan, delivering physical products nationwide and digital products worldwide. Shop for modern clothing, accessories, and more.",
-  logo: "https://huzi.pk/images/logo.webp",
 };
 
 export const metadata: Metadata = {
@@ -35,31 +34,17 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear"],
-  icons: {
-    icon: siteConfig.logo,
-    shortcut: siteConfig.logo,
-    apple: siteConfig.logo,
-  },
   openGraph: {
     type: "website",
     locale: "en_PK",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.logo,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [siteConfig.logo],
   },
 };
 

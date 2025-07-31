@@ -10,9 +10,6 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-xl font-bold font-headline">huzi.pk</span>
-            </Link>
             <p className="text-sm text-muted-foreground">
               Your destination for premium quality modern clothing. Delivering physical products across Pakistan and digital products worldwide.
             </p>
