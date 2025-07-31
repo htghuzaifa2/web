@@ -29,6 +29,7 @@ export function SearchDialog() {
     const [open, setOpen] = React.useState(false);
     const [query, setQuery] = React.useState("");
     const [searchHistory, setSearchHistory] = React.useState<string[]>([]);
+    const [selectedValue, setSelectedValue] = React.useState<string | null>(null);
     const router = useRouter();
     const isMobile = useIsMobile();
 
@@ -100,6 +101,7 @@ export function SearchDialog() {
     const onOpenChange = (isOpen: boolean) => {
         if (!isOpen) {
             setQuery("");
+            setSelectedValue(null);
         }
         setOpen(isOpen);
     };
@@ -117,19 +119,18 @@ export function SearchDialog() {
                         value={query}
                         onValueChange={setQuery}
                         onKeyDown={(e: React.KeyboardEvent) => {
-                            if (e.key === 'Enter') {
+                            if (e.key === 'Enter' && !selectedValue) {
                                 handleSearchSubmit(query);
                             }
                         }}
                         placeholder="Search products, categories, or pages..."
                         className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                     />
-                     <Button variant="ghost" size="icon" onClick={() => handleSearchSubmit(query)} className="h-8 w-8">
-                        <span className="sr-only">Search</span>
-                        <Search className="h-4 w-4" />
+                     <Button variant="outline" size="sm" onClick={() => handleSearchSubmit(query)} className="h-8">
+                        Search
                     </Button>
                 </div>
-                <CommandList>
+                <CommandList onValueChange={setSelectedValue}>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
                     {query.length === 0 && searchHistory.length > 0 && (
@@ -145,6 +146,7 @@ export function SearchDialog() {
                                 <CommandItem 
                                     key={historyItem} 
                                     onSelect={() => handleSearchSubmit(historyItem)}
+                                    value={`History: ${historyItem}`}
                                     className="group"
                                 >
                                     <div className="flex items-center justify-between w-full">
