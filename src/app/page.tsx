@@ -76,7 +76,7 @@ const getFeaturedProducts = () => {
 
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
-  const pageSize = 18;
+  const pageSize = 20; // 4 cards x 5 rows
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
   const paginationItems = getPaginationItems(currentPage, totalPages);
   const featuredProducts = getFeaturedProducts();
@@ -100,7 +100,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
             <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
                 Featured Products
             </h2>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                  {featuredProducts.map((product) => (
                   <ProductCard key={`featured-${product.id}`} product={product} />
                 ))}
@@ -117,7 +117,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           </h2>
            {paginatedProducts.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 {paginatedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

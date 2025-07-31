@@ -24,14 +24,14 @@ export default function ProductCard({ product }: ProductCardProps) {
               alt={product.name}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               key={product.image}
               placeholder="blur"
               blurDataURL={placeholderImage}
             />
           </div>
           <div className="p-3 text-center flex-grow flex flex-col justify-between">
-            <h3 className="font-headline text-base font-semibold leading-tight mb-2 h-10 break-words">
+            <h3 className="font-headline text-base font-semibold leading-tight mb-2 h-12 break-words">
               {product.name}
             </h3>
             <p className="text-sm font-medium text-muted-foreground mt-auto">{`PKR ${Math.round(product.price)}`}</p>
