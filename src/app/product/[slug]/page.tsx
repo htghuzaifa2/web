@@ -57,20 +57,34 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 const getProductData = (slug: string) => {
-  const products: Product[] = productsData.products;
-  const product = products.find(p => slugify(p.name) === slug);
+  const allProducts: Product[] = productsData.products;
+  const product = allProducts.find(p => slugify(p.name) === slug);
   
   if (!product) {
     return { product: null, relatedProducts: [] };
   }
   
   const primaryCategory = product.category[0];
-  const relatedProducts = products
-    .filter(p => p.category.includes(primaryCategory) && p.id !== product.id)
+  
+  // Get related products from the same category
+  let relatedProducts = allProducts
+    .filter(p => p.category.includes(primaryCategory) && p.id !== product.id);
+  
+  // If not enough related products, fill with random products
+  if (relatedProducts.length < 8) {
+    const relatedIds = new Set(relatedProducts.map(p => p.id));
+    const otherProducts = allProducts.filter(p => p.id !== product.id && !relatedIds.has(p.id));
+    const shuffledOthers = otherProducts.sort(() => 0.5 - Math.random());
+    const needed = 8 - relatedProducts.length;
+    relatedProducts = [...relatedProducts, ...shuffledOthers.slice(0, needed)];
+  }
+
+  // Final shuffle and slice to ensure 8 products max
+  const finalRelated = relatedProducts
     .sort(() => 0.5 - Math.random())
     .slice(0, 8); 
 
-  return { product, relatedProducts };
+  return { product, relatedProducts: finalRelated };
 }
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
