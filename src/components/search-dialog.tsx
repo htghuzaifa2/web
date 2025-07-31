@@ -3,7 +3,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Search, File, History, X, CornerDownLeft } from "lucide-react";
+import { Search, File, History, X } from "lucide-react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
@@ -80,13 +80,6 @@ export function SearchDialog() {
         localStorage.removeItem("searchHistory");
     };
 
-    const handleSelect = (path: string, currentQuery?: string) => {
-        if (currentQuery) {
-            updateSearchHistory(currentQuery);
-        }
-        runCommand(() => router.push(path));
-    };
-    
     const handleSearchSubmit = () => {
         const trimmedQuery = query.trim();
         if (trimmedQuery) {
@@ -95,6 +88,11 @@ export function SearchDialog() {
         }
     };
     
+    const handleSelect = (path: string) => {
+        updateSearchHistory(query);
+        runCommand(() => router.push(path));
+    };
+
     const filteredProducts = React.useMemo(() => {
         if (query.trim().length < 1) return [];
         return products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
@@ -109,17 +107,19 @@ export function SearchDialog() {
         if (query.trim().length < 1) return [];
         return staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
     }, [query]);
-
-    // This handles the "Enter" key press. If no item is selected, it performs a search.
-    // CMDK's default onKeyDown will handle navigation if an item is selected.
+    
+    // This is the key change: we use this to check if a selection has been made.
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
-             // Check if there is a selected item in the command list
-            const selected = document.querySelector('[aria-selected="true"]');
-            if (!selected) {
+            // Check if any item in the list is currently selected by the user
+            const selectedItem = document.querySelector('[aria-selected="true"]');
+            
+            // If no item is selected, perform a general search.
+            if (!selectedItem) {
                 e.preventDefault();
                 handleSearchSubmit();
             }
+            // If an item IS selected, the default onSelect behavior of CommandItem will handle it.
         }
     };
 
@@ -129,8 +129,9 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            <CommandDialog open={open} onOpenChange={setOpen}>
-                <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
+            {/* The shouldFilter={false} prop is crucial to prevent the library's default filtering and selection */}
+            <CommandDialog open={open} onOpenChange={setOpen} shouldFilter={false}>
+                 <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
                     <CommandInput
                         value={query}
@@ -180,11 +181,6 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
-                        <CommandItem onSelect={handleSearchSubmit} value={`Search for ${query}`}>
-                           <CornerDownLeft className="mr-2 h-4 w-4" />
-                           Search for "{query}"
-                        </CommandItem>
-                        
                         {filteredProducts.length > 0 && <CommandSeparator />}
                         
                         {filteredProducts.length > 0 && (
@@ -193,7 +189,7 @@ export function SearchDialog() {
                                     <CommandItem
                                         key={`product-${product.id}`}
                                         value={`Product: ${product.name}`}
-                                        onSelect={() => handleSelect(`/product/${slugify(product.name)}`, query)}
+                                        onSelect={() => handleSelect(`/product/${slugify(product.name)}`)}
                                         className="!py-2"
                                     >
                                         <div className="flex items-center gap-4 w-full">
@@ -223,7 +219,7 @@ export function SearchDialog() {
                                     <CommandItem
                                         key={`category-${category.id}`}
                                         value={`Category: ${category.name}`}
-                                        onSelect={() => handleSelect(`/category/${category.slug}`, query)}
+                                        onSelect={() => handleSelect(`/category/${category.slug}`)}
                                     >
                                         <File className="mr-2 h-4 w-4" />
                                         <span>{category.name}</span>
@@ -240,7 +236,7 @@ export function SearchDialog() {
                                     <CommandItem
                                         key={`page-${page.path}`}
                                         value={`Page: ${page.name}`}
-                                        onSelect={() => handleSelect(page.path, query)}
+                                        onSelect={() => handleSelect(page.path)}
                                     >
                                         <File className="mr-2 h-4 w-4" />
                                         <span>{page.name}</span>
