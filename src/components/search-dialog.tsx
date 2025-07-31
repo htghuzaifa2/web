@@ -112,7 +112,7 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            <CommandDialog open={open} onOpenChange={onOpenChange} data-mobile={isMobile}>
+            <CommandDialog open={open} onOpenChange={onOpenChange} data-mobile={isMobile} onValueChange={setSelectedValue}>
                 <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
                     <Command.Input
@@ -130,7 +130,7 @@ export function SearchDialog() {
                         Search
                     </Button>
                 </div>
-                <CommandList onValueChange={setSelectedValue}>
+                <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
                     {query.length === 0 && searchHistory.length > 0 && (
