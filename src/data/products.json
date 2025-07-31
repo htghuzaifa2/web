@@ -144,6 +144,36 @@
         "https://huzi.pk/img/NFLyTJT0/mens-bonified-1.webp?force=1"
       ],
       "stock": 100
+    },
+    {
+      "id": 5,
+      "name": "LE Men's Long-Sleeve Crew Neck Tee",
+      "price": 1500,
+      "description": "Discover the Essence of Premium Quality with Our 100% Natural Combed Cotton Crew-Neck Tee Long Sleeves Tee – A Luxury within Reach",
+      "longDescription": "Designed for the contemporary man who values quality and ethical standards in his clothing, this long-sleeve crew neck tee stands as a testament to sophisticated dressing without compromise. Lower East doesn't just create clothes; we create statements of sustainable elegance.",
+      "specifications": {
+        "Luxurious Comfort": "Feel the superior softness of 100% BCI Combed Cotton, designed for the conscientious and stylish man.",
+        "Flattering Classic Fit": "Our crew neck and long sleeves silhouette ensures a perfect fit, making any look effortlessly sharp.",
+        "Exceptional Value": "Priced at only Rs.799, our tee offers unmatched quality compared to similar high-end shirts valued at Rs.4,000 on Amazon, ensuring you get premium luxury for less.",
+        "Lasting Durability": "Crafted with excellence, our tees are built to last, marrying durability with timeless style."
+      },
+      "category": [
+        "men"
+      ],
+      "image": "https://huzi.pk/img/Dw58j3gz/le-men-long-sleeve-crew-nexk-tees-shirt-1.webp?force=1",
+      "additionalImages": [
+        "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp?force=1",
+        "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp?force=1",
+        "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp?force=1",
+        "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp?force=1",
+        "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp?force=1",
+        "https://huzi.pk/img/pV8yNFZ4/le-men-long-sleeve-crew-nexk-tees-shirt-8.webp?force=1",
+        "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp?force=1",
+        "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp?force=1",
+        "https://huzi.pk/img/nhnXGhq5/le-men-long-sleeve-crew-nexk-tees-shirt4.webp?force=1",
+        "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp?force=1"
+      ],
+      "stock": 100
     }
   ]
 }
