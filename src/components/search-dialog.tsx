@@ -4,7 +4,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Search, File, History, X } from "lucide-react";
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
+import { CommandDialog, CommandEmpty, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
@@ -108,19 +108,22 @@ export function SearchDialog() {
         return staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
     }, [query]);
     
-    // This is the key change: we use this to check if a selection has been made.
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
-            // Check if any item in the list is currently selected by the user
-            const selectedItem = document.querySelector('[aria-selected="true"]');
-            
-            // If no item is selected, perform a general search.
+            const selectedItem = document.querySelector('[cmdk-dialog] [aria-selected="true"]');
             if (!selectedItem) {
                 e.preventDefault();
                 handleSearchSubmit();
             }
-            // If an item IS selected, the default onSelect behavior of CommandItem will handle it.
         }
+    };
+    
+    // Reset query when closing the dialog
+    const onOpenChange = (isOpen: boolean) => {
+        if (!isOpen) {
+            setQuery("");
+        }
+        setOpen(isOpen);
     };
 
     return (
@@ -129,13 +132,12 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            {/* The shouldFilter={false} prop is crucial to prevent the library's default filtering and selection */}
-            <CommandDialog open={open} onOpenChange={setOpen} shouldFilter={false}>
+            <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false}>
                  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                    <CommandInput
+                    <input
                         value={query}
-                        onValueChange={setQuery}
+                        onChange={(e) => setQuery(e.target.value)}
                         onKeyDown={handleKeyDown}
                         placeholder="Search products, categories, or pages..."
                         className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
