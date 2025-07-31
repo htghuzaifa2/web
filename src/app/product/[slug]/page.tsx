@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   const title = `${product.name} - huzi.pk`;
-  const description = `Shop for ${product.name} at huzi.pk. ${product.description}. We deliver physical products all over Pakistan and digital products worldwide.`;
+  const description = product.description || product.longDescription || `Shop for ${product.name} at huzi.pk. We deliver physical products all over Pakistan and digital products worldwide.`;
 
   return {
     title,
