@@ -4,7 +4,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Search, File, History, X } from "lucide-react";
-import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
@@ -82,8 +82,8 @@ export function SearchDialog() {
         localStorage.removeItem("searchHistory");
     };
 
-    const handleSearchSubmit = () => {
-        const trimmedQuery = query.trim();
+    const handleSearchSubmit = (searchQuery: string) => {
+        const trimmedQuery = searchQuery.trim();
         if (trimmedQuery) {
             updateSearchHistory(trimmedQuery);
             runCommand(() => router.push(`/search?q=${encodeURIComponent(trimmedQuery)}`));
@@ -110,15 +110,24 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            <CommandDialog open={open} onOpenChange={onOpenChange}>
+            <CommandDialog open={open} onOpenChange={onOpenChange} data-mobile={isMobile}>
                 <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
                     <Command.Input
                         value={query}
                         onValueChange={setQuery}
+                        onKeyDown={(e: React.KeyboardEvent) => {
+                            if (e.key === 'Enter') {
+                                handleSearchSubmit(query);
+                            }
+                        }}
                         placeholder="Search products, categories, or pages..."
                         className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                     />
+                     <Button variant="ghost" size="icon" onClick={() => handleSearchSubmit(query)} className="h-8 w-8">
+                        <span className="sr-only">Search</span>
+                        <Search className="h-4 w-4" />
+                    </Button>
                 </div>
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
@@ -135,10 +144,7 @@ export function SearchDialog() {
                             {searchHistory.map((historyItem) => (
                                 <CommandItem 
                                     key={historyItem} 
-                                    onSelect={() => {
-                                        setQuery(historyItem);
-                                        handleSelect(`/search?q=${encodeURIComponent(historyItem)}`);
-                                    }}
+                                    onSelect={() => handleSearchSubmit(historyItem)}
                                     className="group"
                                 >
                                     <div className="flex items-center justify-between w-full">
@@ -161,11 +167,6 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
-                        <CommandItem onSelect={handleSearchSubmit} value={`Search for "${query}"`}>
-                            <Search className="mr-2 h-4 w-4" />
-                            <span>Search for "{query}"</span>
-                        </CommandItem>
-                        
                         <CommandGroup heading="Products">
                             {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
                                 <CommandItem
