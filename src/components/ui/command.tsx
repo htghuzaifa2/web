@@ -7,9 +7,9 @@ import { Command as CommandPrimitive } from "cmdk"
 import { Search } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
 
-const Command = React.forwardRef<
+const CommandRoot = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive>
 >(({ className, ...props }, ref) => (
@@ -22,7 +22,7 @@ const Command = React.forwardRef<
     {...props}
   />
 ))
-Command.displayName = CommandPrimitive.displayName
+CommandRoot.displayName = CommandPrimitive.displayName
 
 interface CommandDialogProps extends DialogProps {}
 
@@ -30,10 +30,10 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command 
+        <CommandRoot 
           className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
-        </Command>
+        </CommandRoot>
       </DialogContent>
     </Dialog>
   )
@@ -144,6 +144,17 @@ const CommandShortcut = ({
   )
 }
 CommandShortcut.displayName = "CommandShortcut"
+
+const Command = Object.assign(CommandRoot, {
+  Dialog: CommandDialog,
+  Input: CommandInput,
+  List: CommandList,
+  Empty: CommandEmpty,
+  Group: CommandGroup,
+  Item: CommandItem,
+  Shortcut: CommandShortcut,
+  Separator: CommandSeparator,
+})
 
 export {
   Command,
