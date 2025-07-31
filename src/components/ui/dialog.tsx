@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -39,7 +40,9 @@ const DialogContent = React.forwardRef<
       ref={ref}
       className={cn(
         "fixed z-50 grid w-full gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "data-[mobile=false]:left-1/2 data-[mobile=false]:top-1/2 data-[mobile=false]:max-w-lg data-[mobile=false]:-translate-x-1/2 data-[mobile=false]:-translate-y-1/2 data-[mobile=false]:data-[state=closed]:slide-out-to-left-1/2 data-[mobile=false]:data-[state=closed]:slide-out-to-top-[48%] data-[mobile=false]:data-[state=open]:slide-in-from-left-1/2 data-[mobile=false]:data-[state=open]:slide-in-from-top-[48%] data-[mobile=false]:sm:rounded-lg",
+        // Desktop styles
+        "data-[mobile=false]:left-1/2 data-[mobile=false]:top-1/2 data-[mobile=false]:max-w-lg data-[mobile=false]:translate-x-[-50%] data-[mobile=false]:translate-y-[-50%] data-[mobile=false]:data-[state=closed]:slide-out-to-left-1/2 data-[mobile=false]:data-[state=closed]:slide-out-to-top-[48%] data-[mobile=false]:data-[state=open]:slide-in-from-left-1/2 data-[mobile=false]:data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        // Mobile styles
         "data-[mobile=true]:bottom-0 data-[mobile=true]:inset-x-0 data-[mobile=true]:rounded-t-lg data-[mobile=true]:data-[state=closed]:slide-out-to-bottom data-[mobile=true]:data-[state=open]:slide-in-from-bottom",
         className
       )}

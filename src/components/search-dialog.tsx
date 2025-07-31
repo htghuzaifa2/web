@@ -110,9 +110,11 @@ export function SearchDialog() {
         return staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
     }, [query]);
     
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        // This logic is now handled by the Command component's keydown handler
-        // to differentiate between submitting a search and selecting an item.
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSearchSubmit();
+        }
     };
     
     // Reset query when closing the dialog
@@ -180,15 +182,6 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
-                        <CommandItem onSelect={handleSearchSubmit} value={`__search_query__${query}`}>
-                            <div className="flex items-center">
-                                <Search className="mr-2 h-4 w-4" />
-                                <span>Search for "{query}"</span>
-                            </div>
-                        </CommandItem>
-
-                        {filteredProducts.length > 0 && <CommandSeparator />}
-                        
                         {filteredProducts.length > 0 && (
                             <CommandGroup heading="Products">
                                 {filteredProducts.map((product) => (
