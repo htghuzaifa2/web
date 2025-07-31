@@ -78,7 +78,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Belleza&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
         <ThemeProvider
@@ -90,7 +90,7 @@ export default function RootLayout({
           <CartProvider>
             <div className="flex min-h-screen flex-col">
               <Header />
-              <main className="flex-1 p-4">{children}</main>
+              <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>
               <Footer />
             </div>
             <Toaster />

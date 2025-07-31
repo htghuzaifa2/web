@@ -64,11 +64,8 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 
 
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
-  const products: Product[] = productsData.products;
-  const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0, 6);
-
   const currentPage = Number(searchParams.page) || 1;
-  const pageSize = 12;
+  const pageSize = 18;
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
   const paginationItems = getPaginationItems(currentPage, totalPages);
 
@@ -94,23 +91,6 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <Button asChild size="lg" className="mt-8">
             <Link href="/categories">Shop Now</Link>
           </Button>
-        </div>
-      </section>
-      
-      <section className="py-8 md:py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
-            Featured Products
-          </h2>
-          {featuredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
-              {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-           ) : (
-            <p className="text-center text-muted-foreground">New products coming soon!</p>
-          )}
         </div>
       </section>
 
