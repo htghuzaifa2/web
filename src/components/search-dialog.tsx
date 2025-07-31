@@ -3,13 +3,14 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Search, ShoppingBag, File, History, X } from "lucide-react";
+import { Search, File, History, X } from "lucide-react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
 import type { Product, Category } from "@/lib/types";
 import { slugify } from "@/lib/utils";
+import Image from "next/image";
 
 const products: Product[] = productsData.products;
 const categories: Category[] = categoriesData.categories;
@@ -159,9 +160,22 @@ export function SearchDialog() {
                                         key={`product-${product.id}`}
                                         value={`Product: ${product.name}`}
                                         onSelect={() => handleSelect(`/product/${slugify(product.name)}`, query)}
+                                        className="!py-2"
                                     >
-                                        <ShoppingBag className="mr-2 h-4 w-4" />
-                                        <span>{product.name}</span>
+                                        <div className="flex items-center gap-4 w-full">
+                                            <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-md">
+                                                <Image
+                                                    src={product.image}
+                                                    alt={product.name}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="font-semibold text-sm">{product.name}</p>
+                                                <p className="text-sm text-price">{`PKR ${Math.round(product.price)}`}</p>
+                                            </div>
+                                        </div>
                                     </CommandItem>
                                 ))}
                             </CommandGroup>
