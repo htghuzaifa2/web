@@ -76,7 +76,7 @@ const getFeaturedProducts = () => {
 
 export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
-  const pageSize = 20; // 4 cards x 5 rows
+  const pageSize = 20; // 5 rows of 4 on PC, adjusts responsively
   const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
   const paginationItems = getPaginationItems(currentPage, totalPages);
   const featuredProducts = getFeaturedProducts();
