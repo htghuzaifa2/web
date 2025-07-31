@@ -1,52 +1,60 @@
 
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import ShippingInfo from "@/components/shipping-info";
 
-interface ProductInfoTabsProps {
+interface ProductInfoAccordionProps {
     description?: string;
     specifications?: Record<string, string>;
 }
 
-export default function ProductInfoTabs({ description, specifications }: ProductInfoTabsProps) {
+export default function ProductInfoAccordion({ description, specifications }: ProductInfoAccordionProps) {
     const hasDescription = description && description.trim() !== "";
     const hasSpecifications = specifications && Object.keys(specifications).length > 0;
     
-    // Determine the default tab. If there's a description, it's the default.
-    // If not, but there are specifications, they become the default.
-    const defaultTab = hasDescription ? "description" : hasSpecifications ? "specifications" : "";
-
-    if (!hasDescription && !hasSpecifications) {
-        return null;
-    }
+    // Determine the default opened item.
+    const defaultOpenValue = hasDescription ? "description" : hasSpecifications ? "specifications" : "shipping";
 
     return (
-        <Tabs defaultValue={defaultTab} className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
-                {hasDescription && <TabsTrigger value="description">Description</TabsTrigger>}
-                {hasSpecifications && <TabsTrigger value="specifications">Specifications</TabsTrigger>}
-            </TabsList>
+        <Accordion type="single" collapsible defaultValue={defaultOpenValue} className="w-full">
             {hasDescription && (
-                <TabsContent value="description">
-                    <div className="prose prose-lg max-w-none mx-auto mt-6 text-muted-foreground">
+                <AccordionItem value="description">
+                    <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+                        Description
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground prose max-w-none">
                         <p>{description}</p>
-                    </div>
-                </TabsContent>
+                    </AccordionContent>
+                </AccordionItem>
             )}
+
             {hasSpecifications && (
-                 <TabsContent value="specifications">
-                    <div className="max-w-2xl mx-auto mt-6">
-                        <ul className="space-y-3 text-muted-foreground">
+                <AccordionItem value="specifications">
+                     <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+                        Specifications
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <ul className="space-y-3 text-muted-foreground pt-2">
                             {Object.entries(specifications).map(([key, value]) => (
-                                <li key={key} className="flex justify-between border-b pb-3">
+                                <li key={key} className="flex justify-between border-b pb-3 text-sm">
                                     <span className="font-semibold text-foreground">{key}</span>
                                     <span>{value}</span>
                                 </li>
                             ))}
                         </ul>
-                    </div>
-                </TabsContent>
+                    </AccordionContent>
+                </AccordionItem>
             )}
-        </Tabs>
+            
+            <AccordionItem value="shipping">
+                <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+                    Shipping & Delivery
+                </AccordionTrigger>
+                <AccordionContent>
+                    <ShippingInfo />
+                </AccordionContent>
+            </AccordionItem>
+        </Accordion>
     );
 }

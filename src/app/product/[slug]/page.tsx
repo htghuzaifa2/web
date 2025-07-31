@@ -5,7 +5,7 @@ import type { Product } from "@/lib/types";
 import ProductDetailsClient from "./product-details-client";
 import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
-import ProductInfoTabs from "./product-info-tabs";
+import ProductInfoAccordion from "./product-info-tabs";
 import { slugify } from "@/lib/utils";
 import { Metadata } from "next";
 
@@ -109,17 +109,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       />
       <ProductDetailsClient product={product} />
 
-      {(product.longDescription || (product.specifications && Object.keys(product.specifications).length > 0)) && (
-        <div className="my-12 md:my-16">
-            <Separator />
-            <div className="mt-12 md:mt-16">
-              <ProductInfoTabs 
-                description={product.longDescription} 
-                specifications={product.specifications} 
-              />
-            </div>
-        </div>
-      )}
+      <div className="my-12 md:my-16">
+          <Separator />
+          <div className="mt-12 md:mt-16 max-w-4xl mx-auto">
+            <ProductInfoAccordion
+              description={product.longDescription} 
+              specifications={product.specifications} 
+            />
+          </div>
+      </div>
 
       {relatedProducts.length > 0 && (
          <div className="mt-16 md:mt-24">
