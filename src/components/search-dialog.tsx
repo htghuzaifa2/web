@@ -11,6 +11,7 @@ import categoriesData from "@/data/categories.json";
 import type { Product, Category } from "@/lib/types";
 import { slugify } from "@/lib/utils";
 import Image from "next/image";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const products: Product[] = productsData.products;
 const categories: Category[] = categoriesData.categories;
@@ -29,6 +30,7 @@ export function SearchDialog() {
     const [query, setQuery] = React.useState("");
     const [searchHistory, setSearchHistory] = React.useState<string[]>([]);
     const router = useRouter();
+    const isMobile = useIsMobile();
 
     React.useEffect(() => {
         const storedHistory = localStorage.getItem("searchHistory");
@@ -109,13 +111,8 @@ export function SearchDialog() {
     }, [query]);
     
     const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            const selectedItem = document.querySelector('[cmdk-dialog] [aria-selected="true"]');
-            if (!selectedItem) {
-                e.preventDefault();
-                handleSearchSubmit();
-            }
-        }
+        // This logic is now handled by the Command component's keydown handler
+        // to differentiate between submitting a search and selecting an item.
     };
     
     // Reset query when closing the dialog
@@ -132,7 +129,7 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false}>
+            <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false} data-mobile={isMobile}>
                  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
                     <input
@@ -183,6 +180,13 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
+                        <CommandItem onSelect={handleSearchSubmit} value={`__search_query__${query}`}>
+                            <div className="flex items-center">
+                                <Search className="mr-2 h-4 w-4" />
+                                <span>Search for "{query}"</span>
+                            </div>
+                        </CommandItem>
+
                         {filteredProducts.length > 0 && <CommandSeparator />}
                         
                         {filteredProducts.length > 0 && (
