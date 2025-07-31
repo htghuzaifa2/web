@@ -46,8 +46,8 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="pr-0">
-              <Link href="/" className="mr-6 mb-6 flex items-center">
-                <Image src="/logo.webp" alt="huzi.pk logo" width={100} height={40} className="dark:invert"/>
+              <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg">
+                huzi.pk
               </Link>
               <nav className="flex flex-col space-y-2">
                 {allNavLinks.map(({ href, label }) => (
@@ -63,8 +63,8 @@ export default function Header() {
         </div>
         
         <div className="flex items-center">
-           <Link href="/" className="mr-6 hidden md:flex items-center">
-             <Image src="/logo.webp" alt="huzi.pk logo" width={120} height={40} className="dark:invert"/>
+           <Link href="/" className="mr-6 hidden md:flex items-center font-bold text-xl">
+             huzi.pk
           </Link>
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             {mainNavLinks.map(({ href, label }) => (
