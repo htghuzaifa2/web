@@ -4,22 +4,13 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Search, File, History, X, Command as CommandIcon } from "lucide-react";
-import { 
-    CommandDialog, 
-    CommandEmpty, 
-    CommandGroup, 
-    CommandInput, 
-    CommandItem, 
-    CommandList, 
-    CommandSeparator
-} from "@/components/ui/command";
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
 import type { Product, Category } from "@/lib/types";
 import { slugify } from "@/lib/utils";
 import Image from "next/image";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const products: Product[] = productsData.products;
 const categories: Category[] = categoriesData.categories;
@@ -39,7 +30,6 @@ export function SearchDialog() {
     const [searchHistory, setSearchHistory] = React.useState<string[]>([]);
     const [selectedValue, setSelectedValue] = React.useState<string | null>(null);
     const router = useRouter();
-    const isMobile = useIsMobile();
     const inputRef = React.useRef<HTMLInputElement>(null);
 
     React.useEffect(() => {
@@ -119,27 +109,35 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false} value={selectedValue ?? ""}>
-                 <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
+            <CommandDialog 
+                open={open} 
+                onOpenChange={onOpenChange} 
+                shouldFilter={false} 
+                value={selectedValue ?? ""}
+                onValueChange={setSelectedValue}
+                commandProps={{
+                     onKeyDown: (e: React.KeyboardEvent) => {
+                        if (e.key === 'Enter' && !selectedValue) {
+                            e.preventDefault();
+                            handleSearchSubmit((e.target as HTMLInputElement).value);
+                        }
+                    },
+                }}
+            >
+                <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
                     <CommandInput
                         ref={inputRef}
                         value={query}
                         onValueChange={setQuery}
-                        onKeyDown={(e: React.KeyboardEvent) => {
-                             if (e.key === 'Enter' && !selectedValue) {
-                                e.preventDefault();
-                                handleSearchSubmit((e.target as HTMLInputElement).value);
-                            }
-                        }}
                         placeholder="Search products, categories, or pages..."
                         className="flex-1"
                     />
-                     <Button variant="secondary" size="sm" onClick={() => handleSearchSubmit(query)} className="h-8 ml-2">
+                     <Button variant="secondary" size="sm" onClick={() => handleSearchSubmit(query)} className="ml-2">
                         Search
                     </Button>
                 </div>
-                <CommandList onValueChange={setSelectedValue}>
+                <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
                     {query.length === 0 && searchHistory.length > 0 && (
