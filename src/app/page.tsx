@@ -39,9 +39,9 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 
     if (currentPage <= 3) {
         startPage = 2;
-        endPage = Math.min(totalPages - 1, pagesToShow - 2);
+        endPage = Math.min(totalPages - 1, 4);
     } else if (currentPage >= totalPages - 2) {
-        startPage = Math.max(2, totalPages - (pagesToShow - 3));
+        startPage = Math.max(2, totalPages - 3);
         endPage = totalPages - 1;
     }
 
@@ -102,11 +102,15 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Featured Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {featuredProducts.length > 0 ? (
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
+              {featuredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+           ) : (
+            <p className="text-center text-muted-foreground">New products coming soon!</p>
+          )}
         </div>
       </section>
 
@@ -115,37 +119,43 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
           <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
             Our Products
           </h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
-            {paginatedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          {totalPages > 1 && (
-            <div className="mt-12">
-              <Pagination>
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious href={currentPage > 1 ? `/?page=${currentPage - 1}`: '#'} aria-disabled={currentPage <= 1} />
-                  </PaginationItem>
-                  
-                  {paginationItems.map((page, index) => (
-                    <PaginationItem key={index}>
-                      {typeof page === 'number' ? (
-                        <PaginationLink href={`/?page=${page}`} isActive={page === currentPage}>
-                          {page}
-                        </PaginationLink>
-                      ) : (
-                        <PaginationEllipsis />
-                      )}
-                    </PaginationItem>
-                  ))}
+           {paginatedProducts.length > 0 ? (
+            <>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-6">
+                {paginatedProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+              {totalPages > 1 && (
+                <div className="mt-12">
+                  <Pagination>
+                    <PaginationContent>
+                      <PaginationItem>
+                        <PaginationPrevious href={currentPage > 1 ? `/?page=${currentPage - 1}`: '#'} aria-disabled={currentPage <= 1} />
+                      </PaginationItem>
+                      
+                      {paginationItems.map((page, index) => (
+                        <PaginationItem key={index}>
+                          {typeof page === 'number' ? (
+                            <PaginationLink href={`/?page=${page}`} isActive={page === currentPage}>
+                              {page}
+                            </PaginationLink>
+                          ) : (
+                            <PaginationEllipsis />
+                          )}
+                        </PaginationItem>
+                      ))}
 
-                  <PaginationItem>
-                    <PaginationNext href={currentPage < totalPages ? `/?page=${currentPage + 1}` : '#'} aria-disabled={currentPage >= totalPages} />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
+                      <PaginationItem>
+                        <PaginationNext href={currentPage < totalPages ? `/?page=${currentPage + 1}` : '#'} aria-disabled={currentPage >= totalPages} />
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                </div>
+              )}
+            </>
+          ) : (
+            <p className="text-center text-muted-foreground">The store is currently empty. Check back later!</p>
           )}
         </div>
       </section>

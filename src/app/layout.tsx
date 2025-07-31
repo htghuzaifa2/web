@@ -90,7 +90,7 @@ export default function RootLayout({
           <CartProvider>
             <div className="flex min-h-screen flex-col">
               <Header />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 p-4">{children}</main>
               <Footer />
             </div>
             <Toaster />
