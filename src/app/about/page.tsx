@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "About Us - huzi.pk",
+    title: "About Us",
     description: "Learn more about huzi.pk, our mission, and our commitment to quality products and customer service in Pakistan and worldwide. We are your destination for modern fashion.",
 };
 

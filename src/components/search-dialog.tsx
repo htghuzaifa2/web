@@ -4,7 +4,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Search, File, History, X } from "lucide-react";
-import { CommandDialog, CommandEmpty, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
@@ -96,28 +96,6 @@ export function SearchDialog() {
         }
         runCommand(() => router.push(path));
     };
-
-    const filteredProducts = React.useMemo(() => {
-        if (query.trim().length < 1) return [];
-        return products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
-    }, [query]);
-
-    const filteredCategories = React.useMemo(() => {
-        if (query.trim().length < 1) return [];
-        return categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
-    }, [query]);
-    
-    const filteredPages = React.useMemo(() => {
-        if (query.trim().length < 1) return [];
-        return staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
-    }, [query]);
-    
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            handleSearchSubmit();
-        }
-    };
     
     const onOpenChange = (isOpen: boolean) => {
         if (!isOpen) {
@@ -132,19 +110,16 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false} data-mobile={isMobile}>
-                 <div className="flex items-center border-b px-3">
+            <CommandDialog open={open} onOpenChange={onOpenChange}>
+                <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                    <input
+                    <Command.Input
                         value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        onKeyDown={handleKeyDown}
+                        onValueChange={setQuery}
                         placeholder="Search products, categories, or pages..."
                         className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                     />
-                    <Button onClick={handleSearchSubmit} size="sm" className="ml-2">Search</Button>
                 </div>
-
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
@@ -160,7 +135,10 @@ export function SearchDialog() {
                             {searchHistory.map((historyItem) => (
                                 <CommandItem 
                                     key={historyItem} 
-                                    onSelect={() => runCommand(() => router.push(`/search?q=${encodeURIComponent(historyItem)}`))}
+                                    onSelect={() => {
+                                        setQuery(historyItem);
+                                        handleSelect(`/search?q=${encodeURIComponent(historyItem)}`);
+                                    }}
                                     className="group"
                                 >
                                     <div className="flex items-center justify-between w-full">
@@ -183,67 +161,66 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
-                        {filteredProducts.length > 0 && (
-                            <CommandGroup heading="Products">
-                                {filteredProducts.map((product) => (
-                                    <CommandItem
-                                        key={`product-${product.id}`}
-                                        value={`Product: ${product.name}`}
-                                        onSelect={() => handleSelect(`/product/${slugify(product.name)}`)}
-                                        className="!py-2"
-                                    >
-                                        <div className="flex items-center gap-4 w-full">
-                                            <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-md">
-                                                <Image
-                                                    src={product.image}
-                                                    alt={product.name}
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                            <div className="flex-1">
-                                                <p className="font-semibold text-sm">{product.name}</p>
-                                                <p className="text-sm text-price">{`PKR ${Math.round(product.price)}`}</p>
-                                            </div>
+                        <CommandItem onSelect={handleSearchSubmit} value={`Search for "${query}"`}>
+                            <Search className="mr-2 h-4 w-4" />
+                            <span>Search for "{query}"</span>
+                        </CommandItem>
+                        
+                        <CommandGroup heading="Products">
+                            {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
+                                <CommandItem
+                                    key={`product-${product.id}`}
+                                    value={`Product: ${product.name}`}
+                                    onSelect={() => handleSelect(`/product/${slugify(product.name)}`)}
+                                    className="!py-2"
+                                >
+                                    <div className="flex items-center gap-4 w-full">
+                                        <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-md">
+                                            <Image
+                                                src={product.image}
+                                                alt={product.name}
+                                                fill
+                                                className="object-cover"
+                                            />
                                         </div>
-                                    </CommandItem>
-                                ))}
-                            </CommandGroup>
-                        )}
+                                        <div className="flex-1">
+                                            <p className="font-semibold text-sm">{product.name}</p>
+                                            <p className="text-sm text-price">{`PKR ${Math.round(product.price)}`}</p>
+                                        </div>
+                                    </div>
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
                         
-                        {filteredCategories.length > 0 && <CommandSeparator />}
+                        <CommandSeparator />
 
-                        {filteredCategories.length > 0 && (
-                            <CommandGroup heading="Categories">
-                                {filteredCategories.map((category) => (
-                                    <CommandItem
-                                        key={`category-${category.id}`}
-                                        value={`Category: ${category.name}`}
-                                        onSelect={() => handleSelect(`/category/${category.slug}`)}
-                                    >
-                                        <File className="mr-2 h-4 w-4" />
-                                        <span>{category.name}</span>
-                                    </CommandItem>
-                                ))}
-                            </CommandGroup>
-                        )}
+                        <CommandGroup heading="Categories">
+                            {categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((category) => (
+                                <CommandItem
+                                    key={`category-${category.id}`}
+                                    value={`Category: ${category.name}`}
+                                    onSelect={() => handleSelect(`/category/${category.slug}`)}
+                                >
+                                    <File className="mr-2 h-4 w-4" />
+                                    <span>{category.name}</span>
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
                         
-                        {filteredPages.length > 0 && <CommandSeparator />}
+                        <CommandSeparator />
 
-                        {filteredPages.length > 0 && (
-                            <CommandGroup heading="Pages">
-                                {filteredPages.map((page) => (
-                                    <CommandItem
-                                        key={`page-${page.path}`}
-                                        value={`Page: ${page.name}`}
-                                        onSelect={() => handleSelect(page.path)}
-                                    >
-                                        <File className="mr-2 h-4 w-4" />
-                                        <span>{page.name}</span>
-                                    </CommandItem>
-                                ))}
-                            </CommandGroup>
-                        )}
+                        <CommandGroup heading="Pages">
+                            {staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((page) => (
+                                <CommandItem
+                                    key={`page-${page.path}`}
+                                    value={`Page: ${page.name}`}
+                                    onSelect={() => handleSelect(page.path)}
+                                >
+                                    <File className="mr-2 h-4 w-4" />
+                                    <span>{page.name}</span>
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
                       </>
                     )}
                 </CommandList>

@@ -27,7 +27,7 @@ const checkoutSchema = z.object({
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 export default function CheckoutPage() {
-  const { items, total } = useCart();
+  const { items, total, clearCart } = useCart();
   const [isClient, setIsClient] = useState(false);
   
   const shippingFee = 250;
@@ -69,6 +69,9 @@ export default function CheckoutPage() {
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
     
+    // Clear cart after preparing message
+    clearCart();
+
     // Redirect to WhatsApp
     window.open(whatsappUrl, '_blank');
   };
