@@ -91,7 +91,9 @@ export function SearchDialog() {
     };
     
     const handleSelect = (path: string) => {
-        updateSearchHistory(query);
+        if(query) {
+            updateSearchHistory(query);
+        }
         runCommand(() => router.push(path));
     };
 
