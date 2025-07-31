@@ -9,6 +9,10 @@ import { CartProvider } from '@/context/cart-context';
 import Link from 'next/link';
 import { SVGProps } from 'react';
 
+// This is the key change to make pages load instantly.
+// It tells Next.js to treat all pages as static by default.
+export const dynamic = 'force-static'
+
 const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",

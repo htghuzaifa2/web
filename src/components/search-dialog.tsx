@@ -76,10 +76,11 @@ export function SearchDialog() {
         command();
     }, []);
 
-    const handleSelect = (path: string, currentQuery: string) => {
-        updateSearchHistory(currentQuery);
-        router.push(path);
-        runCommand(() => {});
+    const handleSelect = (path: string, currentQuery?: string) => {
+        if (currentQuery) {
+            updateSearchHistory(currentQuery);
+        }
+        runCommand(() => router.push(path));
     };
 
     return (
