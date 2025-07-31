@@ -88,6 +88,14 @@ export function SearchDialog() {
         runCommand(() => router.push(path));
     };
 
+    const handleSearchSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (query.trim()) {
+            updateSearchHistory(query.trim());
+            runCommand(() => router.push(`/search?q=${encodeURIComponent(query.trim())}`));
+        }
+    };
+
     const filteredProducts = React.useMemo(() => {
         if (query.trim().length === 0) return [];
         return products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
@@ -110,11 +118,13 @@ export function SearchDialog() {
                 <span className="sr-only">Search</span>
             </Button>
             <CommandDialog open={open} onOpenChange={setOpen}>
-                <CommandInput 
-                    placeholder="Search products, categories, or pages..." 
-                    value={query}
-                    onValueChange={setQuery}
-                />
+                <form onSubmit={handleSearchSubmit}>
+                    <CommandInput 
+                        placeholder="Search products, categories, or pages..." 
+                        value={query}
+                        onValueChange={setQuery}
+                    />
+                </form>
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
