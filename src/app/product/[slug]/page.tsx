@@ -64,27 +64,13 @@ const getProductData = (slug: string) => {
     return { product: null, relatedProducts: [] };
   }
   
-  const primaryCategory = product.category[0];
-  
-  // Get related products from the same category
-  let relatedProducts = allProducts
-    .filter(p => p.category.includes(primaryCategory) && p.id !== product.id);
-  
-  // If not enough related products, fill with random products
-  if (relatedProducts.length < 8) {
-    const relatedIds = new Set(relatedProducts.map(p => p.id));
-    const otherProducts = allProducts.filter(p => p.id !== product.id && !relatedIds.has(p.id));
-    const shuffledOthers = otherProducts.sort(() => 0.5 - Math.random());
-    const needed = 8 - relatedProducts.length;
-    relatedProducts = [...relatedProducts, ...shuffledOthers.slice(0, needed)];
-  }
+  // Get 6 fully random products, excluding the current one.
+  const relatedProducts = allProducts
+    .filter(p => p.id !== product.id) // Exclude the current product
+    .sort(() => 0.5 - Math.random()) // Shuffle the array randomly
+    .slice(0, 6); // Take the first 6 products
 
-  // Final shuffle and slice to ensure 8 products max
-  const finalRelated = relatedProducts
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 8); 
-
-  return { product, relatedProducts: finalRelated };
+  return { product, relatedProducts };
 }
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
@@ -136,7 +122,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       {relatedProducts.length > 0 && (
          <div className="mt-16 md:mt-24">
             <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 {relatedProducts.map(relatedProduct => (
                     <ProductCard key={relatedProduct.id} product={relatedProduct} />
                 ))}
