@@ -29,7 +29,6 @@ export function SearchDialog() {
     const [query, setQuery] = React.useState("");
     const [searchHistory, setSearchHistory] = React.useState<string[]>([]);
     const router = useRouter();
-    
 
     React.useEffect(() => {
         const storedHistory = localStorage.getItem("searchHistory");
@@ -48,6 +47,11 @@ export function SearchDialog() {
 
         document.addEventListener("keydown", down);
         return () => document.removeEventListener("keydown", down);
+    }, []);
+
+    const runCommand = React.useCallback((command: () => unknown) => {
+        setOpen(false);
+        command();
     }, []);
 
     const updateSearchHistory = (newQuery: string) => {
@@ -74,11 +78,6 @@ export function SearchDialog() {
         e.stopPropagation();
         setSearchHistory([]);
         localStorage.removeItem("searchHistory");
-    }
-
-    const runCommand = (command: () => unknown) => {
-        setOpen(false);
-        command();
     };
 
     const handleSelect = (path: string, currentQuery?: string) => {
@@ -88,8 +87,7 @@ export function SearchDialog() {
         runCommand(() => router.push(path));
     };
     
-    const handleFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSearchSubmit = () => {
         const trimmedQuery = query.trim();
         if (trimmedQuery) {
             updateSearchHistory(trimmedQuery);
@@ -98,19 +96,32 @@ export function SearchDialog() {
     };
     
     const filteredProducts = React.useMemo(() => {
-        if (query.trim().length === 0) return [];
+        if (query.trim().length < 1) return [];
         return products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
     }, [query]);
 
     const filteredCategories = React.useMemo(() => {
-        if (query.trim().length === 0) return [];
+        if (query.trim().length < 1) return [];
         return categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
     }, [query]);
     
     const filteredPages = React.useMemo(() => {
-        if (query.trim().length === 0) return [];
+        if (query.trim().length < 1) return [];
         return staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
     }, [query]);
+
+    // This handles the "Enter" key press. If no item is selected, it performs a search.
+    // CMDK's default onKeyDown will handle navigation if an item is selected.
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+             // Check if there is a selected item in the command list
+            const selected = document.querySelector('[aria-selected="true"]');
+            if (!selected) {
+                e.preventDefault();
+                handleSearchSubmit();
+            }
+        }
+    };
 
     return (
         <>
@@ -119,18 +130,18 @@ export function SearchDialog() {
                 <span className="sr-only">Search</span>
             </Button>
             <CommandDialog open={open} onOpenChange={setOpen}>
-                 <form onSubmit={handleFormSubmit}>
-                    <div className="flex items-center border-b px-3">
-                        <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                        <CommandInput
-                            value={query}
-                            onValueChange={setQuery}
-                            placeholder="Search products, categories, or pages..."
-                            className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-                        />
-                        <Button type="submit" size="sm" className="ml-2">Search</Button>
-                    </div>
-                </form>
+                <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
+                    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                    <CommandInput
+                        value={query}
+                        onValueChange={setQuery}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Search products, categories, or pages..."
+                        className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                    <Button onClick={handleSearchSubmit} size="sm" className="ml-2">Search</Button>
+                </div>
+
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
@@ -169,7 +180,7 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
-                        <CommandItem onSelect={() => handleSelect(`/search?q=${query}`)} value={`Search for ${query}`}>
+                        <CommandItem onSelect={handleSearchSubmit} value={`Search for ${query}`}>
                            <CornerDownLeft className="mr-2 h-4 w-4" />
                            Search for "{query}"
                         </CommandItem>
