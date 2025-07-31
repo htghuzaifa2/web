@@ -73,7 +73,7 @@ const getProductData = (slug: string) => {
   return { product, relatedProducts };
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage({ params }: { params: { slug: string } }) {
   const { product, relatedProducts } = getProductData(params.slug);
 
   if (!product) {

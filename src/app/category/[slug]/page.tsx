@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { slug:string } }):
   };
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const categories: Category[] = categoriesData.categories;
   const products: Product[] = productsData.products;

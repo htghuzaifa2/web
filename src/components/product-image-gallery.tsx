@@ -45,20 +45,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const showPrevImage = useCallback(() => {
     setMainImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   }, [images.length]);
-  
-  useEffect(() => {
-    // Scroll the active thumbnail into view if it's outside the visible range
-    if (thumbnailContainerRef.current) {
-        const activeThumbnail = thumbnailContainerRef.current.children[mainImageIndex] as HTMLElement;
-        if (activeThumbnail) {
-            activeThumbnail.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest'
-            });
-        }
-    }
-  }, [mainImageIndex]);
-
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -97,64 +83,94 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   return (
-    <div className="flex flex-row gap-4">
+    <div className="flex flex-col md:flex-row gap-4">
       {images.length > 1 && (
-        <div className="relative w-20 flex-shrink-0">
-          {showScrollButtons && (
-            <Button
-              size="icon"
-              variant="ghost"
-              className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 h-8 w-8 rounded-full bg-background/50 hover:bg-background/80"
-              onClick={() => scrollThumbnails('up')}
-            >
-              <ChevronUp className="h-5 w-5" />
-            </Button>
-          )}
+        <div className="order-2 md:order-1 relative w-full md:w-20 flex-shrink-0">
+           {/* Desktop vertical thumbnails */}
+           <div className="hidden md:block">
+            {showScrollButtons && (
+              <Button
+                size="icon"
+                variant="ghost"
+                className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 h-8 w-8 rounded-full bg-background/50 hover:bg-background/80"
+                onClick={() => scrollThumbnails('up')}
+              >
+                <ChevronUp className="h-5 w-5" />
+              </Button>
+            )}
 
-          <div 
-            ref={thumbnailContainerRef} 
-            className="h-[464px] overflow-y-auto scroll-smooth snap-y snap-mandatory no-scrollbar"
-            style={{ maxHeight: `${5 * (80 + 8) - 8}px`}} // 5 thumbnails (80px height) + 4 gaps (8px)
-          >
-            <div className="flex flex-col gap-2 py-1">
-              {images.map((img, index) => (
-                <button
-                  key={index}
-                  onClick={() => setMainImageIndex(index)}
-                  className={cn(
-                    "relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 snap-start",
-                    mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
-                  )}
-                >
-                  <ImageWithFallback
-                    src={img}
-                    alt={`${productName} thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="20vw"
-                    placeholder="blur"
-                    blurDataURL={placeholderImage}
-                    fallbackSrc={fallbackImage}
-                  />
-                </button>
-              ))}
+            <div 
+              ref={thumbnailContainerRef} 
+              className="h-[464px] overflow-y-auto scroll-smooth snap-y snap-mandatory no-scrollbar"
+              style={{ maxHeight: `${5 * (80 + 8) - 8}px`}} // 5 thumbnails (80px height) + 4 gaps (8px)
+            >
+              <div className="flex flex-col gap-2 py-1">
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setMainImageIndex(index)}
+                    className={cn(
+                      "relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 snap-start",
+                      mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+                    )}
+                  >
+                    <ImageWithFallback
+                      src={img}
+                      alt={`${productName} thumbnail ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="20vw"
+                      placeholder="blur"
+                      blurDataURL={placeholderImage}
+                      fallbackSrc={fallbackImage}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {showScrollButtons && (
-            <Button
-              size="icon"
-              variant="ghost"
-              className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-10 h-8 w-8 rounded-full bg-background/50 hover:bg-background/80"
-              onClick={() => scrollThumbnails('down')}
-            >
-              <ChevronDown className="h-5 w-5" />
-            </Button>
-          )}
+            {showScrollButtons && (
+              <Button
+                size="icon"
+                variant="ghost"
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-10 h-8 w-8 rounded-full bg-background/50 hover:bg-background/80"
+                onClick={() => scrollThumbnails('down')}
+              >
+                <ChevronDown className="h-5 w-5" />
+              </Button>
+            )}
+           </div>
+
+           {/* Mobile horizontal thumbnails */}
+            <div className="md:hidden">
+              <div className="flex gap-2 overflow-x-auto no-scrollbar py-1">
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setMainImageIndex(index)}
+                    className={cn(
+                      "relative aspect-square w-16 h-16 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
+                      mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+                    )}
+                  >
+                     <ImageWithFallback
+                      src={img}
+                      alt={`${productName} thumbnail ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="25vw"
+                      placeholder="blur"
+                      blurDataURL={placeholderImage}
+                      fallbackSrc={fallbackImage}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
         </div>
       )}
 
-      <div className="relative flex-1 w-full overflow-hidden rounded-lg group">
+      <div className="relative flex-1 w-full overflow-hidden rounded-lg group order-1 md:order-2">
         <div
           className="relative aspect-square w-full cursor-pointer"
           onClick={() => openLightbox(mainImageIndex)}
@@ -172,6 +188,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             fallbackSrc={fallbackImage}
           />
         </div>
+        {images.length > 1 && (
+            <>
+                <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50" onClick={showPrevImage}><ChevronLeft size={24} /></Button>
+                <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50" onClick={showNextImage}><ChevronRight size={24} /></Button>
+            </>
+        )}
       </div>
 
       {lightboxOpen && (
