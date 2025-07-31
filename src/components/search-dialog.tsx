@@ -4,7 +4,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Search, File, History, X } from "lucide-react";
-import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
 import categoriesData from "@/data/categories.json";
@@ -112,25 +112,25 @@ export function SearchDialog() {
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
             </Button>
-            <CommandDialog open={open} onOpenChange={onOpenChange} data-mobile={isMobile} onValueChange={setSelectedValue}>
+            <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false}>
                 <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                    <Command.Input
+                    <CommandInput
                         value={query}
                         onValueChange={setQuery}
                         onKeyDown={(e: React.KeyboardEvent) => {
                             if (e.key === 'Enter' && !selectedValue) {
+                                e.preventDefault();
                                 handleSearchSubmit(query);
                             }
                         }}
                         placeholder="Search products, categories, or pages..."
-                        className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                     />
-                     <Button variant="outline" size="sm" onClick={() => handleSearchSubmit(query)} className="h-8">
+                     <Button variant="outline" size="sm" onClick={() => handleSearchSubmit(query)} className="h-8 ml-2">
                         Search
                     </Button>
                 </div>
-                <CommandList>
+                <CommandList onValueChange={setSelectedValue}>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
                     {query.length === 0 && searchHistory.length > 0 && (

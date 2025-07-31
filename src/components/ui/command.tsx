@@ -9,7 +9,7 @@ import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
-const CommandRoot = React.forwardRef<
+const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive>
 >(({ className, ...props }, ref) => (
@@ -22,23 +22,21 @@ const CommandRoot = React.forwardRef<
     {...props}
   />
 ))
-CommandRoot.displayName = CommandPrimitive.displayName
+Command.displayName = CommandPrimitive.displayName
 
-interface CommandDialogProps extends DialogProps {
-    "data-mobile"?: boolean;
-}
+interface CommandDialogProps extends DialogProps {}
 
-const CommandDialog = ({ children, "data-mobile": dataMobile, ...props }: CommandDialogProps) => {
+const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-lg" data-mobile={dataMobile}>
+      <DialogContent className="overflow-hidden p-0 shadow-lg sm:max-w-2xl">
         <DialogHeader className="sr-only">
             <DialogTitle>Search</DialogTitle>
         </DialogHeader>
-        <CommandRoot 
+        <Command 
           className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
-        </CommandRoot>
+        </Command>
       </DialogContent>
     </Dialog>
   )
@@ -49,7 +47,8 @@ const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <CommandPrimitive.Input
+  <div className="flex items-center" cmdk-input-wrapper="">
+    <CommandPrimitive.Input
       ref={ref}
       className={cn(
         "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
@@ -57,6 +56,7 @@ const CommandInput = React.forwardRef<
       )}
       {...props}
     />
+  </div>
 ))
 
 CommandInput.displayName = CommandPrimitive.Input.displayName
@@ -146,17 +146,6 @@ const CommandShortcut = ({
   )
 }
 CommandShortcut.displayName = "CommandShortcut"
-
-const Command = Object.assign(CommandRoot, {
-  Dialog: CommandDialog,
-  Input: CommandInput,
-  List: CommandList,
-  Empty: CommandEmpty,
-  Group: CommandGroup,
-  Item: CommandItem,
-  Shortcut: CommandShortcut,
-  Separator: CommandSeparator,
-})
 
 export {
   Command,
