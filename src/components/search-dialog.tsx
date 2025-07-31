@@ -3,7 +3,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Search, File, History, X } from "lucide-react";
+import { Search, File, History, X, CornerDownLeft } from "lucide-react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import productsData from "@/data/products.json";
@@ -87,21 +87,16 @@ export function SearchDialog() {
         }
         runCommand(() => router.push(path));
     };
-
-    const handleSearchSubmit = (e: React.FormEvent) => {
+    
+    const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (query.trim()) {
-            updateSearchHistory(query.trim());
-            runCommand(() => router.push(`/search?q=${encodeURIComponent(query.trim())}`));
+        const trimmedQuery = query.trim();
+        if (trimmedQuery) {
+            updateSearchHistory(trimmedQuery);
+            runCommand(() => router.push(`/search?q=${encodeURIComponent(trimmedQuery)}`));
         }
     };
     
-    // We need to have a separate onInput handler because onValueChange in CommandInput
-    // doesn't play nice with our form's onSubmit.
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
-    };
-
     const filteredProducts = React.useMemo(() => {
         if (query.trim().length === 0) return [];
         return products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
@@ -124,17 +119,18 @@ export function SearchDialog() {
                 <span className="sr-only">Search</span>
             </Button>
             <CommandDialog open={open} onOpenChange={setOpen}>
-                <div className="flex items-center border-b px-3">
-                    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                    <form onSubmit={handleSearchSubmit} className="flex-1">
-                         <input
-                            placeholder="Search products, categories, or pages..."
+                 <form onSubmit={handleFormSubmit}>
+                    <div className="flex items-center border-b px-3">
+                        <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                        <CommandInput
                             value={query}
-                            onChange={handleInputChange}
+                            onValueChange={setQuery}
+                            placeholder="Search products, categories, or pages..."
                             className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                         />
-                    </form>
-                </div>
+                        <Button type="submit" size="sm" className="ml-2">Search</Button>
+                    </div>
+                </form>
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
@@ -150,7 +146,7 @@ export function SearchDialog() {
                             {searchHistory.map((historyItem) => (
                                 <CommandItem 
                                     key={historyItem} 
-                                    onSelect={() => runCommand(() => setQuery(historyItem))}
+                                    onSelect={() => runCommand(() => router.push(`/search?q=${encodeURIComponent(historyItem)}`))}
                                     className="group"
                                 >
                                     <div className="flex items-center justify-between w-full">
@@ -173,6 +169,13 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
+                        <CommandItem onSelect={() => handleSelect(`/search?q=${query}`)} value={`Search for ${query}`}>
+                           <CornerDownLeft className="mr-2 h-4 w-4" />
+                           Search for "{query}"
+                        </CommandItem>
+                        
+                        {filteredProducts.length > 0 && <CommandSeparator />}
+                        
                         {filteredProducts.length > 0 && (
                             <CommandGroup heading="Products">
                                 {filteredProducts.map((product) => (
