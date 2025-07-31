@@ -47,6 +47,33 @@
         "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp"
       ],
       "stock": 100
+    },
+    {
+      "id": 4,
+      "name": "Men's Bonified Minor Fault Sweat Shirt",
+      "price": 999,
+      "description": "Fabric: 80% Cotton 20% Polyester",
+      "longDescription": "A comfortable and durable sweatshirt perfect for any casual occasion. Made with a blend of cotton and polyester for maximum comfort and longevity.",
+      "specifications": {
+        "Material": "80% Cotton, 20% Polyester",
+        "Style": "Sweatshirt",
+        "Features": "Comfortable, durable, and versatile"
+      },
+      "category": [
+        "men"
+      ],
+      "image": "https://huzi.pk/img/4dW7YkYM/mens-bonified.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/RCPKFffF/mens-2.webp",
+        "https://huzi.pk/img/3JdpDRCZ/mens-3.webp",
+        "https://huzi.pk/img/c4237SFG/mens-4.webp",
+        "https://huzi.pk/img/ZqhygLkf/mens-5.webp",
+        "https://huzi.pk/img/9Q97JnkR/mens-6.webp",
+        "https://huzi.pk/img/LsBZMZ2m/mens-7.webp",
+        "https://huzi.pk/img/Twd52Y3g/mens-9.webp",
+        "https://huzi.pk/img/NFLyTJT0/mens-bonified-1.webp"
+      ],
+      "stock": 100
     }
   ]
 }
