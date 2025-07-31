@@ -117,6 +117,15 @@
       "name": "Organic Vitamin C Face Serum",
       "price": 2200,
       "description": "Brighten and rejuvenate your skin with this organic face serum.",
+      "longDescription": "Unveil a brighter, more youthful complexion with our Organic Vitamin C Face Serum. Formulated with a potent blend of natural ingredients, this serum targets dullness, uneven skin tone, and signs of aging. Its lightweight formula absorbs quickly, delivering a concentrated dose of antioxidants to protect your skin from environmental stressors. Suitable for all skin types, this serum is your daily essential for a healthy, radiant glow.",
+      "specifications": {
+        "Volume": "30ml / 1 fl oz",
+        "Key Ingredient": "Vitamin C (Sodium Ascorbyl Phosphate)",
+        "Other Ingredients": "Hyaluronic Acid, Vitamin E, Jojoba Oil",
+        "Skin Type": "All Skin Types",
+        "Free From": "Parabens, Sulfates, Phthalates",
+        "Cruelty-Free": "Yes"
+      },
       "category": [
         "beauty-and-personal-care"
       ],
@@ -349,3 +358,5 @@
     }
   ]
 }
+
+    
