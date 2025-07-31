@@ -86,7 +86,7 @@ export default async function Home({ searchParams }: { searchParams: { page?: st
     <div className="bg-background">
       <section className="relative w-full h-[50vh] md:h-[60vh] flex items-center justify-center text-white bg-gray-900">
         <Image
-          src="https://placehold.co/1920x1080.png"
+          src="https://i.postimg.cc/PrdbfvMV/hero.webp"
           alt="Modern fashion display"
           fill
           className="object-cover object-center"

@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
         hostname: 'huzi.pk',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.postimg.cc',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
