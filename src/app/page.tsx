@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination';
 
 export const runtime = 'edge';
@@ -71,18 +70,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
 
   return (
     <div className="bg-background">
-       <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://imgs.search.brave.com/9qvxfN-V9pQalH0exSZ4LABRYUM0qd93Mgt02oMXveg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvMTkyMHgxMDgw/LWFlc3RoZXRpYy1n/bHJmazBudHNwejN0/dnhnLmpwZw"
-            alt="Modern fashion hero image"
-            fill
-            className="object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
-            priority
-            data-ai-hint="fashion model"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+      <section className="relative w-full h-[50vh] md:h-[40vh] flex items-center justify-center text-white bg-gray-950">
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold">Discover Your Style</h1>
           <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90">
