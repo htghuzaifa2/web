@@ -24,9 +24,16 @@
       "name": "Classic Men's Denim Jacket",
       "price": 4500,
       "description": "A timeless denim jacket for a rugged, stylish look. Perfect for any season.",
-      "category": ["men", "new-arrivals"],
-      "image": "https://placehold.co/600x601",
-      "additionalImages": ["https://placehold.co/600x701", "https://placehold.co/600x702"],
+      "category": [
+        "men",
+        "new-arrivals"
+      ],
+      "image": "https://huzi.pk/img/Dw58j3gz/le-men-long-sleeve-crew-nexk-tees-shirt-1.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/nhnXGhq5/le-men-long-sleeve-crew-nexk-tees-shirt4.webp",
+        "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp",
+        "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp"
+      ],
       "stock": 50
     },
     {
@@ -34,9 +41,14 @@
       "name": "Elegant Women's Maxi Dress",
       "price": 5500,
       "description": "Flowy and comfortable maxi dress, ideal for summer evenings.",
-      "category": ["women"],
-      "image": "https://placehold.co/600x602",
-      "additionalImages": ["https://placehold.co/600x703"],
+      "category": [
+        "women"
+      ],
+      "image": "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp",
+        "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp"
+      ],
       "stock": 30
     },
     {
@@ -44,9 +56,14 @@
       "name": "Kids' Dino-Mite T-Shirt",
       "price": 1200,
       "description": "Fun and colorful dinosaur-themed t-shirt for kids.",
-      "category": ["kids"],
-      "image": "https://placehold.co/600x603",
-      "additionalImages": [],
+      "category": [
+        "kids"
+      ],
+      "image": "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp",
+        "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp"
+      ],
       "stock": 100
     },
     {
@@ -54,9 +71,15 @@
       "name": "Wireless Noise-Cancelling Headphones",
       "price": 8999,
       "description": "Immerse yourself in sound with these high-fidelity wireless headphones.",
-      "category": ["electronics"],
-      "image": "https://placehold.co/600x604",
-      "additionalImages": ["https://placehold.co/600x704", "https://placehold.co/600x705", "https://placehold.co/600x706"],
+      "category": [
+        "electronics"
+      ],
+      "image": "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp",
+        "https://huzi.pk/img/pV8yNFZ4/le-men-long-sleeve-crew-nexk-tees-shirt-8.webp",
+        "https://huzi.pk/img/nhnXGhq5/le-men-long-sleeve-crew-nexk-tees-shirt4.webp"
+      ],
       "stock": 40
     },
     {
@@ -64,9 +87,14 @@
       "name": "Modern Stainless Steel Cookware Set",
       "price": 12500,
       "description": "A complete 10-piece cookware set for the modern kitchen.",
-      "category": ["home-and-kitchen"],
-      "image": "https://placehold.co/600x605",
-      "additionalImages": [],
+      "category": [
+        "home-and-kitchen"
+      ],
+      "image": "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp",
+        "https://huzi.pk/img/Dw58j3gz/le-men-long-sleeve-crew-nexk-tees-shirt-1.webp"
+      ],
       "stock": 25
     },
     {
@@ -74,9 +102,14 @@
       "name": "The Art of Programming (Hardcover)",
       "price": 3500,
       "description": "A must-read for any aspiring or professional developer.",
-      "category": ["books"],
-      "image": "https://placehold.co/600x606",
-      "additionalImages": ["https://placehold.co/600x707"],
+      "category": [
+        "books"
+      ],
+      "image": "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp",
+        "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp"
+      ],
       "stock": 80
     },
     {
@@ -84,9 +117,14 @@
       "name": "Organic Vitamin C Face Serum",
       "price": 2200,
       "description": "Brighten and rejuvenate your skin with this organic face serum.",
-      "category": ["beauty-and-personal-care"],
-      "image": "https://placehold.co/600x607",
-      "additionalImages": [],
+      "category": [
+        "beauty-and-personal-care"
+      ],
+      "image": "https://huzi.pk/img/pV8yNFZ4/le-men-long-sleeve-crew-nexk-tees-shirt-8.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp",
+        "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp"
+      ],
       "stock": 120
     },
     {
@@ -94,9 +132,14 @@
       "name": "Professional Yoga Mat",
       "price": 3000,
       "description": "High-grip, non-slip yoga mat for your daily practice.",
-      "category": ["sports-and-outdoors"],
-      "image": "https://placehold.co/600x608",
-      "additionalImages": ["https://placehold.co/600x708"],
+      "category": [
+        "sports-and-outdoors"
+      ],
+      "image": "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp",
+        "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp"
+      ],
       "stock": 90
     },
     {
@@ -104,9 +147,15 @@
       "name": "Men's Leather Wallet",
       "price": 2500,
       "description": "A sleek and durable leather wallet with multiple compartments.",
-      "category": ["men", "new-arrivals"],
-      "image": "https://placehold.co/600x609",
-      "additionalImages": [],
+      "category": [
+        "men",
+        "new-arrivals"
+      ],
+      "image": "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/Dw58j3gz/le-men-long-sleeve-crew-nexk-tees-shirt-1.webp",
+        "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp"
+      ],
       "stock": 150
     },
     {
@@ -114,9 +163,16 @@
       "name": "Women's Chic Handbag",
       "price": 4800,
       "description": "A stylish and spacious handbag for everyday use.",
-      "category": ["women", "sale"],
-      "image": "https://placehold.co/600x610",
-      "additionalImages": ["https://placehold.co/600x709", "https://placehold.co/600x710"],
+      "category": [
+        "women",
+        "sale"
+      ],
+      "image": "https://huzi.pk/img/nhnXGhq5/le-men-long-sleeve-crew-nexk-tees-shirt4.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp",
+        "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp",
+        "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp"
+      ],
       "stock": 60
     },
     {
@@ -124,9 +180,14 @@
       "name": "Kids' Building Blocks Set (500 pcs)",
       "price": 4000,
       "description": "Unleash creativity with this large set of colorful building blocks.",
-      "category": ["kids"],
-      "image": "https://placehold.co/600x611",
-      "additionalImages": [],
+      "category": [
+        "kids"
+      ],
+      "image": "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp",
+        "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp"
+      ],
       "stock": 70
     },
     {
@@ -134,9 +195,15 @@
       "name": "Smartwatch with Heart Rate Monitor",
       "price": 6500,
       "description": "Track your fitness and stay connected with this feature-packed smartwatch.",
-      "category": ["electronics", "sports-and-outdoors"],
-      "image": "https://placehold.co/600x612",
-      "additionalImages": ["https://placehold.co/600x711"],
+      "category": [
+        "electronics",
+        "sports-and-outdoors"
+      ],
+      "image": "https://huzi.pk/img/Dw58j3gz/le-men-long-sleeve-crew-nexk-tees-shirt-1.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp",
+        "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp"
+      ],
       "stock": 55
     },
     {
@@ -144,9 +211,15 @@
       "name": "Espresso Coffee Machine",
       "price": 15000,
       "description": "Brew barista-quality espresso at home with this premium machine.",
-      "category": ["home-and-kitchen"],
-      "image": "https://placehold.co/600x613",
-      "additionalImages": ["https://placehold.co/600x712", "https://placehold.co/600x713"],
+      "category": [
+        "home-and-kitchen"
+      ],
+      "image": "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp",
+        "https://huzi.pk/img/nhnXGhq5/le-men-long-sleeve-crew-nexk-tees-shirt4.webp",
+        "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp"
+      ],
       "stock": 20
     },
     {
@@ -154,9 +227,14 @@
       "name": "Sci-Fi Classics Collection (Paperback)",
       "price": 2800,
       "description": "A collection of five timeless science fiction novels.",
-      "category": ["books"],
-      "image": "https://placehold.co/600x614",
-      "additionalImages": [],
+      "category": [
+        "books"
+      ],
+      "image": "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp",
+        "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp"
+      ],
       "stock": 110
     },
     {
@@ -164,9 +242,14 @@
       "name": "Natural Hydrating Moisturizer",
       "price": 1800,
       "description": "A daily moisturizer for soft, supple, and hydrated skin.",
-      "category": ["beauty-and-personal-care"],
-      "image": "https://placehold.co/600x615",
-      "additionalImages": ["https://placehold.co/600x714"],
+      "category": [
+        "beauty-and-personal-care"
+      ],
+      "image": "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp",
+        "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp"
+      ],
       "stock": 200
     },
     {
@@ -174,9 +257,13 @@
       "name": "Adjustable Dumbbell Set",
       "price": 9500,
       "description": "A versatile and space-saving adjustable dumbbell set for home workouts.",
-      "category": ["sports-and-outdoors"],
-      "image": "https://placehold.co/600x616",
-      "additionalImages": [],
+      "category": [
+        "sports-and-outdoors"
+      ],
+      "image": "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp"
+      ],
       "stock": 45
     },
     {
@@ -184,9 +271,15 @@
       "name": "Men's Graphic Tee",
       "price": 1800,
       "description": "Comfortable cotton tee with a unique graphic print.",
-      "category": ["men", "sale"],
-      "image": "https://placehold.co/600x617",
-      "additionalImages": ["https://placehold.co/600x715"],
+      "category": [
+        "men",
+        "sale"
+      ],
+      "image": "https://huzi.pk/img/Znrq6Gn4/le-men-long-sleeve-crew-nexk-tees-shirt-7.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/Dw58j3gz/le-men-long-sleeve-crew-nexk-tees-shirt-1.webp",
+        "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp"
+      ],
       "stock": 85
     },
     {
@@ -194,9 +287,15 @@
       "name": "Women's High-Waisted Jeans",
       "price": 3800,
       "description": "Flattering and comfortable high-waisted jeans for a modern silhouette.",
-      "category": ["women", "new-arrivals"],
-      "image": "https://placehold.co/600x618",
-      "additionalImages": [],
+      "category": [
+        "women",
+        "new-arrivals"
+      ],
+      "image": "https://huzi.pk/img/pV8yNFZ4/le-men-long-sleeve-crew-nexk-tees-shirt-8.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp",
+        "https://huzi.pk/img/25K3YdgR/le-men-long-sleeve-crew-nexk-tees-shirt-4.webp"
+      ],
       "stock": 65
     },
     {
@@ -204,9 +303,15 @@
       "name": "Portable Bluetooth Speaker",
       "price": 4500,
       "description": "Compact, waterproof, and powerful Bluetooth speaker for music on the go.",
-      "category": ["electronics"],
-      "image": "https://placehold.co/600x619",
-      "additionalImages": ["https://placehold.co/600x716", "https://placehold.co/600x717"],
+      "category": [
+        "electronics"
+      ],
+      "image": "https://huzi.pk/img/hvxXpJyF/le-men-long-sleeve-crew-nexk-tees-shirt1.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/nhnXGhq5/le-men-long-sleeve-crew-nexk-tees-shirt4.webp",
+        "https://huzi.pk/img/Y9L0CGw4/le-men-long-sleeve-crew-nexk-tees-shirt-5.webp",
+        "https://huzi.pk/img/kGr46JnT/le-men-long-sleeve-crew-nexk-tees-shirt-6.webp"
+      ],
       "stock": 75
     },
     {
@@ -214,9 +319,14 @@
       "name": "Air Fryer (5.5L)",
       "price": 11000,
       "description": "Enjoy healthier fried food with this large-capacity air fryer.",
-      "category": ["home-and-kitchen"],
-      "image": "https://placehold.co/600x620",
-      "additionalImages": [],
+      "category": [
+        "home-and-kitchen"
+      ],
+      "image": "https://huzi.pk/img/zXCLhgHK/le-men-long-sleeve-crew-nexk-tees-shirt2.webp",
+      "additionalImages": [
+        "https://huzi.pk/img/pdTy3cGJ/le-men-long-sleeve-crew-nexk-tees-shirt-2.webp",
+        "https://huzi.pk/img/c4yg6mCd/le-men-long-sleeve-crew-nexk-tees-shirt5.webp"
+      ],
       "stock": 35
     }
   ]
