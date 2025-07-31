@@ -47,14 +47,16 @@ export function SearchDialog() {
         return () => document.removeEventListener("keydown", down);
     }, []);
 
-    const updateSearchHistory = (newQuery: string) => {
+    const updateSearchHistory = React.useCallback((newQuery: string) => {
         const trimmedQuery = newQuery.trim();
         if (!trimmedQuery) return;
         
-        const newHistory = [trimmedQuery, ...searchHistory.filter(h => h.toLowerCase() !== trimmedQuery.toLowerCase())].slice(0, 5);
-        setSearchHistory(newHistory);
-        localStorage.setItem("searchHistory", JSON.stringify(newHistory));
-    };
+        setSearchHistory(prevHistory => {
+            const newHistory = [trimmedQuery, ...prevHistory.filter(h => h.toLowerCase() !== trimmedQuery.toLowerCase())].slice(0, 5);
+            localStorage.setItem("searchHistory", JSON.stringify(newHistory));
+            return newHistory;
+        });
+    }, []);
     
     const removeFromHistory = (e: React.MouseEvent, itemToRemove: string) => {
         e.preventDefault();
@@ -82,6 +84,21 @@ export function SearchDialog() {
         }
         runCommand(() => router.push(path));
     };
+
+    const filteredProducts = React.useMemo(() => {
+        if (query.trim().length === 0) return [];
+        return products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+    }, [products, query]);
+
+    const filteredCategories = React.useMemo(() => {
+        if (query.trim().length === 0) return [];
+        return categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
+    }, [categories, query]);
+    
+    const filteredPages = React.useMemo(() => {
+        if (query.trim().length === 0) return [];
+        return staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
+    }, [query]);
 
     return (
         <>
@@ -133,48 +150,54 @@ export function SearchDialog() {
                     
                     {query.trim().length > 0 && (
                       <>
-                        <CommandGroup heading="Products">
-                            {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
-                                <CommandItem
-                                    key={`product-${product.id}`}
-                                    value={`Product: ${product.name}`}
-                                    onSelect={() => handleSelect(`/product/${slugify(product.name)}`, query)}
-                                >
-                                    <ShoppingBag className="mr-2 h-4 w-4" />
-                                    <span>{product.name}</span>
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
+                        {filteredProducts.length > 0 && (
+                            <CommandGroup heading="Products">
+                                {filteredProducts.map((product) => (
+                                    <CommandItem
+                                        key={`product-${product.id}`}
+                                        value={`Product: ${product.name}`}
+                                        onSelect={() => handleSelect(`/product/${slugify(product.name)}`, query)}
+                                    >
+                                        <ShoppingBag className="mr-2 h-4 w-4" />
+                                        <span>{product.name}</span>
+                                    </CommandItem>
+                                ))}
+                            </CommandGroup>
+                        )}
                         
-                        <CommandSeparator />
+                        {filteredCategories.length > 0 && <CommandSeparator />}
 
-                        <CommandGroup heading="Categories">
-                            {categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((category) => (
-                                <CommandItem
-                                    key={`category-${category.id}`}
-                                    value={`Category: ${category.name}`}
-                                    onSelect={() => handleSelect(`/category/${category.slug}`, query)}
-                                >
-                                    <File className="mr-2 h-4 w-4" />
-                                    <span>{category.name}</span>
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
+                        {filteredCategories.length > 0 && (
+                            <CommandGroup heading="Categories">
+                                {filteredCategories.map((category) => (
+                                    <CommandItem
+                                        key={`category-${category.id}`}
+                                        value={`Category: ${category.name}`}
+                                        onSelect={() => handleSelect(`/category/${category.slug}`, query)}
+                                    >
+                                        <File className="mr-2 h-4 w-4" />
+                                        <span>{category.name}</span>
+                                    </CommandItem>
+                                ))}
+                            </CommandGroup>
+                        )}
                         
-                        <CommandSeparator />
+                        {filteredPages.length > 0 && <CommandSeparator />}
 
-                        <CommandGroup heading="Pages">
-                            {staticPages.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((page) => (
-                                <CommandItem
-                                    key={`page-${page.path}`}
-                                    value={`Page: ${page.name}`}
-                                    onSelect={() => handleSelect(page.path, query)}
-                                >
-                                    <File className="mr-2 h-4 w-4" />
-                                    <span>{page.name}</span>
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
+                        {filteredPages.length > 0 && (
+                            <CommandGroup heading="Pages">
+                                {filteredPages.map((page) => (
+                                    <CommandItem
+                                        key={`page-${page.path}`}
+                                        value={`Page: ${page.name}`}
+                                        onSelect={() => handleSelect(page.path, query)}
+                                    >
+                                        <File className="mr-2 h-4 w-4" />
+                                        <span>{page.name}</span>
+                                    </CommandItem>
+                                ))}
+                            </CommandGroup>
+                        )}
                       </>
                     )}
                 </CommandList>

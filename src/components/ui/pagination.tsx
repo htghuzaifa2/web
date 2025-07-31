@@ -66,32 +66,38 @@ PaginationLink.displayName = "PaginationLink"
 const PaginationPrevious = ({
   className,
   ...props
-}: React.ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink
+}: React.ComponentProps<typeof Link>) => (
+  <Link
     aria-label="Go to previous page"
-    size="default"
-    className={cn("gap-1 pl-2.5", {"cursor-not-allowed opacity-50": props["aria-disabled"]}, className)}
+    className={cn(buttonVariants({
+        variant: "ghost",
+        size: "default",
+      }),
+      "gap-1 pl-2.5", {"cursor-not-allowed opacity-50": props["aria-disabled"]}, className)}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
     <span>Previous</span>
-  </PaginationLink>
+  </Link>
 )
 PaginationPrevious.displayName = "PaginationPrevious"
 
 const PaginationNext = ({
   className,
   ...props
-}: React.ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink
+}: React.ComponentProps<typeof Link>) => (
+  <Link
     aria-label="Go to next page"
-    size="default"
-    className={cn("gap-1 pr-2.5", {"cursor-not-allowed opacity-50": props["aria-disabled"]}, className)}
+    className={cn(buttonVariants({
+        variant: "ghost",
+        size: "default",
+      }),
+      "gap-1 pr-2.5", {"cursor-not-allowed opacity-50": props["aria-disabled"]}, className)}
     {...props}
   >
     <span>Next</span>
     <ChevronRight className="h-4 w-4" />
-  </PaginationLink>
+  </Link>
 )
 PaginationNext.displayName = "PaginationNext"
 
