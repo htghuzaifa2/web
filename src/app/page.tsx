@@ -86,12 +86,12 @@ export default async function Home({ searchParams }: { searchParams: { page?: st
     <div className="bg-background">
       <section className="relative w-full h-[50vh] md:h-[60vh] flex items-center justify-center text-white bg-gray-900">
         <Image
-          src="https://i.postimg.cc/PrdbfvMV/hero.webp"
+          src="https://i.postimg.cc/htc7bkYC/hero1.webp"
           alt="Modern fashion display"
           fill
           className="object-cover object-center"
           priority
-          data-ai-hint="fashion store"
+          data-ai-hint="fashion model"
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="container relative z-10 mx-auto px-4 text-center">
