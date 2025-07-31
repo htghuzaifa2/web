@@ -95,6 +95,12 @@ export function SearchDialog() {
             runCommand(() => router.push(`/search?q=${encodeURIComponent(query.trim())}`));
         }
     };
+    
+    // We need to have a separate onInput handler because onValueChange in CommandInput
+    // doesn't play nice with our form's onSubmit.
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+    };
 
     const filteredProducts = React.useMemo(() => {
         if (query.trim().length === 0) return [];
@@ -118,13 +124,17 @@ export function SearchDialog() {
                 <span className="sr-only">Search</span>
             </Button>
             <CommandDialog open={open} onOpenChange={setOpen}>
-                <form onSubmit={handleSearchSubmit}>
-                    <CommandInput 
-                        placeholder="Search products, categories, or pages..." 
-                        value={query}
-                        onValueChange={setQuery}
-                    />
-                </form>
+                <div className="flex items-center border-b px-3">
+                    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                    <form onSubmit={handleSearchSubmit} className="flex-1">
+                         <input
+                            placeholder="Search products, categories, or pages..."
+                            value={query}
+                            onChange={handleInputChange}
+                            className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                        />
+                    </form>
+                </div>
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     
