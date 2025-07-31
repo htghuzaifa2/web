@@ -11,6 +11,9 @@ import categoriesData from "@/data/categories.json";
 import type { Product, Category } from "@/lib/types";
 import { slugify } from "@/lib/utils";
 
+const products: Product[] = productsData.products;
+const categories: Category[] = categoriesData.categories;
+
 const staticPages = [
     { name: "About Us", path: "/about" },
     { name: "Contact Us", path: "/contact" },
@@ -25,8 +28,7 @@ export function SearchDialog() {
     const [query, setQuery] = React.useState("");
     const [searchHistory, setSearchHistory] = React.useState<string[]>([]);
     const router = useRouter();
-    const products: Product[] = productsData.products;
-    const categories: Category[] = categoriesData.categories;
+    
 
     React.useEffect(() => {
         const storedHistory = localStorage.getItem("searchHistory");
@@ -88,12 +90,12 @@ export function SearchDialog() {
     const filteredProducts = React.useMemo(() => {
         if (query.trim().length === 0) return [];
         return products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
-    }, [products, query]);
+    }, [query]);
 
     const filteredCategories = React.useMemo(() => {
         if (query.trim().length === 0) return [];
         return categories.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3);
-    }, [categories, query]);
+    }, [query]);
     
     const filteredPages = React.useMemo(() => {
         if (query.trim().length === 0) return [];

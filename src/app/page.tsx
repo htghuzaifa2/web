@@ -99,7 +99,7 @@ export default function Home({ searchParams }: { searchParams: { page?: string }
                   <Pagination>
                     <PaginationContent>
                       <PaginationItem>
-                        <PaginationPrevious href={currentPage > 1 ? `/?page=${currentPage - 1}`: '#'} aria-disabled={currentPage <= 1} />
+                        <PaginationPrevious href={currentPage > 1 ? `/?page=${currentPage - 1}` : '#'} aria-disabled={currentPage <= 1} />
                       </PaginationItem>
                       
                       {paginationItems.map((page, index) => (
