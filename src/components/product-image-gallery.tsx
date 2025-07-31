@@ -22,11 +22,10 @@ const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: React.ComponentP
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
-  const [visibleThumbnailsStart, setVisibleThumbnailsStart] = useState(0);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
 
 
-  const fallbackImage = images[0] || "https://placehold.co/600x600?text=Image+Not+Found";
+  const fallbackImage = images[0] || "https://placehold.co/600x600.png";
   const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmM2YzIi8+PC9zdmc+";
 
   const MAX_VISIBLE_THUMBNAILS = 5;
@@ -201,4 +200,3 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
-

@@ -29,8 +29,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               blurDataURL={placeholderImage}
             />
           </div>
-          <div className="p-3 text-center flex-grow flex flex-col justify-between">
-            <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem]">
+          <div className="p-3 text-center flex-grow flex flex-col justify-between items-center">
+             <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem] flex items-center justify-center">
               {product.name}
             </h3>
             <p className="text-base font-bold text-price mt-auto">{`PKR ${Math.round(product.price)}`}</p>
