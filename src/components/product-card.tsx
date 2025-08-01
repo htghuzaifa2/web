@@ -45,6 +45,29 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="group/card relative overflow-hidden transition-all duration-300 hover:shadow-lg h-full flex flex-col">
       <CardContent className="p-0 flex flex-col flex-grow">
+        {/* Icons for ultra-small screens (< 300px) - Above image */}
+        <div className="block xxs:hidden p-2 flex justify-between items-center bg-muted/50">
+            <Button
+              variant="secondary"
+              size="sm"
+              className="h-9 flex-1"
+              onClick={handleAddToCart}
+              aria-label="Add to cart"
+            >
+              <ShoppingCart className="h-4 w-4" />
+            </Button>
+            <div className="w-2"></div>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="h-9 flex-1"
+              onClick={handleQuickView}
+              aria-label="Quick View"
+            >
+              <Eye className="h-4 w-4" />
+            </Button>
+        </div>
+
         <div className="relative aspect-square w-full overflow-hidden">
            <Link href={`/product/${productSlug}`} className="group block">
             <Image
