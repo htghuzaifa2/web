@@ -64,7 +64,8 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
   const query = searchParams.q || '';
   if (!query) {
     return {
-      title: "Search - huzi.pk"
+      title: "Search - huzi.pk",
+      description: "Search for products on huzi.pk.",
     }
   }
 
@@ -72,7 +73,7 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
     title: `Search results for "${query}" - huzi.pk`,
     description: `Find products matching "${query}" on huzi.pk.`,
     robots: {
-      index: false, // No need to index search results pages
+      index: false,
       follow: true,
     },
   };
