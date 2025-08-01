@@ -11,10 +11,9 @@ import ProductQuickView from "./product-quick-view";
 
 interface ProductCardActionsProps {
   product: Product;
-  variant: "button" | "icon";
 }
 
-export default function ProductCardActions({ product, variant }: ProductCardActionsProps) {
+export default function ProductCardActions({ product }: ProductCardActionsProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [quickViewOpen, setQuickViewOpen] = useState(false);
@@ -35,23 +34,6 @@ export default function ProductCardActions({ product, variant }: ProductCardActi
     setQuickViewOpen(true);
   };
 
-  if (variant === "button") {
-    return (
-       <>
-        <div className="grid grid-cols-2 gap-2">
-            <Button variant="outline" size="sm" onClick={handleQuickView}>
-                <Eye className="mr-2 h-4 w-4" /> Quick View
-            </Button>
-            <Button variant="default" size="sm" onClick={handleAddToCart}>
-                <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
-            </Button>
-        </div>
-        <ProductQuickView product={product} open={quickViewOpen} onOpenChange={setQuickViewOpen} />
-      </>
-    )
-  }
-
-  // Icon variant
   return (
     <>
       <div className="flex flex-col gap-2">

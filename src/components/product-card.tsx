@@ -1,3 +1,4 @@
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -5,12 +6,38 @@ import type { Product } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { slugify } from "@/lib/utils";
 import ProductCardActions from "./product-card-actions";
+import { useState } from "react";
+import { useCart } from "@/context/cart-context";
+import { useToast } from "@/hooks/use-toast";
+import ProductQuickView from "./product-quick-view";
+import { Button } from "./ui/button";
+import { Eye, ShoppingCart } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    addToCart(product);
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart.`,
+    });
+  };
+
+  const handleQuickView = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setQuickViewOpen(true);
+  };
+
   const productSlug = slugify(product.name);
   const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4=";
   
@@ -30,8 +57,34 @@ export default function ProductCard({ product }: ProductCardProps) {
               blurDataURL={placeholderImage}
             />
           </Link>
+
+          {/* Icons for Mobile/Tablet - Always Visible */}
+          <div className="md:hidden absolute top-2 left-2 z-10">
+            <Button
+              variant="secondary"
+              size="icon"
+              className="h-9 w-9 rounded-full shadow-md"
+              onClick={handleAddToCart}
+              aria-label="Add to cart"
+            >
+              <ShoppingCart className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="md:hidden absolute top-2 right-2 z-10">
+             <Button
+              variant="secondary"
+              size="icon"
+              className="h-9 w-9 rounded-full shadow-md"
+              onClick={handleQuickView}
+              aria-label="Quick View"
+            >
+              <Eye className="h-4 w-4" />
+            </Button>
+          </div>
+
+          {/* Icons for Desktop - On Hover */}
           <div className="absolute top-2 right-2 opacity-0 md:group-hover/card:opacity-100 transition-opacity duration-300 z-10">
-              <ProductCardActions product={product} variant="icon" />
+              <ProductCardActions product={product} />
           </div>
         </div>
         <div className="p-3 text-center flex-grow flex flex-col justify-between items-center">
@@ -41,11 +94,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             </Link>
           </h3>
           <p className="text-base font-bold text-price mt-auto">{`PKR ${Math.round(product.price)}`}</p>
-          <div className="md:hidden mt-3 w-full">
-            <ProductCardActions product={product} variant="button" />
-          </div>
         </div>
       </CardContent>
+      <ProductQuickView product={product} open={quickViewOpen} onOpenChange={setQuickViewOpen} />
     </Card>
   );
 }
