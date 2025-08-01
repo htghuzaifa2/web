@@ -15,6 +15,7 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
+  weight: ['400', '500', '600', '700'],
 });
 
 const alegreya = Alegreya({
