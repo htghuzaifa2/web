@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               blurDataURL={placeholderImage}
             />
           </Link>
-          <div className="absolute top-2 right-2 md:opacity-0 md:group-hover/card:opacity-100 transition-opacity duration-300 z-10">
+          <div className="absolute top-2 right-2 opacity-0 md:group-hover/card:opacity-100 transition-opacity duration-300 z-10">
               <ProductCardActions product={product} variant="icon" />
           </div>
         </div>
