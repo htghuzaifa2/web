@@ -88,16 +88,24 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   const handleShare = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    try {
-      await navigator.share({
-        title: productName,
-        text: `Check out this product: ${productName}`,
-        url: window.location.href,
-      });
-    } catch (err) {
-      console.error("Share failed:", err);
-      await navigator.clipboard.writeText(window.location.href);
-      alert("Link copied to clipboard!");
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: productName,
+          text: `Check out this product: ${productName}`,
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.error("Share failed:", err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+      } catch (err) {
+        console.error("Failed to copy link:", err);
+        alert("Could not copy link to clipboard.");
+      }
     }
   };
   
@@ -231,7 +239,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in overflow-hidden" onClick={closeLightbox}>
           <div 
-            className="relative w-full h-full overflow-hidden" 
+            className="relative w-full h-full overflow-hidden"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on image
           >
             <div className="overflow-hidden h-full" ref={lightboxEmblaRef}>
@@ -254,7 +262,9 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               </div>
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={handleShare}><Share2 /></Button>
+             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={handleShare}>
+              <Share2 />
+            </Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" asChild>
               <a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                 <ExternalLink />
