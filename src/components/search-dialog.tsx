@@ -177,7 +177,7 @@ export function SearchDialog() {
                     {query.trim().length > 0 && (
                       <>
                         <CommandGroup heading="Products">
-                            {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
+                            {products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.id.toString().includes(query)).slice(0, 5).map((product) => (
                                 <CommandItem
                                     key={`product-${product.id}`}
                                     value={`Product: ${product.name}`}

@@ -81,7 +81,8 @@ export default function SearchPage({ searchParams }: { searchParams: { q?: strin
   const filteredProducts = query
     ? allProducts.filter(product =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.description.toLowerCase().includes(query.toLowerCase())
+        product.description.toLowerCase().includes(query.toLowerCase()) ||
+        product.id.toString().includes(query)
       )
     : [];
 
