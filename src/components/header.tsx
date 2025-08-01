@@ -38,7 +38,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="flex items-center">
-          <div className="md:hidden">
+          <div className="sm:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -62,12 +62,12 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <Link href="/" className="ml-2 hidden sm:flex items-center font-bold text-xl md:mr-6">
+          <Link href="/" className="ml-2 flex items-center font-bold text-xl sm:mr-6">
              huzi.pk
           </Link>
         </div>
         
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+        <nav className="hidden sm:flex items-center space-x-6 text-sm font-medium">
           {mainNavLinks.map(({ href, label }) => (
             <Link
               key={label}
