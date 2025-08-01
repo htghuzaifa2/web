@@ -12,15 +12,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
+import locationData from "@/data/locations.json";
 
 const checkoutSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   phone: z.string().min(10, { message: "Please enter a valid phone number." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
+  province: z.string({ required_error: "Please select a province." }),
+  city: z.string({ required_error: "Please select a city." }),
   address: z.string().min(10, { message: "Address must be at least 10 characters." }),
 });
 
@@ -47,15 +49,26 @@ export default function CheckoutPage() {
     },
   });
 
+  const selectedProvince = form.watch("province");
+  const cities = locationData.provinces.find(p => p.name === selectedProvince)?.cities || [];
+
+  useEffect(() => {
+    // Reset city when province changes
+    form.setValue("city", "");
+  }, [selectedProvince, form]);
+
+
   const onSubmit = (data: CheckoutFormValues) => {
-    const myWhatsAppNumber = "923219486948"; // Replace with your WhatsApp number
+    const myWhatsAppNumber = "923219486948";
 
     let message = `*New Order from huzi.pk*\n\n`;
     message += `*Customer Details:*\n`;
     message += `Name: ${data.name}\n`;
     message += `Phone: ${data.phone}\n`;
     message += `Email: ${data.email}\n`;
-    message += `Address: ${data.address}\n\n`;
+    message += `Address: ${data.address}\n`;
+    message += `City: ${data.city}\n`;
+    message += `Province: ${data.province}\n\n`;
     message += `*Order Summary:*\n`;
 
     items.forEach(item => {
@@ -69,10 +82,8 @@ export default function CheckoutPage() {
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
     
-    // Clear cart after preparing message
     clearCart();
 
-    // Redirect to WhatsApp
     window.open(whatsappUrl, '_blank');
   };
 
@@ -192,6 +203,52 @@ export default function CheckoutPage() {
                       </FormItem>
                     )}
                   />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField
+                        control={form.control}
+                        name="province"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Province</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select a province" />
+                                </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                {locationData.provinces.map(province => (
+                                    <SelectItem key={province.name} value={province.name}>{province.name}</SelectItem>
+                                ))}
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="city"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>City</FormLabel>
+                            <Select onValueChange={field.onChange} value={field.value} disabled={!selectedProvince}>
+                                <FormControl>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select a city" />
+                                </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                {cities.map(city => (
+                                    <SelectItem key={city} value={city}>{city}</SelectItem>
+                                ))}
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                  </div>
                   <FormField
                     control={form.control}
                     name="address"
@@ -199,7 +256,7 @@ export default function CheckoutPage() {
                       <FormItem>
                         <FormLabel>Full Shipping Address</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Your complete address" {...field} />
+                          <Textarea placeholder="House #, Street, Area..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
