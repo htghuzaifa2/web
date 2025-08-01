@@ -331,3 +331,5 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
+
+    
