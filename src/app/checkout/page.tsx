@@ -29,7 +29,7 @@ const checkoutSchema = z.object({
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 export default function CheckoutPage() {
-  const { items, total, clearCart } = useCart();
+  const { items, total } = useCart();
   const [isClient, setIsClient] = useState(false);
   
   const shippingFee = 250;
@@ -78,7 +78,7 @@ export default function CheckoutPage() {
     message += `*Order Summary:*\n`;
 
     items.forEach(item => {
-      message += `- ${item.name} (x${item.quantity}) - PKR ${Math.round(item.price * item.quantity)}\n`;
+      message += `- ${item.name} (ID: ${item.id}) (x${item.quantity}) - PKR ${Math.round(item.price * item.quantity)}\n`;
     });
     
     message += `\nSubtotal: PKR ${Math.round(total)}\n`;
