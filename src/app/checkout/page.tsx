@@ -88,8 +88,6 @@ export default function CheckoutPage() {
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
     
-    clearCart();
-
     window.open(whatsappUrl, '_blank');
   };
 
