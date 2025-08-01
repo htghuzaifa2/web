@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown, Plus, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
@@ -23,9 +23,12 @@ const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: React.ComponentP
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
   
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+
 
   const fallbackImage = images[0] || "https://placehold.co/600x600.png";
   const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmM2YzIi8+PC9zdmc+";
@@ -33,10 +36,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const MAX_VISIBLE_THUMBNAILS = 5;
   const showScrollButtons = images.length > MAX_VISIBLE_THUMBNAILS;
 
-  const openLightbox = (index: number) => {
+  const openLightbox = useCallback((index: number) => {
     setMainImageIndex(index);
+    setZoomLevel(1); // Reset zoom on open
     setLightboxOpen(true);
-  };
+  }, []);
 
   const closeLightbox = () => setLightboxOpen(false);
   
@@ -55,22 +59,28 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     emblaApi.on("select", onSelect);
     return () => { emblaApi.off("select", onSelect) };
   }, [emblaApi, onSelect]);
-
-  const showNextImage = useCallback(() => {
-    emblaApi?.scrollNext();
-  }, [emblaApi]);
-
-  const showPrevImage = useCallback(() => {
-    emblaApi?.scrollPrev();
-  }, [emblaApi]);
   
-  const showNextLightboxImage = useCallback(() => {
-    setMainImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  }, [images.length]);
+  useEffect(() => {
+      if (lightboxOpen && lightboxEmblaApi) {
+          lightboxEmblaApi.on('select', () => {
+              setMainImageIndex(lightboxEmblaApi.selectedScrollSnap());
+          });
+          lightboxEmblaApi.scrollTo(mainImageIndex, true); // Sync lightbox carousel
+      }
+  }, [lightboxOpen, lightboxEmblaApi, mainImageIndex]);
 
-  const showPrevLightboxImage = useCallback(() => {
-    setMainImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  }, [images.length]);
+  const showNextImage = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const showPrevImage = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  
+  const showNextLightboxImage = useCallback(() => lightboxEmblaApi?.scrollNext(), [lightboxEmblaApi]);
+  const showPrevLightboxImage = useCallback(() => lightboxEmblaApi?.scrollPrev(), [lightboxEmblaApi]);
+
+  const handleZoom = (direction: 'in' | 'out') => {
+      setZoomLevel(prev => {
+          const newZoom = direction === 'in' ? prev * 1.2 : prev / 1.2;
+          return Math.max(1, Math.min(newZoom, 5)); // Clamp zoom between 1x and 5x
+      });
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -78,6 +88,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         if (e.key === "Escape") closeLightbox();
         if (e.key === "ArrowRight") showNextLightboxImage();
         if (e.key === "ArrowLeft") showPrevLightboxImage();
+        if (e.key === "=" || e.key === "+") { e.preventDefault(); handleZoom('in'); }
+        if (e.key === "-") { e.preventDefault(); handleZoom('out'); }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -226,20 +238,33 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       </div>
 
       {lightboxOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in">
-          <div className="relative w-full h-full max-w-5xl max-h-5xl p-4">
-            <ImageWithFallback
-              src={images[mainImageIndex]}
-              alt={productName}
-              fill
-              className="object-contain"
-              sizes="100vw"
-              placeholder="blur"
-              blurDataURL={placeholderImage}
-              fallbackSrc={fallbackImage}
-            />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in overflow-hidden" onClick={closeLightbox}>
+          <div 
+            className="relative w-full h-full" 
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on image
+            ref={lightboxEmblaRef}
+          >
+             <div className="flex h-full">
+                {images.map((imgSrc, index) => (
+                  <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center" key={index}>
+                      <ImageWithFallback
+                          src={imgSrc}
+                          alt={productName}
+                          fill
+                          className="object-contain transition-transform duration-300"
+                          style={{ transform: `scale(${zoomLevel})` }}
+                          sizes="100vw"
+                          placeholder="blur"
+                          blurDataURL={placeholderImage}
+                          fallbackSrc={fallbackImage}
+                      />
+                  </div>
+                ))}
+              </div>
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
+            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={() => handleZoom('in')}><Plus /></Button>
+            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={() => handleZoom('out')} disabled={zoomLevel <= 1}><Minus /></Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={handleShare}><Share2 /></Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" asChild><a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer"><ExternalLink /></a></Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={closeLightbox}><X /></Button>
