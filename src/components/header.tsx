@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -46,7 +47,7 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="pr-0">
-                <SheetHeader className="p-4">
+                 <SheetHeader className="p-4">
                   <SheetTitle className="sr-only">Main Menu</SheetTitle>
                 </SheetHeader>
                 <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg px-4">
@@ -64,9 +65,9 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <Link href="/" className="hidden xxs:flex sm:mr-4 items-center gap-2">
-             <Image src="/logo.webp" alt="huzi.pk logo" width={32} height={32} className="h-8 w-auto" />
+          <Link href="/" className="mr-4 flex items-center">
              <span className="hidden sm:inline-block font-bold text-xl">huzi.pk</span>
+             <span className="sm:hidden font-bold text-xl">huzi.pk</span>
           </Link>
         
           <nav className="hidden sm:flex items-center space-x-6 text-sm font-medium">
