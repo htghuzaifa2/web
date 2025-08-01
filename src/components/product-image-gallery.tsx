@@ -28,6 +28,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
     dragFree: true,
+    axis: "y" // Default to vertical for desktop
   });
   
   const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
@@ -70,6 +71,20 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   const scrollPrevThumb = useCallback(() => thumbCarouselApi && thumbCarouselApi.scrollPrev(), [thumbCarouselApi]);
   const scrollNextThumb = useCallback(() => thumbCarouselApi && thumbCarouselApi.scrollNext(), [thumbCarouselApi]);
+  
+  useEffect(() => {
+      const handleResize = () => {
+        if (thumbCarouselApi) {
+          const newAxis = window.innerWidth < 768 ? 'x' : 'y';
+          if (thumbCarouselApi.internalEngine().options.axis !== newAxis) {
+            thumbCarouselApi.reInit({ axis: newAxis });
+          }
+        }
+      };
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+  }, [thumbCarouselApi]);
 
   const onLightboxSelect = useCallback(() => {
       if (!lightboxEmblaApi || !lightboxThumbApi) return;
@@ -139,7 +154,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       try {
         await navigator.clipboard.writeText(window.location.href);
         alert("Link copied to clipboard!");
-      } catch (err) {
+      } catch (err)
+      {
         console.error("Failed to copy link:", err);
         alert("Could not copy link to clipboard.");
       }
@@ -150,79 +166,60 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     <div className="grid md:grid-cols-5 gap-4">
       {images.length > 1 && (
         <div className="md:col-span-1 md:order-1 order-2">
-            <div className="relative">
-                <div className="md:hidden flex items-center gap-2">
-                    <Button
-                        size="icon"
-                        variant="ghost"
-                        className={cn("h-8 w-8 rounded-full", prevBtnDisabled && "opacity-50 cursor-not-allowed")}
-                        onClick={scrollPrevThumb}
-                        disabled={prevBtnDisabled}
-                    >
-                        <ChevronLeft className="h-5 w-5" />
-                    </Button>
-                    <div className="overflow-hidden w-full" ref={thumbCarouselRef}>
-                        <div className="flex gap-2 -ml-1">
-                            {images.map((img, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => handleThumbnailClick(index)}
-                                    className={cn(
-                                        "relative aspect-square w-16 h-16 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 basis-1/4 sm:basis-1/5",
-                                        mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
-                                    )}
-                                >
-                                    <ImageWithFallback
-                                        src={img}
-                                        alt={`${productName} thumbnail ${index + 1}`}
-                                        fill
-                                        className="object-cover"
-                                        sizes="25vw"
-                                        placeholder="blur"
-                                        blurDataURL={placeholderImage}
-                                        fallbackSrc={fallbackImage}
-                                    />
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                     <Button
-                        size="icon"
-                        variant="ghost"
-                        className={cn("h-8 w-8 rounded-full", nextBtnDisabled && "opacity-50 cursor-not-allowed")}
-                        onClick={scrollNextThumb}
-                        disabled={nextBtnDisabled}
-                    >
-                        <ChevronRight className="h-5 w-5" />
-                    </Button>
-                </div>
-                <div className="hidden md:block">
-                     <div className="overflow-hidden" ref={thumbCarouselRef}>
-                        <div className="flex flex-col gap-2">
-                            {images.map((img, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => handleThumbnailClick(index)}
-                                    className={cn(
-                                        "relative aspect-square w-full flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
-                                        mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
-                                    )}
-                                >
-                                    <ImageWithFallback
-                                        src={img}
-                                        alt={`${productName} thumbnail ${index + 1}`}
-                                        fill
-                                        className="object-cover"
-                                        sizes="20vw"
-                                        placeholder="blur"
-                                        blurDataURL={placeholderImage}
-                                        fallbackSrc={fallbackImage}
-                                    />
-                                </button>
-                            ))}
-                        </div>
+            <div className="relative h-full flex flex-col md:gap-2">
+                <Button
+                    size="icon"
+                    variant="ghost"
+                    className={cn(
+                      "h-8 w-full md:w-8 md:h-8 rounded-full self-center",
+                      "md:order-1 order-2", // Button on left for mobile, top for desktop
+                      prevBtnDisabled && "opacity-50 cursor-not-allowed"
+                    )}
+                    onClick={scrollPrevThumb}
+                    disabled={prevBtnDisabled}
+                >
+                    <ChevronLeft className="h-5 w-5 md:hidden" />
+                    <ChevronUp className="h-5 w-5 hidden md:block" />
+                </Button>
+                <div className="overflow-hidden w-full md:h-full md:order-2 order-1" ref={thumbCarouselRef}>
+                    <div className="flex md:flex-col gap-2 h-full -ml-1 md:-ml-0">
+                        {images.map((img, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handleThumbnailClick(index)}
+                                className={cn(
+                                    "relative aspect-square w-16 h-16 md:w-full md:h-auto flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 basis-1/4 sm:basis-1/5 md:basis-auto",
+                                    mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+                                )}
+                            >
+                                <ImageWithFallback
+                                    src={img}
+                                    alt={`${productName} thumbnail ${index + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="25vw"
+                                    placeholder="blur"
+                                    blurDataURL={placeholderImage}
+                                    fallbackSrc={fallbackImage}
+                                />
+                            </button>
+                        ))}
                     </div>
                 </div>
+                <Button
+                    size="icon"
+                    variant="ghost"
+                    className={cn(
+                      "h-8 w-full md:w-8 md:h-8 rounded-full self-center",
+                      "md:order-3 order-3", // Button on right for mobile, bottom for desktop
+                      nextBtnDisabled && "opacity-50 cursor-not-allowed"
+                    )}
+                    onClick={scrollNextThumb}
+                    disabled={nextBtnDisabled}
+                >
+                    <ChevronRight className="h-5 w-5 md:hidden" />
+                    <ChevronDown className="h-5 w-5 hidden md:block" />
+                </Button>
             </div>
         </div>
       )}
@@ -334,3 +331,5 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
+
+    
