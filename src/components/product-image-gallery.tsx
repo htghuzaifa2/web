@@ -233,7 +233,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             src={imgSrc}
                             alt={`${productName} image ${index + 1}`}
                             fill
-                            className="object-cover transition-all duration-300 cursor-pointer"
+                            className="object-cover cursor-pointer"
                             priority={index === 0}
                             sizes="(max-width: 768px) 100vw, 50vw"
                             placeholder="blur"
@@ -331,5 +331,3 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
-
-    
