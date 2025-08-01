@@ -30,10 +30,10 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
 
   return (
     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-      <div>
+      <div className="md:col-span-1">
         <ProductImageGallery images={images} productName={product.name} />
       </div>
-      <div className="flex flex-col justify-start">
+      <div className="flex flex-col justify-start md:col-span-1">
         <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
         <div className="flex items-center gap-4 mt-4">
             <p className="font-headline text-4xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
