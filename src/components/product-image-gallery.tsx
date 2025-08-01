@@ -166,13 +166,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     <div className="grid md:grid-cols-5 gap-4">
       {images.length > 1 && (
         <div className="md:col-span-1 md:order-1 order-2">
-            <div className="relative h-full flex flex-col md:gap-2">
+            <div className="relative h-full flex flex-row md:flex-col md:gap-2">
                 <Button
                     size="icon"
                     variant="ghost"
                     className={cn(
-                      "h-8 w-full md:w-8 md:h-8 rounded-full self-center",
-                      "md:order-1 order-2", // Button on left for mobile, top for desktop
+                      "h-full md:h-8 w-8 md:w-full rounded-full self-center shrink-0",
+                      "md:order-1 order-1", // Button on left for mobile, top for desktop
                       prevBtnDisabled && "opacity-50 cursor-not-allowed"
                     )}
                     onClick={scrollPrevThumb}
@@ -181,7 +181,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                     <ChevronLeft className="h-5 w-5 md:hidden" />
                     <ChevronUp className="h-5 w-5 hidden md:block" />
                 </Button>
-                <div className="overflow-hidden w-full md:h-full md:order-2 order-1" ref={thumbCarouselRef}>
+                <div className="overflow-hidden w-full h-auto md:h-full md:order-2 order-2" ref={thumbCarouselRef}>
                     <div className="flex md:flex-col gap-2 h-full -ml-1 md:-ml-0">
                         {images.map((img, index) => (
                             <button
@@ -210,7 +210,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                     size="icon"
                     variant="ghost"
                     className={cn(
-                      "h-8 w-full md:w-8 md:h-8 rounded-full self-center",
+                      "h-full md:h-8 w-8 md:w-full rounded-full self-center shrink-0",
                       "md:order-3 order-3", // Button on right for mobile, bottom for desktop
                       nextBtnDisabled && "opacity-50 cursor-not-allowed"
                     )}
