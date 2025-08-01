@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import useEmblaCarousel from "embla-carousel-react";
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -23,7 +24,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
-
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
 
   const fallbackImage = images[0] || "https://placehold.co/600x600.png";
   const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmM2YzIi8+PC9zdmc+";
@@ -37,12 +39,36 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   const closeLightbox = () => setLightboxOpen(false);
+  
+  const handleThumbnailClick = useCallback((index: number) => {
+      if (!emblaApi) return;
+      emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setMainImageIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi, setMainImageIndex]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect) };
+  }, [emblaApi, onSelect]);
 
   const showNextImage = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
+  const showPrevImage = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+  
+  const showNextLightboxImage = useCallback(() => {
     setMainImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   }, [images.length]);
 
-  const showPrevImage = useCallback(() => {
+  const showPrevLightboxImage = useCallback(() => {
     setMainImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   }, [images.length]);
 
@@ -50,13 +76,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     const handleKeyDown = (e: KeyboardEvent) => {
       if (lightboxOpen) {
         if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") showNextImage();
-        if (e.key === "ArrowLeft") showPrevImage();
+        if (e.key === "ArrowRight") showNextLightboxImage();
+        if (e.key === "ArrowLeft") showPrevLightboxImage();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxOpen, showNextImage, showPrevImage]);
+  }, [lightboxOpen, showNextLightboxImage, showPrevLightboxImage]);
 
   const handleShare = async () => {
     try {
@@ -108,7 +134,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 {images.map((img, index) => (
                   <button
                     key={index}
-                    onClick={() => setMainImageIndex(index)}
+                    onClick={() => handleThumbnailClick(index)}
                     className={cn(
                       "relative aspect-square w-20 h-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 snap-start",
                       mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
@@ -147,7 +173,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 {images.map((img, index) => (
                   <button
                     key={index}
-                    onClick={() => setMainImageIndex(index)}
+                    onClick={() => handleThumbnailClick(index)}
                     className={cn(
                       "relative aspect-square w-16 h-16 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
                       mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
@@ -171,22 +197,25 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       )}
 
       <div className="relative flex-1 w-full overflow-hidden rounded-lg group order-1 md:order-2">
-        <div
-          className="relative aspect-square w-full cursor-pointer"
-          onClick={() => openLightbox(mainImageIndex)}
-        >
-          <ImageWithFallback
-            key={images[mainImageIndex]}
-            src={images[mainImageIndex]}
-            alt={`${productName} image ${mainImageIndex + 1}`}
-            fill
-            className="object-cover transition-all duration-300"
-            priority
-            sizes="(max-width: 768px) 100vw, 50vw"
-            placeholder="blur"
-            blurDataURL={placeholderImage}
-            fallbackSrc={fallbackImage}
-          />
+         <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+                {images.map((imgSrc, index) => (
+                    <div className="relative aspect-square w-full flex-shrink-0 flex-grow-0 basis-full" key={index}>
+                        <ImageWithFallback
+                            src={imgSrc}
+                            alt={`${productName} image ${index + 1}`}
+                            fill
+                            className="object-cover transition-all duration-300 cursor-pointer"
+                            priority={index === 0}
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            placeholder="blur"
+                            blurDataURL={placeholderImage}
+                            fallbackSrc={fallbackImage}
+                            onClick={() => openLightbox(index)}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
         {images.length > 1 && (
             <>
@@ -215,8 +244,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" asChild><a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer"><ExternalLink /></a></Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={closeLightbox}><X /></Button>
           </div>
-          <Button size="icon" variant="ghost" className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={showPrevImage}><ChevronLeft size={32} /></Button>
-          <Button size="icon" variant="ghost" className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={showNextImage}><ChevronRight size={32} /></Button>
+          <Button size="icon" variant="ghost" className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={showPrevLightboxImage}><ChevronLeft size={32} /></Button>
+          <Button size="icon" variant="ghost" className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={showNextLightboxImage}><ChevronRight size={32} /></Button>
         </div>
       )}
     </div>
