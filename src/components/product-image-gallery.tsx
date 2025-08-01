@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -166,13 +166,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     <div className="grid md:grid-cols-5 gap-4">
       {images.length > 1 && (
         <div className="md:col-span-1 md:order-1 order-2">
-            <div className="relative h-full flex flex-row md:flex-col md:gap-2">
+            <div className="relative h-full flex flex-row md:flex-col items-center justify-center gap-2">
                 <Button
                     size="icon"
                     variant="ghost"
                     className={cn(
                       "h-full md:h-8 w-8 md:w-full rounded-full self-center shrink-0",
-                      "md:order-1 order-1", // Button on left for mobile, top for desktop
                       prevBtnDisabled && "opacity-50 cursor-not-allowed"
                     )}
                     onClick={scrollPrevThumb}
@@ -181,8 +180,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                     <ChevronLeft className="h-5 w-5 md:hidden" />
                     <ChevronUp className="h-5 w-5 hidden md:block" />
                 </Button>
-                <div className="overflow-hidden w-full h-auto md:h-full md:order-2 order-2" ref={thumbCarouselRef}>
-                    <div className="flex md:flex-col gap-2 h-full -ml-1 md:-ml-0">
+                <div className="overflow-hidden w-full h-auto md:h-full" ref={thumbCarouselRef}>
+                    <div className="flex md:flex-col gap-2 h-full">
                         {images.map((img, index) => (
                             <button
                                 key={index}
@@ -211,7 +210,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                     variant="ghost"
                     className={cn(
                       "h-full md:h-8 w-8 md:w-full rounded-full self-center shrink-0",
-                      "md:order-3 order-3", // Button on right for mobile, bottom for desktop
                       nextBtnDisabled && "opacity-50 cursor-not-allowed"
                     )}
                     onClick={scrollNextThumb}

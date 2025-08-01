@@ -16,14 +16,15 @@ export const dynamic = 'force-dynamic';
 export const runtime = 'edge';
 export const revalidate = 0;
 
-const getProductsForPage = (page: number, pageSize: number) => {
-  const products: Product[] = [...productsData.products].reverse(); // Reverse to show latest first
-  const startIndex = (page - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  return {
-    products: products.slice(startIndex, endIndex),
-    totalPages: Math.ceil(products.length / pageSize),
-  };
+const ALL_PRODUCTS: Product[] = [...productsData.products].reverse();
+const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
+const PAGE_SIZE = 20;
+const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
+
+const getProductsForPage = (page: number) => {
+  const startIndex = (page - 1) * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
+  return ALL_PRODUCTS.slice(startIndex, endIndex);
 };
 
 const getPaginationItems = (currentPage: number, totalPages: number) => {
@@ -70,17 +71,16 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 };
 
 const getFeaturedProducts = () => {
-    const products: Product[] = productsData.products;
-    const shuffled = [...products].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 8);
+    // A more stable way to get a random-ish but consistent set for featured products
+    const featuredIds = [1, 5, 9, 13, 17, 21, 25, 29];
+    return ALL_PRODUCTS.filter(p => featuredIds.includes(p.id)).slice(0, 8);
 }
 
 
 export default async function Home({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
-  const pageSize = 20; // 5 rows of 4 on PC, adjusts responsively
-  const { products: paginatedProducts, totalPages } = getProductsForPage(currentPage, pageSize);
-  const paginationItems = getPaginationItems(currentPage, totalPages);
+  const paginatedProducts = getProductsForPage(currentPage);
+  const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
   const featuredProducts = getFeaturedProducts();
 
   return (
@@ -133,7 +133,7 @@ export default async function Home({ searchParams }: { searchParams: { page?: st
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
-              {totalPages > 1 && (
+              {TOTAL_PAGES > 1 && (
                 <div className="mt-12">
                   <Pagination>
                     <PaginationContent>
@@ -166,12 +166,12 @@ export default async function Home({ searchParams }: { searchParams: { page?: st
 
                       <PaginationItem>
                          <Link
-                            href={currentPage < totalPages ? `/?page=${currentPage + 1}` : '#'}
-                            aria-disabled={currentPage >= totalPages}
+                            href={currentPage < TOTAL_PAGES ? `/?page=${currentPage + 1}` : '#'}
+                            aria-disabled={currentPage >= TOTAL_PAGES}
                             className={cn(
                                 buttonVariants({ variant: 'ghost', size: 'default' }),
                                 'gap-1 pr-2.5',
-                                currentPage >= totalPages && 'cursor-not-allowed opacity-50'
+                                currentPage >= TOTAL_PAGES && 'cursor-not-allowed opacity-50'
                             )}
                             >
                             <span>Next</span>
