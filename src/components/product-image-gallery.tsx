@@ -29,7 +29,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     containScroll: "keepSnaps",
     dragFree: true,
   });
+  
   const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
+  const [lightboxThumbRef, lightboxThumbApi] = useEmblaCarousel({
+    containScroll: "keepSnaps",
+    dragFree: true,
+  });
+
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
@@ -65,6 +71,18 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const scrollPrevThumb = useCallback(() => thumbCarouselApi && thumbCarouselApi.scrollPrev(), [thumbCarouselApi]);
   const scrollNextThumb = useCallback(() => thumbCarouselApi && thumbCarouselApi.scrollNext(), [thumbCarouselApi]);
 
+  const onLightboxSelect = useCallback(() => {
+      if (!lightboxEmblaApi || !lightboxThumbApi) return;
+      const selectedIndex = lightboxEmblaApi.selectedScrollSnap();
+      setMainImageIndex(selectedIndex);
+      lightboxThumbApi.scrollTo(selectedIndex);
+  }, [lightboxEmblaApi, lightboxThumbApi]);
+
+  const handleLightboxThumbClick = useCallback((index: number) => {
+      if (!lightboxEmblaApi) return;
+      lightboxEmblaApi.scrollTo(index);
+  }, [lightboxEmblaApi]);
+
   useEffect(() => {
     if (!mainCarouselApi) return;
     mainCarouselApi.on("select", onMainCarouselSelect);
@@ -80,13 +98,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   useEffect(() => {
       if (lightboxOpen && lightboxEmblaApi) {
-          lightboxEmblaApi.on('select', () => {
-              if (!lightboxEmblaApi) return;
-              setMainImageIndex(lightboxEmblaApi.selectedScrollSnap());
-          });
-          lightboxEmblaApi.scrollTo(mainImageIndex, true); // Sync lightbox carousel
+          onLightboxSelect(); // Initial sync
+          lightboxEmblaApi.on('select', onLightboxSelect);
+          lightboxEmblaApi.scrollTo(mainImageIndex, true); // Go to correct image on open
+          return () => { lightboxEmblaApi.off('select', onLightboxSelect) };
       }
-  }, [lightboxOpen, lightboxEmblaApi, mainImageIndex]);
+  }, [lightboxOpen, lightboxEmblaApi, mainImageIndex, onLightboxSelect]);
 
   const showNextImage = useCallback(() => mainCarouselApi?.scrollNext(), [mainCarouselApi]);
   const showPrevImage = useCallback(() => mainCarouselApi?.scrollPrev(), [mainCarouselApi]);
@@ -240,10 +257,10 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       </div>
 
       {lightboxOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in" onClick={closeLightbox}>
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in" onClick={closeLightbox}>
           <div 
-            className="relative w-full h-full overflow-hidden"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on image
+            className="relative w-full h-full flex-1 overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="overflow-hidden h-full" ref={lightboxEmblaRef}>
                <div className="flex h-full">
@@ -279,6 +296,37 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             <>
               <Button size="icon" variant="ghost" className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); showPrevLightboxImage(); }}><ChevronLeft size={32} /></Button>
               <Button size="icon" variant="ghost" className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); showNextLightboxImage(); }}><ChevronRight size={32} /></Button>
+              
+              <div 
+                className="w-full h-auto py-4 bg-black/50 absolute bottom-0"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="overflow-hidden container mx-auto" ref={lightboxThumbRef}>
+                  <div className="flex gap-2 justify-center">
+                    {images.map((img, index) => (
+                      <button
+                        key={`lightbox-thumb-${index}`}
+                        onClick={() => handleLightboxThumbClick(index)}
+                        className={cn(
+                          "relative aspect-square h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
+                           mainImageIndex === index ? "opacity-100 ring-2 ring-primary ring-offset-2 ring-offset-black/50" : "opacity-50 hover:opacity-100"
+                        )}
+                      >
+                        <ImageWithFallback
+                          src={img}
+                          alt={`${productName} thumbnail ${index + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="20vw"
+                          placeholder="blur"
+                          blurDataURL={placeholderImage}
+                          fallbackSrc={fallbackImage}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </>
           )}
         </div>
