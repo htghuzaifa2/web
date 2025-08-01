@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Metadata } from 'next';
 
+export const runtime = 'edge';
+
 const PRODUCTS_PER_PAGE = 20;
 
 const getPaginationItems = (currentPage: number, totalPages: number) => {
