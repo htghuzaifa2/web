@@ -12,9 +12,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
 
-export const dynamic = 'force-dynamic';
 export const runtime = 'edge';
-export const revalidate = 0;
 
 const ALL_PRODUCTS: Product[] = [...productsData.products].reverse();
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
@@ -77,7 +75,7 @@ const getFeaturedProducts = () => {
 }
 
 
-export default async function Home({ searchParams }: { searchParams: { page?: string } }) {
+export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
