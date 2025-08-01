@@ -242,7 +242,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in overflow-hidden" onClick={closeLightbox}>
           <div 
-            className="relative w-full h-full" 
+            className="relative w-full h-full overflow-hidden" 
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on image
           >
             <div className="overflow-hidden h-full" ref={lightboxEmblaRef}>
