@@ -26,8 +26,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [zoomLevel, setZoomLevel] = useState(1);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
   
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
-  const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
+  const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
 
 
   const fallbackImage = images[0] || "https://placehold.co/600x600.png";
@@ -63,6 +63,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   useEffect(() => {
       if (lightboxOpen && lightboxEmblaApi) {
           lightboxEmblaApi.on('select', () => {
+              if (!lightboxEmblaApi) return;
               setMainImageIndex(lightboxEmblaApi.selectedScrollSnap());
           });
           lightboxEmblaApi.scrollTo(mainImageIndex, true); // Sync lightbox carousel
@@ -96,7 +97,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxOpen, showNextLightboxImage, showPrevLightboxImage]);
 
-  const handleShare = async () => {
+  const handleShare = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     try {
       await navigator.share({
         title: productName,
@@ -242,35 +244,44 @@ export default function ProductImageGallery({ images, productName }: ProductImag
           <div 
             className="relative w-full h-full" 
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on image
-            ref={lightboxEmblaRef}
           >
-             <div className="flex h-full">
-                {images.map((imgSrc, index) => (
-                  <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center" key={index}>
-                      <ImageWithFallback
-                          src={imgSrc}
-                          alt={productName}
-                          fill
-                          className="object-contain transition-transform duration-300"
-                          style={{ transform: `scale(${zoomLevel})` }}
-                          sizes="100vw"
-                          placeholder="blur"
-                          blurDataURL={placeholderImage}
-                          fallbackSrc={fallbackImage}
-                      />
-                  </div>
-                ))}
+            <div className="overflow-hidden h-full" ref={lightboxEmblaRef}>
+               <div className="flex h-full">
+                  {images.map((imgSrc, index) => (
+                    <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center" key={index}>
+                        <ImageWithFallback
+                            src={imgSrc}
+                            alt={productName}
+                            fill
+                            className="object-contain transition-transform duration-300"
+                            style={{ transform: `scale(${zoomLevel})` }}
+                            sizes="100vw"
+                            placeholder="blur"
+                            blurDataURL={placeholderImage}
+                            fallbackSrc={fallbackImage}
+                        />
+                    </div>
+                  ))}
+                </div>
               </div>
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={() => handleZoom('in')}><Plus /></Button>
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={() => handleZoom('out')} disabled={zoomLevel <= 1}><Minus /></Button>
+            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); handleZoom('in'); }}><Plus /></Button>
+            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); handleZoom('out'); }} disabled={zoomLevel <= 1}><Minus /></Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={handleShare}><Share2 /></Button>
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" asChild><a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer"><ExternalLink /></a></Button>
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={closeLightbox}><X /></Button>
+            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" asChild>
+              <a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                <ExternalLink />
+              </a>
+            </Button>
+            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); closeLightbox(); }}><X /></Button>
           </div>
-          <Button size="icon" variant="ghost" className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={showPrevLightboxImage}><ChevronLeft size={32} /></Button>
-          <Button size="icon" variant="ghost" className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={showNextLightboxImage}><ChevronRight size={32} /></Button>
+          {images.length > 1 && (
+            <>
+              <Button size="icon" variant="ghost" className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); showPrevLightboxImage(); }}><ChevronLeft size={32} /></Button>
+              <Button size="icon" variant="ghost" className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); showNextLightboxImage(); }}><ChevronRight size={32} /></Button>
+            </>
+          )}
         </div>
       )}
     </div>
