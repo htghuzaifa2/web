@@ -126,12 +126,12 @@ export function SearchDialog() {
                                         <button
                                             key={searchTerm}
                                             onClick={() => handleSearchSubmit(searchTerm)}
-                                            className="flex items-center gap-1.5 bg-muted hover:bg-muted/80 text-muted-foreground text-sm rounded-full py-1 px-3"
+                                            className="relative flex items-center gap-1.5 bg-muted hover:bg-muted/80 text-muted-foreground text-sm rounded-full py-1 pr-7 pl-3"
                                         >
                                             {searchTerm}
                                             <div
                                                 onClick={(e) => removeRecentSearch(e, searchTerm)}
-                                                className="h-4 w-4 flex items-center justify-center rounded-full hover:bg-background"
+                                                className="absolute top-1/2 right-1 -translate-y-1/2 h-4 w-4 flex items-center justify-center rounded-full hover:bg-background"
                                                 aria-label="Remove search term"
                                             >
                                                 <X className="h-3 w-3" />
