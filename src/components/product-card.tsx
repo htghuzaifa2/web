@@ -60,7 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Link>
 
           {/* Icons for Mobile/Tablet - Always Visible */}
-          <div className="xxs:hidden lg:hidden absolute top-2 left-2 z-10">
+          <div className="hidden xxs:block lg:hidden absolute top-2 left-2 z-10">
             <Button
               variant="secondary"
               size="icon"
@@ -71,7 +71,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               <ShoppingCart className="h-4 w-4" />
             </Button>
           </div>
-          <div className="xxs:hidden lg:hidden absolute top-2 right-2 z-10">
+          <div className="hidden xxs:block lg:hidden absolute top-2 right-2 z-10">
              <Button
               variant="secondary"
               size="icon"
