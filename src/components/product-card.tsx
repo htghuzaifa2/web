@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -59,7 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Link>
 
           {/* Icons for Mobile/Tablet - Always Visible */}
-          <div className="md:hidden absolute top-2 left-2 z-10">
+          <div className="lg:hidden absolute top-2 left-2 z-10">
             <Button
               variant="secondary"
               size="icon"
@@ -70,7 +71,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               <ShoppingCart className="h-4 w-4" />
             </Button>
           </div>
-          <div className="md:hidden absolute top-2 right-2 z-10">
+          <div className="lg:hidden absolute top-2 right-2 z-10">
              <Button
               variant="secondary"
               size="icon"
@@ -83,7 +84,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* Icons for Desktop - On Hover */}
-          <div className="absolute top-2 right-2 opacity-0 md:group-hover/card:opacity-100 transition-opacity duration-300 z-10">
+          <div className="absolute top-2 right-2 opacity-0 lg:group-hover/card:opacity-100 transition-opacity duration-300 z-10">
               <ProductCardActions product={product} />
           </div>
         </div>
