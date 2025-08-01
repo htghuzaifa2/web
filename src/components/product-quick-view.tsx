@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
@@ -39,6 +39,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl w-[90vw] p-0">
+        <DialogTitle className="sr-only">{product.name}</DialogTitle>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="md:col-span-1 p-4">
             <ProductImageGallery images={images} productName={product.name} />
