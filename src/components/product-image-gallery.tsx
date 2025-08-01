@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown, Plus, Minus } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
@@ -23,7 +23,6 @@ const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: React.ComponentP
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
-  const [zoomLevel, setZoomLevel] = useState(1);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
   
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
@@ -38,7 +37,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   const openLightbox = useCallback((index: number) => {
     setMainImageIndex(index);
-    setZoomLevel(1); // Reset zoom on open
     setLightboxOpen(true);
   }, []);
 
@@ -76,21 +74,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const showNextLightboxImage = useCallback(() => lightboxEmblaApi?.scrollNext(), [lightboxEmblaApi]);
   const showPrevLightboxImage = useCallback(() => lightboxEmblaApi?.scrollPrev(), [lightboxEmblaApi]);
 
-  const handleZoom = (direction: 'in' | 'out') => {
-      setZoomLevel(prev => {
-          const newZoom = direction === 'in' ? prev * 1.2 : prev / 1.2;
-          return Math.max(1, Math.min(newZoom, 5)); // Clamp zoom between 1x and 5x
-      });
-  };
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (lightboxOpen) {
         if (e.key === "Escape") closeLightbox();
         if (e.key === "ArrowRight") showNextLightboxImage();
         if (e.key === "ArrowLeft") showPrevLightboxImage();
-        if (e.key === "=" || e.key === "+") { e.preventDefault(); handleZoom('in'); }
-        if (e.key === "-") { e.preventDefault(); handleZoom('out'); }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -253,8 +242,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             src={imgSrc}
                             alt={productName}
                             fill
-                            className="object-contain transition-transform duration-300"
-                            style={{ transform: `scale(${zoomLevel})` }}
+                            className="object-contain"
                             sizes="100vw"
                             placeholder="blur"
                             blurDataURL={placeholderImage}
@@ -266,8 +254,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               </div>
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); handleZoom('in'); }}><Plus /></Button>
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); handleZoom('out'); }} disabled={zoomLevel <= 1}><Minus /></Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={handleShare}><Share2 /></Button>
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" asChild>
               <a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
