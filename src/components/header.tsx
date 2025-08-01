@@ -38,7 +38,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="flex items-center">
-          <div className="sm:hidden">
+          <div className="hidden xxs:block sm:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -62,7 +62,7 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <Link href="/" className="ml-2 flex items-center font-bold text-xl sm:mr-6">
+          <Link href="/" className="hidden xs:flex items-center font-bold text-xl sm:mr-6">
              huzi.pk
           </Link>
         </div>
@@ -92,6 +92,14 @@ export default function Header() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+        </nav>
+         <nav className="hidden xs:flex sm:hidden items-center space-x-4 text-sm font-medium ml-4">
+            <Link
+              href="/categories"
+              className="transition-colors hover:text-foreground/80 text-foreground/60"
+            >
+              Categories
+            </Link>
         </nav>
         
         <div className="flex flex-1 items-center justify-end space-x-1 sm:space-x-2">
