@@ -4,7 +4,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { Command as CommandPrimitive } from "cmdk"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -68,7 +67,7 @@ export function SearchDialog() {
                             <Input
                                 ref={inputRef}
                                 value={query}
-                                onValueChange={setQuery}
+                                onChange={(e) => setQuery(e.target.value)}
                                 onKeyDown={handleKeyDown}
                                 placeholder="Search products..."
                                 className="pl-10"
