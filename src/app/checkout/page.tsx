@@ -20,10 +20,10 @@ import locationData from "@/data/locations.json";
 const checkoutSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   phone: z.string().min(10, { message: "Please enter a valid phone number." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
   province: z.string({ required_error: "Please select a province." }),
   city: z.string({ required_error: "Please select a city." }),
-  address: z.string().min(10, { message: "Address must be at least 10 characters." }),
+  address: z.string().optional(),
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
@@ -54,7 +54,9 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     // Reset city when province changes
-    form.setValue("city", "");
+    if (form.getValues("province")) {
+        form.setValue("city", "");
+    }
   }, [selectedProvince, form]);
 
 
@@ -65,8 +67,12 @@ export default function CheckoutPage() {
     message += `*Customer Details:*\n`;
     message += `Name: ${data.name}\n`;
     message += `Phone: ${data.phone}\n`;
-    message += `Email: ${data.email}\n`;
-    message += `Address: ${data.address}\n`;
+    if (data.email) {
+      message += `Email: ${data.email}\n`;
+    }
+    if (data.address) {
+      message += `Address: ${data.address}\n`;
+    }
     message += `City: ${data.city}\n`;
     message += `Province: ${data.province}\n\n`;
     message += `*Order Summary:*\n`;
@@ -197,7 +203,7 @@ export default function CheckoutPage() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="Your email address" {...field} />
+                          <Input type="email" placeholder="Your email address (Optional)" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -256,7 +262,7 @@ export default function CheckoutPage() {
                       <FormItem>
                         <FormLabel>Full Shipping Address</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="House #, Street, Area..." {...field} />
+                          <Textarea placeholder="House #, Street, Area... (Optional)" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
