@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, Share2, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
@@ -331,5 +331,3 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
-
-    
