@@ -37,62 +37,62 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <div className="md:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="pr-0">
-              <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg">
-                huzi.pk
-              </Link>
-              <nav className="flex flex-col space-y-2">
-                {allNavLinks.map(({ href, label }) => (
-                  <SheetClose asChild key={label}>
-                    <Link href={href} className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary rounded-md">
-                      {label}
-                    </Link>
-                  </SheetClose>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
-        
         <div className="flex items-center">
-           <Link href="/" className="mr-6 hidden md:flex items-center font-bold text-xl">
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="pr-0">
+                <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg">
+                  huzi.pk
+                </Link>
+                <nav className="flex flex-col space-y-2">
+                  {allNavLinks.map(({ href, label }) => (
+                    <SheetClose asChild key={label}>
+                      <Link href={href} className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary rounded-md">
+                        {label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+          <Link href="/" className="ml-2 hidden sm:flex items-center font-bold text-xl md:mr-6">
              huzi.pk
           </Link>
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            {mainNavLinks.map(({ href, label }) => (
-              <Link
-                key={label}
-                href={href}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
-              >
-                {label}
-              </Link>
-            ))}
-             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="transition-colors hover:text-foreground/80 text-foreground/60 px-0">
-                  More
-                  <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                {moreNavLinks.map(({ href, label }) => (
-                  <DropdownMenuItem key={label} asChild>
-                    <Link href={href}>{label}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </nav>
         </div>
+        
+        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+          {mainNavLinks.map(({ href, label }) => (
+            <Link
+              key={label}
+              href={href}
+              className="transition-colors hover:text-foreground/80 text-foreground/60"
+            >
+              {label}
+            </Link>
+          ))}
+            <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="transition-colors hover:text-foreground/80 text-foreground/60 px-0">
+                More
+                <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              {moreNavLinks.map(({ href, label }) => (
+                <DropdownMenuItem key={label} asChild>
+                  <Link href={href}>{label}</Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </nav>
         
         <div className="flex flex-1 items-center justify-end space-x-1 sm:space-x-2">
           <div className="flex items-center">
