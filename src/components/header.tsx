@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { CartSheet } from "./cart-sheet";
 import { SearchDialog } from "./search-dialog";
 import {
@@ -37,7 +37,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <div className="flex items-center">
+        <div className="flex items-center flex-wrap">
           <div className="block sm:hidden">
             <Sheet>
               <SheetTrigger asChild>
@@ -47,6 +47,9 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="pr-0">
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Main Menu</SheetTitle>
+                </SheetHeader>
                 <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg">
                   huzi.pk
                 </Link>
@@ -62,7 +65,7 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <Link href="/" className="hidden xxs:flex items-center font-bold text-xl sm:mr-6">
+          <Link href="/" className="hidden xxs:flex sm:mr-6 items-center font-bold text-xl">
              huzi.pk
           </Link>
         </div>
