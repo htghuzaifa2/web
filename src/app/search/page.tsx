@@ -56,7 +56,11 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
     return pageNumbers;
 };
 
-export async function generateMetadata({ searchParams }: { searchParams: { q?: string } }): Promise<Metadata> {
+type SearchPageProps = {
+  searchParams: { q?: string; page?: string };
+};
+
+export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
   const query = searchParams.q || '';
   if (!query) {
     return {
@@ -74,7 +78,7 @@ export async function generateMetadata({ searchParams }: { searchParams: { q?: s
   };
 }
 
-export default function SearchPage({ searchParams }: { searchParams: { q?: string; page?: string } }) {
+export default function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q || '';
   const currentPage = Number(searchParams.page) || 1;
 
