@@ -60,25 +60,23 @@ export default function ContactPage() {
                     We'd love to hear from you! Whether you have a question about our products, an order, or just want to say hello, feel free to reach out.
                 </p>
 
-                <div className="flex justify-center">
-                    <div className="grid md:grid-cols-2 gap-8 text-center max-w-2xl">
-                        <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
-                            <Mail className="h-10 w-10 text-primary mb-4" />
-                            <h2 className="font-headline text-xl font-semibold mb-2">Email Us</h2>
-                            <a href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</a>
-                        </div>
-                        <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
-                            <Phone className="h-10 w-10 text-primary mb-4" />
-                            <h2 className="font-headline text-xl font-semibold mb-2">Call Us</h2>
-                            <p className="text-muted-foreground">+92 321 9486948</p>
-                        </div>
+                <div className="grid md:grid-cols-2 gap-8 text-center">
+                    <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
+                        <Mail className="h-10 w-10 text-primary mb-4" />
+                        <h2 className="font-headline text-xl font-semibold mb-2">Email Us</h2>
+                        <a href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</a>
+                    </div>
+                    <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
+                        <Phone className="h-10 w-10 text-primary mb-4" />
+                        <h2 className="font-headline text-xl font-semibold mb-2">Call Us</h2>
+                        <p className="text-muted-foreground">+92 321 9486948</p>
                     </div>
                 </div>
 
                 <div className="mt-16">
-                    <Card className="max-w-lg mx-auto">
+                    <Card className="max-w-2xl mx-auto">
                         <CardHeader>
-                            <CardTitle className="text-center font-headline text-3xl font-bold">Send us a Message</CardTitle>
+                            <CardTitle className="text-center font-headline text-3xl">Send us a Message</CardTitle>
                         </CardHeader>
                         <CardContent>
                              <Form {...form}>
@@ -132,3 +130,5 @@ export default function ContactPage() {
         </div>
     );
 }
+
+    

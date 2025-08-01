@@ -199,9 +199,9 @@ export default function CheckoutPage() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>Email Address (Optional)</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="Your email address (Optional)" {...field} />
+                          <Input type="email" placeholder="Your email address" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -258,9 +258,9 @@ export default function CheckoutPage() {
                     name="address"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Full Shipping Address</FormLabel>
+                        <FormLabel>Full Shipping Address (Optional)</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="House #, Street, Area... (Optional)" {...field} />
+                          <Textarea placeholder="House #, Street, Area..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -276,3 +276,5 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
+    
