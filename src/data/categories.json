@@ -1,3 +1,4 @@
+
 {
   "_tutorial": {
     "info": "This file contains all the product categories for your store.",
@@ -11,5 +12,24 @@
       "   - 'image': The URL for the category's image. You can use 'https://placehold.co/600x400' as a temporary placeholder."
     ]
   },
-  "categories": []
+  "categories": [
+    {
+      "id": 1,
+      "name": "Men",
+      "slug": "men",
+      "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 2,
+      "name": "Women",
+      "slug": "women",
+      "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 3,
+      "name": "Digital Shop",
+      "slug": "digital-shop",
+      "image": "https://placehold.co/600x400.png"
+    }
+  ]
 }
