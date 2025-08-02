@@ -1,3 +1,4 @@
+
 {
   "_tutorial": {
     "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
@@ -39,6 +40,27 @@
       "additionalImages": [
         "https://i.postimg.cc/13Vy96vQ/EID-Lawn-Dress-packed.webp"
       ],
+      "stock": 50
+    },
+    {
+      "id": 2,
+      "name": "Digital Floral Print 2-Piece Lawn Dress",
+      "price": 2500,
+      "description": "Digital Floral Print 2-Piece Lawn Dress – Unstitched Spring/Summer Collection 2024.",
+      "longDescription": "Product Highlights:\n\n- Product: 2 Pieces Embroidered Lawn Design Online\n- Type: Printed Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2024\n- Collection: Lawn Collection 2024\n- Quality: 90/70 Lawn\n- Printed Lawn Shirt Front\n- Printed Lawn Shirt Back\n- Printed Lawn Sleeves\n- Printed Lawn Trouser\n- 2.5 Meter Shirt\n- 2.5 Meter Trouser\n- Color & Design: As Shown in Pictures\n- Occasion: Casual\n- Attractive Design\n- Home Delivery Nationwide with Cash on Delivery Service",
+      "specifications": {
+        "Product": "2 Pieces Embroidered Lawn Design",
+        "Type": "Printed Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Spring/Summer 2024",
+        "Quality": "90/70 Lawn"
+      },
+      "category": [
+        "lawn-suits",
+        "women"
+      ],
+      "image": "https://i.postimg.cc/sfZFGypY/Digital-Floral-Print-2-Piece-Lawn-Dress.webp",
+      "additionalImages": [],
       "stock": 50
     }
   ]
