@@ -65,6 +65,18 @@
       "name": "Shoes",
       "slug": "shoes",
       "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 10,
+      "name": "Bags",
+      "slug": "bags",
+      "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 11,
+      "name": "Office & School Supplies",
+      "slug": "office-school-supplies",
+      "image": "https://placehold.co/600x400.png"
     }
   ]
 }
