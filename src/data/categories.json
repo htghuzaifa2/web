@@ -68,6 +68,12 @@
       "image": "https://i.postimg.cc/Tw85cfHz/Perfumes.webp"
     },
     {
+      "id": 15,
+      "name": "Bridal Dresses",
+      "slug": "bridal-dresses",
+      "image": "https://i.postimg.cc/3xdy5kMM/Bridal-Dresses.webp"
+    },
+    {
       "id": 6,
       "name": "E-Books",
       "slug": "e-books",
