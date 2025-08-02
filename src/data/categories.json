@@ -62,6 +62,12 @@
       "image": "https://i.postimg.cc/CM3rfqN7/Fashion-accessories.webp"
     },
     {
+      "id": 14,
+      "name": "Perfumes",
+      "slug": "perfumes",
+      "image": "https://i.postimg.cc/Tw85cfHz/Perfumes.webp"
+    },
+    {
       "id": 6,
       "name": "E-Books",
       "slug": "e-books",
