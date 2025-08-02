@@ -26,16 +26,28 @@
       "image": "https://i.postimg.cc/Y2z3sW3d/women.webp"
     },
     {
+      "id": 15,
+      "name": "Bridal Dresses",
+      "slug": "bridal-dresses",
+      "image": "https://i.postimg.cc/3xdy5kMM/Bridal-Dresses.webp"
+    },
+    {
+      "id": 16,
+      "name": "Lawn suits",
+      "slug": "lawn-suits",
+      "image": "https://i.postimg.cc/Y0FHzBZs/Lawn-suits.webp"
+    },
+    {
       "id": 7,
       "name": "Tech Products",
       "slug": "tech-products",
       "image": "https://i.postimg.cc/TPgp1nNm/tech.webp"
     },
     {
-      "id": 12,
-      "name": "Jackets",
-      "slug": "jackets",
-      "image": "https://i.postimg.cc/wMZdpmkb/jackets.webp"
+      "id": 8,
+      "name": "Watches",
+      "slug": "watches",
+      "image": "https://i.postimg.cc/yNdVRcNW/watches.webp"
     },
     {
       "id": 10,
@@ -50,10 +62,10 @@
       "image": "https://i.postimg.cc/mgPMSzkp/shoes.webp"
     },
     {
-      "id": 8,
-      "name": "Watches",
-      "slug": "watches",
-      "image": "https://i.postimg.cc/yNdVRcNW/watches.webp"
+      "id": 12,
+      "name": "Jackets",
+      "slug": "jackets",
+      "image": "https://i.postimg.cc/wMZdpmkb/jackets.webp"
     },
     {
       "id": 13,
@@ -66,18 +78,6 @@
       "name": "Perfumes",
       "slug": "perfumes",
       "image": "https://i.postimg.cc/Tw85cfHz/Perfumes.webp"
-    },
-    {
-      "id": 15,
-      "name": "Bridal Dresses",
-      "slug": "bridal-dresses",
-      "image": "https://i.postimg.cc/3xdy5kMM/Bridal-Dresses.webp"
-    },
-    {
-      "id": 16,
-      "name": "Lawn suits",
-      "slug": "lawn-suits",
-      "image": "https://i.postimg.cc/Y0FHzBZs/Lawn-suits.webp"
     },
     {
       "id": 6,
