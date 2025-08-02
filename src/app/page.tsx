@@ -9,8 +9,6 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
-
 
 export const runtime = 'edge';
 
@@ -83,19 +81,10 @@ export default function Home({ searchParams }: { searchParams?: { page?: string 
 
   return (
     <div className="bg-background">
-      <section className="relative w-full h-[50vh] md:h-[60vh] flex items-center justify-center text-white bg-gray-900">
-        <Image
-          src="https://i.postimg.cc/htc7bkYC/hero1.webp"
-          alt="Modern fashion display"
-          fill
-          className="object-cover object-center"
-          priority
-          data-ai-hint="fashion model"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold">Discover Your Style</h1>
-          <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90">
+      <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">Discover Your Style</h1>
+          <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
             Explore our curated collection of high-quality apparel and digital goods.
           </p>
           <Button asChild size="lg" className="mt-8">
