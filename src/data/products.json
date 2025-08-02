@@ -11,7 +11,7 @@
       "   - 'price': The product price, as a whole number (no decimals).",
       "   - 'description': A short description for product lists.",
       "   - 'longDescription': A more detailed description for the product page. This is optional.",
-      "   - 'specifications': A list of key-value pairs for product specs. This is optional. Add or remove as needed.",
+      "   - 'specifications': A list of key-value pairs for product specs. Add or remove as needed.",
       "   - 'category': An array of category slugs this product belongs to (e.g., [\"men\", \"new-arrivals\"]). This MUST exactly match slugs from categories.json.",
       "   - 'image': The URL for the main product image. Use a placeholder like 'https://placehold.co/600x600'.",
       "   - 'additionalImages': A list of URLs for more product images. Can be empty [].",
@@ -156,6 +156,31 @@
       "additionalImages": [
         "https://i.postimg.cc/C1fpHVff/Fancy-Embroidered-Lawn-Dress-2025-with-Digital-Print-Diamond-Dupatta-front-side.webp",
         "https://i.postimg.cc/VvQQKHjZ/Fancy-Embroidered-Lawn-Dress-2025-with-Digital-Print-Diamond-Dupatta-pack.webp"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 7,
+      "name": "All-Over Print Embroidered Lawn Suit 2025 with Chiffon Dupatta",
+      "price": 4000,
+      "description": "All-Over Print Embroidered Lawn Suit 2025 with Chiffon Dupatta – Unstitched Lawn Suit.",
+      "longDescription": "Product Highlights:\n\n- Product: 3 Pieces Embroidered Lawn Dresses 2024\n- Type: Printed Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2024\n- Collection: Lawn Collection 2024\n- Embroidered Neck Patch\n- Printed Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves\n- Printed Soft Chiffon Dupatta\n- Printed Cambric Trouser with Heavy Embroidered Bunches\n- Color & Design: As Shown in Picture\n- Occasion: Casual\n- Attractive Design",
+      "specifications": {
+        "Product": "3 Pieces Embroidered Lawn Dress",
+        "Type": "Printed Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Spring/Summer 2024",
+        "Dupatta": "Printed Soft Chiffon"
+      },
+      "category": [
+        "lawn-suits",
+        "women"
+      ],
+      "image": "https://i.postimg.cc/R0KTcsZZ/All-Over-Print-Embroidered-Lawn-Suit-2025-with-Chiffon-Dupatta.webp",
+      "additionalImages": [
+        "https://i.postimg.cc/3NJCQ3Ck/All-Over-Print-Embroidered-Lawn-Suit-2025-with-Chiffon-Dupatta-zommed-image.webp",
+        "https://i.postimg.cc/V6wW4qJB/All-Over-Print-Embroidered-Lawn-Suit-2025-with-Chiffon-Dupatta-detailed-image.webp",
+        "https://i.postimg.cc/mDSNnPMx/All-Over-Print-Embroidered-Lawn-Suit-2025-with-Chiffon-Dupatta-pack.webp"
       ],
       "stock": 50
     }
