@@ -56,6 +56,12 @@
       "image": "https://i.postimg.cc/yNdVRcNW/watches.webp"
     },
     {
+      "id": 13,
+      "name": "Fashion accessories",
+      "slug": "fashion-accessories",
+      "image": "https://i.postimg.cc/CM3rfqN7/Fashion-accessories.webp"
+    },
+    {
       "id": 6,
       "name": "E-Books",
       "slug": "e-books",
