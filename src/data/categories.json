@@ -74,6 +74,12 @@
       "image": "https://i.postimg.cc/3xdy5kMM/Bridal-Dresses.webp"
     },
     {
+      "id": 16,
+      "name": "Lawn suits",
+      "slug": "lawn-suits",
+      "image": "https://i.postimg.cc/Y0FHzBZs/Lawn-suits.webp"
+    },
+    {
       "id": 6,
       "name": "E-Books",
       "slug": "e-books",
