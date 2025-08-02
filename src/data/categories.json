@@ -1,3 +1,4 @@
+
 {
   "_tutorial": {
     "info": "This file contains all the product categories for your store.",
@@ -46,7 +47,7 @@
       "id": 8,
       "name": "Watches",
       "slug": "watches",
-      "image": "https://placehold.co/600x400.png"
+      "image": "https://i.postimg.cc/yNdVRcNW/watches.webp"
     },
     {
       "id": 9,
