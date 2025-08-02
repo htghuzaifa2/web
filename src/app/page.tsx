@@ -73,7 +73,7 @@ const getFeaturedProducts = () => {
 }
 
 
-export default function Home({ searchParams }: { searchParams?: { page?: string } }) {
+export default function Home({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams?.page) || 1;
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
@@ -85,7 +85,7 @@ export default function Home({ searchParams }: { searchParams?: { page?: string 
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">Discover Your Style At huzi.pk</h1>
           <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-            Explore our curated collection of high-quality apparel and digital goods.
+            Explore our curated collection of high-quality apparel and digital goods at huzi.pk.
           </p>
           <Button asChild size="lg" className="mt-8">
             <Link href="/categories">Shop Now</Link>
