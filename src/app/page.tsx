@@ -75,8 +75,8 @@ const getFeaturedProducts = () => {
 }
 
 
-export default function Home({ searchParams }: { searchParams: { page?: string } }) {
-  const currentPage = Number(searchParams.page) || 1;
+export default function Home({ searchParams }: { searchParams?: { page?: string } }) {
+  const currentPage = Number(searchParams?.page) || 1;
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
   const featuredProducts = getFeaturedProducts();
