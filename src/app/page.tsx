@@ -67,9 +67,9 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 };
 
 const getFeaturedProducts = () => {
-    // A more stable way to get a random-ish but consistent set for featured products
-    const featuredIds = [1, 5, 9, 13, 17, 21, 25, 29];
-    return ALL_PRODUCTS.filter(p => featuredIds.includes(p.id)).slice(0, 8);
+    // Shuffle the array and take the first 8 products for a random selection
+    const shuffled = [...ALL_PRODUCTS].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 8);
 }
 
 
