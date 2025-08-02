@@ -1,4 +1,3 @@
-
 {
   "_tutorial": {
     "info": "This file contains all the product categories for your store.",
@@ -12,66 +11,5 @@
       "   - 'image': The URL for the category's image. You can use 'https://placehold.co/600x400' as a temporary placeholder."
     ]
   },
-  "categories": [
-    {
-      "id": 1,
-      "name": "Men",
-      "slug": "men",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 2,
-      "name": "Women",
-      "slug": "women",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 3,
-      "name": "Kids",
-      "slug": "kids",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 4,
-      "name": "Electronics",
-      "slug": "electronics",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 5,
-      "name": "Home & Kitchen",
-      "slug": "home-and-kitchen",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 6,
-      "name": "Books",
-      "slug": "books",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 7,
-      "name": "Beauty & Personal Care",
-      "slug": "beauty-and-personal-care",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 8,
-      "name": "Sports & Outdoors",
-      "slug": "sports-and-outdoors",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 9,
-      "name": "New Arrivals",
-      "slug": "new-arrivals",
-      "image": "https://placehold.co/600x400"
-    },
-    {
-      "id": 10,
-      "name": "Sale",
-      "slug": "sale",
-      "image": "https://placehold.co/600x400"
-    }
-  ]
+  "categories": []
 }
