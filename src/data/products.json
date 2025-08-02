@@ -1,4 +1,3 @@
-
 {
   "_tutorial": {
     "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
@@ -18,5 +17,29 @@
       "   - 'stock': The number of items in stock. Set to 0 for 'Out of Stock'."
     ]
   },
-  "products": []
+  "products": [
+    {
+      "id": 1,
+      "name": "Trendy Sunflower Print Embroidered EID Lawn Dress with Digital Print Silk Dupatta",
+      "price": 3500,
+      "description": "Trendy Sunflower Print Embroidered EID Lawn Dress 2025 with Digital Print Silk Dupatta Price in Pakistan.",
+      "longDescription": "Product Highlights:\n\n- Product: 3 Pieces Embroidered Lawn Suits Online\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2023\n- Collection: Lawn Collection 2023\n- Embroidered Neck Patch\n- Printed Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves\n- Embroidered Daman Patch\n- Digital Print Silk Dupatta\n- Printed Lawn Trouser with Embroidered Patches\n- Color & Design: As Shown in Pictures\n- Occasion: Casual\n- Attractive Design\n- Home Delivery Nationwide with Cash on Delivery Service",
+      "specifications": {
+        "Product": "3 Pieces Embroidered Lawn Suits",
+        "Type": "Embroidered Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Spring/Summer 2023",
+        "Dupatta": "Digital Print Silk"
+      },
+      "category": [
+        "lawn-suits",
+        "women"
+      ],
+      "image": "https://i.postimg.cc/C5wK51z4/imgi-11-p15882-embroidered-lawn-dress.webp",
+      "additionalImages": [
+        "https://i.postimg.cc/13Vy96vQ/EID-Lawn-Dress-packed.webp"
+      ],
+      "stock": 50
+    }
+  ]
 }
