@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useCart } from "@/context/cart-context";
@@ -18,7 +19,7 @@ import locationData from "@/data/locations.json";
 
 const checkoutSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  phone: z.string().min(1, { message: "Phone number is required." }),
+  phone: z.string().min(1, { message: "Phone number is required." }).regex(/^[0-9]+$/, { message: "Phone number can only contain digits." }),
   email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
   province: z.string({ required_error: "Please select a province." }),
   city: z.string({ required_error: "Please select a city." }),
@@ -187,7 +188,7 @@ export default function CheckoutClient() {
                       <FormItem>
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your phone number" {...field} />
+                          <Input type="tel" placeholder="Your phone number" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
