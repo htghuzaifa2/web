@@ -140,22 +140,24 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   const handleShare = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    const urlToShare = window.location.href;
+    const shareData = {
+      title: productName,
+      text: `Check out this product: ${productName}`,
+      url: urlToShare,
+    };
+
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: productName,
-          text: `Check out this product: ${productName}`,
-          url: window.location.href,
-        });
+        await navigator.share(shareData);
       } catch (err) {
         console.error("Share failed:", err);
       }
     } else {
       try {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(urlToShare);
         alert("Link copied to clipboard!");
-      } catch (err)
-      {
+      } catch (err) {
         console.error("Failed to copy link:", err);
         alert("Could not copy link to clipboard.");
       }
