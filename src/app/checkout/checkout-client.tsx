@@ -18,7 +18,7 @@ import locationData from "@/data/locations.json";
 
 const checkoutSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  phone: z.string().min(10, { message: "Please enter a valid phone number." }),
+  phone: z.string().min(1, { message: "Phone number is required." }),
   email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
   province: z.string({ required_error: "Please select a province." }),
   city: z.string({ required_error: "Please select a city." }),
