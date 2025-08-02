@@ -53,6 +53,18 @@
       "name": "Tech Products",
       "slug": "tech-products",
       "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 8,
+      "name": "Watches",
+      "slug": "watches",
+      "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 9,
+      "name": "Shoes",
+      "slug": "shoes",
+      "image": "https://placehold.co/600x400.png"
     }
   ]
 }
