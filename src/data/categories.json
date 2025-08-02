@@ -1,3 +1,4 @@
+
 {
   "_tutorial": {
     "info": "This file contains all the product categories for your store.",
@@ -28,18 +29,6 @@
       "id": 3,
       "name": "Digital Products",
       "slug": "digital-products",
-      "image": "https://placehold.co/600x400.png"
-    },
-    {
-      "id": 4,
-      "name": "Men Jackets",
-      "slug": "men-jackets",
-      "image": "https://placehold.co/600x400.png"
-    },
-    {
-      "id": 5,
-      "name": "Women Jackets",
-      "slug": "women-jackets",
       "image": "https://placehold.co/600x400.png"
     },
     {
@@ -76,6 +65,12 @@
       "id": 11,
       "name": "Office & School Supplies",
       "slug": "office-school-supplies",
+      "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 12,
+      "name": "Jackets",
+      "slug": "jackets",
       "image": "https://placehold.co/600x400.png"
     }
   ]
