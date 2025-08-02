@@ -40,7 +40,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl w-[95vw] h-[90vh] p-0 flex flex-col">
+      <DialogContent className="max-w-4xl w-[95vw] sm:w-full h-[90vh] p-0 flex flex-col">
         <DialogTitle className="sr-only">{product.name}</DialogTitle>
         <ScrollArea className="h-full w-full">
             <div className="grid md:grid-cols-2 gap-4 p-4 md:p-0">
