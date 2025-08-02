@@ -19,7 +19,7 @@ import locationData from "@/data/locations.json";
 
 const checkoutSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  phone: z.string().min(1, { message: "Phone number is required." }).regex(/^[0-9]+$/, { message: "Phone number can only contain digits." }),
+  phone: z.string().min(1, { message: "Phone number is required." }).regex(/^\+?[0-9]+$/, { message: "Phone number can only contain digits and an optional leading '+'." }),
   email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
   province: z.string({ required_error: "Please select a province." }),
   city: z.string({ required_error: "Please select a city." }),
@@ -190,8 +190,7 @@ export default function CheckoutClient() {
                         <FormControl>
                           <Input 
                             type="text" 
-                            inputMode="numeric"
-                            pattern="[0-9]*"
+                            inputMode="tel"
                             placeholder="Your phone number" 
                             {...field} 
                           />
