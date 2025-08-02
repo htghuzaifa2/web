@@ -29,6 +29,24 @@
       "name": "Digital Products",
       "slug": "digital-products",
       "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 4,
+      "name": "Men Jackets",
+      "slug": "men-jackets",
+      "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 5,
+      "name": "Women Jackets",
+      "slug": "women-jackets",
+      "image": "https://placehold.co/600x400.png"
+    },
+    {
+      "id": 6,
+      "name": "E-Books",
+      "slug": "e-books",
+      "image": "https://placehold.co/600x400.png"
     }
   ]
 }
