@@ -188,7 +188,13 @@ export default function CheckoutClient() {
                       <FormItem>
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
-                          <Input type="tel" placeholder="Your phone number" {...field} />
+                          <Input 
+                            type="text" 
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            placeholder="Your phone number" 
+                            {...field} 
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
