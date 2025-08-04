@@ -8,6 +8,8 @@ export const metadata = {
   description: "Browse all product categories at huzi.pk. We deliver physical products all over Pakistan and digital products worldwide.",
 };
 
+export const runtime = 'edge';
+
 export default function CategoriesPage() {
   const categories: Category[] = categoriesData.categories;
 

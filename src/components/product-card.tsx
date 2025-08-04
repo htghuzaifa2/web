@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4=";
   
   return (
-    <Card className="group/card relative overflow-hidden transition-all duration-300 hover:shadow-lg h-full flex flex-col">
+    <Card className="group/card relative overflow-hidden transition-shadow duration-300 hover:shadow-lg h-full flex flex-col">
       <CardContent className="p-0 flex flex-col flex-grow">
         {/* Icons for ultra-small screens (< 300px) - Above image */}
         <div className="block xxs:hidden p-2 flex justify-between items-center bg-muted/50">

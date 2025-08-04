@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     description: "Find out how to pay for your order at huzi.pk. We accept Bank Transfers, JazzCash, and EasyPaisa for your convenience.",
 };
 
+export const runtime = 'edge';
+
 export default function HowToPayPage() {
     return (
         <div className="container mx-auto px-4 py-12">

@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     description: "Learn more about huzi.pk, our mission, and our commitment to quality products and customer service in Pakistan and worldwide. We are your destination for modern fashion.",
 };
 
+export const runtime = 'edge';
+
 export default function AboutPage() {
     return (
         <div className="container mx-auto px-4 py-12">
