@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Frequently Asked Questions (FAQ) - huzi.pk",
+    title: "Frequently Asked Questions (FAQ)",
     description: "Find answers to common questions about shopping at huzi.pk, including our shipping policy, payment methods, delivery times, and how to contact us.",
 };
 

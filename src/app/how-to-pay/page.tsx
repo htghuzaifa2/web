@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "How to Pay - huzi.pk",
+    title: "How to Pay",
     description: "Find out how to pay for your order at huzi.pk. We accept Bank Transfers, JazzCash, and EasyPaisa for your convenience.",
 };
 

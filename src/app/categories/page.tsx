@@ -4,7 +4,7 @@ import categoriesData from "@/data/categories.json";
 import type { Category } from "@/lib/types";
 
 export const metadata = {
-  title: "Categories - huzi.pk",
+  title: "Categories",
   description: "Browse all product categories at huzi.pk. We deliver physical products all over Pakistan and digital products worldwide.",
 };
 
