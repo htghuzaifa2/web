@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug:string } }):
       notFound();
   }
 
-  const title = `Shop for ${category.name} in Pakistan`;
+  const title = category.name;
   const description = `Explore our collection of ${category.name} and get fast delivery all over Pakistan. High-quality products at the best prices.`;
 
   return {
