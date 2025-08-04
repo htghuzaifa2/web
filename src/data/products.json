@@ -264,6 +264,38 @@
         "https://i.postimg.cc/fbt16CXM/image.webp"
       ],
       "stock": 50
+    },
+    {
+      "id": 11,
+      "name": "Elegant 2-Piece Embroidered Lawn Dress 2025",
+      "price": 2900,
+      "description": "Elegant 2-Piece Embroidered Lawn Dress for the Spring/Summer 2024 season.",
+      "longDescription": "Product Highlights:\n\n- Product: 2 Pieces Embroidered Pakistani Lawn Dresses Design\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2024\n- Collection: Lawn Collection 2024\n- Front: Embroidered Lawn\n- Back: Plain Lawn\n- Sleeves: Embroidered Lawn\n- Daman: Embroidered\n- Trouser: Plain Lawn Trouser with Embroidered Patches\n- Color & Design: As Shown in Pictures\n- Occasion: Casual\n- Highlights: Attractive Design\n- Delivery: Home Delivery Nationwide with Cash on Delivery Service",
+      "specifications": {
+        "Product": "2 Pieces Embroidered Pakistani Lawn Dresses Design",
+        "Type": "Embroidered Lawn Dress",
+        "Condition": "Unstitched Lawn Suit",
+        "Season": "Spring/Summer Collection 2024",
+        "Collection": "Lawn Collection 2024",
+        "Front": "Embroidered Lawn",
+        "Back": "Plain Lawn",
+        "Sleeves": "Embroidered Lawn",
+        "Daman": "Embroidered",
+        "Trouser": "Plain Lawn Trouser with Embroidered Patches",
+        "Color & Design": "As Shown in Pictures",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design",
+        "Delivery": "Home Delivery Nationwide with Cash on Delivery Service"
+      },
+      "category": [
+        "lawn-suits",
+        "women"
+      ],
+      "image": "https://i.postimg.cc/Twp2NFqQ/Elegant-2-Piece-Embroidered-Lawn-Dress.webp",
+      "additionalImages": [
+        "https://i.postimg.cc/MHB6qBLQ/Elegant-2-Piece-Embroidered-Lawn-Dress-pack.webp"
+      ],
+      "stock": 50
     }
   ]
 }
