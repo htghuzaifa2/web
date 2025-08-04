@@ -1,3 +1,4 @@
+
 {
   "_tutorial": {
     "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
@@ -333,7 +334,7 @@
       "name": "Fancy Embroidered Lawn Dress with Digital Print Diamond Dupatta",
       "price": 4250,
       "description": "Stunning Fancy Embroidered Lawn Dress with a Digital Print Diamond Dupatta.",
-      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Dresses Online\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2024\n- Collection: Lawn Collection 2024\n- Neck: Heavy Embroidered\n- Front: Heavy Embroidered Lawn\n- Back: Plain Lawn\n- Sleeves: Embroidered Lawn\n- Daman: Embroidered\n- Dupatta: Digital Print Diamond Dupatta\n- Trouser: Embroidered Lawn Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual\n- Highlights: Attractive Design",
+      "longDescription": "A high-quality Fancy Embroidered Lawn Dress. This beautiful unstitched suit comes with a Digital Print Diamond Dupatta, perfect for the Spring/Summer season.",
       "specifications": {
         "Product": "3 Pieces Embroidered Lawn Dresses Online",
         "Type": "Embroidered Lawn Dress",
@@ -655,3 +656,5 @@
   ]
 }
   
+
+    
