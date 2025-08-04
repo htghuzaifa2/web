@@ -14,7 +14,7 @@
       "   - 'specifications': A list of key-value pairs for product specs. Add or remove as needed.",
       "   - 'category': An array of category slugs this product belongs to (e.g., [\"men\", \"new-arrivals\"]). This MUST exactly match slugs from categories.json.",
       "   - 'image': The URL for the main product image. Use a placeholder like 'https://placehold.co/600x600'.",
-      "   - 'additionalImages': A list of URLs for more product images. Can be empty [].",
+      "   - 'additionalImages': a list of URLs for more product images. Can be empty [].",
       "   - 'stock': The number of items in stock. Set to 0 for 'Out of Stock'."
     ]
   },
@@ -229,6 +229,39 @@
       "additionalImages": [
         "https://i.postimg.cc/FHWKTN1P/Fancy-Embroidered-EID-Lawn-Dress-2025-with-Diamond-Lawn-Dupatta-back-look.webp",
         "https://i.postimg.cc/5tX2GTCf/Fancy-Embroidered-EID-Lawn-Dress-2025-with-Diamond-Lawn-Dupatta-packet.webp"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 10,
+      "name": "Digital All-Over Print Lawn Dress 2025 with Printed Chiffon Dupatta",
+      "price": 3700,
+      "description": "Digital All-Over Print Lawn Dress 2025 with Printed Chiffon Dupatta – Unstitched Lawn Suit.",
+      "longDescription": "Product Highlights:\n\n- Product: 3 Pieces Printed Lawn Suits Designs\n- Type: Printed Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2024\n- Collection: Lawn Collection 2024\n- Front: Digital Printed Lawn\n- Back: Digital Printed Lawn\n- Sleeves: Digital Printed Lawn\n- Daman: Digital Printed\n- Dupatta: Digital Printed Chiffon Dupatta\n- Trouser: Digital Printed Cambric Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual\n- Highlights: Attractive Design",
+      "specifications": {
+        "Product": "3 Pieces Printed Lawn Suits Designs",
+        "Type": "Printed Lawn Dress",
+        "Condition": "Unstitched Lawn Suit",
+        "Season": "Spring/Summer Collection 2024",
+        "Collection": "Lawn Collection 2024",
+        "Front": "Digital Printed Lawn",
+        "Back": "Digital Printed Lawn",
+        "Sleeves": "Digital Printed Lawn",
+        "Daman": "Digital Printed",
+        "Dupatta": "Digital Printed Chiffon Dupatta",
+        "Trouser": "Digital Printed Cambric Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
+      },
+      "category": [
+        "lawn-suits",
+        "women"
+      ],
+      "image": "https://i.postimg.cc/pdw3xjYz/image.webp",
+      "additionalImages": [
+        "https://i.postimg.cc/13YLC28W/image.webp",
+        "https://i.postimg.cc/fbt16CXM/image.webp"
       ],
       "stock": 50
     }
