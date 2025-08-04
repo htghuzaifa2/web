@@ -5,7 +5,6 @@ import type { Product } from "@/lib/types";
 import ProductDetailsClient from "./product-details-client";
 import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
-import ProductInfoAccordion from "./product-info-tabs";
 import { slugify } from "@/lib/utils";
 import { Metadata } from "next";
 
@@ -109,18 +108,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
       />
       <ProductDetailsClient product={product} />
 
-      <div className="my-8 md:my-12">
-          <Separator />
-          <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
-            <ProductInfoAccordion
-              description={product.longDescription} 
-              specifications={product.specifications} 
-            />
-          </div>
-      </div>
-
       {relatedProducts.length > 0 && (
          <div className="mt-16 md:mt-24">
+            <Separator className="mb-16"/>
             <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 {relatedProducts.map(relatedProduct => (
