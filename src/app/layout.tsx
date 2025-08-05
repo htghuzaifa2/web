@@ -28,17 +28,17 @@ const alegreya = Alegreya({
 const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
-  description: "huzi.pk is a premier e-commerce store in Pakistan, delivering physical products nationwide and digital products worldwide. Shop for modern clothing, accessories, and more.",
+  description: "Discover the latest trends at huzi.pk, Pakistan's premier online store for high-quality fashion. We deliver stylish clothing and accessories nationwide and digital products globally.",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} - Modern Fashion & Digital Goods in Pakistan`,
-    template: `%s - ${siteConfig.name}`,
+    default: `${siteConfig.name} | Premium Fashion & Digital Goods in Pakistan`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear"],
+  keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear", "lawn suits", "online shopping pakistan"],
   icons: {
     icon: '/logo.webp',
     shortcut: '/logo.webp',

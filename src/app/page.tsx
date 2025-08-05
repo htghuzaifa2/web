@@ -9,6 +9,12 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home | Discover a World of Style',
+  description: 'The official homepage of huzi.pk. Explore our curated collection of high-quality apparel, lawn suits, and digital goods. Shop the latest trends with fast nationwide delivery.',
+};
 
 export const runtime = 'edge';
 
