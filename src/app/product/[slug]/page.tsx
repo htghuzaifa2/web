@@ -90,7 +90,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       '@type': 'Offer',
       price: product.price.toFixed(2),
       priceCurrency: 'PKR',
-      priceValidUntil: '2025-12-31',
+      priceValidUntil: '2026-12-31',
       availability: (product.stock && product.stock > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
       url: `https://huzi.pk/product/${slugify(product.name)}`,
       shippingDetails: {
