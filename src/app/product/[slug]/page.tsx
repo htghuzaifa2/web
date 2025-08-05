@@ -5,20 +5,19 @@ import type { Product } from "@/lib/types";
 import ProductDetailsClient from "./product-details-client";
 import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
-import { slugify } from "@/lib/utils";
 import { Metadata } from "next";
 
 // This function generates static pages for all products
 export async function generateStaticParams() {
   const products: Product[] = productsData.products;
   return products.map((product) => ({
-    slug: slugify(product.name),
+    slug: product.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const products: Product[] = productsData.products;
-  const product = products.find(p => slugify(p.name) === params.slug);
+  const product = products.find(p => p.slug === params.slug);
 
   if (!product) {
     return {
@@ -57,7 +56,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 const getProductData = (slug: string) => {
   const allProducts: Product[] = productsData.products;
-  const product = allProducts.find(p => slugify(p.name) === slug);
+  const product = allProducts.find(p => p.slug === slug);
   
   if (!product) {
     return { product: null, relatedProducts: [] };
@@ -92,7 +91,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
       availability: (product.stock && product.stock > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      url: `https://huzi.pk/product/${slugify(product.name)}`,
+      url: `https://huzi.pk/product/${product.slug}`,
       shippingDetails: {
         '@type': 'OfferShippingDetails',
         shippingRate: {

@@ -10,7 +10,6 @@ import { useToast } from "@/hooks/use-toast";
 import type { Product } from "@/lib/types";
 import ProductImageGallery from "@/components/product-image-gallery";
 import { Badge } from "@/components/ui/badge";
-import { slugify } from "@/lib/utils";
 import ProductInfoAccordion from "@/app/product/[slug]/product-info-tabs";
 import { ScrollArea } from "./ui/scroll-area";
 
@@ -66,7 +65,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
                         Add to Cart
                     </Button>
                     <Button size="lg" variant="outline" asChild>
-                        <Link href={`/product/${slugify(product.name)}`} onClick={() => onOpenChange(false)}>
+                        <Link href={`/product/${product.slug}`} onClick={() => onOpenChange(false)}>
                             View Full Details
                         </Link>
                     </Button>

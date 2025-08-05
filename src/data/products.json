@@ -22,6 +22,7 @@
   "products": [
     {
       "id": 1,
+      "slug": "trendy-sunflower-print-embroidered-eid-lawn-dress-with-digital-print-silk-dupatta",
       "name": "Trendy Sunflower Print Embroidered EID Lawn Dress with Digital Print Silk Dupatta",
       "price": 3500,
       "description": "Trendy Sunflower Print Embroidered EID Lawn Dress 2025 with Digital Print Silk Dupatta Price in Pakistan.",
@@ -45,6 +46,7 @@
     },
     {
       "id": 2,
+      "slug": "digital-floral-print-2-piece-lawn-dress",
       "name": "Digital Floral Print 2-Piece Lawn Dress",
       "price": 2500,
       "description": "Digital Floral Print 2-Piece Lawn Dress – Unstitched Spring/Summer Collection 2024.",
@@ -66,6 +68,7 @@
     },
     {
       "id": 3,
+      "slug": "elegant-2-piece-embroidered-lawn-suit",
       "name": "Elegant 2-Piece Embroidered Lawn Suit",
       "price": 2800,
       "description": "Elegant 2-Piece Embroidered Lawn Suit 2025 Price in Pakistan.",
@@ -90,6 +93,7 @@
     },
     {
       "id": 4,
+      "slug": "digital-all-over-print-lawn-dress-2025-with-lawn-dupatta",
       "name": "Digital All-Over Print Lawn Dress 2025 with Lawn Dupatta",
       "price": 3450,
       "description": "Digital All-Over Print Lawn Dress 2025 with Lawn Dupatta – Unstitched Lawn Suit.",
@@ -115,6 +119,7 @@
     },
     {
       "id": 5,
+      "slug": "luxury-embroidered-lawn-dress-with-bamber-chiffon-dupatta",
       "name": "Luxury Embroidered Lawn Dress with Bamber Chiffon Dupatta",
       "price": 3995,
       "description": "Luxury Embroidered Lawn Dress 2025 with Bamber Chiffon Dupatta – Unstitched Lawn Suit.",
@@ -138,6 +143,7 @@
     },
     {
       "id": 6,
+      "slug": "fancy-embroidered-lawn-dress-with-digital-print-diamond-dupatta",
       "name": "Fancy Embroidered Lawn Dress with Digital Print Diamond Dupatta",
       "price": 4200,
       "description": "Fancy Embroidered Lawn Dress 2025 with Digital Print Diamond Dupatta – Unstitched Lawn Suit.",
@@ -162,6 +168,7 @@
     },
     {
       "id": 7,
+      "slug": "all-over-print-embroidered-lawn-suit-2025-with-chiffon-dupatta",
       "name": "All-Over Print Embroidered Lawn Suit 2025 with Chiffon Dupatta",
       "price": 4000,
       "description": "All-Over Print Embroidered Lawn Suit 2025 with Chiffon Dupatta – Unstitched Lawn Suit.",
@@ -187,6 +194,7 @@
     },
     {
       "id": 8,
+      "slug": "digital-all-over-print-premium-quality-eid-lawn-dress-with-voil-lawn-dupatta",
       "name": "Digital All-Over Print Premium Quality EID Lawn Dress with Voil Lawn Dupatta",
       "price": 3900,
       "description": "Digital All-Over Print Premium Quality EID Lawn Dress with Voil Lawn Dupatta – Unstitched Lawn Suit.",
@@ -211,6 +219,7 @@
     },
     {
       "id": 9,
+      "slug": "fancy-embroidered-eid-lawn-dress-with-diamond-lawn-dupatta",
       "name": "Fancy Embroidered EID Lawn Dress with Diamond Lawn Dupatta",
       "price": 3900,
       "description": "Fancy Embroidered EID Lawn Dress 2025 with Diamond Lawn Dupatta – Unstitched Lawn Suit.",
@@ -235,6 +244,7 @@
     },
     {
       "id": 10,
+      "slug": "digital-all-over-print-lawn-dress-2025-with-printed-chiffon-dupatta",
       "name": "Digital All-Over Print Lawn Dress 2025 with Printed Chiffon Dupatta",
       "price": 3700,
       "description": "Digital All-Over Print Lawn Dress 2025 with Printed Chiffon Dupatta – Unstitched Lawn Suit.",
@@ -268,6 +278,7 @@
     },
     {
       "id": 11,
+      "slug": "elegant-2-piece-embroidered-lawn-dress-2025",
       "name": "Elegant 2-Piece Embroidered Lawn Dress 2025",
       "price": 2900,
       "description": "Elegant 2-Piece Embroidered Lawn Dress for the Spring/Summer 2024 season.",
@@ -300,6 +311,7 @@
     },
     {
       "id": 12,
+      "slug": "trendy-embroidered-lawn-dress-with-chiffon-dupatta",
       "name": "Trendy Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 3800,
       "description": "A trendy embroidered lawn dress complete with a beautiful chiffon dupatta.",
@@ -332,6 +344,7 @@
     },
     {
       "id": 13,
+      "slug": "fancy-embroidered-lawn-dress-with-digital-print-diamond-dupatta-2",
       "name": "Fancy Embroidered Lawn Dress with Digital Print Diamond Dupatta",
       "price": 4250,
       "description": "Stunning Fancy Embroidered Lawn Dress with a Digital Print Diamond Dupatta.",
@@ -366,6 +379,7 @@
     },
     {
       "id": 14,
+      "slug": "elegant-embroidered-lawn-dress-with-digital-print-silk-dupatta",
       "name": "Elegant Embroidered Lawn Dress with Digital Print Silk Dupatta",
       "price": 4200,
       "description": "A beautiful Elegant Embroidered Lawn Dress featuring a Digital Print Silk Dupatta.",
@@ -400,6 +414,7 @@
     },
     {
       "id": 15,
+      "slug": "trendy-embroidered-lawn-dress-with-organza-dupatta",
       "name": "Trendy Embroidered Lawn Dress with Organza Dupatta",
       "price": 4000,
       "description": "A trendy embroidered lawn dress complete with a beautiful organza dupatta.",
@@ -432,6 +447,7 @@
     },
     {
       "id": 16,
+      "slug": "digital-print-schiffli-embroidered-lawn-suit-with-printed-silk-dupatta",
       "name": "Digital Print Schiffli Embroidered Lawn Suit with Printed Silk Dupatta",
       "price": 5000,
       "description": "Exquisite Digital Print Schiffli Embroidered Lawn Suit with a matching Printed Silk Dupatta.",
@@ -456,6 +472,7 @@
     },
     {
       "id": 17,
+      "slug": "digital-all-over-print-lawn-dress-with-voil-lawn-dupatta",
       "name": "Digital All-Over Print Lawn Dress with Voil Lawn Dupatta",
       "price": 3900,
       "description": "Beautiful Digital All-Over Print Lawn Dress with a Voil Lawn Dupatta.",
@@ -488,6 +505,7 @@
     },
     {
       "id": 18,
+      "slug": "digital-print-embroidered-swiss-lawn-dress-with-silk-dupatta",
       "name": "Digital Print Embroidered Swiss Lawn Dress with Silk Dupatta",
       "price": 3800,
       "description": "A beautiful digital print embroidered Swiss Lawn dress, complete with a luxurious silk dupatta.",
@@ -522,7 +540,8 @@
     },
     {
       "id": 19,
-      "name": "Digital All-Over Print Embroidered Lawn Dress with Silk Dupatta",
+      "slug": "digital-all-over-print-embroidered-lawn-dress-2025-with-silk-dupatta",
+      "name": "Digital All-Over Print Embroidered Lawn Dress 2025 with Silk Dupatta",
       "price": 4200,
       "description": "A stylish all-over digital print embroidered lawn dress paired with a beautiful silk dupatta.",
       "longDescription": "Part of the Spring/Summer 2024 collection, this 3-piece unstitched suit includes an embroidered neck patch, a digital printed lawn front, back, and sleeves, an embroidered daman patch, and a digital printed silk dupatta. The trouser also features embroidered patches.",
@@ -556,6 +575,7 @@
     },
     {
       "id": 20,
+      "slug": "luxury-heavy-embroidered-eid-lawn-dress-with-digital-print-silk-dupatta",
       "name": "Luxury Heavy Embroidered EID Lawn Dress with Digital Print Silk Dupatta",
       "price": 6300,
       "description": "A luxurious, heavily embroidered EID lawn dress paired with a stunning digital print silk dupatta.",
@@ -592,6 +612,7 @@
     },
     {
       "id": 21,
+      "slug": "all-over-print-embroidered-lawn-dress-with-chiffon-dupatta",
       "name": "All-Over Print Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 3950,
       "description": "A gorgeous all-over print lawn dress with detailed embroidery and a soft chiffon dupatta.",
@@ -625,6 +646,7 @@
     },
     {
       "id": 22,
+      "slug": "digital-print-lawn-dress-2025-with-diamond-voil-dupatta",
       "name": "Digital Print Lawn Dress 2025 with Diamond Voil Dupatta",
       "price": 3000,
       "description": "High-quality 90/70 digital print lawn dress with a diamond voil dupatta.",
@@ -658,6 +680,7 @@
     },
     {
       "id": 23,
+      "slug": "digital-print-lawn-suit-with-diamond-voil-dupatta",
       "name": "Digital Print Lawn Suit with Diamond Voil Dupatta",
       "price": 3500,
       "description": "A high-quality 90/70 digital print lawn suit complete with a diamond voil dupatta.",
@@ -691,6 +714,7 @@
     },
     {
       "id": 24,
+      "slug": "luxury-heavy-embroidered-eid-lawn-dress-with-digital-print-silk-dupatta-2",
       "name": "Luxury Heavy Embroidered EID Lawn Dress with Digital Print Silk Dupatta",
       "price": 6300,
       "description": "A luxurious, heavily embroidered EID lawn dress paired with a stunning digital print silk dupatta.",
@@ -727,6 +751,7 @@
     },
     {
       "id": 25,
+      "slug": "digital-print-embroidered-swiss-lawn-dress-with-silk-dupatta-2",
       "name": "Digital Print Embroidered Swiss Lawn Dress with Silk Dupatta",
       "price": 4100,
       "description": "An elegant digital print embroidered Swiss lawn dress, complete with a luxurious silk dupatta.",
@@ -760,6 +785,7 @@
     },
     {
       "id": 26,
+      "slug": "luxury-embroidered-lawn-dress-chiffon-dupatta",
       "name": "Luxury Embroidered Lawn Dress Chiffon Dupatta",
       "price": 4350,
       "description": "A luxurious embroidered lawn dress paired with a beautiful printed soft chiffon dupatta.",
@@ -796,6 +822,7 @@
     },
     {
       "id": 27,
+      "slug": "digital-print-lawn-suit-diamond-voil-dupatta",
       "name": "Digital Print Lawn Suit Diamond Voil Dupatta",
       "price": 3100,
       "description": "A stylish digital print lawn suit made from high-quality 90/70 lawn with a diamond voil dupatta.",
@@ -829,6 +856,7 @@
     },
     {
       "id": 28,
+      "slug": "digital-print-lawn-dress-diamond-voil-dupatta",
       "name": "Digital Print Lawn Dress Diamond Voil Dupatta",
       "price": 3200,
       "description": "A high-quality 90/70 digital print lawn dress from the 2024 collection, complete with a diamond voil dupatta.",
@@ -862,6 +890,7 @@
     },
     {
       "id": 29,
+      "slug": "digital-print-lawn-suit-diamond-voil-dupatta-2",
       "name": "Digital Print Lawn Suit Diamond Voil Dupatta",
       "price": 3050,
       "description": "A beautiful digital print lawn suit from the 2025 collection with a diamond voil dupatta.",
@@ -895,6 +924,7 @@
     },
     {
       "id": 30,
+      "slug": "decent-all-over-print-embroidered-lawn-dress-with-chiffon-dupatta",
       "name": "Decent All-Over Print Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 4450,
       "description": "A decent all-over print embroidered lawn dress, beautifully paired with a chiffon dupatta.",
@@ -931,6 +961,7 @@
     },
     {
       "id": 31,
+      "slug": "trendy-all-over-digital-print-lawn-suit-lawn-dupatta",
       "name": "Trendy All-Over Digital Print Lawn Suit Lawn Dupatta",
       "price": 3750,
       "description": "A beautiful unstitched suit from the Spring/Summer 2024 collection. This dress features a digital print lawn front, back, sleeves, and dupatta. An attractive design perfect for casual occasions.",
@@ -964,6 +995,7 @@
     },
     {
       "id": 32,
+      "slug": "luxury-schiffli-embroidered-eid-lawn-dress-with-embroidered-net-dupatta",
       "name": "Luxury Schiffli Embroidered EID Lawn Dress with Embroidered Net Dupatta",
       "price": 6999,
       "description": "A luxurious Schiffli embroidered EID lawn dress, complete with a beautifully embroidered net dupatta.",
@@ -1000,7 +1032,8 @@
     },
     {
       "id": 33,
-      "name": "Luxury Embroidered Lawn Dress 2026 Bamber Chiffon Dupatta",
+      "slug": "luxury-embroidered-lawn-dress-2026-with-bamber-chiffon-dupatta",
+      "name": "Luxury Embroidered Lawn Dress 2026 with Bamber Chiffon Dupatta",
       "price": 3950,
       "description": "A luxury embroidered lawn dress from the 2026 collection, paired with a Bamber chiffon dupatta.",
       "longDescription": "This unstitched 3-piece suit from the 2023 Lawn Collection features a heavy embroidered lawn front and sleeves, with a plain lawn back. The embroidered Bamber chiffon dupatta and plain dyed trouser complete this attractive design.",
@@ -1032,6 +1065,7 @@
     },
     {
       "id": 34,
+      "slug": "banarsi-style-cotton-jacquard-dress-with-cotton-jacquard-dupatta",
       "name": "Banarsi Style Cotton Jacquard Dress with Cotton Jacquard Dupatta",
       "price": 2350,
       "description": "A Banarsi style cotton jacquard dress with a matching cotton jacquard dupatta.",
@@ -1064,6 +1098,7 @@
     },
     {
       "id": 35,
+      "slug": "trendy-2-piece-embroidered-cotton-lawn-dress-with-red-phulkari-embroidered-trouser-2026",
       "name": "Trendy 2-Piece Embroidered Cotton Lawn Dress with Red Phulkari Embroidered Trouser 2026",
       "price": 2800,
       "description": "A trendy 2-piece embroidered cotton lawn dress featuring a vibrant red Phulkari embroidered trouser.",
@@ -1098,6 +1133,7 @@
     },
     {
       "id": 36,
+      "slug": "elegant-embroidered-lawn-dress-chiffon-dupatta-2026",
       "name": "Elegant Embroidered Lawn Dress Chiffon Dupatta 2026",
       "price": 3950,
       "description": "An elegant embroidered lawn dress from the 2026 collection, complete with a chiffon dupatta.",
@@ -1130,6 +1166,7 @@
     },
     {
       "id": 37,
+      "slug": "all-over-digital-print-lawn-suit-swiss-zari-dupatta-2026",
       "name": "All-Over Digital Print Lawn Suit Swiss Zari Dupatta 2026",
       "price": 3750,
       "description": "A stunning all-over digital print lawn suit from the 2026 collection with a Swiss Zari dupatta.",
@@ -1164,6 +1201,7 @@
     },
     {
       "id": 38,
+      "slug": "luxury-heavy-schiffli-embroidered-lawn-dress-with-embroidered-organza-dupatta-2026",
       "name": "Luxury Heavy Schiffli Embroidered Lawn Dress with Embroidered Organza Dupatta 2026",
       "price": 8400,
       "description": "A luxurious heavy Schiffli embroidered lawn dress with an embroidered organza dupatta.",
@@ -1202,6 +1240,7 @@
     },
     {
       "id": 39,
+      "slug": "all-over-print-embroidered-lawn-dress-chiffon-dupatta-2026",
       "name": "All-Over Print Embroidered Lawn Dress Chiffon Dupatta 2026",
       "price": 4100,
       "description": "An all-over print embroidered lawn dress from the 2026 collection with a chiffon dupatta.",
@@ -1236,6 +1275,7 @@
     },
     {
       "id": 40,
+      "slug": "digital-print-embroidered-lawn-suit-silk-dupatta",
       "name": "Digital Print Embroidered Lawn Suit Silk Dupatta",
       "price": 4750,
       "description": "A digital print embroidered lawn suit from the 2024 collection, complete with a silk dupatta.",
@@ -1269,6 +1309,7 @@
     },
     {
       "id": 41,
+      "slug": "trendy-2-piece-digital-print-shuttless-lawn-dress-printed-trouser-2026",
       "name": "Trendy 2-Piece Digital Print Shuttless Lawn Dress Printed Trouser 2026",
       "price": 2750,
       "description": "A trendy 2-piece digital print shuttless lawn dress with a printed trouser, from the Spring/Summer 2025 collection.",
@@ -1301,6 +1342,7 @@
     },
     {
       "id": 42,
+      "slug": "luxurious-schiffli-embroidered-lawn-dress-with-4-side-embroidered-chiffon-dupatta",
       "name": "Luxurious Schiffli Embroidered Lawn Dress with 4-Side Embroidered Chiffon Dupatta",
       "price": 5350,
       "description": "A luxurious Schiffli embroidered lawn dress with a 4-side embroidered chiffon dupatta, perfect for any special occasion.",
@@ -1338,6 +1380,7 @@
     },
     {
       "id": 43,
+      "slug": "heavy-schiffli-embroidered-lawn-dress-with-diamond-zari-dupatta",
       "name": "Heavy Schiffli Embroidered Lawn Dress with Diamond Zari Dupatta",
       "price": 5250,
       "description": "A stylish 3-piece embroidered lawn dress from the 2025 collection, featuring a diamond zari dupatta.",
@@ -1372,6 +1415,7 @@
     },
     {
       "id": 44,
+      "slug": "all-over-digital-print-lawn-suit-voil-lawn-dupatta-2026",
       "name": "All-Over Digital Print Lawn Suit Voil Lawn Dupatta 2026",
       "price": 4000,
       "description": "A stunning all-over digital print lawn suit from the 2026 collection with a Voil lawn dupatta.",
@@ -1406,6 +1450,7 @@
     },
     {
       "id": 45,
+      "slug": "luxury-heavy-embroidered-fancy-lawn-dress-organza-dupatta",
       "name": "Luxury Heavy Embroidered Fancy Lawn Dress Organza Dupatta",
       "price": 6250,
       "description": "An elegant 3-piece embroidered lawn suit with fancy embellishments, perfect for Eid and parties.",
@@ -1441,6 +1486,7 @@
     },
     {
       "id": 46,
+      "slug": "luxury-heavy-embroidered-lawn-dress-with-digital-print-silk-dupatta-2026",
       "name": "Luxury Heavy Embroidered Lawn Dress with Digital Print Silk Dupatta 2026",
       "price": 5350,
       "description": "A luxury heavy embroidered lawn dress from the 2026 collection, paired with a digital print silk dupatta.",
@@ -1475,6 +1521,7 @@
     },
     {
       "id": 47,
+      "slug": "luxury-heavy-schiffli-embroidered-lawn-dress-silk-dupatta-leatest-2026",
       "name": "Luxury Heavy Schiffli Embroidered Lawn Dress Silk Dupatta leatest 2026",
       "price": 6500,
       "description": "A luxury heavy Schiffli embroidered lawn dress with a beautiful silk dupatta from the latest 2026 collection.",
@@ -1509,6 +1556,7 @@
     },
     {
       "id": 48,
+      "slug": "all-over-print-embroidered-eid-lawn-dress-with-chiffon-dupatta",
       "name": "All-Over Print Embroidered EID Lawn Dress with Chiffon Dupatta",
       "price": 4250,
       "description": "An all-over print embroidered lawn dress with a chiffon dupatta, perfect for EID celebrations.",
@@ -1546,6 +1594,7 @@
     },
     {
       "id": 49,
+      "slug": "elegant-embroidered-lawn-suit-with-organza-dupatta-leatest",
       "name": "Elegant Embroidered Lawn Suit with Organza Dupatta leatest",
       "price": 4250,
       "description": "An elegant embroidered lawn suit from our latest collection, featuring a beautiful organza dupatta.",
@@ -1581,6 +1630,7 @@
     },
     {
       "id": 50,
+      "slug": "designer-all-over-print-embroidered-lawn-dress-2026-with-chiffon-dupatta",
       "name": "Designer All-Over Print Embroidered Lawn Dress 2026 with Chiffon Dupatta",
       "price": 4200,
       "description": "A designer all-over print embroidered lawn dress with a 4-side border lace printed chiffon dupatta.",
@@ -1608,6 +1658,7 @@
     },
     {
       "id": 51,
+      "slug": "elegant-embroidered-lawn-dress-with-digital-print-diamond-dupatta",
       "name": "Elegant Embroidered Lawn Dress with Digital Print Diamond Dupatta",
       "price": 4400,
       "description": "A high-quality unstitched suit from the Spring/Summer 2025 collection, perfect for casual wear.",
@@ -1643,6 +1694,7 @@
     },
     {
       "id": 52,
+      "slug": "all-over-digital-print-lawn-dress-2025-with-swiss-zari-dupatta",
       "name": "All-Over Digital Print Lawn Dress 2025 with Swiss Zari Dupatta",
       "price": 3600,
       "description": "A high-quality unstitched suit from the Summer 2025 collection, perfect for casual wear.",
@@ -1677,6 +1729,7 @@
     },
     {
       "id": 53,
+      "slug": "luxury-embroidered-eid-lawn-dress-with-digital-print-silk-dupatta",
       "name": "Luxury Embroidered EID Lawn Dress with Digital Print Silk Dupatta",
       "price": 4750,
       "description": "A luxury heavy embroidered lawn dress from the 2026 collection, paired with a digital print silk dupatta.",
@@ -1702,6 +1755,7 @@
     },
     {
       "id": 54,
+      "slug": "elegant-embroidered-lawn-suit-with-chiffon-dupatta-2026",
       "name": "Elegant Embroidered Lawn Suit with Chiffon Dupatta 2026",
       "price": 4200,
       "description": "An elegant embroidered lawn dress from the 2026 collection, complete with a chiffon dupatta.",
@@ -1726,6 +1780,7 @@
     },
     {
       "id": 55,
+      "slug": "heavy-embroidered-lawn-dress-with-chiffon-dupatta-2026",
       "name": "Heavy Embroidered Lawn Dress with Chiffon Dupatta 2026",
       "price": 4400,
       "description": "A beautiful, heavy embroidered lawn dress with a delicate chiffon dupatta.",
@@ -1750,6 +1805,7 @@
     },
     {
       "id": 56,
+      "slug": "polka-dot-print-embroidered-lawn-dress-with-chiffon-dupatta",
       "name": "Polka-Dot Print Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 3700,
       "description": "A playful polka-dot print embroidered lawn dress, paired with a light chiffon dupatta.",
@@ -1775,6 +1831,7 @@
     },
     {
       "id": 57,
+      "slug": "all-over-print-embroidered-lawn-dress-with-chiffon-dupatta-2",
       "name": "All-Over Print Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 4200,
       "description": "An attractive all-over print embroidered lawn dress with a chiffon dupatta.",
@@ -1801,6 +1858,7 @@
     },
     {
       "id": 58,
+      "slug": "trendy-2-piece-embroidered-lawn-dress",
       "name": "Trendy 2-Piece Embroidered Lawn Dress",
       "price": 2750,
       "description": "A trendy and stylish 2-piece embroidered lawn dress from the 2024 collection.",
@@ -1824,6 +1882,7 @@
     },
     {
       "id": 59,
+      "slug": "luxurious-schiffli-embroidered-lawn-dress-with-printed-silk-dupatta",
       "name": "Luxurious Schiffli Embroidered Lawn Dress with Printed Silk Dupatta",
       "price": 6250,
       "description": "A luxurious Schiffli embroidered lawn dress, elegantly paired with a digital print silk dupatta.",
@@ -1849,6 +1908,7 @@
     },
     {
       "id": 60,
+      "slug": "elegant-embroidered-lawn-dress-with-digital-print-silk-dupatta-2",
       "name": "Elegant Embroidered Lawn Dress with Digital Print Silk Dupatta",
       "price": 3750,
       "description": "A beautiful and elegant embroidered Swiss lawn dress with a digital print silk dupatta.",
@@ -1873,6 +1933,7 @@
     },
     {
       "id": 61,
+      "slug": "elegant-2-piece-embroidered-cotton-lawn-dress",
       "name": "Elegant 2-Piece Embroidered Cotton Lawn Dress",
       "price": 2500,
       "description": "An elegant 2-piece embroidered cotton lawn dress from the 2022 collection.",
@@ -1897,6 +1958,7 @@
     },
     {
       "id": 62,
+      "slug": "luxury-embroidered-lawn-dress-with-bamber-chiffon-dupatta-2",
       "name": "Luxury Embroidered Lawn Dress with Bamber Chiffon Dupatta",
       "price": 3750,
       "description": "A luxury lawn dress with full heavy embroidery and an embroidered Bamber chiffon dupatta.",
@@ -1920,6 +1982,7 @@
     },
     {
       "id": 63,
+      "slug": "luxury-embroidered-fancy-cotton-lawn-dress-with-embroidered-bamber-chiffon-dupatta",
       "name": "Luxury Embroidered Fancy Cotton Lawn Dress with Embroidered Bamber Chiffon Dupatta",
       "price": 3400,
       "description": "A luxury fancy cotton lawn dress with heavy sequins embroidery and a Bamber chiffon dupatta.",
@@ -1941,6 +2004,7 @@
     },
     {
       "id": 64,
+      "slug": "elegant-embroidered-lawn-dress-with-digital-print-silk-dupatta-3",
       "name": "Elegant Embroidered Lawn Dress with Digital Print Silk Dupatta",
       "price": 4200,
       "description": "An elegant embroidered lawn dress featuring a beautiful digital print silk dupatta.",
@@ -1965,6 +2029,7 @@
     },
     {
       "id": 65,
+      "slug": "all-over-print-embroidered-lawn-dress-with-chiffon-dupatta-3",
       "name": "All-Over Print Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 4500,
       "description": "An attractive all-over print embroidered lawn dress with a 4-side border embroidery printed chiffon dupatta.",
@@ -1990,6 +2055,7 @@
     },
     {
       "id": 66,
+      "slug": "all-over-print-embroidered-lawn-suit-with-chiffon-dupatta",
       "name": "All-Over Print Embroidered Lawn Suit with Chiffon Dupatta",
       "price": 4500,
       "description": "An attractive all-over print embroidered lawn suit with a 4-side border embroidery printed chiffon dupatta.",
@@ -2016,6 +2082,7 @@
     },
     {
       "id": 67,
+      "slug": "digital-print-embroidered-eid-lawn-dress-with-chiffon-dupatta",
       "name": "Digital Print Embroidered EID Lawn Dress with Chiffon Dupatta",
       "price": 4200,
       "description": "A high-quality 90/70 lawn dress with heavy embroidery, perfect for EID.",
@@ -2042,6 +2109,7 @@
     },
     {
       "id": 68,
+      "slug": "all-over-print-embroidered-eid-lawn-dress-with-chiffon-dupatta-2",
       "name": "All-Over Print Embroidered EID Lawn Dress with Chiffon Dupatta",
       "price": 4800,
       "description": "An all-over print embroidered EID lawn dress with a printed soft chiffon dupatta.",
@@ -2066,6 +2134,7 @@
     },
     {
       "id": 69,
+      "slug": "luxury-schiffli-embroidered-cotton-dress-with-digital-print-silk-dupatta",
       "name": "Luxury Schiffli Embroidered Cotton Dress with Digital Print Silk Dupatta",
       "price": 8000,
       "description": "A luxury Schiffli embroidered cotton dress with a digital print silk dupatta.",
@@ -2089,6 +2158,7 @@
     },
     {
       "id": 70,
+      "slug": "all-over-print-embroidered-lawn-dress-with-chiffon-dupatta-4",
       "name": "All-Over Print Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 4200,
       "description": "An all-over print embroidered lawn dress with a printed soft chiffon dupatta.",
@@ -2116,6 +2186,7 @@
     },
     {
       "id": 71,
+      "slug": "heavy-embroidered-lawn-dress-with-diamond-zari-dupatta",
       "name": "Heavy Embroidered Lawn Dress with Diamond Zari Dupatta",
       "price": 4200,
       "description": "A heavy embroidered lawn dress with a digital print diamond zari dupatta.",
@@ -2141,6 +2212,7 @@
     },
     {
       "id": 72,
+      "slug": "all-over-print-embroidered-lawn-suit-with-chiffon-dupatta-2",
       "name": "All-Over Print Embroidered Lawn Suit with Chiffon Dupatta",
       "price": 4200,
       "description": "An all-over print embroidered lawn suit with a printed soft chiffon dupatta.",

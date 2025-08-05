@@ -5,8 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
-import { slugify } from "@/lib/utils";
-import ProductCardActions from "./product-card-actions";
 import { useState } from "react";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
@@ -40,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     setQuickViewOpen(true);
   };
 
-  const productSlug = slugify(product.name);
+  const productSlug = product.slug;
   const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4=";
   
   return (
@@ -100,4 +98,3 @@ export default function ProductCard({ product }: ProductCardProps) {
     </Card>
   );
 }
-

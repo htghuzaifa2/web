@@ -9,7 +9,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
 import { Badge } from "./ui/badge";
-import { slugify } from "@/lib/utils";
 
 export function CartSheet() {
   const { items, removeFromCart, updateQuantity, total, itemCount } = useCart();
@@ -38,7 +37,7 @@ export function CartSheet() {
                 <div className="flex flex-col gap-4 py-4">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center gap-4">
-                      <Link href={`/product/${slugify(item.name)}`} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
+                      <Link href={`/product/${item.slug}`} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -47,7 +46,7 @@ export function CartSheet() {
                         />
                       </Link>
                       <div className="flex-1">
-                        <Link href={`/product/${slugify(item.name)}`} className="font-semibold hover:underline">
+                        <Link href={`/product/${item.slug}`} className="font-semibold hover:underline">
                           {item.name}
                         </Link>
                         <div className="flex items-center justify-between mt-1">

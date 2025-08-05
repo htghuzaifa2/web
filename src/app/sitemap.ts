@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 import productsData from '@/data/products.json';
 import categoriesData from '@/data/categories.json';
-import { slugify } from '@/lib/utils';
 
 const siteUrl = 'https://huzi.pk';
 
@@ -23,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const productPages = productsData.products.map((product) => ({
-    url: `${siteUrl}/product/${slugify(product.name)}`,
+    url: `${siteUrl}/product/${product.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
