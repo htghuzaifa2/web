@@ -21,31 +21,31 @@ export default function ReturnPolicyPage() {
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Conditions for a Return</h2>
                     <p>
-                        We accept returns only under the following circumstances:
+                        We accept returns only if the item you received meets one of the following conditions:
                     </p>
                     <ul>
-                        <li>The item you received is damaged.</li>
-                        <li>The item you received is incorrect or does not match the product you ordered.</li>
+                        <li>The item is damaged or not working correctly.</li>
+                        <li>The item is incorrect or does not match the product you ordered.</li>
                     </ul>
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Conditions Not Eligible for Return</h2>
                     <p>
-                        We do not accept returns or provide refunds if you have simply changed your mind about a product. We encourage you to choose your items carefully before placing an order.
+                        We do not accept returns or provide refunds if you have simply changed your mind about a product. We encourage you to review your order carefully before purchasing.
                     </p>
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Return Timeframe</h2>
                     <p>
-                        If your item meets the conditions for a return, you must notify us within **3 days** of receiving your parcel. Any requests made after this period will not be eligible for a refund or exchange.
+                        If your item is eligible for a return, you must notify us within **3 days** of receiving your parcel. Any claims made after this period will not be accepted.
                     </p>
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">How to Initiate a Return</h2>
                     <p>
-                        To initiate a return for a damaged or incorrect item, please <Link href="/contact">contact our customer service team</Link> with your order number and clear photos of the issue. We will guide you through the next steps.
+                        To initiate a return for a damaged or incorrect item, please <Link href="/contact">contact our customer service team</Link> with your order number and clear photos or a video showing the issue. We will guide you through the next steps.
                     </p>
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Refund Process</h2>
                     <p>
-                        Once your return is approved and the item is received by us, we will process your refund. The amount will be returned through the original payment method or another mutually agreed-upon method.
+                        Once your return is approved and the item has been received and inspected by us, we will process your refund. The amount will be returned through the original payment method or another mutually agreed-upon method.
                     </p>
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Questions</h2>
