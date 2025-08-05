@@ -24,8 +24,9 @@ export default function ReturnPolicyPage() {
                         We accept returns only if the item you received meets one of the following conditions:
                     </p>
                     <ul>
-                        <li>The item is damaged or not working correctly.</li>
-                        <li>The item is incorrect or does not match the product you ordered.</li>
+                        <li>The item is damaged during shipping or has a manufacturing defect.</li>
+                        <li>The item is incorrect and does not match the product you ordered.</li>
+                        <li>The item is not working correctly as described.</li>
                     </ul>
 
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Conditions Not Eligible for Return</h2>
@@ -40,7 +41,7 @@ export default function ReturnPolicyPage() {
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">How to Initiate a Return</h2>
                     <p>
-                        To initiate a return for a damaged or incorrect item, please <Link href="/contact">contact our customer service team</Link> with your order number and clear photos or a video showing the issue. We will guide you through the next steps.
+                        To initiate a return for a damaged, incorrect, or faulty item, please <Link href="/contact">contact our customer service team</Link> with your order number and clear photos or a video showing the issue. We will guide you through the next steps.
                     </p>
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Refund Process</h2>
