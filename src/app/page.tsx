@@ -80,7 +80,8 @@ const getFeaturedProducts = () => {
 
 
 export default async function Home({ searchParams }: { searchParams: { page?: string } }) {
-  const currentPage = Number(searchParams?.page) || 1;
+  const page = searchParams['page'] ?? '1';
+  const currentPage = Number(page);
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
   const featuredProducts = getFeaturedProducts();
