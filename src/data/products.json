@@ -1630,7 +1630,7 @@
     },
     {
       "id": 50,
-      "slug": "designer-all-over-print-embroidered-lawn-dress-2026-with-chiffon-dupatta-2",
+      "slug": "designer-all-over-print-embroidered-lawn-dress-2026-with-chiffon-dupatta",
       "name": "Designer All-Over Print Embroidered Lawn Dress 2026 with Chiffon Dupatta",
       "price": 4200,
       "description": "A designer all-over print embroidered lawn dress with a 4-side border lace printed chiffon dupatta.",
@@ -1755,7 +1755,7 @@
     },
     {
       "id": 54,
-      "slug": "elegant-embroidered-lawn-suit-with-chiffon-dupatta-2026-2",
+      "slug": "elegant-embroidered-lawn-suit-with-chiffon-dupatta-2026",
       "name": "Elegant Embroidered Lawn Suit with Chiffon Dupatta 2026",
       "price": 4200,
       "description": "An elegant embroidered lawn dress from the 2026 collection, complete with a chiffon dupatta.",
@@ -1831,7 +1831,7 @@
     },
     {
       "id": 57,
-      "slug": "all-over-print-embroidered-lawn-dress-with-chiffon-dupatta-2",
+      "slug": "all-over-print-embroidered-lawn-dress-with-chiffon-dupatta",
       "name": "All-Over Print Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 4200,
       "description": "An attractive all-over print embroidered lawn dress with a printed soft chiffon dupatta.",
@@ -2295,7 +2295,7 @@
     },
     {
       "id": 75,
-      "slug": "elegant-embroidered-lawn-dress-with-chiffon-dupatta-3",
+      "slug": "elegant-embroidered-lawn-dress-with-chiffon-dupatta",
       "name": "Elegant Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 4200,
       "description": "An elegant embroidered lawn dress with a beautiful chiffon dupatta.",
@@ -2424,7 +2424,7 @@
       "name": "Fancy Embroidered EID Lawn Dress with Emb. Khaddi Net Dupatta",
       "price": 4800,
       "description": "A fancy embroidered EID lawn dress, complete with an embroidered Khaddi net dupatta.",
-      "longDescription": "Perfect for EID festivities, this unstitched 3-piece lawn suit features beautiful embroidery and comes with a unique embroidered Khaddi net dupatta. A truly special outfit for a special occasion.",
+      "longDescription": "This beautiful unstitched 3-piece lawn suit is perfect for EID festivities. It features fancy embroidery and comes with a unique embroidered Khaddi net dupatta, making it a truly special outfit for a special occasion.",
       "specifications": {
         "Product": "3-Piece EID Lawn Suit",
         "Type": "Embroidered Lawn Dress",
@@ -2499,7 +2499,7 @@
     },
     {
       "id": 83,
-      "slug": "elegant-embroidered-lawn-dress-with-chiffon-dupatta-4",
+      "slug": "elegant-embroidered-lawn-dress-with-chiffon-dupatta-2",
       "name": "Elegant Embroidered Lawn Dress with Chiffon Dupatta",
       "price": 4200,
       "description": "An elegant embroidered lawn dress with a beautiful chiffon dupatta.",
@@ -2628,7 +2628,7 @@
       "name": "Fancy Embroidered EID Lawn Dress with Emb. Khaddi Net Dupatta",
       "price": 4800,
       "description": "A fancy embroidered EID lawn dress, complete with an embroidered Khaddi net dupatta.",
-      "longDescription": "Perfect for EID festivities, this unstitched 3-piece lawn suit features beautiful embroidery and comes with a unique embroidered Khaddi net dupatta. A truly special outfit for a special occasion.",
+      "longDescription": "This beautiful unstitched 3-piece lawn suit is perfect for EID festivities. It features fancy embroidery and comes with a unique embroidered Khaddi net dupatta, making it a truly special outfit for a special occasion.",
       "specifications": {
         "Product": "3-Piece EID Lawn Suit",
         "Type": "Embroidered Lawn Dress",
@@ -2854,8 +2854,193 @@
         "https://i.postimg.cc/d0vXvbkQ/imgi-14-p18008-embroidered-lawn-dress-3.jpg"
       ],
       "stock": 50
+    },
+    {
+      "id": 97,
+      "slug": "luxury-heavy-schiffli-embroidered-cotton-dress-with-silk-dupatta",
+      "name": "Luxury Heavy Schiffli Embroidered Cotton Dress with Silk Dupatta",
+      "price": 8000,
+      "description": "A luxury Schiffli embroidered cotton dress with a digital print silk dupatta.",
+      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Cotton Suits in Pakistan\n- Type: Embroidered Cotton Dress\n- Condition: Unstitched Cotton Suit\n- Season: Summer Collection 2025\n- Collection: Cotton Collection 2025\n- Heavy Embroidered Neck\n- Schiffli Embroidered Cotton Front\n- Plain Cotton Back\n- Embroidered Cotton Sleeves\n- Heavy Embroidered Daman Patch\n- Digital Printed Silk Dupatta\n- Plain Cotton Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
+      "specifications": {
+        "Product": "3 Pieces Embroidered Cotton Suits",
+        "Type": "Embroidered Cotton Dress",
+        "Condition": "Unstitched",
+        "Season": "Summer 2025",
+        "Dupatta": "Digital Printed Silk"
+      },
+      "category": [
+        "women",
+        "lawn-suits"
+      ],
+      "image": "https://i.postimg.cc/CKMKdLzz/imgi-11-p18001-embroidered-cotton-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/qRzMXbcr/imgi-12-p18001-embroidered-cotton-dress-1.jpg",
+        "https://i.postimg.cc/q7mvKV3Q/imgi-13-p18001-embroidered-cotton-dress-2.jpg"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 98,
+      "slug": "all-over-print-embroidered-black-lawn-suit-with-chiffon-dupatta",
+      "name": "All-Over Print Embroidered Black Lawn Suit with Chiffon Dupatta",
+      "price": 4400,
+      "description": "An all-over print embroidered black lawn suit with a printed soft chiffon dupatta.",
+      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Suits Design\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Embroidered Neck Patch\n- Embroidered Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves with Border Patches\n- Heavy Embroidered Daman Patch\n- Printed Soft Chiffon Dupatta\n- Printed Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
+      "specifications": {
+        "Product": "3 Pieces Embroidered Lawn Suit",
+        "Type": "Embroidered Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Summer 2025",
+        "Dupatta": "Printed Soft Chiffon"
+      },
+      "category": [
+        "women",
+        "lawn-suits"
+      ],
+      "image": "https://i.postimg.cc/sx48ByBg/imgi-11-p17998-embroidered-lawn-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/rFq3Bdb0/imgi-12-p17998-embroidered-lawn-dress-1.jpg"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 99,
+      "slug": "all-over-print-embroidered-eid-lawn-dress-with-chiffon-dupatta-3",
+      "name": "All-Over Print Embroidered EID Lawn Dress with Chiffon Dupatta",
+      "price": 4500,
+      "description": "An all-over print embroidered EID lawn dress with a printed soft chiffon dupatta.",
+      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Suits Design\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Heavy Embroidered Neck Patch\n- Printed Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves with Heavy Embroidered Patches\n- Embroidered Daman Patch\n- Printed Soft Chiffon Dupatta\n- Printed Cambric Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
+      "specifications": {
+        "Product": "3 Pieces EID Lawn Suit",
+        "Type": "Embroidered Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Summer 2025",
+        "Dupatta": "Printed Soft Chiffon"
+      },
+      "category": [
+        "women",
+        "lawn-suits"
+      ],
+      "image": "https://i.postimg.cc/cLgm20st/imgi-11-p17990-embroidered-lawn-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/7ZFVyd6s/imgi-12-p17990-embroidered-lawn-dress-1.jpg",
+        "https://i.postimg.cc/4dZQYcpp/imgi-13-p17990-embroidered-lawn-dress-2.jpg",
+        "https://i.postimg.cc/zfTkD7HJ/imgi-14-p17990-embroidered-lawn-dress-3.jpg",
+        "https://i.postimg.cc/tT5tWgzw/imgi-15-p17990-embroidered-lawn-dress-4.jpg",
+        "https://i.postimg.cc/2ySdwfc6/imgi-16-p17990-embroidered-lawn-dress-5.jpg"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 100,
+      "slug": "all-over-floral-print-embroidered-lawn-dress-with-soft-chiffon-dupatta",
+      "name": "All-Over Floral Print Embroidered Lawn Dress with Soft Chiffon Dupatta",
+      "price": 4400,
+      "description": "An all-over floral print embroidered lawn dress with a printed soft chiffon dupatta.",
+      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Suits Online\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Printed Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves with Border Patches\n- Schiffli Embroidered Daman Patch\n- Printed Soft Chiffon Dupatta\n- Printed Cambric Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
+      "specifications": {
+        "Product": "3 Pieces Lawn Suit",
+        "Type": "Embroidered Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Summer 2025",
+        "Dupatta": "Printed Soft Chiffon"
+      },
+      "category": [
+        "women",
+        "lawn-suits"
+      ],
+      "image": "https://i.postimg.cc/CLjDq5LN/imgi-11-p17980-embroidered-lawn-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/KYYgw57q/imgi-12-p17980-embroidered-lawn-dress-1.jpg",
+        "https://i.postimg.cc/sXQGDDN5/imgi-13-p17980-embroidered-lawn-dress-2.jpg",
+        "https://i.postimg.cc/GpSsCsqc/imgi-14-p17980-embroidered-lawn-dress-3.jpg",
+        "https://i.postimg.cc/L82PBSJM/imgi-15-p17980-embroidered-lawn-dress-4.jpg",
+        "https://i.postimg.cc/Kz6kKS6w/imgi-16-p17980-embroidered-lawn-dress-5.jpg"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 101,
+      "slug": "luxury-heavy-embroidered-lawn-dress-with-embroidered-net-dupatta",
+      "name": "Luxury Heavy Embroidered Lawn Dress with Embroidered NET Dupatta",
+      "price": 6500,
+      "description": "A luxury heavy embroidered lawn dress with a 4-side border embroidered NET dupatta.",
+      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Suits in Pakistan\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Embroidered Neck\n- Heavy Embroidered Lawn Front\n- Plain Lawn Back with Back Bunch\n- Plain Lawn Sleeves with Embroidered Patches\n- Embroidered Front Daman Patch\n- Embroidered Back Daman Patch\n- 4 Side Border Embroidered NET Dupatta\n- Plain Dyed Trouser with Border Patches\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
+      "specifications": {
+        "Product": "3 Pieces Lawn Suit",
+        "Type": "Embroidered Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Summer 2025",
+        "Dupatta": "Embroidered NET"
+      },
+      "category": [
+        "women",
+        "lawn-suits"
+      ],
+      "image": "https://i.postimg.cc/yYWt6q1s/imgi-11-p17952-embroidered-lawn-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/bY5LTZPf/imgi-12-p17952-embroidered-lawn-dress-1.jpg",
+        "https://i.postimg.cc/nLKwSpkY/imgi-13-p17952-embroidered-lawn-dress-2.jpg",
+        "https://i.postimg.cc/mr4mHKsc/imgi-14-p17952-embroidered-lawn-dress-3.jpg",
+        "https://i.postimg.cc/nLTGQz25/imgi-15-p17952-embroidered-lawn-dress-4.jpg",
+        "https://i.postimg.cc/nzzYKJwL/imgi-16-p17952-embroidered-lawn-dress-5.jpg"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 102,
+      "slug": "elegant-2-piece-embroidered-summer-lawn-dress",
+      "name": "Elegant 2-Piece Embroidered Summer Lawn Dress",
+      "price": 3000,
+      "description": "An elegant 2-piece embroidered summer lawn dress with a 40-inch shirt length.",
+      "longDescription": "Product Highlights:\n- Product: 2-Piece Lawn Suits in Pakistan\n- Type: 2-Piece Printed Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Embroidered Neck\n- HeadSkip Embroidered Lawn Shirt Front\n- Plain Lawn Shirt Back\n- Embroidered Lawn Sleeves\n- Embroidered Daman\n- Plain Lawn Trouser\n- Shirt Length: 40 inches\n- Shirt Width: 21 inches\n- Color & Design: As Shown in Pictures\n- Occasion: Casual",
+      "specifications": {
+        "Product": "2-Piece Lawn Suit",
+        "Type": "Printed Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Spring/Summer 2025",
+        "Shirt Length": "40 inches"
+      },
+      "category": [
+        "women",
+        "lawn-suits"
+      ],
+      "image": "https://i.postimg.cc/W1Nnpg6r/imgi-11-p17921-2-piece-embroidered-lawn-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/yNWycKG8/imgi-12-p17921-2-piece-embroidered-lawn-dress-1.jpg",
+        "https://i.postimg.cc/y8LTDxvG/imgi-13-p17921-2-piece-embroidered-lawn-dress-2.jpg"
+      ],
+      "stock": 50
+    },
+    {
+      "id": 103,
+      "slug": "elegant-embroidered-lawn-suit-with-digital-print-diamond-dupatta-2",
+      "name": "Elegant Embroidered Lawn Suit with Digital Print Diamond Dupatta",
+      "price": 4400,
+      "description": "An elegant embroidered lawn suit with a printed diamond dupatta from the 2025 collection.",
+      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Shopping Online\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Quality: 90/70 Lawn\n- Heavy Embroidered Neck\n- HeadSkip Embroidered Lawn Front\n- Plain Lawn Back\n- Embroidered Lawn Sleeves\n- Embroidered Daman\n- Printed Diamond Dupatta\n- Embroidered Lawn Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
+      "specifications": {
+        "Product": "3-Piece Lawn Suit",
+        "Type": "Embroidered Lawn Dress",
+        "Condition": "Unstitched",
+        "Season": "Spring/Summer 2025",
+        "Dupatta": "Printed Diamond"
+      },
+      "category": [
+        "women",
+        "lawn-suits"
+      ],
+      "image": "https://i.postimg.cc/RhGWg665/imgi-11-p18027-embroidered-lawn-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/Z5WWLqJ2/imgi-12-p18027-embroidered-lawn-dress-1.jpg",
+        "https://i.postimg.cc/HsZJ5M1b/imgi-13-p18027-embroidered-lawn-dress-2.jpg",
+        "https://i.postimg.cc/YqqGh3Zp/imgi-14-p18027-embroidered-lawn-dress-3.jpg"
+      ],
+      "stock": 50
     }
   ]
 }
+
 
 
