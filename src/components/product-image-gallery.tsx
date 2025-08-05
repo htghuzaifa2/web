@@ -247,8 +247,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         </div>
         {images.length > 1 && (
             <>
-                <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50" onClick={showPrevImage}><ChevronLeft size={24} /></Button>
-                <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50" onClick={showNextImage}><ChevronRight size={24} /></Button>
+                <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={showPrevImage}><ChevronLeft size={24} /></Button>
+                <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={showNextImage}><ChevronRight size={24} /></Button>
             </>
         )}
       </div>
@@ -256,13 +256,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in" onClick={closeLightbox}>
           <div 
-            className="relative w-full h-full flex-1 overflow-hidden"
+            className="relative w-full h-full flex-1"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="overflow-hidden h-full" ref={lightboxEmblaRef}>
                <div className="flex h-full">
                   {images.map((imgSrc, index) => (
-                    <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center" key={index}>
+                    <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center p-4" key={index}>
                         <ImageWithFallback
                             src={imgSrc}
                             alt={productName}
@@ -279,23 +279,23 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               </div>
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
-             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={handleShare}>
+             <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80" onClick={handleShare}>
               <Share2 />
             </Button>
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" asChild>
+            <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80" asChild>
               <a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                 <ExternalLink />
               </a>
             </Button>
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); closeLightbox(); }}><X /></Button>
+            <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80" onClick={(e) => { e.stopPropagation(); closeLightbox(); }}><X /></Button>
           </div>
           {images.length > 1 && (
             <>
-              <Button size="icon" variant="ghost" className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); showPrevLightboxImage(); }}><ChevronLeft size={32} /></Button>
-              <Button size="icon" variant="ghost" className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20" onClick={(e) => { e.stopPropagation(); showNextLightboxImage(); }}><ChevronRight size={32} /></Button>
+              <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:left-4" onClick={(e) => { e.stopPropagation(); showPrevLightboxImage(); }}><ChevronLeft size={32} /></Button>
+              <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:right-4" onClick={(e) => { e.stopPropagation(); showNextLightboxImage(); }}><ChevronRight size={32} /></Button>
               
               <div 
-                className="w-full h-auto py-4 bg-black/50 absolute bottom-0"
+                className="w-full h-auto py-4 absolute bottom-0 bg-gradient-to-t from-black/70 to-transparent"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="overflow-hidden container mx-auto" ref={lightboxThumbRef}>

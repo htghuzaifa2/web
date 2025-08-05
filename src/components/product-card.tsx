@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -45,29 +46,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="group/card relative overflow-hidden transition-shadow duration-300 hover:shadow-lg h-full flex flex-col">
       <CardContent className="p-0 flex flex-col flex-grow">
-        {/* Icons for ultra-small screens (< 300px) - Above image */}
-        <div className="block xxs:hidden p-2 flex justify-between items-center bg-muted/50">
-            <Button
-              variant="secondary"
-              size="sm"
-              className="h-9 flex-1"
-              onClick={handleAddToCart}
-              aria-label="Add to cart"
-            >
-              <ShoppingCart className="h-4 w-4" />
-            </Button>
-            <div className="w-2"></div>
-            <Button
-              variant="secondary"
-              size="sm"
-              className="h-9 flex-1"
-              onClick={handleQuickView}
-              aria-label="Quick View"
-            >
-              <Eye className="h-4 w-4" />
-            </Button>
-        </div>
-
         <div className="relative aspect-square w-full overflow-hidden">
            <Link href={`/product/${productSlug}`} className="group block">
             <Image
@@ -82,34 +60,32 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           </Link>
 
-          {/* Icons for Mobile/Tablet - Always Visible */}
-          <div className="hidden xxs:block lg:hidden absolute top-2 left-2 z-10">
-            <Button
-              variant="secondary"
-              size="icon"
-              className="h-9 w-9 rounded-full shadow-md"
-              onClick={handleAddToCart}
-              aria-label="Add to cart"
-            >
-              <ShoppingCart className="h-4 w-4" />
-            </Button>
-          </div>
-          <div className="hidden xxs:block lg:hidden absolute top-2 right-2 z-10">
-             <Button
-              variant="secondary"
-              size="icon"
-              className="h-9 w-9 rounded-full shadow-md"
-              onClick={handleQuickView}
-              aria-label="Quick View"
-            >
-              <Eye className="h-4 w-4" />
-            </Button>
-          </div>
-
-          {/* Icons for Desktop - On Hover */}
-          <div className="absolute top-2 right-2 opacity-0 lg:group-hover/card:opacity-100 transition-opacity duration-300 z-10">
-              <ProductCardActions product={product} />
-          </div>
+          {/* Icons for Mobile - Always Visible */}
+           <div 
+            className={cn(
+                "absolute top-2 right-2 z-10 flex flex-col gap-2 transition-opacity duration-300",
+                "lg:opacity-0 lg:group-hover/card:opacity-100"
+            )}
+           >
+                <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-9 w-9 rounded-full shadow-md"
+                    onClick={handleQuickView}
+                    aria-label="Quick View"
+                    >
+                    <Eye className="h-4 w-4" />
+                </Button>
+                <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-9 w-9 rounded-full shadow-md"
+                    onClick={handleAddToCart}
+                    aria-label="Add to cart"
+                    >
+                    <ShoppingCart className="h-4 w-4" />
+                </Button>
+           </div>
         </div>
         <div className="p-3 text-center flex-grow flex flex-col justify-between items-center">
             <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex items-center justify-center min-h-[2.5rem]">
@@ -124,3 +100,4 @@ export default function ProductCard({ product }: ProductCardProps) {
     </Card>
   );
 }
+
