@@ -23,7 +23,7 @@ export default function ProductInfoAccordion({ description, specifications }: Pr
                     <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
                         Description
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground prose max-w-none">
+                    <AccordionContent className="text-muted-foreground prose max-w-none pt-2">
                         <p>{description}</p>
                     </AccordionContent>
                 </AccordionItem>
@@ -34,7 +34,7 @@ export default function ProductInfoAccordion({ description, specifications }: Pr
                      <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
                         Specifications
                     </AccordionTrigger>
-                    <AccordionContent>
+                    <AccordionContent className="pt-2">
                         <ul className="space-y-3 text-muted-foreground pt-2">
                             {Object.entries(specifications).map(([key, value]) => (
                                 <li key={key} className="flex justify-between border-b pb-3 text-sm">
@@ -51,7 +51,7 @@ export default function ProductInfoAccordion({ description, specifications }: Pr
                 <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
                     Shipping & Delivery
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="pt-2">
                     <ShippingInfo />
                 </AccordionContent>
             </AccordionItem>
