@@ -459,7 +459,7 @@
       "name": "Digital All-Over Print Lawn Dress with Voil Lawn Dupatta",
       "price": 3900,
       "description": "Beautiful Digital All-Over Print Lawn Dress with a Voil Lawn Dupatta.",
-      "longDescription": "Product Highlights:\n- Product: 3 Pieces Printed Lawn Suits in Pakistan\n- Type: Printed Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2024\n- Collection: Lawn Collection 2024\n- Front: Digital Printed Lawn\n- Back: Digital Printed Lawn\n- Sleeves: Digital Printed Lawn\n- Daman: Digital Printed\n- Dupatta: Digital Printed Voil Lawn Dupatta\n- Trouser: Digital Printed Lawn Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual\n- Highlights: Attractive Design",
+      "longDescription": "Product Highlights:\n\n- Product: 3 Pieces Printed Lawn Suits in Pakistan\n- Type: Printed Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Spring/Summer Collection 2024\n- Collection: Lawn Collection 2024\n- Front: Digital Printed Lawn\n- Back: Digital Printed Lawn\n- Sleeves: Digital Printed Lawn\n- Daman: Digital Printed\n- Dupatta: Digital Printed Voil Lawn Dupatta\n- Trouser: Digital Printed Lawn Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual\n- Highlights: Attractive Design",
       "specifications": {
         "Product": "3 Pieces Printed Lawn Suits in Pakistan",
         "Type": "Printed Lawn Dress",
@@ -1283,7 +1283,8 @@
         "Sleeves": "Digital Printed Lawn",
         "Trouser": "Digital Printed Lawn Trouser",
         "Color & Design": "As Shown in Picture",
-        "Occasion": "Casual"
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1316,7 +1317,8 @@
         "Dupatta": "Heavy Embroidered Chiffon",
         "Trouser": "Dyed Cambric with Border Lace",
         "Color & Design": "As Shown in Picture",
-        "Occasion": "Casual"
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1336,7 +1338,7 @@
       "id": 43,
       "name": "Heavy Schiffli Embroidered Lawn Dress Diamond Zari Dupatta 2025",
       "price": 5250,
-      "description": "A stylish 2-piece embroidered lawn dress with fancy borders, perfect for daily or casual wear.",
+      "description": "A stylish 3-piece embroidered lawn dress from the 2025 collection, featuring a diamond zari dupatta.",
       "longDescription": "From the Spring/Summer 2025 collection, this unstitched 3-piece suit features a heavy embroidered neck and front on high-quality 90/70 lawn. It's paired with a digital print diamond zari dupatta and a plain dyed trouser for a truly attractive design.",
       "specifications": {
         "Product": "3 Pieces Embroidered Lawn Dresses Designs",
@@ -1350,9 +1352,11 @@
         "Back": "Plain Lawn",
         "Sleeves": "Heavy Embroidered Lawn",
         "Daman": "Heavy Embroidered",
-        "Dupatta": "Digital Print Diamond Zari",
-        "Trouser": "Plain Dyed",
-        "Occasion": "Casual"
+        "Dupatta": "Digital Print Diamond Zari Dupatta",
+        "Trouser": "Plain Dyed Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1368,7 +1372,7 @@
       "id": 44,
       "name": "All-Over Digital Print Lawn Suit Voil Lawn Dupatta 2026",
       "price": 4000,
-      "description": "A graceful 3-piece printed lawn suit with a chiffon dupatta, comfortable for hot weather.",
+      "description": "A stunning all-over digital print lawn suit from the 2026 collection with a Voil lawn dupatta.",
       "longDescription": "This unstitched 3-piece suit from the Spring/Summer 2025 collection is crafted from premium 100/100 lawn. It features an all-over digital print on the shirt and trouser, paired with a beautiful digital printed voil lawn dupatta. An attractive design perfect for casual occasions.",
       "specifications": {
         "Product": "3 Pieces Printed Lawn Dresses in Pakistan",
@@ -1381,9 +1385,11 @@
         "Back": "Digital Printed Lawn",
         "Sleeves": "Digital Printed Lawn",
         "Daman": "Digital Printed",
-        "Dupatta": "Digital Printed Voil Lawn",
-        "Trouser": "Digital Printed Lawn",
-        "Occasion": "Casual"
+        "Dupatta": "Digital Printed Voil Lawn Dupatta",
+        "Trouser": "Digital Printed Lawn Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1412,10 +1418,12 @@
         "Front": "Heavy Embroidered Lawn",
         "Back": "Plain Lawn",
         "Sleeves": "Heavy Embroidered Lawn with Border Patches",
-        "Daman Patch": "Heavy Embroidered with Hanging Tassels",
-        "Dupatta": "4-Side Border Embroidered Organza",
-        "Trouser": "Plain Dyed with Embroidered Bunches",
-        "Occasion": "Casual"
+        "Daman Patch": "Heavy Embroidered Daman Patch with Hanging Tassels",
+        "Dupatta": "4-Side Border Embroidered Organza Dupatta",
+        "Trouser": "Plain Dyed Trouser with Embroidered Bunches",
+        "Color & Design": "As Shown in Pictures",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1433,7 +1441,7 @@
       "id": 46,
       "name": "Luxury Heavy Embroidered Lawn Dress with Digital Print Silk Dupatta 2026",
       "price": 5350,
-      "description": "A simple and chic 2-piece printed lawn suit, perfect for home wear or a casual outing.",
+      "description": "A luxury heavy embroidered lawn dress from the 2026 collection, paired with a digital print silk dupatta.",
       "longDescription": "From the Spring/Summer 2026 collection, this unstitched 3-piece suit features a heavy embroidered neck and front, plain lawn back, and embroidered daman patch. It's perfectly complemented by a digital printed silk dupatta and plain lawn trouser.",
       "specifications": {
         "Product": "3 Pieces Embroidered Lawn Dresses 2026",
@@ -1446,9 +1454,11 @@
         "Back": "Plain Lawn",
         "Sleeves": "Embroidered Lawn",
         "Daman Patch": "Embroidered",
-        "Dupatta": "Digital Printed Silk",
-        "Trouser": "Plain Lawn",
-        "Occasion": "Casual"
+        "Dupatta": "Digital Printed Silk Dupatta",
+        "Trouser": "Plain Lawn Trouser",
+        "Color & Design": "As Shown in Pictures",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1465,7 +1475,7 @@
       "id": 47,
       "name": "Luxury Heavy Schiffli Embroidered Lawn Dress Silk Dupatta leatest 2026",
       "price": 6500,
-      "description": "A vibrant 3-piece lawn suit from the Summer 2025 collection, perfect for everyday use.",
+      "description": "A luxury heavy Schiffli embroidered lawn dress with a beautiful silk dupatta from the latest 2026 collection.",
       "longDescription": "This luxury 3-piece unstitched suit from the Spring/Summer 2024 collection features a full heavy schiffli embroidered front, embroidered back, and heavy embroidered sleeves. With heavy embroidered daman patches for both front and back, and a digital printed silk dupatta, this is a truly premium design.",
       "specifications": {
         "Product": "3 Pieces Embroidered Lawn Dress Designs 2024",
@@ -1479,9 +1489,11 @@
         "Sleeves": "Heavy Embroidered Lawn",
         "Front Daman Patch": "Heavy Embroidered",
         "Back Daman Patch": "Heavy Embroidered",
-        "Dupatta": "Digital Printed Silk",
-        "Trouser": "Plain Dyed Cambric",
-        "Occasion": "Casual"
+        "Dupatta": "Digital Printed Silk Dupatta",
+        "Trouser": "Plain Dyed Cambric Trouser",
+        "Color & Design": "As Shown in Pictures",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1497,7 +1509,7 @@
       "id": 48,
       "name": "All-Over Print Embroidered EID Lawn Dress with Chiffon Dupatta",
       "price": 4250,
-      "description": "A modern and stylish 2-piece embroidered lawn dress, soft and comfortable for summer.",
+      "description": "An all-over print embroidered lawn dress with a chiffon dupatta, perfect for EID celebrations.",
       "longDescription": "From the Summer 2025 collection, this unstitched 3-piece suit features a heavy embroidered neck and daman patch on a printed lawn base. The printed soft chiffon dupatta and printed cambric trouser create a beautiful, casual outfit perfect for EID.",
       "specifications": {
         "Product": "3 Pieces Embroidered Lawn Dresses Online",
@@ -1510,9 +1522,11 @@
         "Back": "Printed Lawn",
         "Sleeves": "Printed Lawn",
         "Daman Patch": "Heavy Embroidered",
-        "Dupatta": "Printed Soft Chiffon",
-        "Trouser": "Printed Cambric",
-        "Occasion": "Casual"
+        "Dupatta": "Printed Soft Chiffon Dupatta",
+        "Trouser": "Printed Cambric Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1532,7 +1546,7 @@
       "id": 49,
       "name": "Elegant Embroidered Lawn Suit with Organza Dupatta leatest",
       "price": 4250,
-      "description": "A premium designer 3-piece lawn suit with an organza dupatta, perfect for luxury wear.",
+      "description": "An elegant embroidered lawn suit from our latest collection, featuring a beautiful organza dupatta.",
       "longDescription": "This elegant unstitched 3-piece suit from the Spring/Summer 2025 collection is crafted from high-quality 90/70 lawn. It features an embroidered neck patch, heavy daman patch, and a digital printed embroidered organza dupatta, making it a truly attractive design.",
       "specifications": {
         "Product": "3 Pieces Embroidered Lawn Design Online",
@@ -1546,9 +1560,11 @@
         "Back": "Printed Lawn",
         "Sleeves": "Printed Lawn with Border Lace",
         "Daman Patch": "Heavy Embroidered",
-        "Dupatta": "Digital Printed Embroidered Organza",
-        "Trouser": "Printed Lawn",
-        "Occasion": "Casual"
+        "Dupatta": "Digital Printed Embroidered Organza Dupatta",
+        "Trouser": "Printed Lawn Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "lawn-suits",
@@ -1563,8 +1579,8 @@
     },
     {
       "id": 50,
-      "name": "Designer All-Over Print Embroidered Lawn Dress with Chiffon Dupatta leatest",
-      "price": 4250,
+      "name": "Designer All-Over Print Embroidered Lawn Dress 2026 with Chiffon Dupatta",
+      "price": 4200,
       "description": "A designer all-over print embroidered lawn dress with a 4-side border lace printed chiffon dupatta.",
       "longDescription": "This unstitched 3-piece suit from the 2025 Lawn Collection features a heavy embroidered neck patch, printed lawn front and back, and printed sleeves with embroidered patches. The printed cambric trouser and 4-side border lace printed chiffon dupatta complete this attractive design.",
       "specifications": {
@@ -1578,21 +1594,22 @@
         "Back": "Printed Lawn",
         "Sleeves": "Printed Lawn with Embroidered Patches",
         "Daman": "Printed",
-        "Dupatta": "4-Side Border Lace Printed Chiffon",
-        "Trouser": "Printed Cambric",
-        "Occasion": "Casual"
+        "Dupatta": "4-Side Border Lace Printed Chiffon Dupatta",
+        "Trouser": "Printed Cambric Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
-        "lawn-suits",
-        "women"
+        "women",
+        "lawn-suits"
       ],
-      "image": "https://i.postimg.cc/RVsvS01F/imgi-23-p18196-embroidered-lawn-dress.webp",
+      "image": "https://i.postimg.cc/sXxmsR8P/imgi-11-p17903-embroidered-lawn-dress.jpg",
       "additionalImages": [
-        "https://i.postimg.cc/28wV4mQR/imgi-11-p17903-embroidered-lawn-dress.webp",
-        "https://i.postimg.cc/85Q12nRm/imgi-12-p17903-embroidered-lawn-dress-1.webp",
-        "https://i.postimg.cc/fbXsfjGt/imgi-13-p17903-embroidered-lawn-dress-2.webp",
-        "https://i.postimg.cc/tJDpVqLB/imgi-14-p17903-embroidered-lawn-dress-3.webp",
-        "https://i.postimg.cc/Cx9Y86Qp/imgi-15-p17903-embroidered-lawn-dress-4.webp"
+        "https://i.postimg.cc/qqCG6xpz/imgi-12-p17903-embroidered-lawn-dress-1.jpg",
+        "https://i.postimg.cc/HWcGtGx7/imgi-13-p17903-embroidered-lawn-dress-2.jpg",
+        "https://i.postimg.cc/4d053SkD/imgi-14-p17903-embroidered-lawn-dress-3.jpg",
+        "https://i.postimg.cc/kD3vQR5w/imgi-15-p17903-embroidered-lawn-dress-4.jpg"
       ],
       "stock": 50
     },
@@ -1614,8 +1631,11 @@
         "Back": "Plain Lawn",
         "Sleeves": "Embroidered Lawn",
         "Daman": "Embroidered",
-        "Dupatta": "Printed Diamond",
-        "Trouser": "Plain Lawn"
+        "Dupatta": "Printed Diamond Dupatta",
+        "Trouser": "Plain Lawn Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
@@ -1645,8 +1665,11 @@
         "Back": "Digital Printed Lawn",
         "Sleeves": "Digital Printed Lawn",
         "Daman": "Digital Printed",
-        "Dupatta": "Digital Printed Swiss Zari Sequins",
-        "Trouser": "Digital Printed Lawn"
+        "Dupatta": "Digital Printed Swiss Zari Sequins Dupatta",
+        "Trouser": "Digital Printed Lawn Trouser",
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
@@ -1677,9 +1700,11 @@
         "Sleeves": "Embroidered Lawn with Border Patches",
         "Front Daman": "Heavy Embroidered",
         "Back Daman": "Heavy Embroidered",
-        "Dupatta": "Digital Printed Silk",
+        "Dupatta": "Digital Printed Silk Dupatta",
         "Trouser": "Dyed Cambric with Embroidered Patches",
-        "Occasion": "Casual"
+        "Color & Design": "As Shown in Picture",
+        "Occasion": "Casual",
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
