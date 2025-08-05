@@ -26,7 +26,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   const title = product.name;
-  const description = product.description || product.longDescription || `Shop for ${product.name} at huzi.pk. We deliver physical products all over Pakistan and digital products worldwide.`;
+  let description = `Shop for ${product.name} at huzi.pk. We deliver physical products all over Pakistan and digital products worldwide.`;
+
+  if (product.description) {
+      description = product.description;
+  } else if (product.longDescription) {
+      description = product.longDescription.split('\n')[0]; // Take first line of long description
+  } else if (product.specifications) {
+      const specs = Object.entries(product.specifications).slice(0, 2).map(([key, value]) => `${key}: ${value}`).join(', ');
+      description = `Check out the ${product.name} with features like ${specs}. Available now at huzi.pk.`
+  }
 
   return {
     title,

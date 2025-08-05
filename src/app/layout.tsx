@@ -34,8 +34,8 @@ const siteConfig = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Premium Fashion & Digital Goods in Pakistan`,
-    template: `%s | ${siteConfig.name}`,
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear", "lawn suits", "online shopping pakistan"],
