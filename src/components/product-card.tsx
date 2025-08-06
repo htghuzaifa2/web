@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import type { Product } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
@@ -11,6 +11,43 @@ import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "./ui/skeleton";
+
+interface ImageWithSkeletonProps extends ImageProps {
+  alt: string;
+}
+
+const ImageWithSkeleton = ({ alt, ...props }: ImageWithSkeletonProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className="relative w-full h-full">
+      <Image
+        alt={alt}
+        {...props}
+        className={cn(
+          "transition-opacity duration-300",
+          isLoaded && !hasError ? "opacity-100" : "opacity-0",
+          props.className
+        )}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => {
+          setIsLoaded(true);
+          setHasError(true);
+        }}
+      />
+      {!isLoaded && (
+         <Skeleton className="absolute inset-0" />
+      )}
+      {hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted">
+           <Skeleton className="absolute inset-0" />
+        </div>
+      )}
+    </div>
+  );
+};
 
 interface ProductCardProps {
   product: Product;
@@ -20,8 +57,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [quickViewOpen, setQuickViewOpen] = useState(false);
-  const [imageLoading, setImageLoading] = useState(true);
-  const [imageError, setImageError] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -46,28 +81,12 @@ export default function ProductCard({ product }: ProductCardProps) {
       <CardContent className="p-0 flex flex-col flex-grow">
         <div className="relative aspect-square w-full overflow-hidden">
           <Link href={`/product/${productSlug}`} className="group block h-full w-full">
-            {(imageLoading || imageError) && (
-              <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                <div className="ring-loader ring-loader-md">Loading<span></span></div>
-              </div>
-            )}
-            <Image
+            <ImageWithSkeleton
               src={product.image}
               alt={product.name}
               fill
-              className={cn(
-                "object-contain transition-opacity duration-300",
-                imageLoading || imageError ? "opacity-0" : "opacity-100"
-              )}
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              onLoad={() => {
-                setImageLoading(false);
-                setImageError(false);
-              }}
-              onError={() => {
-                setImageLoading(false);
-                setImageError(true);
-              }}
+              className="object-contain"
             />
           </Link>
 

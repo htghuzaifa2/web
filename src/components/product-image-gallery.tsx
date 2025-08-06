@@ -2,48 +2,42 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
+import { Skeleton } from "./ui/skeleton";
 
 interface ProductImageGalleryProps {
   images: string[];
   productName: string;
 }
 
-type LoaderSize = 'sm' | 'md' | 'lg';
-
-const ImageWithLoading = ({ src, alt, priority = false, loaderSize = 'lg', ...props }: React.ComponentProps<typeof Image> & { priority?: boolean; loaderSize?: LoaderSize }) => {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+const ImageWithSkeleton = ({ alt, priority = false, ...props }: ImageProps & { alt: string, priority?: boolean }) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     return (
-        <div className="relative w-full h-full">
-            {(loading || error) && (
-                <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                    <div className={cn("ring-loader", `ring-loader-${loaderSize}`)}>
-                        {loaderSize !== 'sm' && 'Loading'}
-                        <span></span>
-                    </div>
-                </div>
-            )}
+        <div className="relative w-full h-full bg-muted">
             <Image
-                src={src}
                 alt={alt}
+                {...props}
                 priority={priority}
                 className={cn(
-                    "transition-opacity duration-300",
-                    loading || error ? "opacity-0" : "opacity-100"
+                    "transition-opacity duration-300 w-full h-full object-contain",
+                    isLoaded && !hasError ? "opacity-100" : "opacity-0",
+                    props.className
                 )}
-                onLoad={() => setLoading(false)}
+                onLoad={() => setIsLoaded(true)}
                 onError={() => {
-                    setLoading(false);
-                    setError(true);
+                    setIsLoaded(true);
+                    setHasError(true);
                 }}
-                {...props}
             />
+            {(!isLoaded || hasError) && (
+                 <Skeleton className="absolute inset-0" />
+            )}
         </div>
     );
 };
@@ -219,13 +213,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                                 )}
                             >
-                                <ImageWithLoading
+                                <ImageWithSkeleton
                                     src={img}
                                     alt={`${productName} thumbnail ${index + 1}`}
                                     fill
-                                    className="object-contain p-1"
                                     sizes="25vw"
-                                    loaderSize="sm"
                                 />
                             </button>
                         ))}
@@ -257,14 +249,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                         key={index}
                         onClick={() => openLightbox(index)}
                     >
-                        <ImageWithLoading
+                        <ImageWithSkeleton
                             src={imgSrc}
                             alt={`${productName} image ${index + 1}`}
                             fill
-                            className="object-contain"
                             priority={index === 0}
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            loaderSize="lg"
                         />
                     </div>
                 ))}
@@ -288,13 +278,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                <div className="flex h-full">
                   {images.map((imgSrc, index) => (
                     <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center p-4" key={`lightbox-main-${index}`}>
-                        <ImageWithLoading
+                        <ImageWithSkeleton
                             src={imgSrc}
                             alt={productName}
                             fill
-                            className="object-contain"
                             sizes="100vw"
-                            loaderSize="lg"
                         />
                     </div>
                   ))}
@@ -332,13 +320,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                            mainImageIndex === index ? "opacity-100 ring-2 ring-primary ring-offset-2 ring-offset-black/50" : "opacity-50 hover:opacity-100"
                         )}
                       >
-                        <ImageWithLoading
+                        <ImageWithSkeleton
                           src={img}
                           alt={`${productName} thumbnail ${index + 1}`}
                           fill
-                          className="object-contain p-1"
                           sizes="20vw"
-                          loaderSize="sm"
                         />
                       </button>
                     ))}
