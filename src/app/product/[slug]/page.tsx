@@ -135,7 +135,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProductDetailsClient product={product} />
+      <ProductDetailsClient key={product.id} product={product} />
 
       {relatedProducts.length > 0 && (
          <div className="mt-16 md:mt-24">
