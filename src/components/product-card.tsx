@@ -48,12 +48,13 @@ export default function ProductCard({ product }: ProductCardProps) {
       <CardContent className="p-0 flex flex-col flex-grow">
         <div className="relative aspect-square w-full overflow-hidden">
           <Link href={`/product/${productSlug}`} className="group block h-full w-full">
-            {imageLoading && !imageError && (
-              <Skeleton className="h-full w-full" />
-            )}
-            {imageError && (
-              <div className="flex h-full w-full items-center justify-center bg-muted">
-                <ImageIcon className="h-10 w-10 text-muted-foreground" />
+            {(imageLoading || imageError) && (
+              <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                {imageError ? (
+                  <ImageIcon className="h-10 w-10 text-muted-foreground" />
+                ) : (
+                  <Skeleton className="h-full w-full" />
+                )}
               </div>
             )}
             <Image
@@ -62,10 +63,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               fill
               className={cn(
                 "object-contain transition-opacity duration-300",
-                imageLoading ? "opacity-0" : "opacity-100"
+                imageLoading || imageError ? "opacity-0" : "opacity-100"
               )}
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              key={product.image}
               onLoad={() => {
                 setImageLoading(false);
                 setImageError(false);

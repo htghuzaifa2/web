@@ -3,21 +3,49 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
+import { Skeleton } from "./ui/skeleton";
 
 interface ProductImageGalleryProps {
   images: string[];
   productName: string;
 }
 
-const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: React.ComponentProps<typeof Image> & { fallbackSrc: string }) => {
+const ImageWithLoading = ({ src, alt, ...props }: React.ComponentProps<typeof Image>) => {
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const handleError = () => setError(true);
-    return <Image src={error ? fallbackSrc : src} alt={alt} onError={handleError} {...props} />;
-}
+
+    return (
+        <div className="relative w-full h-full">
+            {(loading || error) && (
+                <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                    {error ? (
+                        <ImageIcon className="h-12 w-12 text-muted-foreground" />
+                    ) : (
+                        <Skeleton className="w-full h-full" />
+                    )}
+                </div>
+            )}
+            <Image
+                src={src}
+                alt={alt}
+                className={cn(
+                    "transition-opacity duration-300",
+                    loading || error ? "opacity-0" : "opacity-100"
+                )}
+                onLoad={() => setLoading(false)}
+                onError={() => {
+                    setLoading(false);
+                    setError(true);
+                }}
+                {...props}
+            />
+        </div>
+    );
+};
 
 
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
@@ -40,10 +68,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
-
-  const fallbackImage = images[0] || "https://placehold.co/600x600.png";
-  const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmM2YzIi8+PC9zdmc+";
-
+  
   const openLightbox = useCallback((index: number) => {
     setMainImageIndex(index);
     setLightboxOpen(true);
@@ -193,15 +218,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                                 )}
                             >
-                                <ImageWithFallback
+                                <ImageWithLoading
                                     src={img}
                                     alt={`${productName} thumbnail ${index + 1}`}
                                     fill
                                     className="object-contain p-1"
                                     sizes="25vw"
-                                    placeholder="blur"
-                                    blurDataURL={placeholderImage}
-                                    fallbackSrc={fallbackImage}
                                 />
                             </button>
                         ))}
@@ -228,18 +250,18 @@ export default function ProductImageGallery({ images, productName }: ProductImag
          <div className="overflow-hidden h-full" ref={mainCarouselRef}>
             <div className="flex h-full">
                 {images.map((imgSrc, index) => (
-                    <div className="relative aspect-square w-full flex-shrink-0 flex-grow-0 basis-full" key={index}>
-                        <ImageWithFallback
+                    <div 
+                        className="relative aspect-square w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer"
+                        key={index}
+                        onClick={() => openLightbox(index)}
+                    >
+                        <ImageWithLoading
                             src={imgSrc}
                             alt={`${productName} image ${index + 1}`}
                             fill
-                            className="object-contain cursor-pointer"
+                            className="object-contain"
                             priority={index === 0}
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            placeholder="blur"
-                            blurDataURL={placeholderImage}
-                            fallbackSrc={fallbackImage}
-                            onClick={() => openLightbox(index)}
                         />
                     </div>
                 ))}
@@ -262,16 +284,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             <div className="overflow-hidden h-full" ref={lightboxEmblaRef}>
                <div className="flex h-full">
                   {images.map((imgSrc, index) => (
-                    <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center p-4" key={index}>
-                        <ImageWithFallback
+                    <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center p-4" key={`lightbox-main-${index}`}>
+                        <ImageWithLoading
                             src={imgSrc}
                             alt={productName}
                             fill
                             className="object-contain"
                             sizes="100vw"
-                            placeholder="blur"
-                            blurDataURL={placeholderImage}
-                            fallbackSrc={fallbackImage}
                         />
                     </div>
                   ))}
@@ -309,15 +328,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                            mainImageIndex === index ? "opacity-100 ring-2 ring-primary ring-offset-2 ring-offset-black/50" : "opacity-50 hover:opacity-100"
                         )}
                       >
-                        <ImageWithFallback
+                        <ImageWithLoading
                           src={img}
                           alt={`${productName} thumbnail ${index + 1}`}
                           fill
                           className="object-contain p-1"
                           sizes="20vw"
-                          placeholder="blur"
-                          blurDataURL={placeholderImage}
-                          fallbackSrc={fallbackImage}
                         />
                       </button>
                     ))}
