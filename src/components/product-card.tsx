@@ -51,7 +51,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {imageError ? (
                   <ImageIcon className="h-10 w-10 text-muted-foreground" />
                 ) : (
-                  <div className="ring-loader"><span></span></div>
+                  <div className="ring-loader scale-75">Loading<span></span></div>
                 )}
               </div>
             )}
