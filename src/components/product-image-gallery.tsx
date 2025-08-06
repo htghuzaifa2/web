@@ -282,6 +282,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             src={imgSrc}
                             alt={productName}
                             fill
+                            priority={index === mainImageIndex}
                             sizes="100vw"
                         />
                     </div>
