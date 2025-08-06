@@ -1,3 +1,4 @@
+
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -19,7 +20,7 @@ export const ImageWithSkeleton = ({ alt, className, onLoad, onError, ...props }:
         alt={alt}
         {...props}
         className={cn(
-          "transition-opacity duration-300",
+          "transition-opacity duration-300 object-contain",
           isLoaded && !hasError ? "opacity-100" : "opacity-0",
           className
         )}
@@ -34,7 +35,7 @@ export const ImageWithSkeleton = ({ alt, className, onLoad, onError, ...props }:
         }}
       />
       {(!isLoaded || hasError) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted">
+        <div className="absolute inset-0 flex items-center justify-center bg-muted/50">
            <Skeleton className="absolute inset-0" />
         </div>
       )}

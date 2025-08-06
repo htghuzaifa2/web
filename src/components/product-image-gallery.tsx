@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -255,7 +254,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             fill
                             priority={index === mainImageIndex}
                             sizes="100vw"
-                            className="object-contain"
                         />
                     </div>
                   ))}
