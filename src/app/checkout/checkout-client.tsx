@@ -126,7 +126,7 @@ export default function CheckoutClient() {
                             src={item.image}
                             alt={item.name}
                             fill
-                            className="object-cover"
+                            className="object-contain"
                           />
                         </div>
                         <div>

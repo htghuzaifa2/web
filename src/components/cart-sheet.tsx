@@ -42,7 +42,7 @@ export function CartSheet() {
                           src={item.image}
                           alt={item.name}
                           fill
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </Link>
                       <div className="flex-1">

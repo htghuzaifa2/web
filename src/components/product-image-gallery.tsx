@@ -197,7 +197,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     src={img}
                                     alt={`${productName} thumbnail ${index + 1}`}
                                     fill
-                                    className="object-cover"
+                                    className="object-contain p-1"
                                     sizes="25vw"
                                     placeholder="blur"
                                     blurDataURL={placeholderImage}
@@ -233,7 +233,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             src={imgSrc}
                             alt={`${productName} image ${index + 1}`}
                             fill
-                            className="object-cover cursor-pointer"
+                            className="object-contain cursor-pointer"
                             priority={index === 0}
                             sizes="(max-width: 768px) 100vw, 50vw"
                             placeholder="blur"
@@ -313,7 +313,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                           src={img}
                           alt={`${productName} thumbnail ${index + 1}`}
                           fill
-                          className="object-cover"
+                          className="object-contain p-1"
                           sizes="20vw"
                           placeholder="blur"
                           blurDataURL={placeholderImage}
