@@ -23,7 +23,7 @@ const ImageWithLoading = ({ src, alt, priority = false, ...props }: React.Compon
                     {error ? (
                         <ImageIcon className="h-12 w-12 text-muted-foreground" />
                     ) : (
-                        <div className="infinity-loader"></div>
+                         <div className="ring-loader"><span></span></div>
                     )}
                 </div>
             )}

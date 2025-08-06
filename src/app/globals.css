@@ -92,30 +92,55 @@
   .whatsapp-float {
     animation: whatsapp-pulse 2s infinite;
   }
-  .infinity-loader {
-    width: 120px;
-    height: 60px;
+
+  .ring-loader {
     position: relative;
-    transform: scale(0.7);
-  }
-  .infinity-loader:before,
-  .infinity-loader:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    border: 3px solid hsl(var(--border));
     border-radius: 50%;
-    border: 6px solid hsl(var(--primary));
-    animation: infinity-spin 2s infinite linear;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
-  .infinity-loader:before {
-    left: 0;
+
+  .ring-loader:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid hsl(var(--primary));
+    border-right: 3px solid hsl(var(--primary));
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
   }
-  .infinity-loader:after {
-    right: 0;
-    animation-delay: -1s;
+
+  .ring-loader span {
+    display: block;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background: transparent;
+    transform-origin: left;
+    animation: animate 2s linear infinite;
   }
+
+  .ring-loader span:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+    top: -6px;
+    right: -8px;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
 
   @keyframes zoom-in {
     from {
@@ -151,7 +176,8 @@
       box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
   }
-  @keyframes infinity-spin {
+  
+  @keyframes animateC {
     0% {
       transform: rotate(0deg);
     }
@@ -159,6 +185,16 @@
       transform: rotate(360deg);
     }
   }
+
+  @keyframes animate {
+    0% {
+      transform: rotate(45deg);
+    }
+    100% {
+      transform: rotate(405deg);
+    }
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
