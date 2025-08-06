@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown, ImageIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
@@ -20,11 +20,7 @@ const ImageWithLoading = ({ src, alt, priority = false, ...props }: React.Compon
         <div className="relative w-full h-full">
             {(loading || error) && (
                 <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                    {error ? (
-                        <ImageIcon className="h-12 w-12 text-muted-foreground" />
-                    ) : (
-                         <div className="ring-loader">Loading<span></span></div>
-                    )}
+                    <div className="ring-loader"><span></span></div>
                 </div>
             )}
             <Image

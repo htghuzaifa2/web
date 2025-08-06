@@ -9,7 +9,7 @@ import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
 import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
-import { Eye, ShoppingCart, ImageIcon } from "lucide-react";
+import { Eye, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
@@ -48,11 +48,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Link href={`/product/${productSlug}`} className="group block h-full w-full">
             {(imageLoading || imageError) && (
               <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                {imageError ? (
-                  <ImageIcon className="h-10 w-10 text-muted-foreground" />
-                ) : (
-                  <div className="ring-loader scale-75">Loading<span></span></div>
-                )}
+                <div className="ring-loader scale-50"><span></span></div>
               </div>
             )}
             <Image
