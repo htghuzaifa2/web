@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -20,7 +21,7 @@ const ImageWithLoading = ({ src, alt, priority = false, ...props }: React.Compon
         <div className="relative w-full h-full">
             {(loading || error) && (
                 <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                    <div className="ring-loader"><span></span></div>
+                    <div className="ring-loader">Loading<span></span></div>
                 </div>
             )}
             <Image
