@@ -79,8 +79,8 @@ const getFeaturedProducts = () => {
 }
 
 
-export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  const page = typeof searchParams.page === 'string' ? searchParams.page : '1';
+export default async function Home({ searchParams }: { searchParams?: { page?: string } }) {
+  const page = searchParams?.page ?? '1';
   const currentPage = Number(page);
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
