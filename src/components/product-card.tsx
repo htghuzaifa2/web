@@ -12,7 +12,6 @@ import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
 import { Eye, ShoppingCart, ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface ProductCardProps {
   product: Product;
@@ -53,7 +52,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {imageError ? (
                   <ImageIcon className="h-10 w-10 text-muted-foreground" />
                 ) : (
-                  <Skeleton className="h-full w-full" />
+                  <div className="infinity-loader"></div>
                 )}
               </div>
             )}

@@ -92,6 +92,30 @@
   .whatsapp-float {
     animation: whatsapp-pulse 2s infinite;
   }
+  .infinity-loader {
+    width: 120px;
+    height: 60px;
+    position: relative;
+  }
+  .infinity-loader:before,
+  .infinity-loader:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 6px solid hsl(var(--primary));
+    animation: infinity-spin 2s infinite linear;
+  }
+  .infinity-loader:before {
+    left: 0;
+  }
+  .infinity-loader:after {
+    right: 0;
+    animation-delay: -1s;
+  }
+
   @keyframes zoom-in {
     from {
       opacity: 0;
@@ -124,6 +148,14 @@
     100% {
       transform: scale(1);
       box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+  @keyframes infinity-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
   .no-scrollbar::-webkit-scrollbar {

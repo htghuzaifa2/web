@@ -7,14 +7,13 @@ import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronD
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
-import { Skeleton } from "./ui/skeleton";
 
 interface ProductImageGalleryProps {
   images: string[];
   productName: string;
 }
 
-const ImageWithLoading = ({ src, alt, ...props }: React.ComponentProps<typeof Image>) => {
+const ImageWithLoading = ({ src, alt, priority = false, ...props }: React.ComponentProps<typeof Image> & { priority?: boolean }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -25,13 +24,14 @@ const ImageWithLoading = ({ src, alt, ...props }: React.ComponentProps<typeof Im
                     {error ? (
                         <ImageIcon className="h-12 w-12 text-muted-foreground" />
                     ) : (
-                        <Skeleton className="w-full h-full" />
+                        <div className="infinity-loader"></div>
                     )}
                 </div>
             )}
             <Image
                 src={src}
                 alt={alt}
+                priority={priority}
                 className={cn(
                     "transition-opacity duration-300",
                     loading || error ? "opacity-0" : "opacity-100"
