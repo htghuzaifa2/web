@@ -10,8 +10,9 @@ import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
 import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
-import { Eye, ShoppingCart } from "lucide-react";
+import { Eye, ShoppingCart, ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ProductCardProps {
   product: Product;
@@ -21,6 +22,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -39,54 +42,70 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const productSlug = product.slug;
-  const placeholderImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4=";
-  
+
   return (
     <Card className="group/card relative overflow-hidden transition-shadow duration-300 hover:shadow-lg h-full flex flex-col">
       <CardContent className="p-0 flex flex-col flex-grow">
         <div className="relative aspect-square w-full overflow-hidden">
-           <Link href={`/product/${productSlug}`} className="group block">
+          <Link href={`/product/${productSlug}`} className="group block h-full w-full">
+            {imageLoading && !imageError && (
+              <Skeleton className="h-full w-full" />
+            )}
+            {imageError && (
+              <div className="flex h-full w-full items-center justify-center bg-muted">
+                <ImageIcon className="h-10 w-10 text-muted-foreground" />
+              </div>
+            )}
             <Image
               src={product.image}
               alt={product.name}
               fill
-              className="object-contain"
+              className={cn(
+                "object-contain transition-opacity duration-300",
+                imageLoading ? "opacity-0" : "opacity-100"
+              )}
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               key={product.image}
-              placeholder="blur"
-              blurDataURL={placeholderImage}
+              onLoad={() => {
+                setImageLoading(false);
+                setImageError(false);
+              }}
+              onError={() => {
+                setImageLoading(false);
+                setImageError(true);
+              }}
             />
           </Link>
 
           {/* Icons for Mobile - Always Visible */}
-           <div 
+          <div
             className={cn(
                 "absolute top-2 right-2 z-10 flex flex-col gap-2 transition-opacity duration-300",
                 "lg:opacity-0 lg:group-hover/card:opacity-100"
             )}
-           >
-                <Button
-                    variant="secondary"
-                    size="icon"
-                    className="h-9 w-9 rounded-full shadow-md"
-                    onClick={handleQuickView}
-                    aria-label="Quick View"
-                    >
-                    <Eye className="h-4 w-4" />
-                </Button>
-                <Button
-                    variant="secondary"
-                    size="icon"
-                    className="h-9 w-9 rounded-full shadow-md"
-                    onClick={handleAddToCart}
-                    aria-label="Add to cart"
-                    >
-                    <ShoppingCart className="h-4 w-4" />
-                </Button>
-           </div>
+          >
+            <Button
+                variant="secondary"
+                size="icon"
+                className="h-9 w-9 rounded-full shadow-md"
+                onClick={handleQuickView}
+                aria-label="Quick View"
+            >
+              <Eye className="h-4 w-4" />
+            </Button>
+            <Button
+                variant="secondary"
+                size="icon"
+                className="h-9 w-9 rounded-full shadow-md"
+                onClick={handleAddToCart}
+                aria-label="Add to cart"
+            >
+              <ShoppingCart className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
         <div className="p-3 text-center flex-grow flex flex-col justify-between items-center">
-            <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex items-center justify-center min-h-[2.5rem]">
+          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex items-center justify-center min-h-[2.5rem]">
             <Link href={`/product/${productSlug}`} className="hover:underline">
               {product.name}
             </Link>
