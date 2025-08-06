@@ -12,15 +12,22 @@ interface ProductImageGalleryProps {
   productName: string;
 }
 
-const ImageWithLoading = ({ src, alt, priority = false, ...props }: React.ComponentProps<typeof Image> & { priority?: boolean }) => {
+const ImageWithLoading = ({ src, alt, priority = false, loaderSize = 'lg', ...props }: React.ComponentProps<typeof Image> & { priority?: boolean; loaderSize?: 'sm' | 'lg' }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+
+    const loaderScale = {
+      sm: 'scale-[0.4]', // For thumbnails
+      lg: 'scale-[0.8]', // For main image
+    };
 
     return (
         <div className="relative w-full h-full">
             {(loading || error) && (
                 <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                    <div className="ring-loader">Loading<span></span></div>
+                    <div className={cn("ring-loader", loaderScale[loaderSize])}>
+                        Loading<span></span>
+                    </div>
                 </div>
             )}
             <Image
@@ -219,6 +226,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     fill
                                     className="object-contain p-1"
                                     sizes="25vw"
+                                    loaderSize="sm"
                                 />
                             </button>
                         ))}
@@ -257,6 +265,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             className="object-contain"
                             priority={index === 0}
                             sizes="(max-width: 768px) 100vw, 50vw"
+                            loaderSize="lg"
                         />
                     </div>
                 ))}
@@ -329,6 +338,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                           fill
                           className="object-contain p-1"
                           sizes="20vw"
+                          loaderSize="sm"
                         />
                       </button>
                     ))}
