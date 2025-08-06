@@ -96,6 +96,7 @@
     width: 120px;
     height: 60px;
     position: relative;
+    transform: scale(0.7);
   }
   .infinity-loader:before,
   .infinity-loader:after {
