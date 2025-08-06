@@ -1,0 +1,43 @@
+"use client";
+
+import { cn } from "@/lib/utils";
+import Image, { ImageProps } from "next/image";
+import { useState } from "react";
+import { Skeleton } from "./ui/skeleton";
+
+interface ImageWithSkeletonProps extends ImageProps {
+  alt: string;
+}
+
+export const ImageWithSkeleton = ({ alt, className, onLoad, onError, ...props }: ImageWithSkeletonProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className="relative w-full h-full">
+      <Image
+        alt={alt}
+        {...props}
+        className={cn(
+          "transition-opacity duration-300",
+          isLoaded && !hasError ? "opacity-100" : "opacity-0",
+          className
+        )}
+        onLoad={(e) => {
+            setIsLoaded(true);
+            onLoad?.(e);
+        }}
+        onError={(e) => {
+          setIsLoaded(true);
+          setHasError(true);
+          onError?.(e);
+        }}
+      />
+      {(!isLoaded || hasError) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted">
+           <Skeleton className="absolute inset-0" />
+        </div>
+      )}
+    </div>
+  );
+};

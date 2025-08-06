@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image, { ImageProps } from "next/image";
 import type { Product } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
@@ -11,43 +10,7 @@ import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Skeleton } from "./ui/skeleton";
-
-interface ImageWithSkeletonProps extends ImageProps {
-  alt: string;
-}
-
-const ImageWithSkeleton = ({ alt, ...props }: ImageWithSkeletonProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-
-  return (
-    <div className="relative w-full h-full">
-      <Image
-        alt={alt}
-        {...props}
-        className={cn(
-          "transition-opacity duration-300",
-          isLoaded && !hasError ? "opacity-100" : "opacity-0",
-          props.className
-        )}
-        onLoad={() => setIsLoaded(true)}
-        onError={() => {
-          setIsLoaded(true);
-          setHasError(true);
-        }}
-      />
-      {!isLoaded && (
-         <Skeleton className="absolute inset-0" />
-      )}
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted">
-           <Skeleton className="absolute inset-0" />
-        </div>
-      )}
-    </div>
-  );
-};
+import { ImageWithSkeleton } from "./image-with-skeleton";
 
 interface ProductCardProps {
   product: Product;

@@ -2,46 +2,17 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
-import { Skeleton } from "./ui/skeleton";
+import { ImageWithSkeleton } from "./image-with-skeleton";
 
 interface ProductImageGalleryProps {
   images: string[];
   productName: string;
 }
-
-const ImageWithSkeleton = ({ alt, priority = false, ...props }: ImageProps & { alt: string, priority?: boolean }) => {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [hasError, setHasError] = useState(false);
-
-    return (
-        <div className="relative w-full h-full bg-muted">
-            <Image
-                alt={alt}
-                {...props}
-                priority={priority}
-                className={cn(
-                    "transition-opacity duration-300 w-full h-full object-contain",
-                    isLoaded && !hasError ? "opacity-100" : "opacity-0",
-                    props.className
-                )}
-                onLoad={() => setIsLoaded(true)}
-                onError={() => {
-                    setIsLoaded(true);
-                    setHasError(true);
-                }}
-            />
-            {(!isLoaded || hasError) && (
-                 <Skeleton className="absolute inset-0" />
-            )}
-        </div>
-    );
-};
-
 
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -284,6 +255,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             fill
                             priority={index === mainImageIndex}
                             sizes="100vw"
+                            className="object-contain"
                         />
                     </div>
                   ))}
