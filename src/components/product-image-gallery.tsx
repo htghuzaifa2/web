@@ -187,7 +187,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     src={img}
                                     alt={`${productName} thumbnail ${index + 1}`}
                                     fill
-                                    sizes="25vw"
+                                    sizes="80px"
                                 />
                             </button>
                         ))}
@@ -224,7 +224,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             alt={`${productName} image ${index + 1}`}
                             fill
                             priority={index === 0}
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     </div>
                 ))}
@@ -295,7 +295,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                           src={img}
                           alt={`${productName} thumbnail ${index + 1}`}
                           fill
-                          sizes="20vw"
+                          sizes="80px"
                         />
                       </button>
                     ))}
