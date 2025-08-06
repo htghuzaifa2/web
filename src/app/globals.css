@@ -93,30 +93,51 @@
     animation: whatsapp-pulse 2s infinite;
   }
 
- .ring-loader
-  {
-    width:120px;
-    height:120px;
-    background:transparent;
-    border:3px solid #fff000;
-    border-radius:50%;
-    text-align:center;
-    line-height:120px;
-    font-family:sans-serif;
-    font-size:14px;
-    color:#fff000;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    text-shadow:0 0 10px #fff000;
-    box-shadow:0 0 20px rgba(0,0,0,.5);
+  .ring-loader {
+    background: transparent;
+    border: 3px solid #fff000;
+    border-radius: 50%;
+    text-align: center;
+    font-family: sans-serif;
+    color: #fff000;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #fff000;
+    box-shadow: 0 0 20px rgba(0,0,0,.5);
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .ring-loader:before
-  {
+  
+  .ring-loader-lg {
+    width: 120px;
+    height: 120px;
+    font-size: 14px;
+    line-height: 120px;
+  }
+  
+  .ring-loader-md {
+    width: 90px;
+    height: 90px;
+    font-size: 12px;
+    line-height: 90px;
+  }
+  
+  .ring-loader-sm {
+    width: 50px;
+    height: 50px;
+    font-size: 8px;
+    line-height: 50px;
+    letter-spacing: 1px;
+    border-width: 2px;
+  }
+
+  .ring-loader:before {
     content:'';
     position:absolute;
-    top:-3px;
-    left:-3px;
+    top: -3px;
+    left: -3px;
     width:100%;
     height:100%;
     border:3px solid transparent;
@@ -125,8 +146,14 @@
     border-radius:50%;
     animation:animateC 2s linear infinite;
   }
-  .ring-loader span
-  {
+
+  .ring-loader-sm:before {
+    border-width: 2px;
+    top: -2px;
+    left: -2px;
+  }
+
+  .ring-loader span {
     display:block;
     position:absolute;
     top:calc(50% - 2px);
@@ -137,17 +164,36 @@
     transform-origin:left;
     animation:animate 2s linear infinite;
   }
-  .ring-loader span:before
-  {
+  
+  .ring-loader-sm span {
+    height: 2px;
+  }
+
+  .ring-loader span:before {
     content:'';
     position:absolute;
-    width:16px;
-    height:16px;
     border-radius:50%;
     background:#fff000;
+    box-shadow:0 0 20px #fff000;
+  }
+
+  .ring-loader-lg span:before {
+     width:16px;
+    height:16px;
     top:-6px;
     right:-8px;
-    box-shadow:0 0 20px #fff000;
+  }
+  .ring-loader-md span:before {
+    width:12px;
+    height:12px;
+    top:-5px;
+    right:-6px;
+  }
+  .ring-loader-sm span:before {
+    width:8px;
+    height:8px;
+    top:-3px;
+    right:-4px;
   }
 
 

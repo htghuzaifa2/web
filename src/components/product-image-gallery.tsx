@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -12,21 +13,19 @@ interface ProductImageGalleryProps {
   productName: string;
 }
 
-const ImageWithLoading = ({ src, alt, priority = false, loaderSize = 'lg', ...props }: React.ComponentProps<typeof Image> & { priority?: boolean; loaderSize?: 'sm' | 'lg' }) => {
+type LoaderSize = 'sm' | 'md' | 'lg';
+
+const ImageWithLoading = ({ src, alt, priority = false, loaderSize = 'lg', ...props }: React.ComponentProps<typeof Image> & { priority?: boolean; loaderSize?: LoaderSize }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-
-    const loaderScale = {
-      sm: 'scale-[0.4]', // For thumbnails
-      lg: 'scale-[0.8]', // For main image
-    };
 
     return (
         <div className="relative w-full h-full">
             {(loading || error) && (
                 <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                    <div className={cn("ring-loader", loaderScale[loaderSize])}>
-                        Loading<span></span>
+                    <div className={cn("ring-loader", `ring-loader-${loaderSize}`)}>
+                        {loaderSize !== 'sm' && 'Loading'}
+                        <span></span>
                     </div>
                 </div>
             )}
@@ -295,6 +294,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             fill
                             className="object-contain"
                             sizes="100vw"
+                            loaderSize="lg"
                         />
                     </div>
                   ))}

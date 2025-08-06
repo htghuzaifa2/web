@@ -48,7 +48,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Link href={`/product/${productSlug}`} className="group block h-full w-full">
             {(imageLoading || imageError) && (
               <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                <div className="ring-loader scale-[0.6]">Loading<span></span></div>
+                <div className="ring-loader ring-loader-md">Loading<span></span></div>
               </div>
             )}
             <Image
