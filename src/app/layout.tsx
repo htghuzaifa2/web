@@ -22,7 +22,6 @@ const alegreya = Alegreya({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
-  weight: ['400', '500', '700'],
 });
 
 const siteConfig = {
