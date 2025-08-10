@@ -15,6 +15,7 @@ export const ImageWithSkeleton = ({ alt, className, onLoad, onError, src, ...pro
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
+    // Reset state when the image source changes
     setIsLoaded(false);
     setHasError(false);
   }, [src]);
@@ -26,7 +27,8 @@ export const ImageWithSkeleton = ({ alt, className, onLoad, onError, src, ...pro
         src={src}
         {...props}
         className={cn(
-          "transition-opacity duration-300 object-contain",
+          "transition-opacity duration-500 ease-in-out",
+          "object-contain",
           isLoaded && !hasError ? "opacity-100" : "opacity-0",
           className
         )}
