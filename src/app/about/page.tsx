@@ -1,5 +1,6 @@
 
 import { Metadata } from "next";
+import PortfolioButton from "@/components/portfolio-button";
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -28,6 +29,9 @@ export default function AboutPage() {
                     <p>
                         At huzi.pk, customer satisfaction is our top priority. We are dedicated to providing a seamless shopping experience, from browsing our user-friendly website to the moment your order arrives at your doorstep. We are more than just a store; we are a community of fashion enthusiasts, and we are thrilled to have you with us.
                     </p>
+                </div>
+                 <div className="mt-16 text-center">
+                    <PortfolioButton />
                 </div>
             </div>
         </div>
