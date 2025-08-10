@@ -8,21 +8,21 @@ import { Toaster } from "@/components/ui/toaster"
 import { CartProvider } from '@/context/cart-context';
 import Link from 'next/link';
 import { SVGProps } from 'react';
-import { Alegreya, Inter } from 'next/font/google';
+import { Alegreya, Belleza } from 'next/font/google';
 import { ScrollToTop } from '@/components/scroll-to-top';
 
-const inter = Inter({
+const belleza = Belleza({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-body',
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-headline',
+  weight: "400",
 });
 
 const alegreya = Alegreya({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-headline',
-  weight: "700",
+  variable: '--font-body',
+  weight: ['400', '500', '700'],
 });
 
 const siteConfig = {
@@ -82,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${alegreya.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head />
       <body className="font-body antialiased">
         <ThemeProvider

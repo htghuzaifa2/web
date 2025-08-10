@@ -215,7 +215,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             <div className="flex h-full">
                 {images.map((imgSrc, index) => (
                     <div 
-                        className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer aspect-square md:aspect-auto"
+                        className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer aspect-square"
                         key={index}
                         onClick={() => openLightbox(index)}
                     >

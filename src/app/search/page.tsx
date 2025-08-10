@@ -36,7 +36,7 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
   const filteredProducts = query
     ? allProducts.filter(product =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.description.toLowerCase().includes(query.toLowerCase()) ||
+        (product.description && product.description.toLowerCase().includes(query.toLowerCase())) ||
         product.id.toString().includes(query)
       )
     : [];
