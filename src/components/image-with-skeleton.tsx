@@ -3,21 +3,27 @@
 
 import { cn } from "@/lib/utils";
 import Image, { ImageProps } from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Skeleton } from "./ui/skeleton";
 
 interface ImageWithSkeletonProps extends ImageProps {
   alt: string;
 }
 
-export const ImageWithSkeleton = ({ alt, className, onLoad, onError, ...props }: ImageWithSkeletonProps) => {
+export const ImageWithSkeleton = ({ alt, className, onLoad, onError, src, ...props }: ImageWithSkeletonProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setHasError(false);
+  }, [src]);
 
   return (
     <div className="relative w-full h-full">
       <Image
         alt={alt}
+        src={src}
         {...props}
         className={cn(
           "transition-opacity duration-300 object-contain",
