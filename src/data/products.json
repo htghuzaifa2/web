@@ -2515,7 +2515,7 @@
       "description": "An all-over print embroidered lawn suit with a printed soft chiffon dupatta.",
       "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Dresses Design\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Heavy Embroidered Neck Patch\n- Printed Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves with Border Patches\n- Heavy Embroidered Daman Patch\n- Printed Soft Chiffon Dupatta\n- Printed Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
       "specifications": {
-        "Product": "3-Piece Lawn Dress",
+        "Product": "3 Pieces Embroidered Lawn Suit",
         "Type": "Embroidered Lawn Dress",
         "Condition": "Unstitched",
         "Season": "Summer 2025",
@@ -2700,7 +2700,7 @@
       "description": "An all-over floral print embroidered lawn dress with a printed soft chiffon dupatta.",
       "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Suits Online\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Printed Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves with Border Patches\n- Schiffli Embroidered Daman Patch\n- Printed Soft Chiffon Dupatta\n- Printed Cambric Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
       "specifications": {
-        "Product": "3 Pieces Lawn Suit",
+        "Product": "3-Piece Lawn Suit",
         "Type": "Embroidered Lawn Dress",
         "Condition": "Unstitched",
         "Season": "Summer 2025",
@@ -2728,7 +2728,7 @@
       "description": "A luxury heavy embroidered lawn dress with a 4-side border embroidered NET dupatta.",
       "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Suits in Pakistan\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Embroidered Neck\n- Heavy Embroidered Lawn Front\n- Plain Lawn Back with Back Bunch\n- Plain Lawn Sleeves with Embroidered Patches\n- Embroidered Front Daman Patch\n- Embroidered Back Daman Patch\n- 4 Side Border Embroidered NET Dupatta\n- Plain Dyed Trouser with Border Patches\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
       "specifications": {
-        "Product": "3 Pieces Lawn Suit",
+        "Product": "3-Piece Lawn Suit",
         "Type": "Embroidered Lawn Dress",
         "Condition": "Unstitched",
         "Season": "Summer 2025",
@@ -2883,7 +2883,7 @@
     },
     {
       "id": 98,
-      "slug": "all-over-print-schiffli-embroidered-lawn-dress-2025-with-chiffon-dupatta-2",
+      "slug": "all-over-print-schiffli-embroidered-lawn-dress-2025-with-chiffon-dupatta",
       "name": "All-Over Print Schiffli Embroidered Lawn Dress 2025 with Chiffon Dupatta",
       "price": 4500,
       "description": "A high-quality 90/70 lawn dress with Schiffli embroidery and a digital printed chiffon dupatta.",
@@ -3017,7 +3017,7 @@
       "slug": "all-over-print-embroidered-lawn-dress-2025-with-chiffon-dupatta-6",
       "name": "All-Over Print Embroidered Lawn Dress 2025 with Chiffon Dupatta",
       "price": 4800,
-      "description": "An all-over print embroidered lawn dress with a printed soft chiffon dupatta.",
+      "description": "An all-over print embroidered lawn dress with a border embroidered soft chiffon dupatta.",
       "longDescription": "Product Highlights:\n- Product: 3 Pieces Printed Lawn Suits Designs\n- Type: Printed Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Heavy Embroidered Neck Patch\n- Embroidered Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves with Embroidered Patches\n- Embroidered Daman Patch\n- Border Embroidered Soft Chiffon Dupatta\n- Printed Trouser\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
       "specifications": {
         "Product": "3-Piece Lawn Dress",
@@ -3325,7 +3325,7 @@
       "name": "All-Over Print Embroidered Lawn Suit 2025 with Chiffon Dupatta",
       "price": 4200,
       "description": "An all-over print embroidered lawn suit with a printed soft chiffon dupatta.",
-      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Dresses Designs\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Heavy Embroidered Neck Patch\n- Printed Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves\n- Embroidered Daman Patch\n- Printed Soft Chiffon Dupatta\n- Printed Cambric Trouser with Patches\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
+      "longDescription": "Product Highlights:\n- Product: 3 Pieces Embroidered Lawn Dresses Designs\n- Type: Embroidered Lawn Dress\n- Condition: Unstitched Lawn Suit\n- Season: Summer Collection 2025\n- Collection: Lawn Collection 2025\n- Heavy Embroidered Neck Patch\n- Embroidered Lawn Front\n- Printed Lawn Back\n- Printed Lawn Sleeves\n- Embroidered Daman Patch\n- Printed Soft Chiffon Dupatta\n- Printed Cambric Trouser with Patches\n- Color & Design: As Shown in Picture\n- Occasion: Casual",
       "specifications": {
         "Product": "3-Piece Lawn Suit",
         "Type": "Embroidered Lawn Dress",
@@ -3439,8 +3439,9 @@
         "Sleeves": "Embroidered Raw Silk Sleeves with Multi Laces",
         "Dupatta": "Printed Khaddi Net Dupatta",
         "Trouser": "Plain Raw Silk Trouser with Heavy Border Laces",
+        "Color & Design": "As Shown in Picture",
         "Occasion": "Casual",
-        "Design": "Attractive Design"
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
@@ -3471,8 +3472,9 @@
         "Sleeves": "Embroidered Raw Silk Sleeves with Multi Laces",
         "Dupatta": "Printed Khaddi Net Dupatta",
         "Trouser": "Plain Raw Silk Trouser with Heavy Border Laces",
+        "Color & Design": "As Shown in Picture",
         "Occasion": "Casual",
-        "Design": "Attractive Design"
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
@@ -3503,8 +3505,9 @@
         "Sleeves": "Embroidered Raw Silk Sleeves with Multi Laces",
         "Dupatta": "Printed Khaddi Net Dupatta",
         "Trouser": "Plain Raw Silk Trouser with Heavy Border Laces",
+        "Color & Design": "As Shown in Picture",
         "Occasion": "Casual",
-        "Design": "Attractive Design"
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
@@ -3535,8 +3538,9 @@
         "Sleeves": "Embroidered Raw Silk Sleeves with Multi Laces",
         "Dupatta": "Printed Khaddi Net Dupatta",
         "Trouser": "Plain Raw Silk Trouser with Heavy Border Laces",
+        "Color & Design": "As Shown in Picture",
         "Occasion": "Casual",
-        "Design": "Attractive Design"
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
@@ -3567,8 +3571,9 @@
         "Sleeves": "Embroidered Raw Silk Sleeves with Multi Laces",
         "Dupatta": "Printed Khaddi Net Dupatta",
         "Trouser": "Plain Raw Silk Trouser with Heavy Border Laces",
+        "Color & Design": "As Shown in Picture",
         "Occasion": "Casual",
-        "Design": "Attractive Design"
+        "Highlights": "Attractive Design"
       },
       "category": [
         "women",
@@ -3826,6 +3831,230 @@
         "https://i.postimg.cc/W1yDNTpq/imgi-16-p17622-embroidered-velvet-dress-5.jpg"
       ],
       "stock": 10
+    },
+    {
+      "id": 132,
+      "slug": "luxury-heavy-embroidered-velvet-wedding-dress-with-emb-raw-silk-trouser",
+      "name": "Luxury Heavy Embroidered Velvet Wedding Dress with Emb. Raw Silk Trouser",
+      "price": 8000,
+      "description": "A luxury heavy embroidered velvet wedding dress with an embroidered raw silk trouser.",
+      "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Velvet Dresses Design Online\n- Season: Spring/Winter Collection 2024\n- Collection: Velvet Collection 2024\n- Embroidery: Zari, Thread & Sequins\n- Fabric: 9000 Micro Velvet\n- Details: Heavy Embroidered Neck, Front, Sleeves, and Daman. Comes with a Heavy Embroidered Tie & Die Organza Dupatta and an Embroidered Raw Silk Trouser.",
+      "specifications": {
+        "Product": "Unstitched Embroidered Velvet Dresses Design Online",
+        "Season": "Spring/Winter Collection 2024",
+        "Collection": "Velvet Collection 2024",
+        "Embroidery": "Zari, Thread & Sequins",
+        "Fabric": "9000 Micro Velvet",
+        "Neck": "Heavy Embroidered",
+        "Front": "Heavy Embroidered Velvet",
+        "Sleeves": "Embroidered Velvet",
+        "Daman": "Heavy Embroidered",
+        "Dupatta": "Heavy Embroidered Tie & Die Organza",
+        "Trouser": "Embroidered Raw Silk",
+        "Occasions": "Party, Wedding"
+      },
+      "category": ["women", "bridal-dresses"],
+      "image": "https://i.postimg.cc/RhCf3dkW/imgi-11-p17605-embroidered-velvet-wedding-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/PJ6D1ZH2/imgi-12-p17605-embroidered-velvet-wedding-dress-1.jpg",
+        "https://i.postimg.cc/wxFDKKNL/imgi-13-p17605-embroidered-velvet-wedding-dress-2.jpg",
+        "https://i.postimg.cc/CL1kSvCt/imgi-14-p17605-embroidered-velvet-wedding-dress-3.jpg",
+        "https://i.postimg.cc/8P0W5htC/imgi-15-p17605-embroidered-velvet-wedding-dress-4.jpg",
+        "https://i.postimg.cc/qv6KCz5x/imgi-16-p17605-embroidered-velvet-wedding-dress-5.jpg",
+        "https://i.postimg.cc/FKtLbht5/imgi-17-p17605-embroidered-velvet-wedding-dress-6.jpg",
+        "https://i.postimg.cc/N01rpZYy/imgi-18-p17605-embroidered-velvet-wedding-dress-7.jpg"
+      ],
+      "stock": 10
+    },
+    {
+      "id": 133,
+      "slug": "handwork-heavy-embroidered-black-chiffon-wedding-dress",
+      "name": "Handwork Heavy Embroidered Black Chiffon Wedding Dress",
+      "price": 5500,
+      "description": "A stunning handwork heavy embroidered black chiffon wedding dress.",
+      "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Chiffon Party Wear Dress\n- Embroidery: Zari, Thread, Nag & Sequins\n- Details: Handwork Heavy Embroidered Chiffon Front, Heavy Embroidered Chiffon Sleeves, Heavy Embroidered Daman, and a Heavy Embroidered Organza Dupatta. Inner lining included.",
+      "specifications": {
+        "Product": "Unstitched Embroidered Chiffon Party Wear Dress",
+        "Embroidery": "Zari, Thread, Nag & Sequins",
+        "Front": "Handwork Heavy Embroidered Chiffon",
+        "Back": "Plain Chiffon",
+        "Sleeves": "Heavy Embroidered Chiffon",
+        "Daman": "Heavy Embroidered",
+        "Dupatta": "Heavy Embroidered Organza",
+        "Trouser": "Plain Satin Silk",
+        "Inner": "Plain Dyed Crepe/Malai Inner Includes",
+        "Occasions": "Party, Wedding"
+      },
+      "category": ["women", "bridal-dresses"],
+      "image": "https://i.postimg.cc/XJtqW8VM/imgi-11-p17595-embroidered-chiffon-wedding-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/c4yC5X9w/imgi-12-p17595-embroidered-chiffon-wedding-dress-1.jpg",
+        "https://i.postimg.cc/RCnqRjRv/imgi-13-p17595-embroidered-chiffon-wedding-dress-2.jpg",
+        "https://i.postimg.cc/NjQMQLw0/imgi-14-p17595-embroidered-chiffon-wedding-dress-3.jpg",
+        "https://i.postimg.cc/kXQGrKzZ/imgi-15-p17595-embroidered-chiffon-wedding-dress-4.jpg",
+        "https://i.postimg.cc/JhnzBg0V/imgi-16-p17595-embroidered-chiffon-wedding-dress-5.jpg"
+      ],
+      "stock": 10
+    },
+    {
+      "id": 134,
+      "slug": "formal-embroidered-velvet-party-wear-dress-with-emb-silk-trouser",
+      "name": "Formal Embroidered Velvet Party Wear Dress with Emb. Silk Trouser",
+      "price": 8250,
+      "description": "A formal embroidered velvet party wear dress with an embroidered silk trouser.",
+      "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Velvet Designs in Pakistan\n- Season: Spring/Winter Collection\n- Fabric: 9000 Micro Velvet\n- Embroidery: Zari, Thread & Sequins\n- Details: Heavy embroidered velvet sleeves, Embroidered Front and Back Daman, 4 Side Border Embroidered Chiffon Dupatta, and an Embroidered Silk Trouser.",
+      "specifications": {
+        "Product": "Unstitched Embroidered Velvet Designs in Pakistan",
+        "Season": "Spring/Winter Collection",
+        "Collection": "Velvet Collection",
+        "Fabric": "9000 Micro Velvet",
+        "Embroidery": "Zari, Thread & Sequins",
+        "Neck": "Heavy Embroidered",
+        "Front": "Plain Velvet",
+        "Back": "Plain Velvet",
+        "Sleeves": "Heavy Embroidered Velvet",
+        "Daman": "Embroidered Front & Back",
+        "Dupatta": "4 Side Border Embroidered Chiffon",
+        "Trouser": "Embroidered Silk",
+        "Occasions": "Party, Wedding"
+      },
+      "category": ["women", "bridal-dresses"],
+      "image": "https://i.postimg.cc/pdtBWfLF/imgi-11-p17664-embroidered-velvet-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/ZRwPxXF8/imgi-12-p17664-embroidered-velvet-dress-1.jpg",
+        "https://i.postimg.cc/jqkQw0jK/imgi-13-p17664-embroidered-velvet-dress-2.webp",
+        "https://i.postimg.cc/mkhYXV80/imgi-14-p17664-embroidered-velvet-dress-3.webp",
+        "https://i.postimg.cc/1XTpL6d4/imgi-15-p17664-embroidered-velvet-dress-4.jpg",
+        "https://i.postimg.cc/dtkRGH7C/imgi-16-p17664-embroidered-velvet-dress-5.jpg"
+      ],
+      "stock": 10
+    },
+    {
+      "id": 135,
+      "slug": "luxury-heavy-embroidered-velvet-wedding-dress-with-emb-chiffon-dupatta",
+      "name": "Luxury Heavy Embroidered Velvet Wedding Dress with Emb. Chiffon Dupatta",
+      "price": 9000,
+      "description": "A luxury heavy embroidered velvet dress with a 4-side border embroidered chiffon dupatta.",
+      "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Velvet Designs in Pakistan\n- Season: Spring/Winter Collection\n- Details: Heavy embroidery on neck, front, and sleeves. Includes embroidered front and back daman patches, a 4-side border embroidered chiffon dupatta, and a plain satin silk trouser.",
+      "specifications": {
+        "Product": "Unstitched Embroidered Velvet Designs in Pakistan",
+        "Season": "Spring/Winter Collection",
+        "Collection": "Velvet Collection",
+        "Embroidery": "Zari, Thread & Sequins",
+        "Neck": "Heavy Embroidered",
+        "Front": "Heavy Embroidered Velvet",
+        "Back": "Plain Velvet",
+        "Sleeves": "Heavy Embroidered Velvet",
+        "Daman": "Embroidered Front & Back Patch",
+        "Dupatta": "4 Side Border Embroidered Chiffon",
+        "Trouser": "Plain Satin Silk",
+        "Occasions": "Party, Wedding"
+      },
+      "category": ["women", "bridal-dresses"],
+      "image": "https://i.postimg.cc/SKscNgpj/imgi-12-p17674-embroidered-velvet-dress-1.webp",
+      "additionalImages": [
+        "https://i.postimg.cc/VLqq7SRs/imgi-11-p17674-embroidered-velvet-dress.jpg",
+        "https://i.postimg.cc/BbxKwy27/imgi-13-p17674-embroidered-velvet-dress-2.jpg",
+        "https://i.postimg.cc/HLhXJbpz/imgi-14-p17674-embroidered-velvet-dress-3.jpg",
+        "https://i.postimg.cc/76J7Sbhk/imgi-15-p17674-embroidered-velvet-dress-4.jpg",
+        "https://i.postimg.cc/kGrSs9Rt/imgi-16-p17674-embroidered-velvet-dress-5.jpg",
+        "https://i.postimg.cc/tRPWT18d/imgi-17-p17674-embroidered-velvet-dress-6.jpg",
+        "https://i.postimg.cc/pXH8nWtw/imgi-18-p17674-embroidered-velvet-dress-7.jpg"
+      ],
+      "stock": 10
+    },
+    {
+      "id": 136,
+      "slug": "heavy-embroidered-velvet-party-wear-dress-with-jamawar-trouser",
+      "name": "Heavy Embroidered Velvet Party Wear Dress with Jamawar Trouser",
+      "price": 5500,
+      "description": "A heavy embroidered velvet party wear dress with a printed Jamawar trouser.",
+      "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Velvet Dresses Online\n- Embroidery: Zari & Sequins\n- Details: Heavy embroidered neck and front, embroidered back and sleeves, with a printed silk dupatta and printed Jamawar trouser.",
+      "specifications": {
+        "Product": "Unstitched Embroidered Velvet Dresses Online",
+        "Embroidery": "Zari & Sequins",
+        "Neck": "Heavy Embroidered",
+        "Front": "Heavy Embroidered Velvet",
+        "Back": "Embroidered Velvet",
+        "Sleeves": "Embroidered Velvet with Border Patches",
+        "Daman": "Embroidered Front & Back Patti",
+        "Dupatta": "Printed Silk",
+        "Trouser": "Printed Jamawar",
+        "Occasions": "Party, Wedding"
+      },
+      "category": ["women", "bridal-dresses"],
+      "image": "https://i.postimg.cc/g2528sZx/imgi-11-p14495-embroidered-velvet-dress.jpg",
+      "additionalImages": [
+        "https://i.postimg.cc/3wvJBGXn/imgi-12-p14495-embroidered-velvet-dress-1.jpg"
+      ],
+      "stock": 10
+    },
+    {
+      "id": 137,
+      "slug": "trendy-embroidered-velvet-party-wear-dress-with-emb-silk-trouser",
+      "name": "Trendy Embroidered Velvet Party Wear Dress with Emb. Silk Trouser",
+      "price": 8500,
+      "description": "A trendy embroidered velvet party wear dress with an embroidered silk trouser.",
+      "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Velvet Suits in Pakistan\n- Season: Spring/Winter Collection\n- Fabric: 9000 Micro Velvet\n- Embroidery: Zari, Thread & Sequins\n- Details: Heavy embroidered neck and sleeves, 4-side border embroidered organza dupatta, and an embroidered silk trouser.",
+      "specifications": {
+        "Product": "Unstitched Embroidered Velvet Suits in Pakistan",
+        "Season": "Spring/Winter Collection",
+        "Collection": "Velvet Collection",
+        "Fabric": "9000 Micro Velvet",
+        "Embroidery": "Zari, Thread & Sequins",
+        "Neck": "Heavy Embroidered",
+        "Front": "Embroidered Velvet",
+        "Back": "Embroidered Velvet",
+        "Sleeves": "Heavy Embroidered Velvet",
+        "Dupatta": "4 Side Border Embroidered Organza",
+        "Trouser": "Embroidered Silk",
+        "Occasions": "Party, Wedding"
+      },
+      "category": ["women", "bridal-dresses"],
+      "image": "https://i.postimg.cc/FzKMP5tN/imgi-11-p17616-embroidered-velvet-wedding-dress.webp",
+      "additionalImages": [
+        "https://i.postimg.cc/zDtZyBWB/imgi-12-p17616-embroidered-velvet-wedding-dress-1.jpg",
+        "https://i.postimg.cc/2yXPMcmv/imgi-13-p17616-embroidered-velvet-wedding-dress-2.jpg",
+        "https://i.postimg.cc/J4vfQ2pC/imgi-14-p17616-embroidered-velvet-wedding-dress-3.jpg",
+        "https://i.postimg.cc/DySVLTdc/imgi-15-p17616-embroidered-velvet-wedding-dress-4.jpg",
+        "https://i.postimg.cc/1zZbkNxW/imgi-16-p17616-embroidered-velvet-wedding-dress-5.jpg",
+        "https://i.postimg.cc/mDLJDfgC/imgi-17-p17616-embroidered-velvet-wedding-dress-6.png",
+        "https://i.postimg.cc/q7XW4M4p/imgi-18-p17616-embroidered-velvet-wedding-dress-7.jpg"
+      ],
+      "stock": 10
+    },
+    {
+      "id": 138,
+      "slug": "luxury-heavy-embroidered-velvet-wedding-dress-with-emb-silk-trouser-2",
+      "name": "Luxury Heavy Embroidered Velvet Wedding Dress with Emb. Silk Trouser",
+      "price": 9000,
+      "description": "A luxury heavy embroidered velvet wedding dress with an embroidered silk trouser.",
+      "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Velvet Suits in Pakistan\n- Season: Spring/Winter Collection\n- Embroidery: Zari, Thread & Sequins\n- Details: Heavy embroidered neck patch, front, and sleeves. Includes a 4-side border embroidered organza print dupatta and an embroidered silk trouser.",
+      "specifications": {
+        "Product": "Unstitched Embroidered Velvet Suits in Pakistan",
+        "Season": "Spring/Winter Collection",
+        "Collection": "Velvet Collection",
+        "Embroidery": "Zari, Thread & Sequins",
+        "Neck": "Heavy Embroidered Neck Patch",
+        "Front": "Embroidered Velvet",
+        "Back": "Plain Velvet",
+        "Sleeves": "Heavy Embroidered Velvet",
+        "Daman": "Embroidered Front & Back",
+        "Dupatta": "4 Side Border Embroidered Organza Print",
+        "Trouser": "Embroidered Silk",
+        "Occasions": "Party, Wedding"
+      },
+      "category": ["women", "bridal-dresses"],
+      "image": "https://i.postimg.cc/3xjtDS6B/imgi-11-p17618-embroidered-velvet-wedding-dress.webp",
+      "additionalImages": [
+        "https://i.postimg.cc/g0YNyybP/imgi-12-p17618-embroidered-velvet-wedding-dress-1.jpg",
+        "https://i.postimg.cc/GpqzXBbT/imgi-13-p17618-embroidered-velvet-wedding-dress-2.jpg",
+        "https://i.postimg.cc/Tw10FRP7/imgi-14-p17618-embroidered-velvet-wedding-dress-3.jpg",
+        "https://i.postimg.cc/50rgMZYx/imgi-15-p17618-embroidered-velvet-wedding-dress-4.jpg",
+        "https://i.postimg.cc/90qpXJZy/imgi-16-p17618-embroidered-velvet-wedding-dress-5.jpg",
+        "https://i.postimg.cc/xqDPXM3h/imgi-17-p17618-embroidered-velvet-wedding-dress-6.jpg"
+      ],
+      "stock": 10
     }
   ]
 }
@@ -3837,3 +4066,6 @@
 
 
 
+
+
+    
