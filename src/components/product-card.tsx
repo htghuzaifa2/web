@@ -80,8 +80,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               </Button>
             </div>
           </div>
-          <div className="p-3 text-center flex-grow flex flex-col justify-between items-center">
-            <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex items-center justify-center min-h-[2.5rem]">
+          <div className="p-3 text-center flex-grow flex flex-col items-center">
+            <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow flex items-center justify-center min-h-[2.5rem]">
               <Link href={`/product/${productSlug}`} className="hover:underline">
                 {product.name}
               </Link>
