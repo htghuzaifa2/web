@@ -188,6 +188,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     alt={`${productName} thumbnail ${index + 1}`}
                                     fill
                                     sizes="80px"
+                                    className="object-contain bg-muted/30"
                                 />
                             </button>
                         ))}
@@ -215,7 +216,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             <div className="flex h-full">
                 {images.map((imgSrc, index) => (
                     <div 
-                        className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer aspect-square"
+                        className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer aspect-square bg-muted/30"
                         key={index}
                         onClick={() => openLightbox(index)}
                     >
@@ -225,6 +226,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             fill
                             priority={index === 0}
                             sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-contain"
                         />
                     </div>
                 ))}
@@ -254,6 +256,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             fill
                             priority={index === mainImageIndex}
                             sizes="100vw"
+                            className="object-contain"
                         />
                     </div>
                   ))}
@@ -296,6 +299,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                           alt={`${productName} thumbnail ${index + 1}`}
                           fill
                           sizes="80px"
+                          className="object-contain"
                         />
                       </button>
                     ))}

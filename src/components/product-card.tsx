@@ -44,7 +44,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <>
       <Card className="group/card relative overflow-hidden transition-shadow duration-300 hover:shadow-lg h-full flex flex-col">
         <CardContent className="p-0 flex flex-col flex-grow">
-          <div className="relative aspect-square w-full overflow-hidden">
+          <div className="relative w-full overflow-hidden bg-muted/30 aspect-square">
             <Link href={`/product/${productSlug}`} className="group block h-full w-full">
               <ImageWithSkeleton
                 src={product.image}
