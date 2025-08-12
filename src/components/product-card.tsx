@@ -3,14 +3,13 @@
 
 import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
 import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { ImageWithSkeleton } from "./image-with-skeleton";
 
 interface ProductCardProps {
@@ -39,6 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const productSlug = product.slug;
+  const originalPrice = Math.round(product.price * 1.39);
 
   return (
     <>
@@ -50,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               alt={product.name}
               fill
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="object-contain"
+              className="object-contain p-2"
             />
           </div>
         </Link>
@@ -75,12 +75,15 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Button>
         </div>
         <div className="flex flex-1 flex-col p-3 text-center">
-          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow">
+          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow min-h-[40px]">
             <Link href={`/product/${productSlug}`} className="hover:underline">
               {product.name}
             </Link>
           </h3>
-          <p className="mt-auto text-base font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
+          <div className="mt-auto flex items-baseline justify-center gap-2">
+            <p className="text-base font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
+            <p className="text-sm text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
+          </div>
         </div>
       </Card>
       <ProductQuickView product={product} open={quickViewOpen} onOpenChange={setQuickViewOpen} />

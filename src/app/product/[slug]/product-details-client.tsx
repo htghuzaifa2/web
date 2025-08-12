@@ -19,6 +19,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
   const { toast } = useToast();
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
+  const originalPrice = Math.round(product.price * 1.39);
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -39,10 +40,15 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
         <div className="flex flex-col justify-start py-4 md:col-span-1">
           <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
           <div className="flex items-center gap-4 mt-4">
-              <p className="font-headline text-4xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
-              <Badge variant={isOutOfStock ? "destructive" : "default"}>
-                  {isOutOfStock ? "Out of Stock" : "In Stock"}
-              </Badge>
+              <div className="flex items-baseline gap-3">
+                <p className="font-headline text-4xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
+                <p className="font-headline text-2xl text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
+              </div>
+          </div>
+          <div className="mt-2">
+            <Badge variant={isOutOfStock ? "destructive" : "default"}>
+                {isOutOfStock ? "Out of Stock" : "In Stock"}
+            </Badge>
           </div>
           <p className="mt-4 text-muted-foreground">{product.description}</p>
           <div className="mt-6">
