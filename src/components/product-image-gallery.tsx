@@ -226,7 +226,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             fill
                             priority={index === 0}
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-contain"
+                            className="object-contain p-2"
                         />
                     </div>
                 ))}
