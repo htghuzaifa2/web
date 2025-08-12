@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
     notFound();
   }
 
-  const jsonLd = {
+  const jsonLd: any = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
