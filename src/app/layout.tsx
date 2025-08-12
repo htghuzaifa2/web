@@ -27,17 +27,35 @@ const alegreya = Alegreya({
 const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
-  description: "Discover the latest trends at huzi.pk, Pakistan's premier online store for high-quality fashion. We deliver stylish clothing and accessories nationwide and digital products globally.",
+  title: "huzi.pk | Online Shopping in Pakistan – Physical & Digital Products",
+  description: "huzi.pk is your trusted online store for electronics, fashion, home goods & more. Quality products across Pakistan and digital goods worldwide.",
+  keywords: [
+    "huzi.pk online shopping",
+    "trusted online store in Pakistan",
+    "online shopping in Pakistan",
+    "buy electronics online Pakistan",
+    "fashion & clothing online Pakistan",
+    "lawn suits online shopping Pakistan",
+    "home & kitchen appliances Pakistan",
+    "mobile & computer accessories Pakistan",
+    "cheap online store Pakistan",
+    "digital goods online store",
+    "worldwide digital downloads",
+    "premium software Pakistan",
+    "affordable online marketplace Pakistan",
+    "Pakistan eCommerce platform",
+    "best online store in Pakistan"
+  ]
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: siteConfig.title,
+    template: `%s - huzi.pk`,
   },
   description: siteConfig.description,
-  keywords: ["fashion", "clothing", "ecommerce", "pakistan", "digital products", "men's wear", "women's wear", "lawn suits", "online shopping pakistan"],
+  keywords: siteConfig.keywords,
   icons: {
     icon: '/logo.webp',
     shortcut: '/logo.webp',
@@ -47,13 +65,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_PK",
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/logo.webp`],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
+    title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/logo.webp`],
   },
