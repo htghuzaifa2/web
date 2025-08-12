@@ -81,10 +81,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
   }
   html {
-    overflow-x: hidden;
     scroll-behavior: smooth;
   }
   body, html {
@@ -237,6 +235,13 @@
       .portfolio-btn {
           padding: 1.2rem 3rem;
           font-size: 1rem;
+      }
+  }
+
+  @media (max-width: 400px) {
+      .portfolio-btn {
+          padding: 1rem 2rem;
+          font-size: 0.9rem;
       }
   }
 }
