@@ -7,8 +7,6 @@ import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
 import { Metadata } from "next";
 
-export const runtime = 'edge';
-
 // This function generates static pages for all products
 export async function generateStaticParams() {
   const products: Product[] = productsData.products;
@@ -98,10 +96,6 @@ export default async function ProductPage({ params }: { params: { slug: string }
     image: product.image,
     description: product.description,
     sku: product.id.toString(),
-    brand: {
-      '@type': 'Brand',
-      name: 'huzi.pk'
-    },
     offers: {
       '@type': 'Offer',
       price: product.price.toFixed(2),
