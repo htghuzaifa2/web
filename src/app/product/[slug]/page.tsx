@@ -88,6 +88,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!product) {
     notFound();
   }
+  
+  const isProductInStock = product.stock !== undefined && product.stock > 0;
 
   const jsonLd: any = {
     '@context': 'https://schema.org',
@@ -96,39 +98,42 @@ export default async function ProductPage({ params }: { params: { slug: string }
     image: product.image,
     description: product.description,
     sku: product.id.toString(),
+    brand: {
+      '@type': 'Brand',
+      name: 'huzi.pk'
+    },
     offers: {
       '@type': 'Offer',
       price: product.price.toFixed(2),
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
-      availability: (product.stock && product.stock > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      availability: isProductInStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
       url: `https://huzi.pk/product/${product.slug}`,
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '250',
-          currency: 'PKR',
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'PK',
-        },
-      },
-       hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'PK',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 3,
-        returnMethod: 'https://schema.org/ReturnByMail',
-        returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
-      },
     },
-    brand: {
-      '@type': 'Brand',
-      name: 'huzi.pk'
-    }
   };
+
+  if (isProductInStock) {
+    jsonLd.offers.shippingDetails = {
+      '@type': 'OfferShippingDetails',
+      shippingRate: {
+        '@type': 'MonetaryAmount',
+        value: '250',
+        currency: 'PKR',
+      },
+      shippingDestination: {
+        '@type': 'DefinedRegion',
+        addressCountry: 'PK',
+      },
+    };
+    jsonLd.offers.hasMerchantReturnPolicy = {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'PK',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 3,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
+    };
+  }
 
 
   return (
