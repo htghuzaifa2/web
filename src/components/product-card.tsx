@@ -51,6 +51,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 alt={product.name}
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-contain"
               />
             </Link>
 
@@ -80,7 +81,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </Button>
             </div>
           </div>
-          <div className="p-3 text-center flex-grow flex flex-col items-center">
+          <div className="p-3 text-center flex-grow flex flex-col">
             <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow flex items-center justify-center min-h-[2.5rem]">
               <Link href={`/product/${productSlug}`} className="hover:underline">
                 {product.name}

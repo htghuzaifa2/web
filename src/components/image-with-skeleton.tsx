@@ -28,7 +28,6 @@ export const ImageWithSkeleton = ({ alt, className, onLoad, onError, src, ...pro
         {...props}
         className={cn(
           "transition-opacity duration-500 ease-in-out",
-          props.fill ? "object-contain" : "",
           isLoaded && !hasError ? "opacity-100" : "opacity-0",
           className
         )}

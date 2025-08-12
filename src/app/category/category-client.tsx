@@ -3,30 +3,25 @@
 
 import { useState, useMemo, useEffect } from "react";
 import ProductCard from "@/components/product-card";
-import type { Product } from "@/lib/types";
+import type { Category, Product } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, ArrowUp } from "lucide-react";
 
 const PRODUCTS_PER_PAGE = 25;
 const MAX_PRODUCTS_ON_PAGE = 50;
 
-interface SearchClientProps {
+interface CategoryClientProps {
+  category: Category;
   allProducts: Product[];
-  query: string;
 }
 
-export default function SearchClient({ allProducts, query }: SearchClientProps) {
+export default function CategoryClient({ category, allProducts }: CategoryClientProps) {
   const [page, setPage] = useState(1);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
-  // Reset page to 1 whenever the search query changes
-  useEffect(() => {
-    setPage(1);
-  }, [query]);
 
   const totalPages = Math.ceil(allProducts.length / PRODUCTS_PER_PAGE);
 
@@ -54,19 +49,17 @@ export default function SearchClient({ allProducts, query }: SearchClientProps) 
   
   const showLoadPrevious = page > Math.ceil(MAX_PRODUCTS_ON_PAGE / PRODUCTS_PER_PAGE);
   const showLoadMore = page < totalPages;
-  
+
   if (!isClient) {
       // Render a static shell on the server to avoid layout shifts
       return (
         <div className="container mx-auto px-4 py-12">
-            <h1 className="mb-4 text-center font-headline text-4xl font-bold">
-                Search Results
+            <h1 className="mb-2 text-center font-headline text-4xl font-bold">
+                {category.name}
             </h1>
-            {query && (
-                <h3 className="mb-8 text-center text-lg text-muted-foreground">
-                Showing results for: <span className="font-semibold text-foreground">"{query}"</span>
-                </h3>
-            )}
+            <p className="mb-8 text-center text-muted-foreground">
+                {`Browse our collection of ${category.name.toLowerCase()}.`}
+            </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 {allProducts.slice(0, PRODUCTS_PER_PAGE).map((product) => (
                     <ProductCard key={product.id} product={product} />
@@ -85,17 +78,13 @@ export default function SearchClient({ allProducts, query }: SearchClientProps) 
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="mb-4 text-center font-headline text-4xl font-bold">
-        Search Results
+      <h1 className="mb-2 text-center font-headline text-4xl font-bold">
+        {category.name}
       </h1>
-      {query ? (
-        <h3 className="mb-8 text-center text-lg text-muted-foreground">
-          Showing results for: <span className="font-semibold text-foreground">"{query}"</span>
-        </h3>
-      ) : (
-         <p className="text-center text-muted-foreground">Please enter a search term to find products.</p>
-      )}
-
+      <p className="mb-8 text-center text-muted-foreground">
+        {`Browse our collection of ${category.name.toLowerCase()}.`}
+      </p>
+      
       {showLoadPrevious && (
         <div className="text-center mb-8">
             <Button onClick={handleLoadPrevious}>
@@ -104,14 +93,16 @@ export default function SearchClient({ allProducts, query }: SearchClientProps) 
         </div>
       )}
 
-      {query && visibleProducts.length > 0 ? (
+      {visibleProducts.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {visibleProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       ) : (
-        query && <p className="text-center text-muted-foreground">No products found matching your search.</p>
+        <p className="text-center text-muted-foreground">
+          No products found in this category yet.
+        </p>
       )}
 
       {showLoadMore && (
