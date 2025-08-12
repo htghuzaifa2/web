@@ -188,7 +188,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                     alt={`${productName} thumbnail ${index + 1}`}
                                     fill
                                     sizes="80px"
-                                    className="object-contain bg-muted/30"
+                                    className="object-contain bg-muted/30 p-1"
                                 />
                             </button>
                         ))}
@@ -299,7 +299,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                           alt={`${productName} thumbnail ${index + 1}`}
                           fill
                           sizes="80px"
-                          className="object-contain"
+                          className="object-contain p-1"
                         />
                       </button>
                     ))}

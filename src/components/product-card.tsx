@@ -75,7 +75,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Button>
         </div>
         <div className="flex flex-1 flex-col p-3 text-center">
-          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow min-h-[40px]">
+          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow min-h-[40px] flex items-center justify-center">
             <Link href={`/product/${productSlug}`} className="hover:underline">
               {product.name}
             </Link>
