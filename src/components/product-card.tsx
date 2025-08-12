@@ -37,7 +37,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     setQuickViewOpen(true);
   };
 
-  const productSlug = product.slug;
+  const productSlug = product.slug || '';
   const originalPrice = Math.round(product.price * 1.39);
 
   return (
@@ -54,6 +54,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           </div>
         </Link>
+        
         <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 transition-opacity duration-300 lg:opacity-0 lg:group-hover/card:opacity-100">
           <Button
             variant="secondary"
@@ -74,8 +75,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             <ShoppingCart className="h-4 w-4" />
           </Button>
         </div>
+
         <div className="flex flex-1 flex-col p-3 text-center">
-          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow min-h-[40px] flex items-center justify-center">
+          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow">
             <Link href={`/product/${productSlug}`} className="hover:underline">
               {product.name}
             </Link>
