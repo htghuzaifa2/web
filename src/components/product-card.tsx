@@ -42,7 +42,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <Card className="group/card relative flex h-full w-full flex-col overflow-hidden transition-shadow duration-300 hover:shadow-lg">
+      <Card className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg">
         <Link href={`/product/${productSlug}`} className="group block">
           <div className="relative w-full overflow-hidden bg-muted/30 aspect-square">
             <ImageWithSkeleton
@@ -50,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               alt={product.name}
               fill
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="object-contain p-2"
+              className="object-contain p-2 transition-transform duration-500 ease-in-out group-hover:scale-105"
             />
           </div>
         </Link>
