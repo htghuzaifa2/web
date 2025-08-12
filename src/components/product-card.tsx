@@ -44,15 +44,17 @@ export default function ProductCard({ product }: ProductCardProps) {
     <>
       <Card className="group/card relative overflow-hidden transition-shadow duration-300 hover:shadow-lg h-full flex flex-col">
         <CardContent className="p-0 flex flex-col flex-grow">
-          <div className="relative w-full overflow-hidden bg-muted/30 aspect-square">
+          <div className="relative w-full overflow-hidden bg-muted/30">
             <Link href={`/product/${productSlug}`} className="group block h-full w-full">
-              <ImageWithSkeleton
-                src={product.image}
-                alt={product.name}
-                fill
-                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="object-contain"
-              />
+              <div className="relative w-full h-[300px] bg-muted/20">
+                <ImageWithSkeleton
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-contain"
+                />
+              </div>
             </Link>
 
             <div
