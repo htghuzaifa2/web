@@ -155,7 +155,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   return (
-    <div className="grid md:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
       {images.length > 1 && (
         <div className="md:col-span-1 md:order-1 order-2">
             <div className="relative h-full flex flex-row md:flex-col items-center justify-center gap-2">
@@ -225,7 +225,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                             alt={`${productName} image ${index + 1}`}
                             fill
                             priority={index === 0}
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 33vw"
                             className="object-contain p-2"
                         />
                     </div>
