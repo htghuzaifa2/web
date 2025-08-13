@@ -5,8 +5,6 @@ import productsData from "@/data/products.json";
 import type { Category, Product } from "@/lib/types";
 import CategoryClient from "./category-client";
 
-export const runtime = 'edge';
-
 // This function generates static pages for all categories defined in categories.json
 export async function generateStaticParams() {
   const categories: Category[] = categoriesData.categories;
