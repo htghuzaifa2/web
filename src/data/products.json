@@ -4385,9 +4385,178 @@
           "https://i.postimg.cc/q7mKSSgj/imgi-23-p17831-embroidered-velvet-dress.jpg"
         ],
         "stock": 10
-      }
-    
-  ]
+      },
+      
+        {
+          "id": 150,
+          "slug": "premium-quality-heavy-embroidered-bridal-velvet-shawl-black",
+          "name": "Premium Quality Heavy Embroidered Bridal Velvet Shawl - Black",
+          "price": 4999,
+          "description": "Luxurious black velvet bridal shawl with exquisite embroidery",
+          "longDescription": "Product Highlights:\n- Type: Bridal Shawl\n- Material: Imported Velvet\n- Embroidery: Zari, Thread & Nag with handwork + 4 side cutwork\n- Size: 2.7 Yards (84 inches length, 34 inches width)\n- Perfect for weddings and special occasions",
+          "specifications": {
+            "Type": "Bridal Shawl",
+            "Material": "Imported Velvet",
+            "Embroidery": "Zari, Thread & Nag",
+            "Design": "Handwork + 4 Side Cutwork",
+            "Color": "Black",
+            "Size": "2.7 Yards",
+            "Length": "84 inches",
+            "Width": "34 inches",
+            "Occasion": "Party, Wedding",
+            "Season": "Winter/Spring"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/CK7C5rdd/imgi-11-p17836-embroidered-bridal-velvet-shawl.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/SsK6MLzd/imgi-12-p17836-embroidered-bridal-velvet-shawl-1.jpg",
+            "https://i.postimg.cc/HxPQ4Jwg/imgi-13-p17836-embroidered-bridal-velvet-shawl-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 151,
+          "slug": "fabulous-handwork-with-heavy-embroidery-net-bridal-maxi-dress",
+          "name": "Fabulous Handwork with Heavy Embroidery Net Bridal Maxi Dress",
+          "price": 6600,
+          "description": "Exquisite net bridal maxi dress with heavy handwork embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Net Bridal Dress\n- Embroidery: Zari, Thread, Sequins & Pearls\n- Features: Heavy handwork embroidered net front/back, maxi design\n- Includes: Heavy embroidered net dupatta and plain silk trouser\n- Measurements: Front body 22\"×26\", maxi height 40\", total length 60\"",
+          "specifications": {
+            "Product": "Unstitched Embroidered Net Bridal Dress",
+            "Embroidery": "Zari, Thread, Sequins & Pearls",
+            "Front": "Heavy Handwork Embroidered Net",
+            "Back": "Heavy Embroidered Net",
+            "Sleeves": "Heavy Handwork Embroidered Net",
+            "Daman": "Heavy Embroidered",
+            "Dupatta": "Heavy Handwork Embroidered Net",
+            "Trouser": "Plain Silk",
+            "Measurements": {
+              "Front Body": "22\"H × 26\"W",
+              "Back Body": "22\" × 26\"",
+              "Maxi": "40\"H × 90\"W",
+              "Total Length": "60\""
+            },
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/y8dZ1m2y/imgi-11-p16604-embroidered-net-maxi-dress-update.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/XvBBFVjZ/imgi-12-p16604-embroidered-net-maxi-dress-update-1.jpg",
+            "https://i.postimg.cc/jSFJLWb0/imgi-13-p16604-embroidered-net-maxi-dress-update-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 152,
+          "slug": "luxury-heavy-embroidered-black-velvet-wedding-dress",
+          "name": "Luxury Heavy Embroidered Black Velvet Wedding Dress",
+          "price": 8500,
+          "description": "Opulent black velvet wedding dress with heavy embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Velvet Suits Online\n- Season: Spring/Winter Collection 2024\n- Embroidery: Zari, Thread & Sequins (5000 Micro Velvet)\n- Features: Heavy embroidered neck, embroidered velvet front/back\n- Includes: 4-side border embroidered net dupatta and plain silk trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Velvet Suits Online",
+            "Season": "Spring/Winter Collection 2024",
+            "Collection": "Velvet Collection 2024",
+            "Embroidery": "Zari, Thread & Sequins",
+            "Velvet": "5000 Micro Velvet",
+            "Neck": "Heavy Embroidered Front & Back",
+            "Front": "Embroidered Velvet",
+            "Back": "Embroidered Velvet",
+            "Sleeves": "Heavy Embroidered Velvet",
+            "Dupatta": "4-Side Border Embroidered Net",
+            "Trouser": "Plain Silk",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/tTmccN0v/imgi-11-p16893-embroidered-velvet-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/kG6HPRqJ/imgi-12-p16893-embroidered-velvet-wedding-dress-1.jpg",
+            "https://i.postimg.cc/VvxVfskj/imgi-13-p16893-embroidered-velvet-wedding-dress-2.jpg",
+            "https://i.postimg.cc/jqDqS8j5/imgi-14-p16893-embroidered-velvet-wedding-dress-3.jpg",
+            "https://i.postimg.cc/05hkMp6C/imgi-15-p16893-embroidered-velvet-wedding-dress-4.jpg",
+            "https://i.postimg.cc/PrZtmPYn/imgi-16-p16893-embroidered-velvet-wedding-dress-5.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 153,
+          "slug": "luxury-heavy-embroidered-organza-wedding-dress",
+          "name": "Luxury Heavy Embroidered Organza Wedding Dress",
+          "price": 6500,
+          "description": "Elegant organza wedding dress with luxurious embroidery",
+          "longDescription": "A stunning heavy embroidered organza wedding dress perfect for bridal occasions",
+          "specifications": {},
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/TwLPFQLp/imgi-11-p16955-embroidered-organza-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/VvXkL6Fw/imgi-12-p16955-embroidered-organza-wedding-dress-1.jpg",
+            "https://i.postimg.cc/8kv5bKgY/imgi-13-p16955-embroidered-organza-wedding-dress-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 154,
+          "slug": "elegant-embroidered-purple-chiffon-wedding-dress",
+          "name": "Elegant Embroidered Purple Chiffon Wedding Dress",
+          "price": 4800,
+          "description": "Beautiful purple chiffon wedding dress with delicate embroidery",
+          "longDescription": "A graceful purple chiffon wedding dress perfect for bridal occasions",
+          "specifications": {},
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/XN9j5rwS/imgi-11-p16736-embroidered-chiffon-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/ZKcJfX7w/imgi-12-p16736-embroidered-chiffon-wedding-dress-1.jpg",
+            "https://i.postimg.cc/HkkdF3Fd/imgi-13-p16736-embroidered-chiffon-wedding-dress-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 155,
+          "slug": "elegant-embroidered-black-chiffon-party-wear-dress",
+          "name": "Elegant Embroidered Black Chiffon Party Wear Dress",
+          "price": 5000,
+          "description": "Stylish black chiffon party dress with exquisite embroidery",
+          "longDescription": "A sophisticated black chiffon dress perfect for wedding parties and special occasions",
+          "specifications": {},
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/Y915vmTd/imgi-11-p16715-embroidered-chiffon-party-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/BQZrvbpC/imgi-12-p16715-embroidered-chiffon-party-dress-1.jpg",
+            "https://i.postimg.cc/c1cqZwRH/imgi-13-p16715-embroidered-chiffon-party-dress-2.jpg",
+            "https://i.postimg.cc/Y0RT3Brg/imgi-14-p16715-embroidered-chiffon-party-dress-3.jpg",
+            "https://i.postimg.cc/MKshfwrJ/imgi-15-p16715-embroidered-chiffon-party-dress-4.jpg",
+            "https://i.postimg.cc/Nj5Z1nW9/imgi-16-p16715-embroidered-chiffon-party-dress-5.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 156,
+          "slug": "handwork-embroidered-net-wedding-dress-2025-with-luxury-net-embroidered-shawl",
+          "name": "Handwork Embroidered Net Wedding Dress 2025 with Luxury Net Embroidered Shawl",
+          "price": 6999,
+          "description": "Exquisite 2025 net wedding dress with luxurious embroidered shawl",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Net Bridal Dress\n- Embroidery: Zari, Thread, Sequins & Pearls\n- Features: Handwork embroidered neck, net front/back with border patches\n- Includes: Luxury heavy embroidered net shawl dupatta and printed jamawar trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Net Bridal Dress",
+            "Embroidery": "Zari, Thread, Sequins & Pearls",
+            "Neck": "Handwork Embroidered",
+            "Front": "Handwork Embroidered Net",
+            "Back": "Embroidered Net",
+            "Sleeves": "Heavy Embroidered Net with Border Patches",
+            "Daman": "Embroidered Front & Back",
+            "Dupatta": "Luxury Heavy Embroidered Net Shawl",
+            "Trouser": "Printed Jamawar",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/wTbGTV76/imgi-11-p15503-embroidered-net-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/BnLw8KK2/imgi-12-p15503-embroidered-net-wedding-dress-1.jpg"
+          ],
+          "stock": 10
+        }
+      ]
+  
 }
 
 

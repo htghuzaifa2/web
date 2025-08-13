@@ -12,7 +12,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home | Discover a World of Style',
+  title: 'huzi.pk - Discover a World of Style',
   description: 'The official homepage of huzi.pk. Explore our curated collection of high-quality apparel, lawn suits, and digital goods. Shop the latest trends with fast nationwide delivery.',
 };
 
