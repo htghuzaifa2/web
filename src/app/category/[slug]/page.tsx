@@ -1,4 +1,3 @@
-
 import { notFound } from "next/navigation";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
