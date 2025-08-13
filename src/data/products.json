@@ -1,26 +1,5 @@
-
-      
+[
 {
-  "_tutorial": {
-    "info": "This file contains all the products for your store. The 'slug' is now automatically generated from the 'name' field.",
-    "how_to_add_a_new_product": [
-      "1. Copy an existing product block (from the opening '{' to the closing '}').",
-      "2. Paste it at the end of the list, just before the closing ']' bracket.",
-      "3. Change the values for the new product:",
-      "   - 'id': A new, unique number.",
-      "   - 'name': The product's title. The URL slug will be auto-generated from this.",
-      "   - 'price': The product price, as a whole number (no decimals).",
-      "   - 'description': A short description for product lists.",
-      "   - 'longDescription': A more detailed description for the product page. This is optional.",
-      "   - 'specifications': A list of key-value pairs for product specs. Add or remove as needed.",
-      "   - 'category': An array of category slugs this product belongs to (e.g., [\"men\", \"new-arrivals\"]). This MUST exactly match slugs from categories.json.",
-      "   - 'image': The URL for the main product image. Use a placeholder like 'https://placehold.co/600x600'.",
-      "   - 'additionalImages': a list of URLs for more product images. Can be empty [].",
-      "   - 'stock': The number of items in stock. Set to 0 for 'Out of Stock'."
-    ]
-  },
-  "products": [
-    {
       "id": 1,
       "slug": "trendy-sunflower-print-embroidered-eid-lawn-dress-with-digital-print-silk-dupatta",
       "name": "Trendy Sunflower Print Embroidered EID Lawn Dress with Digital Print Silk Dupatta",
@@ -4554,12 +4533,472 @@
             "https://i.postimg.cc/BnLw8KK2/imgi-12-p15503-embroidered-net-wedding-dress-1.jpg"
           ],
           "stock": 10
+        },
+        {
+          "id": 157,
+          "slug": "elegant-embroidered-organza-dress-with-organza-jacquard-duppatta",
+          "name": "Elegant Embroidered Organza Dress with Organza Jacquard Dupatta",
+          "price": 5000,
+          "description": "Exquisite organza wedding dress with jacquard dupatta",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Organza Wedding Dresses in Pakistan\n- Embroidery: Thread, Zari, Sequins & Pearls\n- Features: Heavy embroidered neck, organza front/back/sleeves\n- Includes: Printed organza jacquard dupatta and embroidered silk trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Organza Wedding Dresses in Pakistan",
+            "Embroidery": "Thread, Zari, Sequins & Pearls",
+            "Neck": "Heavy Embroidered",
+            "Front": "Embroidered Organza",
+            "Back": "Embroidered Organza",
+            "Sleeves": "Heavy Embroidered Organza",
+            "Daman": "Heavy Embroidered Front & Back",
+            "Dupatta": "Printed Organza Jacquard",
+            "Trouser": "Embroidered Silk",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/Nfzb6j8Y/imgi-11-p14910-embroidered-organza-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/P5vy2nKD/imgi-12-p14910-embroidered-organza-dress-1.jpg",
+            "https://i.postimg.cc/cJqmzk5b/imgi-13-p14910-embroidered-organza-dress-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 158,
+          "slug": "elegant-heavy-embroidered-white-chiffon-wedding-dress",
+          "name": "Elegant Heavy Embroidered White Chiffon Wedding Dress",
+          "price": 7000,
+          "description": "Graceful white chiffon wedding dress with heavy embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Chiffon Suits Online\n- Embroidery: Zari, Thread & Sequins\n- Features: Embroidered front chiffon body with plain back\n- Includes: Heavy embroidered chiffon dupatta and plain crepe/malai trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Chiffon Suits Online",
+            "Embroidery": "Zari, Thread & Sequins",
+            "Front": "Embroidered Chiffon Body",
+            "Back": "Plain Chiffon Body",
+            "Sleeves": "Embroidered Chiffon",
+            "Daman": "Heavy Embroidered",
+            "Dupatta": "Heavy Embroidered Chiffon",
+            "Trouser": "Plain Crepe/Malai (Inner Included)",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/KvM3WcSm/imgi-11-p15556-embroidered-chiffon-party-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/g2yXYM25/imgi-12-p15556-embroidered-chiffon-party-dress-1.jpg",
+            "https://i.postimg.cc/hGSJh9JG/imgi-13-p15556-embroidered-chiffon-party-dress-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 159,
+          "slug": "heavy-embroidered-with-handwork-organza-wedding-dress",
+          "name": "Heavy Embroidered with Handwork Organza Wedding Dress",
+          "price": 8000,
+          "description": "Luxurious handwork embroidered organza wedding dress",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Organza Wedding Dress\n- Embroidery: Thread, Zari, Nag & Pearls\n- Features: Handwork heavy embroidered neck, organza front/back\n- Includes: 4-side border embroidered organza dupatta and printed jamawar trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Organza Wedding Dress",
+            "Embroidery": "Thread, Zari, Nag & Pearls",
+            "Neck": "Handwork Heavy Embroidered",
+            "Front": "Handwork Heavy Embroidered Organza",
+            "Back": "Embroidered Organza",
+            "Sleeves": "Heavy Embroidered Organza",
+            "Daman": "Heavy Embroidered",
+            "Dupatta": "4-Side Border Embroidered Organza",
+            "Trouser": "Printed Jamawar",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/MK7VTZsd/imgi-11-p15586-embroidered-organza-party-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/BnJD1Wks/imgi-12-p15586-embroidered-organza-party-dress-1.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 160,
+          "slug": "handwork-heavy-embroidered-organza-party-wear-dress",
+          "name": "Handwork Heavy Embroidered Organza Party Wear Dress",
+          "price": 6250,
+          "description": "Elegant organza party wear dress with handwork embroidery",
+          "longDescription": "A beautifully embroidered organza dress perfect for weddings and parties",
+          "specifications": {},
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/xTnq6vR3/imgi-11-p16552-embroidered-organza-party-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/pL1TVgts/imgi-12-p16552-embroidered-organza-party-dress-1.jpg",
+            "https://i.postimg.cc/3wsxmmNp/imgi-13-p16552-embroidered-organza-party-dress-2.jpg",
+            "https://i.postimg.cc/XvGvrQj4/imgi-14-p16552-embroidered-organza-party-dress-3.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 161,
+          "slug": "elegant-embroidered-organza-dress-with-organza-jacquard-duppatta-2",
+          "name": "Elegant Embroidered Organza Dress with Organza Jacquard Dupatta",
+          "price": 5500,
+          "description": "Exquisite organza dress with jacquard dupatta",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Organza Wedding Dresses in Pakistan\n- Embroidery: Thread, Zari, Sequins & Pearls\n- Features: Heavy embroidered neck, organza front/back/sleeves\n- Includes: Printed organza jacquard dupatta and embroidered silk trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Organza Wedding Dresses in Pakistan",
+            "Embroidery": "Thread, Zari, Sequins & Pearls",
+            "Neck": "Heavy Embroidered",
+            "Front": "Embroidered Organza",
+            "Back": "Embroidered Organza",
+            "Sleeves": "Heavy Embroidered Organza",
+            "Daman": "Heavy Embroidered Front & Back",
+            "Dupatta": "Printed Organza Jacquard",
+            "Trouser": "Embroidered Silk",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/Nfzb6j8Y/imgi-11-p14910-embroidered-organza-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/P5vy2nKD/imgi-12-p14910-embroidered-organza-dress-1.jpg",
+            "https://i.postimg.cc/cJqmzk5b/imgi-13-p14910-embroidered-organza-dress-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 162,
+          "slug": "luxury-handwork-embroidered-organza-wedding-dress-2025",
+          "name": "Luxury Handwork Embroidered Organza Wedding Dress 2025",
+          "price": 7700,
+          "description": "2025 luxury organza wedding dress with handwork embroidery",
+          "longDescription": "A stunning 2025 collection organza wedding dress with exquisite handwork",
+          "specifications": {},
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/Qt8n6nFr/imgi-11-p16547-embroidered-organza-party-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/XqX1WGKH/imgi-12-p16547-embroidered-organza-party-dress-1.jpg",
+            "https://i.postimg.cc/XNDD8L3T/imgi-13-p16547-embroidered-organza-party-dress-2.jpg",
+            "https://i.postimg.cc/2yJcSk2z/imgi-14-p16547-embroidered-organza-party-dress-3.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 163,
+          "slug": "luxury-heavy-embroidered-organza-wedding-dress-2025",
+          "name": "Luxury Heavy Embroidered Organza Wedding Dress 2025",
+          "price": 7000,
+          "description": "2025 luxury organza wedding dress with heavy embroidery",
+          "longDescription": "A premium 2025 collection organza wedding dress with opulent embroidery",
+          "specifications": {},
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/BnwTWY70/imgi-11-p16545-embroidered-organza-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/26nhZzkk/imgi-12-p16545-embroidered-organza-wedding-dress-1.jpg",
+            "https://i.postimg.cc/PJ4DS2v0/imgi-13-p16545-embroidered-organza-wedding-dress-2.jpg",
+            "https://i.postimg.cc/sxySPtxp/imgi-14-p16545-embroidered-organza-wedding-dress-3.jpg",
+            "https://i.postimg.cc/0NT7j6qX/imgi-15-p16545-embroidered-organza-wedding-dress-4.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 164,
+          "slug": "handwork-embroidered-organza-party-wear-frock-with-silk-trouser",
+          "name": "Handwork Embroidered Organza Party Wear Frock with Silk Trouser",
+          "price": 8500,
+          "description": "Elegant organza frock with handwork embroidery and silk trouser",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Organza Suits Designs\n- Embroidery: Zari, Thread, Nag & Sequins\n- Features: Handwork heavy embroidered neck, organza front with plain back\n- Includes: Embroidered organza dupatta and plain silk trouser\n- Measurements: Frock length 50\", width 100\"",
+          "specifications": {
+            "Product": "Unstitched Embroidered Organza Suits Designs",
+            "Embroidery": "Zari, Thread, Nag & Sequins",
+            "Neck": "Handwork Heavy Embroidered",
+            "Front": "Embroidered Organza",
+            "Back": "Plain Organza",
+            "Sleeves": "Embroidered Organza",
+            "Dupatta": "Embroidered Organza",
+            "Trouser": "Plain Silk",
+            "Measurements": "Frock: 50\"L × 100\"W",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/wBQ9yZKK/imgi-11-p17669-embroidered-organza-party-wear-frock.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/PxfTmyhC/imgi-12-p17669-embroidered-organza-party-wear-frock-1.jpg",
+            "https://i.postimg.cc/prpvSdmx/imgi-13-p17669-embroidered-organza-party-wear-frock-2.jpg",
+            "https://i.postimg.cc/G2MrzDhq/imgi-14-p17669-embroidered-organza-party-wear-frock-3.jpg",
+            "https://i.postimg.cc/hv6nRqmm/imgi-15-p17669-embroidered-organza-party-wear-frock-4.jpg",
+            "https://i.postimg.cc/DfMnX1Nz/imgi-16-p17669-embroidered-organza-party-wear-frock-5.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 165,
+          "slug": "luxurious-heavy-embroidered-bridal-chiffon-maxi-dress-2025",
+          "name": "Luxurious Heavy Embroidered Bridal Chiffon Maxi Dress 2025",
+          "price": 8500,
+          "description": "2025 luxury chiffon maxi dress with heavy embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Chiffon Dresses Designs\n- Embroidery: Zari, Thread & Sequins\n- Features: Heavy embroidered neck, chiffon front/back body and maxi\n- Includes: 4-side embroidered chiffon dupatta and plain satin silk trouser\n- Measurements: Maxi length 56\", width 120\"",
+          "specifications": {
+            "Product": "Unstitched Embroidered Chiffon Dresses Designs",
+            "Embroidery": "Zari, Thread & Sequins",
+            "Neck": "Heavy Embroidered",
+            "Front": "Heavy Embroidered Chiffon Body",
+            "Back": "Heavy Embroidered Chiffon Body",
+            "Sleeves": "Heavy Embroidered Chiffon",
+            "Maxi": "Heavy Embroidered Front & Back",
+            "Daman": "Heavy Embroidered Front & Back",
+            "Dupatta": "4 Side Embroidered Chiffon",
+            "Trouser": "Plain Satin Silk",
+            "Measurements": "Maxi: 56\"L × 120\"W (Kali 16)",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/T1L89Hs3/imgi-11-p17625-embroidered-bridal-chiffon-maxi-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/zv9sPFmS/imgi-12-p17625-embroidered-bridal-chiffon-maxi-dress-1.jpg",
+            "https://i.postimg.cc/jSrVHc4R/imgi-13-p17625-embroidered-bridal-chiffon-maxi-dress-2.jpg",
+            "https://i.postimg.cc/y6tCdsJg/imgi-14-p17625-embroidered-bridal-chiffon-maxi-dress-3.jpg",
+            "https://i.postimg.cc/KvTS3wL9/imgi-15-p17625-embroidered-bridal-chiffon-maxi-dress-4.jpg",
+            "https://i.postimg.cc/2Sds2W0h/imgi-16-p17625-embroidered-bridal-chiffon-maxi-dress-5.jpg",
+            "https://i.postimg.cc/d0qzX0fX/imgi-17-p17625-embroidered-bridal-chiffon-maxi-dress-6.jpg",
+            "https://i.postimg.cc/FKD2Q45K/imgi-18-p17625-embroidered-bridal-chiffon-maxi-dress-7.jpg",
+            "https://i.postimg.cc/76hjHWwn/imgi-19-p17625-embroidered-bridal-chiffon-maxi-dress-8.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 167,
+          "slug": "luxury-heavy-embroidered-maroon-chiffon-wedding-dress",
+          "name": "Luxury Heavy Embroidered Maroon Chiffon Wedding Dress",
+          "price": 8500,
+          "description": "Opulent maroon chiffon wedding dress with exquisite embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Chiffon Suits Designs\n- Embroidery: Zari, Thread & Sequins\n- Features: Heavy embroidered neck, chiffon front with plain back\n- Includes: Heavy embroidered organza dupatta and embroidered raw silk trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Chiffon Suits Designs",
+            "Embroidery": "Zari, Thread & Sequins",
+            "Neck": "Heavy Embroidered",
+            "Front": "Heavy Embroidered Chiffon",
+            "Back": "Plain Chiffon",
+            "Sleeves": "Heavy Embroidered Chiffon",
+            "Daman": "Embroidered",
+            "Dupatta": "Heavy Embroidered Organza",
+            "Trouser": "Embroidered Raw Silk",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/NfTGs0xF/imgi-11-p17609-embroidered-chiffon-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/Bn0SXGhg/imgi-12-p17609-embroidered-chiffon-wedding-dress-1.jpg",
+            "https://i.postimg.cc/VkWYtHpc/imgi-13-p17609-embroidered-chiffon-wedding-dress-2.jpg",
+            "https://i.postimg.cc/5tPb7Qf7/imgi-14-p17609-embroidered-chiffon-wedding-dress-3.jpg",
+            "https://i.postimg.cc/VNszWWP0/imgi-15-p17609-embroidered-chiffon-wedding-dress-4.jpg",
+            "https://i.postimg.cc/zBV59DBJ/imgi-16-p17609-embroidered-chiffon-wedding-dress-5.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 168,
+          "slug": "heavy-embroidered-net-bridal-maxi-dress-with-emb-net-duppatta",
+          "name": "Heavy Embroidered Net Bridal Maxi Dress with Emb. Net Dupatta",
+          "price": 9000,
+          "description": "Exquisite net bridal maxi dress with full embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Net Bridal Dress\n- Embroidery: Zari, Thread & Sequins\n- Features: Heavy embroidered front/back body and maxi\n- Includes: Heavy embroidered net dupatta and plain silk trouser\n- Measurements: Body 21×19\", maxi length 58\", flair 80\" with 16 kaliyan",
+          "specifications": {
+            "Product": "Unstitched Embroidered Net Bridal Dress",
+            "Embroidery": "Zari, Thread & Sequins",
+            "Front": "Heavy Embroidered Body & Maxi",
+            "Back": "Heavy Embroidered Body & Maxi",
+            "Sleeves": "Heavy Embroidered Net",
+            "Daman": "Heavy Embroidered",
+            "Dupatta": "Heavy Embroidered Net",
+            "Trouser": "Plain Silk",
+            "Measurements": {
+              "Body": "21×19 inches",
+              "Maxi Length": "58 inches",
+              "Flair": "80 inches with 16 kaliyan"
+            },
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/CxBGLkQD/imgi-11-p17603-embroidered-net-bridal-maxi.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/0yTp6jT4/imgi-12-p17603-embroidered-net-bridal-maxi-1.jpg",
+            "https://i.postimg.cc/rp555ccw/imgi-13-p17603-embroidered-net-bridal-maxi-2.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 169,
+          "slug": "luxury-heavy-embroidered-formal-black-net-wedding-saree",
+          "name": "Luxury Heavy Embroidered Formal Black Net Wedding Saree",
+          "price": 7500,
+          "description": "Elegant black net wedding saree with raw silk embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Net Saree Online\n- Embroidery: Zari, Thread & Sequins\n- Features: Heavy embroidered raw silk body/sleeves, net saree with pallu\n- Includes: Plain satin silk petti coat\n- Measurements: 6.5 yard ghera/pallu + 1.4 yard body/sleeves",
+          "specifications": {
+            "Product": "Unstitched Embroidered Net Saree Online",
+            "Embroidery": "Zari, Thread & Sequins",
+            "Body": "Heavy Embroidered Raw Silk",
+            "Sleeves": "Heavy Embroidered Raw Silk",
+            "Saree": "Full Heavy Embroidered Net",
+            "Pallu": "Heavy Embroidered Net",
+            "Daman": "Embroidered",
+            "Petti Coat": "Plain Satin Silk",
+            "Measurements": {
+              "Ghera/Pallu": "6.5 Yards",
+              "Body/Sleeves": "1.4 Yards"
+            },
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/XYb53m9M/imgi-11-p17568-embroidered-raw-silk-saree.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/zfDRHhd0/imgi-12-p17568-embroidered-raw-silk-saree-1.jpg",
+            "https://i.postimg.cc/QM6KQMws/imgi-13-p17568-embroidered-raw-silk-saree-2.jpg",
+            "https://i.postimg.cc/HxRJNhTh/imgi-14-p17568-embroidered-raw-silk-saree-3.jpg",
+            "https://i.postimg.cc/wv7y0pYN/imgi-15-p17568-embroidered-raw-silk-saree-4.jpg",
+            "https://i.postimg.cc/yxRJCydY/imgi-16-p17568-embroidered-raw-silk-saree-5.jpg",
+            "https://i.postimg.cc/pV55jRZb/imgi-17-p17568-embroidered-raw-silk-saree-6.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 170,
+          "slug": "luxurious-heavy-embroidered-organza-bridal-mehndi-dress-2025",
+          "name": "Luxurious Heavy Embroidered Organza Bridal Mehndi Dress 2025",
+          "price": 7995,
+          "description": "2025 organza bridal mehndi dress with exquisite handwork",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Organza Dresses Designs\n- Embroidery: Zari, Thread, Nag & Sequins\n- Features: Heavy embroidered neck, organza front/back with handwork\n- Includes: Heavy border embroidered organza+print dupatta and plain satin silk trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Organza Dresses Designs",
+            "Embroidery": "Zari, Thread, Nag & Sequins",
+            "Neck": "Heavy Embroidered",
+            "Front": "Handwork Heavy Embroidered Organza",
+            "Back": "Plain Organza",
+            "Sleeves": "Heavy Embroidered Organza",
+            "Daman": "Heavy Embroidered Front & Back",
+            "Dupatta": "Heavy Border Embroidered Organza + Digital Print",
+            "Trouser": "Plain Dyed Satin Silk",
+            "Inner": "Plain Crepe/Malai Included",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/B6HsqYxy/imgi-11-p17546-embroidered-organza-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/nrxxM42L/imgi-12-p17546-embroidered-organza-wedding-dress-1.jpg",
+            "https://i.postimg.cc/gcydQ7cL/imgi-13-p17546-embroidered-organza-wedding-dress-2.jpg",
+            "https://i.postimg.cc/2yxDW197/imgi-14-p17546-embroidered-organza-wedding-dress-3.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 171,
+          "slug": "heavy-embroidered-formal-chiffon-wedding-dress-2025",
+          "name": "Heavy Embroidered Formal Chiffon Wedding Dress 2025",
+          "price": 8400,
+          "description": "2025 formal chiffon wedding dress with heavy embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Chiffon Suits Online\n- Embroidery: Thread & Sequins\n- Features: Heavy embroidered neck, chiffon front/back/sleeves\n- Includes: Heavy embroidered chiffon dupatta and plain crepe/malai trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Chiffon Suits Online",
+            "Embroidery": "Thread & Sequins",
+            "Neck": "Heavy Embroidered",
+            "Front": "Heavy Embroidered Chiffon",
+            "Back": "Heavy Embroidered Chiffon",
+            "Sleeves": "Embroidered Chiffon",
+            "Daman": "Heavy Embroidered",
+            "Dupatta": "Heavy Embroidered Chiffon",
+            "Trouser": "Plain Crepe/Malai",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/3JWSmyqr/imgi-11-p17509-embroidered-chiffon-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/YqVX3rc6/imgi-12-p17509-embroidered-chiffon-wedding-dress-1.jpg",
+            "https://i.postimg.cc/CKpm3cxd/imgi-13-p17509-embroidered-chiffon-wedding-dress-2.jpg",
+            "https://i.postimg.cc/x1z6pwYW/imgi-14-p17509-embroidered-chiffon-wedding-dress-3.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 172,
+          "slug": "luxury-handwork-embroidered-net-wedding-dress-with-crushed-silk-gharara",
+          "name": "Luxury Handwork Embroidered Net Wedding Dress with Crushed Silk Gharara",
+          "price": 9500,
+          "description": "Exquisite net wedding dress with crushed silk gharara",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Net Dress\n- Embroidery: Zari, Thread, Sequins & Nag\n- Features: Handwork embroidered neck, net front/back with tassels\n- Includes: Heavy embroidered net dupatta and plain silk trouser with crushed silk gharara",
+          "specifications": {
+            "Product": "Unstitched Embroidered Net Dress",
+            "Embroidery": "Zari, Thread, Sequins & Nag",
+            "Neck": "Handwork Embroidered",
+            "Front": "Handwork Embroidered Net",
+            "Back": "Embroidered Net",
+            "Sleeves": "Heavy Embroidered Net",
+            "Daman": "Heavy Embroidered with Hanging Tassels",
+            "Dupatta": "Heavy Embroidered Net",
+            "Trouser": "Plain Silk with Crushed Silk Gharara",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/05KZNgKr/imgi-11-p16953-embroidered-net-wedding-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/fT4CtHYC/imgi-12-p16953-embroidered-net-wedding-dress-1.jpg",
+            "https://i.postimg.cc/9FGpGGph/imgi-13-p16953-embroidered-net-wedding-dress-2.jpg",
+            "https://i.postimg.cc/Hkdt3VZ7/imgi-14-p16953-embroidered-net-wedding-dress-3.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 173,
+          "slug": "luxury-handwork-heavy-embroidered-net-bridal-maxi-dress",
+          "name": "Luxury Handwork Heavy Embroidered Net Bridal Maxi Dress",
+          "price": 9500,
+          "description": "Opulent net bridal maxi dress with handwork embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Net Bridal Dress\n- Embroidery: Zari, Thread, Sequins, Nag & Stones\n- Features: Heavy embroidered neck, net maxi front/back\n- Includes: 4-side border embroidered net dupatta and printed jamawar trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Net Bridal Dress",
+            "Embroidery": "Zari, Thread, Sequins, Nag & Stones",
+            "Neck": "Handwork Heavy Embroidered",
+            "Maxi": "Heavy Embroidered Front & Back",
+            "Sleeves": "Heavy Embroidered Net",
+            "Daman": "Heavy Embroidered Front & Back",
+            "Dupatta": "4-Side Border Heavy Embroidered Net",
+            "Trouser": "Printed Jamawar",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/rmxdv9zy/imgi-11-p16909-embroidered-net-maxi-dress.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/SRGnKNWw/imgi-12-p16909-embroidered-net-maxi-dress-1.jpg",
+            "https://i.postimg.cc/sfPQmKtw/imgi-13-p16909-embroidered-net-maxi-dress-2.jpg",
+            "https://i.postimg.cc/PrtLRYHh/imgi-14-p16909-embroidered-net-maxi-dress-3.jpg"
+          ],
+          "stock": 10
+        },
+        {
+          "id": 174,
+          "slug": "luxurious-mirror-heavy-handwork-embroidered-net-bridal-maxi-dress",
+          "name": "Luxurious Mirror & Heavy Handwork Embroidered Net Bridal Maxi Dress",
+          "price": 9999,
+          "description": "Premium net bridal maxi dress with mirror and handwork embroidery",
+          "longDescription": "Product Highlights:\n- Product: Unstitched Embroidered Net Bridal Dresses\n- Embroidery: Mirror, Zari, Thread, Sequins, Nag & Stones\n- Features: Handwork heavy embroidered net front/back body and maxi\n- Includes: Heavy embroidered net dupatta with silk border and plain crepe/malai trouser",
+          "specifications": {
+            "Product": "Unstitched Embroidered Net Bridal Dresses",
+            "Embroidery": "Mirror, Zari, Thread, Sequins, Nag & Stones",
+            "Body": "Handwork Heavy Embroidered Net",
+            "Maxi": "Heavy Embroidered Front & Back",
+            "Panels": "Handwork Heavy Embroidered Front",
+            "Sleeves": "Heavy Embroidered Net",
+            "Daman": "Heavy Embroidered Front & Back Patches",
+            "Dupatta": "Heavy Embroidered Net with Silk Border",
+            "Trouser": "Plain Crepe/Malai (Inner Included)",
+            "Occasions": "Party, Wedding"
+          },
+          "category": ["women", "bridal-dresses"],
+          "image": "https://i.postimg.cc/q7MHfBRN/imgi-11-p15510-embroidered-net-bridal-maxi.jpg",
+          "additionalImages": [
+            "https://i.postimg.cc/R0s5vr6X/imgi-12-p15510-embroidered-net-bridal-maxi-1.jpg",
+            "https://i.postimg.cc/yxRwhkfb/imgi-13-p15510-embroidered-net-bridal-maxi-2.jpg",
+            "https://i.postimg.cc/26MsB4xW/imgi-14-p15510-embroidered-net-bridal-maxi-3.jpg",
+            "https://i.postimg.cc/765v6BSD/imgi-15-p15510-embroidered-net-bridal-maxi-4.jpg",
+            "https://i.postimg.cc/J7BVC215/imgi-16-p15510-embroidered-net-bridal-maxi-5.jpg",
+            "https://i.postimg.cc/dtPMsj3P/imgi-17-p15510-embroidered-net-bridal-maxi-6.jpg",
+            "https://i.postimg.cc/GhkWHTTB/imgi-18-p15510-embroidered-net-bridal-maxi-7.jpg",
+            "https://i.postimg.cc/7Zwp7PSK/imgi-19-p15510-embroidered-net-bridal-maxi-8.jpg"
+          ],
+          "stock": 10
         }
+
       ]
-  
-}
-
-
     
     
 
