@@ -15,6 +15,8 @@ const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
 const PAGE_SIZE = 20;
 const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
 
+export const runtime = 'edge';
+
 export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
   const page = typeof searchParams.page === 'string' ? parseInt(searchParams.page, 10) : 1;
   const currentPage = isNaN(page) || page < 1 ? 1 : page;
