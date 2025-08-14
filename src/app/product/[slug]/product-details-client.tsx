@@ -33,11 +33,11 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
         <div className="md:col-span-1">
           <ProductImageGallery images={images} productName={product.name} />
         </div>
-        <div className="flex flex-col justify-start py-4 md:col-span-1">
+        <div className="flex flex-col justify-start md:col-span-1">
           <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
           <div className="flex items-center gap-4 mt-4">
               <div className="flex items-baseline gap-3">
