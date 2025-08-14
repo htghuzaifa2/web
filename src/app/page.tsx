@@ -1,3 +1,4 @@
+
 import ProductCard from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
@@ -32,10 +33,8 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
     };
   }
 
-  return {
-    title: "huzi.pk - Discover a World of Style",
-    description: 'The official homepage of huzi.pk. Explore our curated collection of high-quality apparel, lawn suits, and digital goods. Shop the latest trends with fast nationwide delivery.',
-  };
+  // The default metadata from layout.tsx will be used for the first page.
+  return {};
 }
 
 
