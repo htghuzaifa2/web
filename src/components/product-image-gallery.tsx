@@ -183,7 +183,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                 key={index}
                                 onClick={() => handleThumbnailClick(index)}
                                 className={cn(
-                                    "relative aspect-square shrink-0 basis-1/3 sm:basis-1/4 lg:basis-1/5 md:w-full md:basis-auto overflow-hidden rounded-md transition-opacity duration-200",
+                                    "relative aspect-square shrink-0 basis-1/3 md:basis-auto md:w-full lg:basis-auto overflow-hidden rounded-md transition-opacity duration-200",
                                     mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                                 )}
                             >
