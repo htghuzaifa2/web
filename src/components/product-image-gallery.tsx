@@ -2,10 +2,10 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Share2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useEmblaCarousel, { EmblaCarouselType, EmblaOptionsType } from "embla-carousel-react";
+import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
 import { ImageWithSkeleton } from "./image-with-skeleton";
 
 interface ProductImageGalleryProps {
@@ -13,46 +13,25 @@ interface ProductImageGalleryProps {
   productName: string;
 }
 
-const THUMB_OPTIONS: EmblaOptionsType = {
-  containScroll: 'keepSnaps',
-  dragFree: true,
-};
-
-
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
 
-  const [mainCarouselRef, mainCarouselApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
+  const [mainCarouselRef, mainCarouselApi] = useEmblaCarousel({ loop: images.length > 1 });
   const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel({
-    ...THUMB_OPTIONS,
-    axis: 'y', // Default to vertical
+    containScroll: "keepSnaps",
+    dragFree: true,
   });
-  
-  const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
+
+  const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1 });
   const [lightboxThumbRef, lightboxThumbApi] = useEmblaCarousel({
-    ...THUMB_OPTIONS,
-    axis: 'x'
+    containScroll: 'keepSnaps',
+    dragFree: true,
   });
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
-  // Set axis based on screen size
-  useEffect(() => {
-    const checkAxis = () => {
-      if (window.innerWidth < 768) {
-        thumbCarouselApi?.reInit({ ...THUMB_OPTIONS, axis: 'x' });
-      } else {
-        thumbCarouselApi?.reInit({ ...THUMB_OPTIONS, axis: 'y' });
-      }
-    };
-    checkAxis();
-    window.addEventListener('resize', checkAxis);
-    return () => window.removeEventListener('resize', checkAxis);
-  }, [thumbCarouselApi]);
-
-  
   const openLightbox = useCallback((index: number) => {
     setMainImageIndex(index);
     setLightboxOpen(true);
@@ -61,46 +40,40 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const closeLightbox = () => setLightboxOpen(false);
 
   const handleThumbnailClick = useCallback((index: number) => {
-      if (!mainCarouselApi || !thumbCarouselApi) return;
-      mainCarouselApi.scrollTo(index);
-  }, [mainCarouselApi, thumbCarouselApi]);
+    mainCarouselApi?.scrollTo(index);
+  }, [mainCarouselApi]);
 
   const onMainCarouselSelect = useCallback(() => {
     if (!mainCarouselApi || !thumbCarouselApi) return;
     const selectedIndex = mainCarouselApi.selectedScrollSnap();
     setMainImageIndex(selectedIndex);
-    if(thumbCarouselApi.scrollSnapList().length > selectedIndex) {
-        thumbCarouselApi.scrollTo(selectedIndex);
-    }
-  }, [mainCarouselApi, thumbCarouselApi, setMainImageIndex]);
-  
+    thumbCarouselApi.scrollTo(selectedIndex);
+  }, [mainCarouselApi, thumbCarouselApi]);
+
   const onThumbCarouselSelect = useCallback((emblaApi: EmblaCarouselType) => {
     if (!emblaApi) return;
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
     setNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
 
-  const scrollPrevThumb = useCallback(() => thumbCarouselApi && thumbCarouselApi.scrollPrev(), [thumbCarouselApi]);
-  const scrollNextThumb = useCallback(() => thumbCarouselApi && thumbCarouselApi.scrollNext(), [thumbCarouselApi]);
-
+  const scrollPrevThumb = useCallback(() => thumbCarouselApi?.scrollPrev(), [thumbCarouselApi]);
+  const scrollNextThumb = useCallback(() => thumbCarouselApi?.scrollNext(), [thumbCarouselApi]);
+  
   const onLightboxSelect = useCallback(() => {
-      if (!lightboxEmblaApi || !lightboxThumbApi) return;
-      const selectedIndex = lightboxEmblaApi.selectedScrollSnap();
-      setMainImageIndex(selectedIndex);
-      if(lightboxThumbApi.scrollSnapList().length > selectedIndex) {
-          lightboxThumbApi.scrollTo(selectedIndex);
-      }
+    if (!lightboxEmblaApi || !lightboxThumbApi) return;
+    const selectedIndex = lightboxEmblaApi.selectedScrollSnap();
+    setMainImageIndex(selectedIndex);
+    lightboxThumbApi.scrollTo(selectedIndex);
   }, [lightboxEmblaApi, lightboxThumbApi]);
 
   const handleLightboxThumbClick = useCallback((index: number) => {
-      if (!lightboxEmblaApi) return;
-      lightboxEmblaApi.scrollTo(index);
+    lightboxEmblaApi?.scrollTo(index);
   }, [lightboxEmblaApi]);
-
+  
   useEffect(() => {
     if (!mainCarouselApi) return;
     mainCarouselApi.on("select", onMainCarouselSelect);
-    return () => { mainCarouselApi.off("select", onMainCarouselSelect) };
+    return () => { mainCarouselApi.off("select", onMainCarouselSelect); };
   }, [mainCarouselApi, onMainCarouselSelect]);
 
   useEffect(() => {
@@ -111,17 +84,14 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   }, [thumbCarouselApi, onThumbCarouselSelect]);
 
   useEffect(() => {
-      if (lightboxOpen && lightboxEmblaApi) {
-          onLightboxSelect(); // Initial sync
-          lightboxEmblaApi.on('select', onLightboxSelect);
-          lightboxEmblaApi.scrollTo(mainImageIndex, true); // Go to correct image on open
-          return () => { lightboxEmblaApi.off('select', onLightboxSelect) };
-      }
+    if (lightboxOpen && lightboxEmblaApi) {
+        onLightboxSelect(); // Initial sync
+        lightboxEmblaApi.on('select', onLightboxSelect);
+        lightboxEmblaApi.scrollTo(mainImageIndex, true); // Go to correct image on open
+        return () => { lightboxEmblaApi.off('select', onLightboxSelect) };
+    }
   }, [lightboxOpen, lightboxEmblaApi, mainImageIndex, onLightboxSelect]);
 
-  const showNextImage = useCallback(() => mainCarouselApi?.scrollNext(), [mainCarouselApi]);
-  const showPrevImage = useCallback(() => mainCarouselApi?.scrollPrev(), [mainCarouselApi]);
-  
   const showNextLightboxImage = useCallback(() => lightboxEmblaApi?.scrollNext(), [lightboxEmblaApi]);
   const showPrevLightboxImage = useCallback(() => lightboxEmblaApi?.scrollPrev(), [lightboxEmblaApi]);
 
@@ -146,47 +116,73 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       url: urlToShare,
     };
 
-    if (navigator.share) {
-      try {
+    try {
+      if (navigator.share) {
         await navigator.share(shareData);
-      } catch (err) {
-        console.error("Share failed:", err);
-      }
-    } else {
-      try {
+      } else {
         await navigator.clipboard.writeText(urlToShare);
         alert("Link copied to clipboard!");
-      } catch (err) {
-        console.error("Failed to copy link:", err);
-        alert("Could not copy link to clipboard.");
       }
+    } catch (err) {
+      console.error("Share failed:", err);
     }
   };
 
   return (
-    <div className="flex flex-col-reverse md:flex-row gap-4">
-       <div className={cn("relative md:w-24 order-2 md:order-1 flex md:flex-col gap-2", images.length > 1 ? "flex" : "hidden")}>
+    <div className="flex flex-col gap-4 w-full">
+      {/* Main Image Carousel */}
+      <div className="relative w-full overflow-hidden rounded-lg group aspect-square bg-muted/30">
+        <div className="overflow-hidden h-full" ref={mainCarouselRef}>
+          <div className="flex h-full">
+            {images.map((imgSrc, index) => (
+              <div
+                className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer h-full"
+                key={index}
+                onClick={() => openLightbox(index)}
+              >
+                <ImageWithSkeleton
+                  src={imgSrc}
+                  alt={`${productName} image ${index + 1}`}
+                  fill
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-contain p-2"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        {images.length > 1 && (
+          <>
+            <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={() => mainCarouselApi?.scrollPrev()}><ChevronLeft size={24} /></Button>
+            <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={() => mainCarouselApi?.scrollNext()}><ChevronRight size={24} /></Button>
+          </>
+        )}
+      </div>
+
+      {/* Thumbnail Carousel */}
+      {images.length > 1 && (
+        <div className="relative flex items-center w-full">
            <Button
                size="icon"
                variant="ghost"
                className={cn(
-                   "h-full w-8 md:h-8 md:w-full rounded-full self-center shrink-0",
+                   "h-full w-8 shrink-0 rounded-full self-center",
                    prevBtnDisabled && "opacity-50 cursor-not-allowed"
                )}
                onClick={scrollPrevThumb}
                disabled={prevBtnDisabled}
            >
-               <ChevronLeft className="h-5 w-5 md:hidden" />
-               <ChevronUp className="h-5 w-5 hidden md:block" />
+               <ChevronLeft className="h-5 w-5" />
            </Button>
-           <div className="overflow-hidden w-full h-auto md:h-full" ref={thumbCarouselRef}>
-               <div className="flex md:flex-col gap-2 h-full">
+           <div className="overflow-hidden w-full" ref={thumbCarouselRef}>
+               <div className="flex gap-2">
                    {images.map((img, index) => (
                        <button
                            key={index}
                            onClick={() => handleThumbnailClick(index)}
                            className={cn(
-                               "relative aspect-square shrink-0 basis-1/3 md:basis-auto md:w-full overflow-hidden rounded-md transition-opacity duration-200",
+                               "relative aspect-square shrink-0 basis-1/3 sm:basis-1/4 md:basis-1/5 overflow-hidden rounded-md transition-opacity duration-200",
                                mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                            )}
                        >
@@ -205,71 +201,43 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                size="icon"
                variant="ghost"
                className={cn(
-                   "h-full w-8 md:h-8 md:w-full rounded-full self-center shrink-0",
+                   "h-full w-8 shrink-0 rounded-full self-center",
                    nextBtnDisabled && "opacity-50 cursor-not-allowed"
                )}
                onClick={scrollNextThumb}
                disabled={nextBtnDisabled}
            >
-               <ChevronRight className="h-5 w-5 md:hidden" />
-               <ChevronDown className="h-5 w-5 hidden md:block" />
+               <ChevronRight className="h-5 w-5" />
            </Button>
-       </div>
-
-      <div className="relative flex-1 w-full overflow-hidden rounded-lg group aspect-square bg-muted/30 order-1 md:order-2">
-         <div className="overflow-hidden h-full" ref={mainCarouselRef}>
-            <div className="flex h-full">
-                {images.map((imgSrc, index) => (
-                    <div 
-                        className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer h-full"
-                        key={index}
-                        onClick={() => openLightbox(index)}
-                    >
-                        <ImageWithSkeleton
-                            src={imgSrc}
-                            alt={`${productName} image ${index + 1}`}
-                            fill
-                            priority={index === 0}
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-contain p-2"
-                        />
-                    </div>
-                ))}
-            </div>
         </div>
-        {images.length > 1 && (
-            <>
-                <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={showPrevImage}><ChevronLeft size={24} /></Button>
-                <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={showNextImage}><ChevronRight size={24} /></Button>
-            </>
-        )}
-      </div>
+      )}
 
+      {/* Lightbox */}
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm lightbox-zoom-in" onClick={closeLightbox}>
-          <div 
+          <div
             className="relative w-full h-full flex-1"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="overflow-hidden h-full" ref={lightboxEmblaRef}>
-               <div className="flex h-full">
-                  {images.map((imgSrc, index) => (
-                    <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center p-4" key={`lightbox-main-${index}`}>
-                        <ImageWithSkeleton
-                            src={imgSrc}
-                            alt={productName}
-                            fill
-                            priority={index === mainImageIndex}
-                            sizes="100vw"
-                            className="object-contain"
-                        />
-                    </div>
-                  ))}
-                </div>
+              <div className="flex h-full">
+                {images.map((imgSrc, index) => (
+                  <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center p-4" key={`lightbox-main-${index}`}>
+                    <ImageWithSkeleton
+                      src={imgSrc}
+                      alt={productName}
+                      fill
+                      priority={index === mainImageIndex}
+                      sizes="100vw"
+                      className="object-contain"
+                    />
+                  </div>
+                ))}
               </div>
+            </div>
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
-             <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80" onClick={handleShare}>
+            <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80" onClick={handleShare}>
               <Share2 />
             </Button>
             <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80" asChild>
@@ -283,8 +251,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             <>
               <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:left-4" onClick={(e) => { e.stopPropagation(); showPrevLightboxImage(); }}><ChevronLeft size={32} /></Button>
               <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:right-4" onClick={(e) => { e.stopPropagation(); showNextLightboxImage(); }}><ChevronRight size={32} /></Button>
-              
-              <div 
+              <div
                 className="w-full h-auto py-4 absolute bottom-0 bg-gradient-to-t from-black/70 to-transparent"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -296,7 +263,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                         onClick={() => handleLightboxThumbClick(index)}
                         className={cn(
                           "relative aspect-square h-16 w-16 sm:h-20 sm:w-20 shrink-0 basis-1/3 sm:basis-1/4 lg:basis-1/5 overflow-hidden rounded-md transition-opacity duration-200",
-                           mainImageIndex === index ? "opacity-100 ring-2 ring-primary ring-offset-2 ring-offset-black/50" : "opacity-50 hover:opacity-100"
+                          mainImageIndex === index ? "opacity-100 ring-2 ring-primary ring-offset-2 ring-offset-black/50" : "opacity-50 hover:opacity-100"
                         )}
                       >
                         <ImageWithSkeleton
