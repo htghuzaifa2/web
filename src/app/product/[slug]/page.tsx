@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import productsData from "@/data/products.json";
 import type { Product } from "@/lib/types";
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-const getProductData = (slug: string) => {
+const getProductData = async (slug: string) => {
   const allProducts: Product[] = productsData;
   const product = allProducts.find(p => p.slug === slug);
   
@@ -80,7 +81,7 @@ const getProductData = (slug: string) => {
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const { product, relatedProducts } = getProductData(params.slug);
+  const { product, relatedProducts } = await getProductData(params.slug);
 
   if (!product) {
     notFound();
