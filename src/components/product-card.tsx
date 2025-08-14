@@ -44,7 +44,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <>
       <Card className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg">
         <Link href={`/product/${productSlug}`} className="block">
-          <div className="relative w-full overflow-hidden bg-muted/30 aspect-square">
+          <div className="relative w-full overflow-hidden bg-black aspect-square">
             <ImageWithSkeleton
               src={product.image}
               alt={product.name}
@@ -78,7 +78,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="flex flex-1 flex-col p-3 text-center">
           <div className="flex-grow">
-            <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words">
+             <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem]">
               <Link href={`/product/${productSlug}`} className="hover:underline">
                 {product.name}
               </Link>
