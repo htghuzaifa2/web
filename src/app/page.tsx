@@ -18,26 +18,6 @@ const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
 
 export const runtime = 'edge';
 
-export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
-  const page = typeof searchParams.page === 'string' ? parseInt(searchParams.page, 10) : 1;
-  const currentPage = isNaN(page) || page < 1 ? 1 : page;
-
-  if (currentPage > 1) {
-    return {
-      title: `Page ${currentPage} of All Products - huzi.pk`,
-      description: `Browse page ${currentPage} of our collection of high-quality apparel, lawn suits, and digital goods.`,
-      robots: {
-        index: false,
-        follow: true,
-      }
-    };
-  }
-
-  // The default metadata from layout.tsx will be used for the first page.
-  return {};
-}
-
-
 const getProductsForPage = (page: number) => {
   const startIndex = (page - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
