@@ -27,24 +27,19 @@ const alegreya = Alegreya({
 const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
-  title: "huzi.pk | Premium Lawn Suits & Modern Fashion in Pakistan",
-  description: "Discover the latest trends at huzi.pk. Shop our curated collection of high-quality lawn suits, women's fashion, and digital goods with fast, reliable delivery across Pakistan.",
+  title: "huzi.pk | Your Trusted Online Store in Pakistan",
+  description: "huzi.pk is your trusted one-stop online store in Pakistan for electronics, fashion, lawn suits, home goods & more. Shop quality products with nationwide delivery.",
   keywords: [
-    "huzi.pk online shopping",
-    "trusted online store in Pakistan",
     "online shopping in Pakistan",
+    "huzi.pk online store",
     "buy electronics online Pakistan",
-    "fashion & clothing online Pakistan",
-    "lawn suits online shopping Pakistan",
-    "home & kitchen appliances Pakistan",
-    "mobile & computer accessories Pakistan",
-    "cheap online store Pakistan",
-    "digital goods online store",
-    "worldwide digital downloads",
-    "premium software Pakistan",
-    "affordable online marketplace Pakistan",
-    "Pakistan eCommerce platform",
-    "best online store in Pakistan"
+    "fashion & clothing Pakistan",
+    "lawn suits online shopping",
+    "home & kitchen appliances",
+    "mobile accessories Pakistan",
+    "digital products worldwide",
+    "e-commerce Pakistan",
+    "best online store Pakistan"
   ]
 };
 
