@@ -13,50 +13,45 @@ interface ProductImageGalleryProps {
   productName: string;
 }
 
-const THUMB_OPTIONS_X: EmblaOptionsType = {
+const THUMB_OPTIONS: EmblaOptionsType = {
   containScroll: 'keepSnaps',
   dragFree: true,
-  align: 'start',
-  axis: 'x',
-};
-
-const THUMB_OPTIONS_Y: EmblaOptionsType = {
-  containScroll: 'keepSnaps',
-  dragFree: true,
-  align: 'start',
-  axis: 'y',
 };
 
 
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainImageIndex, setMainImageIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
   const [mainCarouselRef, mainCarouselApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
-  
-  const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel(isMobile ? THUMB_OPTIONS_X : THUMB_OPTIONS_Y);
+  const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel({
+    ...THUMB_OPTIONS,
+    axis: 'y', // Default to vertical
+  });
   
   const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
   const [lightboxThumbRef, lightboxThumbApi] = useEmblaCarousel({
-    containScroll: "keepSnaps",
-    dragFree: true,
+    ...THUMB_OPTIONS,
     axis: 'x'
   });
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
+  // Set axis based on screen size
   useEffect(() => {
-    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
+    const checkAxis = () => {
+      if (window.innerWidth < 768) {
+        thumbCarouselApi?.reInit({ ...THUMB_OPTIONS, axis: 'x' });
+      } else {
+        thumbCarouselApi?.reInit({ ...THUMB_OPTIONS, axis: 'y' });
+      }
+    };
+    checkAxis();
+    window.addEventListener('resize', checkAxis);
+    return () => window.removeEventListener('resize', checkAxis);
+  }, [thumbCarouselApi]);
 
-  useEffect(() => {
-    thumbCarouselApi?.reInit(isMobile ? THUMB_OPTIONS_X : THUMB_OPTIONS_Y);
-  }, [isMobile, thumbCarouselApi]);
   
   const openLightbox = useCallback((index: number) => {
     setMainImageIndex(index);
@@ -169,8 +164,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-       <div className={cn("relative md:col-span-1 md:order-1 order-2 flex md:flex-col", images.length > 1 ? "flex" : "hidden")}>
+    <div className="flex flex-col md:flex-row gap-4">
+       <div className={cn("relative md:w-24 order-2 md:order-1 flex md:flex-col gap-2", images.length > 1 ? "flex" : "hidden")}>
            <Button
                size="icon"
                variant="ghost"
@@ -191,7 +186,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                            key={index}
                            onClick={() => handleThumbnailClick(index)}
                            className={cn(
-                               "relative aspect-square shrink-0 basis-1/3 md:basis-1/5 md:w-full overflow-hidden rounded-md transition-opacity duration-200",
+                               "relative aspect-square shrink-0 basis-1/3 md:basis-auto md:w-full overflow-hidden rounded-md transition-opacity duration-200",
                                mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                            )}
                        >
@@ -221,7 +216,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
            </Button>
        </div>
 
-      <div className={cn("relative flex-1 w-full overflow-hidden rounded-lg group aspect-square bg-muted/30", images.length > 1 ? "md:col-span-4" : "md:col-span-5")}>
+      <div className="relative flex-1 w-full overflow-hidden rounded-lg group aspect-square bg-muted/30 order-1 md:order-2">
          <div className="overflow-hidden h-full" ref={mainCarouselRef}>
             <div className="flex h-full">
                 {images.map((imgSrc, index) => (
@@ -300,7 +295,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                         key={`lightbox-thumb-${index}`}
                         onClick={() => handleLightboxThumbClick(index)}
                         className={cn(
-                          "relative aspect-square h-16 w-16 sm:h-20 sm:w-20 shrink-0 basis-1/3 sm:basis-1/5 overflow-hidden rounded-md transition-opacity duration-200",
+                          "relative aspect-square h-16 w-16 sm:h-20 sm:w-20 shrink-0 basis-1/3 sm:basis-1/4 lg:basis-1/5 overflow-hidden rounded-md transition-opacity duration-200",
                            mainImageIndex === index ? "opacity-100 ring-2 ring-primary ring-offset-2 ring-offset-black/50" : "opacity-50 hover:opacity-100"
                         )}
                       >
