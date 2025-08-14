@@ -164,7 +164,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-4">
+    <div className="flex flex-col-reverse md:flex-row gap-4">
        <div className={cn("relative md:w-24 order-2 md:order-1 flex md:flex-col gap-2", images.length > 1 ? "flex" : "hidden")}>
            <Button
                size="icon"
