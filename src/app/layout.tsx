@@ -27,8 +27,8 @@ const alegreya = Alegreya({
 const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
-  title: "huzi.pk | Your Trusted Online Store in Pakistan",
-  description: "huzi.pk is your trusted one-stop online store in Pakistan for electronics, fashion, lawn suits, home goods & more. Shop quality products with nationwide delivery.",
+  title: "huzi.pk | Your Destination for Quality & Variety in Pakistan",
+  description: "huzi.pk brings together quality, style, and innovation in one platform. From electronics and fashion to home essentials and digital goods, discover products that fit your lifestyle.",
   keywords: [
     "online shopping in Pakistan",
     "huzi.pk online store",
