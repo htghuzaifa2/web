@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel, { EmblaCarouselType, EmblaOptionsType } from "embla-carousel-react";
 import { ImageWithSkeleton } from "./image-with-skeleton";
 
 interface ProductImageGalleryProps {
@@ -18,18 +18,21 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [mainImageIndex, setMainImageIndex] = useState(0);
   
   const [mainCarouselRef, mainCarouselApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
-  const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel({
+  
+  const [thumbOptions, setThumbOptions] = useState<EmblaOptionsType>({
     containScroll: "keepSnaps",
     dragFree: true,
     align: "start",
+    axis: 'x'
   });
+
+  const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel(thumbOptions);
   
   const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
   const [lightboxThumbRef, lightboxThumbApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
     dragFree: true,
   });
-
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
@@ -65,18 +68,27 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const scrollNextThumb = useCallback(() => thumbCarouselApi && thumbCarouselApi.scrollNext(), [thumbCarouselApi]);
   
   useEffect(() => {
-      const handleResize = () => {
-        if (thumbCarouselApi) {
-          const newAxis = window.innerWidth < 768 ? 'x' : 'y';
-          if (thumbCarouselApi.internalEngine().options.axis !== newAxis) {
-            thumbCarouselApi.reInit({ axis: newAxis, align: 'start' });
-          }
+    const handleResize = () => {
+      const newAxis = window.innerWidth < 768 ? 'x' : 'y';
+      setThumbOptions(prevOptions => {
+        if (prevOptions.axis !== newAxis) {
+          return { ...prevOptions, axis: newAxis };
         }
-      };
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-  }, [thumbCarouselApi]);
+        return prevOptions;
+      });
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  useEffect(() => {
+    if (thumbCarouselApi) {
+      thumbCarouselApi.reInit(thumbOptions);
+    }
+  }, [thumbOptions, thumbCarouselApi]);
+
 
   const onLightboxSelect = useCallback(() => {
       if (!lightboxEmblaApi || !lightboxThumbApi) return;
@@ -183,7 +195,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                 key={index}
                                 onClick={() => handleThumbnailClick(index)}
                                 className={cn(
-                                    "relative aspect-square shrink-0 basis-1/3 md:basis-auto md:w-full lg:basis-auto overflow-hidden rounded-md transition-opacity duration-200",
+                                    "relative aspect-square shrink-0 basis-1/3 md:basis-auto lg:basis-auto md:w-full overflow-hidden rounded-md transition-opacity duration-200",
                                     mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                                 )}
                             >
@@ -215,7 +227,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         </div>
       )}
 
-      <div className={cn("relative flex-1 w-full overflow-hidden rounded-lg group md:order-2 order-1 aspect-square bg-muted/30", images.length > 1 ? "md:col-span-4" : "md:col-span-5")}>
+      <div className={cn("relative flex-1 w-full overflow-hidden rounded-lg group aspect-square bg-muted/30", images.length > 1 ? "md:col-span-4" : "md:col-span-5")}>
          <div className="overflow-hidden h-full" ref={mainCarouselRef}>
             <div className="flex h-full">
                 {images.map((imgSrc, index) => (
