@@ -43,15 +43,29 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <Card className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg">
-        <Link href={`/product/${productSlug}`} className="block">
-          <div className="relative w-full overflow-hidden bg-black aspect-square">
-            <ImageWithSkeleton
-              src={product.image}
-              alt={product.name}
-              fill
-              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="object-contain p-2 transition-transform duration-500 ease-in-out group-hover:scale-105"
-            />
+        <Link href={`/product/${productSlug}`} className="block h-full">
+          <div className="flex h-full flex-col">
+            <div className="relative w-full overflow-hidden bg-background aspect-square">
+              <ImageWithSkeleton
+                src={product.image}
+                alt={product.name}
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-cover p-0 transition-transform duration-500 ease-in-out group-hover:scale-105"
+              />
+            </div>
+            
+            <div className="flex flex-1 flex-col p-3 text-center">
+              <div className="flex-grow">
+                 <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem]">
+                    {product.name}
+                </h3>
+              </div>
+              <div className="mt-auto flex items-baseline justify-center gap-2 pt-2">
+                <p className="text-base font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
+                <p className="text-sm text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
+              </div>
+            </div>
           </div>
         </Link>
         
@@ -74,20 +88,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           >
             <ShoppingCart className="h-4 w-4" />
           </Button>
-        </div>
-
-        <div className="flex flex-1 flex-col p-3 text-center">
-          <div className="flex-grow">
-             <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem]">
-              <Link href={`/product/${productSlug}`} className="hover:underline">
-                {product.name}
-              </Link>
-            </h3>
-          </div>
-          <div className="mt-auto flex items-baseline justify-center gap-2 pt-2">
-            <p className="text-base font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
-            <p className="text-sm text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
-          </div>
         </div>
       </Card>
       <ProductQuickView product={product} open={quickViewOpen} onOpenChange={setQuickViewOpen} />
