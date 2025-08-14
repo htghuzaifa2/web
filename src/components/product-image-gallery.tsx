@@ -21,7 +21,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
     dragFree: true,
-    axis: "y" // Default to vertical for desktop
+    align: "start",
   });
   
   const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1, align: "start" });
@@ -50,7 +50,9 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     if (!mainCarouselApi || !thumbCarouselApi) return;
     const selectedIndex = mainCarouselApi.selectedScrollSnap();
     setMainImageIndex(selectedIndex);
-    thumbCarouselApi.scrollTo(selectedIndex);
+    if(thumbCarouselApi.scrollSnapList().length > selectedIndex) {
+        thumbCarouselApi.scrollTo(selectedIndex);
+    }
   }, [mainCarouselApi, thumbCarouselApi, setMainImageIndex]);
   
   const onThumbCarouselSelect = useCallback((emblaApi: EmblaCarouselType) => {
@@ -67,7 +69,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         if (thumbCarouselApi) {
           const newAxis = window.innerWidth < 768 ? 'x' : 'y';
           if (thumbCarouselApi.internalEngine().options.axis !== newAxis) {
-            thumbCarouselApi.reInit({ axis: newAxis });
+            thumbCarouselApi.reInit({ axis: newAxis, align: 'start' });
           }
         }
       };
@@ -80,7 +82,9 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       if (!lightboxEmblaApi || !lightboxThumbApi) return;
       const selectedIndex = lightboxEmblaApi.selectedScrollSnap();
       setMainImageIndex(selectedIndex);
-      lightboxThumbApi.scrollTo(selectedIndex);
+      if(lightboxThumbApi.scrollSnapList().length > selectedIndex) {
+          lightboxThumbApi.scrollTo(selectedIndex);
+      }
   }, [lightboxEmblaApi, lightboxThumbApi]);
 
   const handleLightboxThumbClick = useCallback((index: number) => {
@@ -179,7 +183,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                 key={index}
                                 onClick={() => handleThumbnailClick(index)}
                                 className={cn(
-                                    "relative aspect-square w-16 h-16 md:w-full md:h-auto flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200 basis-1/4 sm:basis-1/5 md:basis-auto",
+                                    "relative aspect-square shrink-0 basis-1/3 sm:basis-1/4 lg:basis-1/5 md:w-full md:basis-auto overflow-hidden rounded-md transition-opacity duration-200",
                                     mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                                 )}
                             >
@@ -283,14 +287,14 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 className="w-full h-auto py-4 absolute bottom-0 bg-gradient-to-t from-black/70 to-transparent"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="overflow-hidden container mx-auto" ref={lightboxThumbRef}>
+                <div className="overflow-hidden container mx-auto px-4" ref={lightboxThumbRef}>
                   <div className="flex gap-2 justify-center">
                     {images.map((img, index) => (
                       <button
                         key={`lightbox-thumb-${index}`}
                         onClick={() => handleLightboxThumbClick(index)}
                         className={cn(
-                          "relative aspect-square h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
+                          "relative aspect-square h-16 w-16 sm:h-20 sm:w-20 shrink-0 overflow-hidden rounded-md transition-opacity duration-200",
                            mainImageIndex === index ? "opacity-100 ring-2 ring-primary ring-offset-2 ring-offset-black/50" : "opacity-50 hover:opacity-100"
                         )}
                       >
