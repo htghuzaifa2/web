@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
@@ -17,9 +18,9 @@ const getCategoryData = (slug: string) => {
   if (!category) {
     return { category: null, allCategoryProducts: [] };
   }
-  const allCategoryProducts = productsData.filter((product) =>
-    product.category.includes(slug)
-  );
+  const allCategoryProducts = productsData
+    .filter((product) => product.category.includes(slug))
+    .reverse(); // Reverse to show latest products first
   return { category, allCategoryProducts };
 };
 
