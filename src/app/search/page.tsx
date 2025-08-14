@@ -1,4 +1,3 @@
-
 import productsData from '@/data/products.json';
 import type { Product } from '@/lib/types';
 import { Metadata } from 'next';
@@ -31,7 +30,7 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
 
 export default function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q || '';
-  const allProducts: Product[] = productsData.products;
+  const allProducts: Product[] = productsData;
 
   const filteredProducts = query
     ? allProducts.filter(product =>

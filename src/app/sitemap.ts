@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '/' ? 1 : 0.8,
   }));
 
-  const productPages = productsData.products.map((product) => ({
+  const productPages = productsData.map((product) => ({
     url: `${siteUrl}/product/${product.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,

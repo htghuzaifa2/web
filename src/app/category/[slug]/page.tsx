@@ -17,7 +17,7 @@ const getCategoryData = (slug: string) => {
   if (!category) {
     return { category: null, allCategoryProducts: [] };
   }
-  const allCategoryProducts = productsData.products.filter((product) =>
+  const allCategoryProducts = productsData.filter((product) =>
     product.category.includes(slug)
   );
   return { category, allCategoryProducts };

@@ -1,4 +1,3 @@
-
 import ProductCard from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
@@ -11,17 +10,32 @@ import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: "huzi.pk - Discover a World of Style",
-  description: 'The official homepage of huzi.pk. Explore our curated collection of high-quality apparel, lawn suits, and digital goods. Shop the latest trends with fast nationwide delivery.',
-};
-
-export const runtime = 'edge';
-
-const ALL_PRODUCTS: Product[] = [...productsData.products].reverse();
+const ALL_PRODUCTS: Product[] = [...productsData].reverse();
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
 const PAGE_SIZE = 20;
 const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
+
+export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
+  const page = typeof searchParams.page === 'string' ? parseInt(searchParams.page, 10) : 1;
+  const currentPage = isNaN(page) || page < 1 ? 1 : page;
+
+  if (currentPage > 1) {
+    return {
+      title: `Page ${currentPage} of All Products - huzi.pk`,
+      description: `Browse page ${currentPage} of our collection of high-quality apparel, lawn suits, and digital goods.`,
+      robots: {
+        index: false,
+        follow: true,
+      }
+    };
+  }
+
+  return {
+    title: "huzi.pk - Discover a World of Style",
+    description: 'The official homepage of huzi.pk. Explore our curated collection of high-quality apparel, lawn suits, and digital goods. Shop the latest trends with fast nationwide delivery.',
+  };
+}
+
 
 const getProductsForPage = (page: number) => {
   const startIndex = (page - 1) * PAGE_SIZE;
@@ -81,7 +95,7 @@ const getFeaturedProducts = () => {
 
 export default function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = typeof searchParams.page === 'string' ? searchParams.page : '1';
-  const currentPage = Number(page);
+  const currentPage = isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
   const featuredProducts = getFeaturedProducts();

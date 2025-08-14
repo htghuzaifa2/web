@@ -8,14 +8,14 @@ import { Metadata } from "next";
 
 // This function generates static pages for all products
 export async function generateStaticParams() {
-  const products: Product[] = productsData.products;
+  const products: Product[] = productsData;
   return products.map((product) => ({
     slug: product.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const products: Product[] = productsData.products;
+  const products: Product[] = productsData;
   const product = products.find(p => p.slug === params.slug);
 
   if (!product) {
@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 const getProductData = (slug: string) => {
-  const allProducts: Product[] = productsData.products;
+  const allProducts: Product[] = productsData;
   const product = allProducts.find(p => p.slug === slug);
   
   if (!product) {
