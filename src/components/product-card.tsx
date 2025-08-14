@@ -77,12 +77,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <div className="flex flex-1 flex-col p-3 text-center">
-          <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words flex-grow">
-            <Link href={`/product/${productSlug}`} className="hover:underline">
-              {product.name}
-            </Link>
-          </h3>
-          <div className="mt-auto flex items-baseline justify-center gap-2">
+          <div className="flex-grow">
+            <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words">
+              <Link href={`/product/${productSlug}`} className="hover:underline">
+                {product.name}
+              </Link>
+            </h3>
+          </div>
+          <div className="mt-auto flex items-baseline justify-center gap-2 pt-2">
             <p className="text-base font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
             <p className="text-sm text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
           </div>
