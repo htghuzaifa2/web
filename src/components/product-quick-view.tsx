@@ -34,6 +34,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
       title: "Added to cart",
       description: `${product.name} has been added to your cart.`,
     });
+    onOpenChange(false); // Close dialog on add to cart
   };
 
   const images = [product.image, ...(product.additionalImages || [])];

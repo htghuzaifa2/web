@@ -211,12 +211,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         </div>
       )}
 
-      <div className={cn("relative flex-1 w-full overflow-hidden rounded-lg group md:order-2 order-1", images.length > 1 ? "md:col-span-4" : "md:col-span-5")}>
+      <div className={cn("relative flex-1 w-full overflow-hidden rounded-lg group md:order-2 order-1 aspect-square bg-muted/30", images.length > 1 ? "md:col-span-4" : "md:col-span-5")}>
          <div className="overflow-hidden h-full" ref={mainCarouselRef}>
             <div className="flex h-full">
                 {images.map((imgSrc, index) => (
                     <div 
-                        className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer aspect-square bg-muted/30"
+                        className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer h-full"
                         key={index}
                         onClick={() => openLightbox(index)}
                     >
