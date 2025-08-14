@@ -15,9 +15,25 @@ export async function generateStaticParams() {
   }));
 }
 
+const getProductData = (slug: string) => {
+  const allProducts: Product[] = productsData;
+  const product = allProducts.find(p => p.slug === slug);
+
+  if (!product) {
+    return { product: null, relatedProducts: [] };
+  }
+  
+  // Get 6 fully random products, excluding the current one.
+  const relatedProducts = allProducts
+    .filter(p => p.id !== product.id) // Exclude the current product
+    .sort(() => 0.5 - Math.random()) // Shuffle the array randomly
+    .slice(0, 6); // Take the first 6 products
+
+  return { product, relatedProducts };
+};
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const products: Product[] = productsData;
-  const product = products.find(p => p.slug === params.slug);
+  const { product } = getProductData(params.slug);
 
   if (!product) {
     return {
@@ -63,25 +79,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-const getProductData = async (slug: string) => {
-  const allProducts: Product[] = productsData;
-  const product = allProducts.find(p => p.slug === slug);
-  
-  if (!product) {
-    return { product: null, relatedProducts: [] };
-  }
-  
-  // Get 6 fully random products, excluding the current one.
-  const relatedProducts = allProducts
-    .filter(p => p.id !== product.id) // Exclude the current product
-    .sort(() => 0.5 - Math.random()) // Shuffle the array randomly
-    .slice(0, 6); // Take the first 6 products
-
-  return { product, relatedProducts };
-}
-
 export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const { product, relatedProducts } = await getProductData(params.slug);
+  const { product, relatedProducts } = getProductData(params.slug);
 
   if (!product) {
     notFound();
