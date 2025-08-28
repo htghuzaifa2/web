@@ -78,7 +78,7 @@ export default function ContactClient() {
                         <CardHeader>
                             <CardTitle className="text-center font-headline text-3xl">Send us a Message</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="p-6">
                              <Form {...form}>
                                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                     <FormField

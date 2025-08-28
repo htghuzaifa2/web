@@ -24,7 +24,7 @@ export default function ProductInfoAccordion({ description, specifications }: Pr
                         Description
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground prose max-w-none pt-2">
-                        <p>{description}</p>
+                        <div dangerouslySetInnerHTML={{ __html: description.replace(/\n/g, '<br />') }} />
                     </AccordionContent>
                 </AccordionItem>
             )}

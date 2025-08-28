@@ -28,7 +28,7 @@ export default function HowToPayPage() {
                                 <span>Bank Transfer</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4 text-muted-foreground">
+                        <CardContent className="space-y-4 text-muted-foreground p-6">
                             <div>
                                 <p className="font-semibold text-foreground">Bank</p>
                                 <p>Meezan Bank Limited</p>
@@ -54,7 +54,7 @@ export default function HowToPayPage() {
                                 <span>JazzCash / EasyPaisa</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4 text-muted-foreground">
+                        <CardContent className="space-y-4 text-muted-foreground p-6">
                            <div>
                                 <p className="font-semibold text-foreground">Account Title</p>
                                 <p>Muhammad Huzaifa Tanveer</p>
@@ -74,7 +74,7 @@ export default function HowToPayPage() {
                             <span>Important Notes</span>
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-muted-foreground">
+                    <CardContent className="space-y-3 text-muted-foreground p-6">
                        <p>Please wait for an availability confirmation message or call before making any advance payment.</p>
                        <p>After sending payment, please share your payment screenshot on WhatsApp: <strong className="text-foreground">0321-9486948</strong></p>
                     </CardContent>

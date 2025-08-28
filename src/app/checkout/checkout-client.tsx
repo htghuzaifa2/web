@@ -116,7 +116,7 @@ export default function CheckoutClient() {
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-6">
               <div className="space-y-4">
                 {items.map(item => (
                   <div key={item.id} className="flex items-center justify-between">
@@ -165,7 +165,7 @@ export default function CheckoutClient() {
             <CardHeader>
               <CardTitle>Shipping Information</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-6">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
