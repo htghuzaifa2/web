@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, X, Share2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
 import { ImageWithSkeleton } from "./image-with-skeleton";
 
 interface ProductImageGalleryProps {
@@ -15,69 +15,68 @@ interface ProductImageGalleryProps {
 
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [mainImageIndex, setMainImageIndex] = useState(0);
+  const [mainApi, setMainApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
+  const [thumbApi, setThumbApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
+  const [lightboxApi, setLightboxApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const [mainCarouselRef, mainCarouselApi] = useEmblaCarousel({ loop: images.length > 1 });
-  const [thumbCarouselRef, thumbCarouselApi] = useEmblaCarousel({
+  const [mainRef, emblaMainApi] = useEmblaCarousel({ loop: images.length > 1 });
+  const [thumbRef, emblaThumbApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
     dragFree: true,
   });
+  const [lightboxRef, emblaLightboxApi] = useEmblaCarousel({ loop: images.length > 1 });
 
-  const [lightboxEmblaRef, lightboxEmblaApi] = useEmblaCarousel({ loop: images.length > 1 });
+  useEffect(() => setMainApi(emblaMainApi), [emblaMainApi]);
+  useEffect(() => setThumbApi(emblaThumbApi), [emblaThumbApi]);
+  useEffect(() => setLightboxApi(emblaLightboxApi), [emblaLightboxApi]);
 
-  const openLightbox = useCallback((index: number) => {
-    setMainImageIndex(index);
+  const onThumbClick = useCallback((index: number) => {
+    if (!mainApi) return;
+    mainApi.scrollTo(index);
+  }, [mainApi]);
+
+  const onSelect = useCallback(() => {
+    if (!mainApi || !thumbApi) return;
+    const newSelectedIndex = mainApi.selectedScrollSnap();
+    setSelectedIndex(newSelectedIndex);
+    thumbApi.scrollTo(newSelectedIndex);
+    if (lightboxApi) lightboxApi.scrollTo(newSelectedIndex, true);
+  }, [mainApi, thumbApi, lightboxApi]);
+
+  useEffect(() => {
+    if (!mainApi) return;
+    onSelect();
+    mainApi.on("select", onSelect);
+    mainApi.on("reInit", onSelect);
+    return () => { mainApi.off("select", onSelect) };
+  }, [mainApi, onSelect]);
+
+  const openLightbox = (index: number) => {
+    setSelectedIndex(index);
     setLightboxOpen(true);
-  }, []);
-
+    setTimeout(() => lightboxApi?.scrollTo(index, true), 0);
+  };
+  
   const closeLightbox = () => setLightboxOpen(false);
 
-  const handleThumbnailClick = useCallback((index: number) => {
-    mainCarouselApi?.scrollTo(index);
-  }, [mainCarouselApi]);
-
-  const onMainCarouselSelect = useCallback(() => {
-    if (!mainCarouselApi || !thumbCarouselApi) return;
-    const selectedIndex = mainCarouselApi.selectedScrollSnap();
-    setMainImageIndex(selectedIndex);
-    thumbCarouselApi.scrollTo(selectedIndex);
-  }, [mainCarouselApi, thumbCarouselApi]);
-
-  useEffect(() => {
-    if (!mainCarouselApi) return;
-    mainCarouselApi.on("select", onMainCarouselSelect);
-    return () => { mainCarouselApi.off("select", onMainCarouselSelect); };
-  }, [mainCarouselApi, onMainCarouselSelect]);
+  const scrollPrev = useCallback(() => mainApi?.scrollPrev(), [mainApi]);
+  const scrollNext = useCallback(() => mainApi?.scrollNext(), [mainApi]);
   
-  const onLightboxSelect = useCallback(() => {
-    if (!lightboxEmblaApi) return;
-    const selectedIndex = lightboxEmblaApi.selectedScrollSnap();
-    setMainImageIndex(selectedIndex);
-  }, [lightboxEmblaApi]);
-
-  useEffect(() => {
-    if (lightboxOpen && lightboxEmblaApi) {
-        onLightboxSelect(); // Initial sync
-        lightboxEmblaApi.on('select', onLightboxSelect);
-        lightboxEmblaApi.scrollTo(mainImageIndex, true); // Go to correct image on open
-        return () => { lightboxEmblaApi.off('select', onLightboxSelect) };
-    }
-  }, [lightboxOpen, lightboxEmblaApi, mainImageIndex, onLightboxSelect]);
-
-  const showNextLightboxImage = useCallback(() => lightboxEmblaApi?.scrollNext(), [lightboxEmblaApi]);
-  const showPrevLightboxImage = useCallback(() => lightboxEmblaApi?.scrollPrev(), [lightboxEmblaApi]);
+  const lightboxScrollPrev = useCallback(() => lightboxApi?.scrollPrev(), [lightboxApi]);
+  const lightboxScrollNext = useCallback(() => lightboxApi?.scrollNext(), [lightboxApi]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (lightboxOpen) {
         if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") showNextLightboxImage();
-        if (e.key === "ArrowLeft") showPrevLightboxImage();
+        if (e.key === "ArrowRight") lightboxScrollNext();
+        if (e.key === "ArrowLeft") lightboxScrollPrev();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxOpen, showNextLightboxImage, showPrevLightboxImage]);
+  }, [lightboxOpen, lightboxScrollNext, lightboxScrollPrev]);
 
   const handleShare = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -104,7 +103,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     <div className="flex flex-col gap-4 w-full">
       {/* Main Image Carousel */}
       <div className="relative w-full overflow-hidden rounded-lg group aspect-square bg-muted/30">
-        <div className="overflow-hidden h-full" ref={mainCarouselRef}>
+        <div className="overflow-hidden h-full" ref={mainRef}>
           <div className="flex h-full">
             {images.map((imgSrc, index) => (
               <div
@@ -118,7 +117,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                   fill
                   priority={index === 0}
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain p-2"
+                  className="object-contain"
                 />
               </div>
             ))}
@@ -126,8 +125,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
         </div>
         {images.length > 1 && (
           <>
-            <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={() => mainCarouselApi?.scrollPrev()}><ChevronLeft size={24} /></Button>
-            <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={() => mainCarouselApi?.scrollNext()}><ChevronRight size={24} /></Button>
+            <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={scrollPrev}><ChevronLeft size={24} /></Button>
+            <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={scrollNext}><ChevronRight size={24} /></Button>
           </>
         )}
       </div>
@@ -135,15 +134,15 @@ export default function ProductImageGallery({ images, productName }: ProductImag
       {/* Thumbnail Carousel */}
       {images.length > 1 && (
         <div className="relative w-full">
-           <div className="overflow-hidden" ref={thumbCarouselRef}>
+           <div className="overflow-hidden" ref={thumbRef}>
                <div className="flex gap-2">
                    {images.map((img, index) => (
                        <button
                            key={index}
-                           onClick={() => handleThumbnailClick(index)}
+                           onClick={() => onThumbClick(index)}
                            className={cn(
                                "relative aspect-square shrink-0 basis-1/3 sm:basis-1/4 md:basis-1/5 overflow-hidden rounded-md transition-opacity duration-200",
-                               mainImageIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
+                               selectedIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                            )}
                        >
                            <ImageWithSkeleton
@@ -151,7 +150,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                alt={`${productName} thumbnail ${index + 1}`}
                                fill
                                sizes="80px"
-                               className="object-contain bg-muted/30 p-1"
+                               className="object-contain bg-muted/30"
                            />
                        </button>
                    ))}
@@ -167,7 +166,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             className="relative w-full h-full p-4 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="overflow-hidden h-full w-full" ref={lightboxEmblaRef}>
+            <div className="overflow-hidden h-full w-full" ref={lightboxRef}>
               <div className="flex h-full">
                 {images.map((imgSrc, index) => (
                   <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center" key={`lightbox-main-${index}`}>
@@ -175,7 +174,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                       src={imgSrc}
                       alt={productName}
                       fill
-                      priority={index === mainImageIndex}
+                      priority={index === selectedIndex}
                       sizes="100vw"
                       className="object-contain"
                     />
@@ -189,7 +188,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               <Share2 className="h-5 w-5" />
             </Button>
             <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80 h-10 w-10" asChild>
-              <a href={images[mainImageIndex]} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+              <a href={images[selectedIndex]} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                 <ExternalLink className="h-5 w-5" />
               </a>
             </Button>
@@ -197,8 +196,8 @@ export default function ProductImageGallery({ images, productName }: ProductImag
           </div>
           {images.length > 1 && (
             <>
-              <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:left-4 h-11 w-11" onClick={(e) => { e.stopPropagation(); showPrevLightboxImage(); }}><ChevronLeft size={32} /></Button>
-              <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:right-4 h-11 w-11" onClick={(e) => { e.stopPropagation(); showNextLightboxImage(); }}><ChevronRight size={32} /></Button>
+              <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:left-4 h-11 w-11" onClick={(e) => { e.stopPropagation(); lightboxScrollPrev(); }}><ChevronLeft size={32} /></Button>
+              <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:right-4 h-11 w-11" onClick={(e) => { e.stopPropagation(); lightboxScrollNext(); }}><ChevronRight size={32} /></Button>
             </>
           )}
         </div>
@@ -206,5 +205,3 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
-
-    

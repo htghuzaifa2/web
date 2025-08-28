@@ -24,14 +24,14 @@ export const ImageWithSkeleton = ({ alt, className, onLoad, onError, src, ...pro
 
   return (
     <div className="relative w-full h-full">
-      {isValidSrc && (
+      {isValidSrc && !hasError && (
           <Image
             alt={alt}
             src={src}
             {...props}
             className={cn(
               "transition-opacity duration-500 ease-in-out",
-              isLoaded && !hasError ? "opacity-100" : "opacity-0",
+              isLoaded ? "opacity-100" : "opacity-0",
               className
             )}
             onLoad={(e) => {
@@ -39,13 +39,12 @@ export const ImageWithSkeleton = ({ alt, className, onLoad, onError, src, ...pro
                 onLoad?.(e);
             }}
             onError={(e) => {
-              setIsLoaded(true);
               setHasError(true);
               onError?.(e);
             }}
           />
       )}
-      {(!isLoaded || hasError || !isValidSrc) && (
+      {(!isLoaded || hasError) && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted/50">
            <Skeleton className="absolute inset-0" />
         </div>
