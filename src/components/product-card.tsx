@@ -50,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 alt={product.name}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                className="object-contain p-2 transition-transform duration-500 ease-in-out group-hover:scale-105"
+                className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
             
@@ -90,4 +90,3 @@ export default function ProductCard({ product }: ProductCardProps) {
     </>
   );
 }
-
