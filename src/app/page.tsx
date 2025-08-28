@@ -11,7 +11,7 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 const ALL_PRODUCTS: Product[] = [...productsData].reverse();
@@ -81,8 +81,9 @@ export default function Home() {
   const searchParams = useSearchParams();
   const page = searchParams.get('page') || '1';
   const currentPage = isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
-  const paginatedProducts = getProductsForPage(currentPage);
-  const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
+  
+  const paginatedProducts = useMemo(() => getProductsForPage(currentPage), [currentPage]);
+  const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
 

@@ -17,11 +17,11 @@ const getProductData = (slug: string) => {
     return { product: null, relatedProducts: [] };
   }
   
-  // Get 6 fully random products, excluding the current one.
+  // Get 8 fully random products, excluding the current one.
   const relatedProducts = allProducts
     .filter(p => p.id !== product.id) // Exclude the current product
     .sort(() => 0.5 - Math.random()) // Shuffle the array randomly
-    .slice(0, 6); // Take the first 6 products
+    .slice(0, 8); // Take the first 8 products
 
   return { product, relatedProducts };
 };
@@ -133,7 +133,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
       {relatedProducts.length > 0 && (
          <div className="mt-16 md:mt-24">
-            <Separator className="mb-16"/>
+            <Separator className="mb-12"/>
             <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 {relatedProducts.map(relatedProduct => (

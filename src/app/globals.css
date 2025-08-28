@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
 @tailwind base;
@@ -211,10 +211,6 @@
                   0 0 40px rgba(255, 0, 204, 0.7),
                   0 0 80px rgba(0, 204, 255, 0.6);
       filter: hue-rotate(20deg) brightness(1.2);
-  }
-
-  .portfolio-btn:hover::after {
-      opacity: 1;
   }
 
   .portfolio-btn:active {

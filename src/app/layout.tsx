@@ -8,17 +8,17 @@ import { Toaster } from "@/components/ui/toaster"
 import { CartProvider } from '@/context/cart-context';
 import Link from 'next/link';
 import { SVGProps } from 'react';
-import { Alegreya, Belleza } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import { ScrollToTop } from '@/components/scroll-to-top';
 
-const belleza = Belleza({
+const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-headline',
-  weight: "400",
+  weight: ['600', '700'],
 });
 
-const alegreya = Alegreya({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
@@ -94,7 +94,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
       <head />
       <body className="font-body antialiased">
         <ThemeProvider
