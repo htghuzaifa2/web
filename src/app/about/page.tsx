@@ -1,6 +1,5 @@
 "use client";
 
-import { Metadata } from "next";
 import { Gem, ShieldCheck, Sparkles, TrendingUp, Target, HeartHandshake } from "lucide-react";
 
 const principles = [
