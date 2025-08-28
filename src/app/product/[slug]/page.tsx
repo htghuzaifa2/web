@@ -32,8 +32,7 @@ const getProductData = (slug: string) => {
 };
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { slug } = params;
-  const { product } = getProductData(slug);
+  const { product } = getProductData(params.slug);
 
   if (!product) {
     return {
