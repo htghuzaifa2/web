@@ -9,6 +9,13 @@ import { Metadata } from "next";
 
 export const runtime = 'edge';
 
+export async function generateStaticParams() {
+  const products: Product[] = productsData;
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
+}
+
 const getProductData = (slug: string) => {
   const allProducts: Product[] = productsData;
   const product = allProducts.find(p => p.slug === slug);
@@ -27,7 +34,8 @@ const getProductData = (slug: string) => {
 };
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { product } = getProductData(params.slug);
+  const { slug } = params;
+  const { product } = getProductData(slug);
 
   if (!product) {
     return {
@@ -74,7 +82,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const { product, relatedProducts } = getProductData(params.slug);
+  const { slug } = params;
+  const { product, relatedProducts } = getProductData(slug);
 
   if (!product) {
     notFound();
