@@ -1,11 +1,7 @@
+"use client";
 
 import { Metadata } from "next";
 import { Gem, ShieldCheck, Sparkles, TrendingUp, Target, HeartHandshake } from "lucide-react";
-
-export const metadata: Metadata = {
-    title: "Our Story - Beyond the Transaction",
-    description: "Discover the story and values that drive Huzi.pk to redefine quality and commerce in Pakistan. We're building more than a store—we're building a community.",
-};
 
 const principles = [
     {
