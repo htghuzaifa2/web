@@ -1,4 +1,6 @@
 
+"use client";
+
 import ProductCard from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
@@ -9,7 +11,7 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Metadata } from 'next';
+import { useState, useEffect } from 'react';
 
 const ALL_PRODUCTS: Product[] = [...productsData].reverse();
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
@@ -79,7 +81,13 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
   const currentPage = isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
-  const featuredProducts = getFeaturedProducts();
+  
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    setFeaturedProducts(getFeaturedProducts());
+  }, []);
+
 
   return (
     <div className="bg-background">

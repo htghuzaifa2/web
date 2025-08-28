@@ -1,5 +1,6 @@
 [
-{
+  
+  {
       "id": 1,
       "slug": "trendy-sunflower-print-embroidered-eid-lawn-dress-with-digital-print-silk-dupatta",
       "name": "Trendy Sunflower Print Embroidered EID Lawn Dress with Digital Print Silk Dupatta",
@@ -4997,7 +4998,7 @@
           ],
           "stock": 10
         },
-        [
+        
           {
             "id": 175,
             "slug": "luxury-heavy-embroidered-net-bridal-wear-maxi-dress-2025",
@@ -5255,11 +5256,7 @@
             ],
             "stock": 10
           }
-        ]
-
-      ]
-    
-    
+]
 
 
 
