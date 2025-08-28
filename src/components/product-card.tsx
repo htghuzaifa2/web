@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <Card className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg">
-        <Link href={`/product/${productSlug}`} className="flex flex-col h-full">
+        <Link href={`/product/${productSlug}`} prefetch={false} className="flex flex-col h-full">
             <div className="relative w-full overflow-hidden bg-background aspect-square">
               <ImageWithSkeleton
                 src={product.image}

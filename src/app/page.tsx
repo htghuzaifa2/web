@@ -105,7 +105,7 @@ export default function Home() {
             Explore our curated collection of high-quality apparel and digital goods at huzi.pk.
           </p>
           <Button asChild size="lg" className="mt-8">
-            <Link href="/categories">Shop Now</Link>
+            <Link href="/categories" prefetch={false}>Shop Now</Link>
           </Button>
         </div>
       </section>
@@ -154,6 +154,7 @@ export default function Home() {
                       <PaginationItem>
                          <Link
                             href={currentPage > 1 ? `/?page=${currentPage - 1}` : '#'}
+                            prefetch={false}
                             aria-disabled={currentPage <= 1}
                             className={cn(
                                 buttonVariants({ variant: 'ghost', size: 'default' }),
@@ -169,7 +170,7 @@ export default function Home() {
                       {paginationItems.map((page, index) => (
                         <PaginationItem key={index}>
                           {typeof page === 'number' ? (
-                            <PaginationLink href={`/?page=${page}`} isActive={page === currentPage}>
+                            <PaginationLink href={`/?page=${page}`} prefetch={false} isActive={page === currentPage}>
                               {page}
                             </PaginationLink>
                           ) : (
@@ -181,6 +182,7 @@ export default function Home() {
                       <PaginationItem>
                          <Link
                             href={currentPage < TOTAL_PAGES ? `/?page=${currentPage + 1}` : '#'}
+                            prefetch={false}
                             aria-disabled={currentPage >= TOTAL_PAGES}
                             className={cn(
                                 buttonVariants({ variant: 'ghost', size: 'default' }),

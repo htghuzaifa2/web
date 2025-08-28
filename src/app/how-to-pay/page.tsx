@@ -84,7 +84,7 @@ export default function HowToPayPage() {
                     <HelpCircle className="h-8 w-8 mx-auto text-primary mb-2" />
                     <h3 className="font-headline text-xl font-semibold">Need Help?</h3>
                     <p className="text-muted-foreground mt-2">
-                        For any queries about payments or your order, contact us anytime: <Link href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</Link>
+                        For any queries about payments or your order, contact us anytime: <Link href="mailto:contact@huzi.pk" prefetch={false} className="text-primary hover:underline">contact@huzi.pk</Link>
                     </p>
                 </div>
             </div>

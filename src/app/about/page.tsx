@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Gem, ShieldCheck, Sparkles, Target, HeartHandshake } from "lucide-react";

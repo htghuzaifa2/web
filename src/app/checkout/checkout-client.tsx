@@ -101,7 +101,7 @@ export default function CheckoutClient() {
             <h1 className="font-headline text-3xl font-bold">Your Cart is Empty</h1>
             <p className="mt-4 text-muted-foreground">You have no items in your cart to check out.</p>
             <Button asChild className="mt-6">
-                <Link href="/">Continue Shopping</Link>
+                <Link href="/" prefetch={false}>Continue Shopping</Link>
             </Button>
         </div>
       )
@@ -145,7 +145,7 @@ export default function CheckoutClient() {
                     <p className="font-medium text-price">{`PKR ${Math.round(total)}`}</p>
                   </div>
                    <div className="flex justify-between">
-                    <p>Shipping Fee</p>
+                    <p>Shipping</p>
                     <p className="font-medium text-price">{`PKR ${shippingFee}`}</p>
                   </div>
                   <div className="flex justify-between font-bold text-lg">

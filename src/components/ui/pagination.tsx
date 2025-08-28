@@ -69,6 +69,7 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof Link>) => (
    <Link
     aria-label="Go to previous page"
+    prefetch={false}
     className={cn(buttonVariants({
         variant: "ghost",
         size: "default",
@@ -91,6 +92,7 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof Link>) => (
   <Link
     aria-label="Go to next page"
+    prefetch={false}
     className={cn(buttonVariants({
         variant: "ghost",
         size: "default",

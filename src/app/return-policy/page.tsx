@@ -41,7 +41,7 @@ export default function ReturnPolicyPage() {
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">How to Initiate a Return</h2>
                     <p>
-                        To initiate a return for a damaged, incorrect, or faulty item, please <Link href="/contact">contact our customer service team</Link> with your order number and clear photos or a video showing the issue. We will guide you through the next steps.
+                        To initiate a return for a damaged, incorrect, or faulty item, please <Link href="/contact" prefetch={false}>contact our customer service team</Link> with your order number and clear photos or a video showing the issue. We will guide you through the next steps.
                     </p>
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Refund Process</h2>
@@ -51,7 +51,7 @@ export default function ReturnPolicyPage() {
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Questions</h2>
                     <p>
-                        If you have any questions about our return policy, please don't hesitate to <Link href="/contact">contact us</Link>.
+                        If you have any questions about our return policy, please don't hesitate to <Link href="/contact" prefetch={false}>contact us</Link>.
                     </p>
                 </div>
             </div>
