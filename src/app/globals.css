@@ -1,4 +1,5 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Alegreya:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
 
 @tailwind base;
@@ -13,62 +14,51 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 220 78% 30%; /* Navy Blue */
-    --primary-foreground: 210 40% 98%;
+    
+    /* Light Theme - Navy Blue & Sky Blue */
+    --primary: 220 100% 28%; /* Navy Blue (#00308F) */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 210 40% 81%; /* Light Blue (#ADD8E6) */
+    --accent: 197 71% 73%; /* Sky Blue (#87CEEB) */
+    --accent-foreground: 222.2 47.4% 11.2%;
+    
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 220 78% 30%;
-    --radius: 0.5rem;
-    --price: 220 78% 30%;
-    
-    --sidebar-background: 220 78% 10%; /* Darker Navy */
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 210 40% 98%;
-    --sidebar-primary-foreground: 220 78% 10%;
-    --sidebar-accent: 220 78% 20%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 220 78% 15%;
-    --sidebar-ring: 210 40% 98%;
+    --ring: 220 100% 28%;
+    --price: 220 100% 28%;
   }
  
   .dark {
-    --background: 222 47% 11%;
+    --background: 224 71% 4%; /* Dark Gray (#333333 is approx hsl(0,0,20) but we want a bit of blue)*/
     --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
+    --card: 224 71% 4%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
+    --popover: 224 71% 4%;
     --popover-foreground: 210 40% 98%;
-    --primary: 34 100% 50%; /* Deep Orange */
+
+    /* Dark Theme - Deep Orange & Gold */
+    --primary: 33 100% 50%; /* Deep Orange (#FF8C00) */
     --primary-foreground: 210 40% 98%;
+    --primary-hover: 35 100% 65%; /* Light Orange (#FFB347) */
+    --accent: 51 100% 50%; /* Gold (#FFD700) */
+    --accent-foreground: 222.2 47.4% 11.2%;
+
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 34 100% 50%;
-    --price: 34 100% 50%;
-
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 210 40% 98%;
-    --sidebar-primary-foreground: 222 47% 8%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 217.2 32.6% 17.5%;
+    --ring: 33 100% 50%;
+    --price: 33 100% 50%;
   }
 }
  
