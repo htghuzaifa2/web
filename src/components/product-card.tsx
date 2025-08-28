@@ -65,7 +65,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
         </Link>
         
-        <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 transition-opacity duration-300 lg:opacity-0 lg:group-hover/card:opacity-100">
+        <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 transition-opacity duration-300">
           <Button
             variant="secondary"
             size="icon"
@@ -90,3 +90,4 @@ export default function ProductCard({ product }: ProductCardProps) {
     </>
   );
 }
+
