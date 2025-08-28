@@ -1,8 +1,7 @@
 
 import { Metadata } from "next";
-import PortfolioButton from "@/components/portfolio-button";
 import { Gem, ShieldCheck, Sparkles } from "lucide-react";
-import Image from "next/image";
+import PortfolioButton from "@/components/portfolio-button";
 
 export const metadata: Metadata = {
     title: "About Us - Our Story",
@@ -42,14 +41,14 @@ export default function AboutPage() {
             </header>
 
             <div className="container mx-auto px-4 py-16 md:py-24">
-                <div className="max-w-5xl mx-auto">
+                <div className="max-w-4xl mx-auto">
                     
-                    <section className="grid md:grid-cols-2 gap-12 items-center mb-24">
-                        <div className="prose prose-lg max-w-none text-muted-foreground">
-                            <p className="lead text-xl">
+                    <section className="mb-20 text-center">
+                        <div className="prose prose-lg max-w-none mx-auto text-muted-foreground">
+                             <p className="lead text-xl">
                                 Every movement begins with a question. Ours began in 2024 with one that mattered:
                             </p>
-                            <blockquote className="text-2xl md:text-3xl font-semibold text-foreground border-l-4 border-primary pl-6 my-8 italic">
+                            <blockquote className="text-2xl md:text-3xl font-semibold text-foreground border-l-4 border-primary pl-6 my-8 italic text-left max-w-3xl mx-auto">
                                 “Why should quality, style, and digital innovation feel like a luxury in Pakistan?”
                             </blockquote>
                             <p>
@@ -59,18 +58,9 @@ export default function AboutPage() {
                                 That’s where Huzi.pk was born: not just as a store, but as a solution. We set out to create a trusted destination where you can confidently shop for modern fashion and essential digital products—without compromise. Our goal is to deliver more than just products. We deliver experiences.
                             </p>
                         </div>
-                        <div className="relative aspect-square max-w-md mx-auto w-full h-auto rounded-lg overflow-hidden shadow-2xl">
-                             <Image 
-                                src="https://picsum.photos/600/600" 
-                                alt="Quality products lifestyle"
-                                fill
-                                className="object-cover"
-                                data-ai-hint="lifestyle products"
-                             />
-                        </div>
                     </section>
                     
-                    <section className="py-16 bg-muted/50 rounded-lg text-center">
+                    <section className="py-16 bg-muted/50 rounded-lg text-center mb-20">
                         <div className="container px-6">
                             <h2 className="font-headline text-3xl font-bold text-foreground mb-4">What We Offer</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto mb-12">
@@ -93,7 +83,7 @@ export default function AboutPage() {
                         </div>
                     </section>
 
-                    <section className="py-24 text-center">
+                    <section className="py-20 text-center mb-20">
                         <h2 className="font-headline text-3xl font-bold text-foreground mb-4">Our Core Principles</h2>
                          <p className="text-muted-foreground max-w-2xl mx-auto mb-12">
                                 Our brand is built on a foundation of unwavering principles. This is what we stand for.
@@ -134,14 +124,9 @@ export default function AboutPage() {
                          <p className="mt-4 text-lg text-muted-foreground">
                             Welcome to Huzi.pk. Your journey to a more stylish and empowered life starts here.
                          </p>
-                         <div className="mt-12">
-                            <PortfolioButton />
-                        </div>
                     </footer>
                 </div>
             </div>
         </div>
     );
 }
-
-    
