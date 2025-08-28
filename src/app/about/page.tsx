@@ -134,65 +134,42 @@ export default function AboutPage() {
                      </p>
                 </footer>
             </main>
+            <style jsx>{`
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes slideUp {
+                    from { transform: translateY(30px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                .animate-fadeIn {
+                    animation: fadeIn 0.8s ease-in-out;
+                }
+                .animate-slide-up {
+                    animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+                    opacity: 0;
+                }
+                .animate-fade-in-up {
+                    opacity: 0;
+                    animation: fadeInUp 0.8s ease-out forwards;
+                }
+                .animation-delay-300 { animation-delay: 0.3s; }
+                .animation-delay-500 { animation-delay: 0.5s; }
+                .animation-delay-700 { animation-delay: 0.7s; }
+                .animation-delay-900 { animation-delay: 0.9s; }
+                .animation-delay-1000 { animation-delay: 1.0s; }
+            `}</style>
         </div>
     );
 }
-
-<style jsx>{`
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    @keyframes slideUp {
-        from { transform: translateY(30px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    .animate-fadeIn {
-        animation: fadeIn 0.8s ease-in-out;
-    }
-    .animate-slide-up {
-        animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
-        opacity: 0;
-    }
-    .animate-fade-in-up {
-        opacity: 0;
-        animation: fadeInUp 0.8s ease-out forwards;
-        animation-play-state: paused; /* Initially paused */
-    }
-    .animation-delay-300 { animation-delay: 0.3s; }
-    .animation-delay-500 { animation-delay: 0.5s; }
-    .animation-delay-700 { animation-delay: 0.7s; }
-    .animation-delay-900 { animation-delay: 0.9s; }
-    .animation-delay-1000 { animation-delay: 1s; }
-    
-    /* Trigger animations on scroll */
-    .animate-on-scroll {
-        animation-play-state: running;
-    }
-`}</style>
-
-<script dangerouslySetInnerHTML={{ __html: `
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-on-scroll');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.animate-fade-in-up').forEach(el => {
-        observer.observe(el);
-    });
-`}} />
-
-```
