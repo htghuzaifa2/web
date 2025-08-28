@@ -13,6 +13,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ALL_PRODUCTS: Product[] = [...productsData].reverse();
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
@@ -86,8 +87,11 @@ export default function Home() {
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // This effect runs only on the client, after hydration
+    setIsClient(true);
     setFeaturedProducts(getFeaturedProducts());
   }, []);
 
@@ -112,9 +116,19 @@ export default function Home() {
                 Featured Products
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                 {featuredProducts.map((product) => (
-                  <ProductCard key={`featured-${product.id}`} product={product} />
-                ))}
+                 {!isClient ? (
+                     Array.from({ length: 8 }).map((_, index) => (
+                       <div key={index} className="flex flex-col gap-2">
+                         <Skeleton className="aspect-square w-full" />
+                         <Skeleton className="h-6 w-3/4 mx-auto" />
+                         <Skeleton className="h-5 w-1/2 mx-auto" />
+                       </div>
+                     ))
+                 ) : (
+                    featuredProducts.map((product) => (
+                        <ProductCard key={`featured-${product.id}`} product={product} />
+                    ))
+                 )}
             </div>
         </div>
       </section>
