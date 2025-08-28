@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const ALL_PRODUCTS: Product[] = [...productsData].reverse();
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
@@ -76,8 +77,9 @@ const getFeaturedProducts = () => {
 }
 
 
-export default function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  const page = typeof searchParams.page === 'string' ? searchParams.page : '1';
+export default function Home() {
+  const searchParams = useSearchParams();
+  const page = searchParams.get('page') || '1';
   const currentPage = isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
   const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = getPaginationItems(currentPage, TOTAL_PAGES);
