@@ -13,7 +13,6 @@ import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Skeleton } from '@/components/ui/skeleton';
 
 const ALL_PRODUCTS: Product[] = [...productsData].reverse();
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
@@ -112,15 +111,9 @@ export default function Home() {
                 Featured Products
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                 {featuredProducts ? (
-                    featuredProducts.map((product) => (
-                        <ProductCard key={`featured-${product.id}`} product={product} />
-                    ))
-                 ) : (
-                     Array.from({ length: 8 }).map((_, index) => (
-                       <ProductCard key={`skeleton-${index}`} product={null} />
-                     ))
-                 )}
+                 {Array.from({ length: 8 }).map((_, index) => (
+                    <ProductCard key={`featured-${index}`} product={featuredProducts ? featuredProducts[index] : null} />
+                 ))}
             </div>
         </div>
       </section>
