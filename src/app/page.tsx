@@ -20,8 +20,6 @@ const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
 const PAGE_SIZE = 20;
 const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
 
-export const runtime = 'edge';
-
 const getProductsForPage = (page: number) => {
   const startIndex = (page - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
@@ -86,12 +84,10 @@ export default function Home() {
   const paginatedProducts = useMemo(() => getProductsForPage(currentPage), [currentPage]);
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  const [isClient, setIsClient] = useState(false);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
     // This effect runs only on the client, after hydration
-    setIsClient(true);
     setFeaturedProducts(getFeaturedProducts());
   }, []);
 
@@ -116,18 +112,14 @@ export default function Home() {
                 Featured Products
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                 {!isClient ? (
-                     Array.from({ length: 8 }).map((_, index) => (
-                       <div key={index} className="flex flex-col gap-2">
-                         <Skeleton className="aspect-square w-full" />
-                         <Skeleton className="h-6 w-3/4 mx-auto" />
-                         <Skeleton className="h-5 w-1/2 mx-auto" />
-                       </div>
-                     ))
-                 ) : (
+                 {featuredProducts ? (
                     featuredProducts.map((product) => (
                         <ProductCard key={`featured-${product.id}`} product={product} />
                     ))
+                 ) : (
+                     Array.from({ length: 8 }).map((_, index) => (
+                       <ProductCard key={`skeleton-${index}`} product={null} />
+                     ))
                  )}
             </div>
         </div>

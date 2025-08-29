@@ -11,15 +11,26 @@ import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
 import { ImageWithSkeleton } from "./image-with-skeleton";
+import { Skeleton } from "./ui/skeleton";
 
 interface ProductCardProps {
-  product: Product;
+  product: Product | null;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+
+  if (!product) {
+    return (
+      <div className="flex flex-col gap-2">
+        <Skeleton className="aspect-square w-full" />
+        <Skeleton className="h-6 w-3/4 mx-auto" />
+        <Skeleton className="h-5 w-1/2 mx-auto" />
+      </div>
+    );
+  }
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
