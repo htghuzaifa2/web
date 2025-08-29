@@ -61,7 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 alt={product.name}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
+                className="object-contain transition-transform duration-500 ease-in-out group-hover/card:scale-105"
               />
             </div>
             
@@ -76,7 +76,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
         </Link>
         
-        <div className="absolute top-2 right-2 z-10 flex flex-col gap-2">
+        <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 transition-opacity duration-300">
           <Button
             variant="secondary"
             size="icon"

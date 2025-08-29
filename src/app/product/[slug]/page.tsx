@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
+export default function ProductPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const { product, relatedProducts } = getProductData(slug);
 
@@ -141,7 +141,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
          <div className="mt-16 md:mt-24">
             <Separator className="mb-12"/>
             <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
                 {relatedProducts.map(relatedProduct => (
                     <ProductCard key={relatedProduct.id} product={relatedProduct} />
                 ))}

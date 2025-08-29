@@ -2,7 +2,7 @@
 import { notFound } from "next/navigation";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
-import type { Category, Product } from "@/lib/types";
+import type { Category } from "@/lib/types";
 import CategoryClient from "./category-client";
 
 export const runtime = 'edge';

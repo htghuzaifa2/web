@@ -2,6 +2,7 @@
 "use client";
 
 import { Gem, ShieldCheck, Sparkles, Target, HeartHandshake } from "lucide-react";
+import Link from "next/link";
 
 const principles = [
     {
