@@ -1,11 +1,8 @@
-
 import { notFound } from "next/navigation";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
 import type { Category } from "@/lib/types";
 import CategoryClient from "./category-client";
-
-export const runtime = 'edge';
 
 const getCategoryData = (slug: string) => {
   const category = categoriesData.categories.find((c) => c.slug === slug);
