@@ -9,8 +9,6 @@ export const metadata: Metadata = {
     description: "Find out how to pay for your order at huzi.pk. We accept Bank Transfers, JazzCash, and EasyPaisa for your convenience.",
 };
 
-export const runtime = 'edge';
-
 export default function HowToPayPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -84,7 +82,7 @@ export default function HowToPayPage() {
                     <HelpCircle className="h-8 w-8 mx-auto text-primary mb-2" />
                     <h3 className="font-headline text-xl font-semibold">Need Help?</h3>
                     <p className="text-muted-foreground mt-2">
-                        For any queries about payments or your order, contact us anytime: <Link href="mailto:contact@huzi.pk" prefetch={false} className="text-primary hover:underline">contact@huzi.pk</Link>
+                        For any queries about payments or your order, contact us anytime: <Link href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</Link>
                     </p>
                 </div>
             </div>

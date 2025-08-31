@@ -8,8 +8,6 @@ export const metadata: Metadata = {
     description: "Find answers to common questions about shopping at huzi.pk, including our shipping policy, payment methods, delivery times, and how to contact us.",
 };
 
-export const runtime = 'edge';
-
 const faqData = [
     {
         question: "What are your shipping charges?",

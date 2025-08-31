@@ -7,8 +7,6 @@ export const metadata: Metadata = {
     description: "Learn about our shipping policies. We charge a flat rate of PKR 250 for delivery across Pakistan.",
 };
 
-export const runtime = 'edge';
-
 export default function ShippingPolicyPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -36,7 +34,7 @@ export default function ShippingPolicyPage() {
 
                      <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Questions</h2>
                     <p>
-                        If you have any questions about our shipping policy, please don't hesitate to <Link href="/contact" prefetch={false}>contact us</Link>.
+                        If you have any questions about our shipping policy, please don't hesitate to <Link href="/contact">contact us</Link>.
                     </p>
                 </div>
             </div>
