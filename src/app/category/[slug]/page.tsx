@@ -18,6 +18,12 @@ const getCategoryData = (slug: string) => {
   return { category, allCategoryProducts };
 };
 
+export async function generateStaticParams() {
+    return categoriesData.categories.map((category) => ({
+        slug: category.slug,
+    }));
+}
+
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   const { category, allCategoryProducts } = getCategoryData(params.slug);
 

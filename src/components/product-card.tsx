@@ -75,7 +75,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
             </div>
             
             <div className="flex flex-1 flex-col p-3 text-center">
-              <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem] flex-grow">
+              <h3 className="font-headline text-base font-semibold leading-tight mb-2 break-words min-h-[2.5rem] flex items-center justify-center">
                   {product.name}
               </h3>
               <div className="mt-auto flex items-baseline justify-center gap-2 pt-2">
