@@ -41,7 +41,8 @@ PaginationItem.displayName = "PaginationItem"
 type PaginationLinkProps = {
   isActive?: boolean
 } & Pick<ButtonProps, "size"> &
-  React.ComponentProps<typeof Link>
+  Omit<React.ComponentProps<typeof Link>, "href"> & { href: string }
+
 
 const PaginationLink = ({
   className,
@@ -69,7 +70,6 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof Link>) => (
    <Link
     aria-label="Go to previous page"
-    prefetch={false}
     className={cn(buttonVariants({
         variant: "ghost",
         size: "default",
@@ -92,7 +92,6 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof Link>) => (
   <Link
     aria-label="Go to next page"
-    prefetch={false}
     className={cn(buttonVariants({
         variant: "ghost",
         size: "default",

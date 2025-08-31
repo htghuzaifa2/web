@@ -43,7 +43,7 @@ export function CartSheet() {
                 <div className="flex flex-col gap-4 py-4">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center gap-4">
-                      <Link href={`/product/${item.slug}`} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md" prefetch={false}>
+                      <Link href={`/product/${item.slug}`} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -53,7 +53,7 @@ export function CartSheet() {
                         />
                       </Link>
                       <div className="flex-1">
-                        <Link href={`/product/${item.slug}`} className="font-semibold hover:underline" prefetch={false}>
+                        <Link href={`/product/${item.slug}`} className="font-semibold hover:underline">
                           {item.name}
                         </Link>
                         <div className="flex items-center justify-between mt-1">
@@ -113,7 +113,7 @@ export function CartSheet() {
               </div>
               <SheetClose asChild>
                 <Button asChild className="w-full">
-                  <Link href="/checkout" prefetch={false}>Proceed to Checkout</Link>
+                  <Link href="/checkout">Proceed to Checkout</Link>
                 </Button>
               </SheetClose>
             </div>
