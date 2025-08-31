@@ -59,6 +59,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
       <Card className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg">
         <Link href={`/product/${productSlug}`} prefetch={false} className="flex flex-col h-full">
             <div className="relative w-full overflow-hidden bg-background aspect-square">
+              {isImageLoading && <Skeleton className="absolute inset-0" />}
               <Image
                 src={product.image}
                 alt={product.name}
@@ -71,7 +72,6 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
                 )}
                  onLoad={() => setIsImageLoading(false)}
               />
-              {isImageLoading && <Skeleton className="absolute inset-0" />}
             </div>
             
             <div className="flex flex-1 flex-col p-3 text-center">

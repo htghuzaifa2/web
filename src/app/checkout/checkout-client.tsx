@@ -94,8 +94,8 @@ export default function CheckoutClient() {
   if (!isClient) {
     return (
         <div className="container mx-auto px-4 py-12 text-center">
-            <h1 className="font-headline text-3xl font-bold">Loading Cart...</h1>
-            <p className="mt-4 text-muted-foreground">Please wait a moment.</p>
+            <h1 className="font-headline text-3xl font-bold">Loading Checkout...</h1>
+            <p className="mt-4 text-muted-foreground">Please wait a moment while we prepare your order summary.</p>
         </div>
     );
   }
