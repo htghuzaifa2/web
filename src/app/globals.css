@@ -43,8 +43,8 @@
     --primary: 33 100% 50%; /* Deep Orange (#FF8C00) */
     --primary-foreground: 210 40% 98%;
     --primary-hover: 30 95% 55%; /* Cool Orange */
-    --accent: 51 100% 50%; /* Gold (#FFD700) */
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 30 95% 55%; /* Cool Orange */
+    --accent-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
