@@ -9,16 +9,22 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
 import { Badge } from "./ui/badge";
+import { useEffect, useState } from "react";
 
 export function CartSheet() {
   const { items, removeFromCart, updateQuantity, total, itemCount } = useCart();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
           <ShoppingCart className="h-5 w-5" />
-          {itemCount > 0 && (
+          {isClient && itemCount > 0 && (
             <Badge variant="destructive" className="absolute -top-2 -right-2 h-5 w-5 justify-center rounded-full p-0 text-xs">
               {itemCount}
             </Badge>
@@ -28,16 +34,16 @@ export function CartSheet() {
       </SheetTrigger>
       <SheetContent className="flex w-full flex-col pr-0 sm:max-w-lg">
         <SheetHeader className="px-6">
-          <SheetTitle>Shopping Cart ({itemCount})</SheetTitle>
+          <SheetTitle>Shopping Cart ({isClient ? itemCount : 0})</SheetTitle>
         </SheetHeader>
         <div className="flex-1 overflow-y-auto">
           <ScrollArea className="h-full">
             <div className="pr-6">
-              {items.length > 0 ? (
+              {isClient && items.length > 0 ? (
                 <div className="flex flex-col gap-4 py-4">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center gap-4">
-                      <Link href={`/product/${item.slug}`} prefetch={false} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
+                      <Link href={`/product/${item.slug}`} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -46,7 +52,7 @@ export function CartSheet() {
                         />
                       </Link>
                       <div className="flex-1">
-                        <Link href={`/product/${item.slug}`} prefetch={false} className="font-semibold hover:underline">
+                        <Link href={`/product/${item.slug}`} className="font-semibold hover:underline">
                           {item.name}
                         </Link>
                         <div className="flex items-center justify-between mt-1">
@@ -91,13 +97,13 @@ export function CartSheet() {
                 </div>
               ) : (
                 <div className="flex h-full items-center justify-center">
-                  <p className="text-muted-foreground">Your cart is empty.</p>
+                  <p className="text-muted-foreground">{isClient ? "Your cart is empty." : "Loading..."}</p>
                 </div>
               )}
             </div>
           </ScrollArea>
         </div>
-        {items.length > 0 && (
+        {isClient && items.length > 0 && (
           <SheetFooter className="border-t bg-background px-6 py-4">
             <div className="flex w-full flex-col gap-2">
               <div className="flex justify-between text-lg font-semibold">
@@ -106,7 +112,7 @@ export function CartSheet() {
               </div>
               <SheetClose asChild>
                 <Button asChild className="w-full">
-                  <Link href="/checkout" prefetch={false}>Proceed to Checkout</Link>
+                  <Link href="/checkout">Proceed to Checkout</Link>
                 </Button>
               </SheetClose>
             </div>

@@ -51,12 +51,12 @@ export default function Header() {
                  <SheetHeader className="p-4">
                   <SheetTitle className="sr-only">Main Menu</SheetTitle>
                 </SheetHeader>
-                <Link href="/" prefetch={false} className="mr-6 mb-6 flex items-center font-bold text-lg px-4">
+                <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg px-4">
                   huzi.pk
                 </Link>
                 <nav className="flex flex-col space-y-2">
                   {allNavLinks.map(({ href, label }) => (
-                     <Link key={label} href={href} prefetch={false} className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary rounded-md">
+                     <Link key={label} href={href} className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary rounded-md">
                         <SheetTrigger asChild>
                            <span>{label}</span>
                         </SheetTrigger>
@@ -66,7 +66,7 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <Link href="/" prefetch={false} className="mr-4 flex items-center">
+          <Link href="/" className="mr-4 flex items-center">
              <span className="hidden sm:inline-block font-bold text-xl">huzi.pk</span>
              <span className="sm:hidden font-bold text-xl">huzi.pk</span>
           </Link>
@@ -76,7 +76,6 @@ export default function Header() {
               <Link
                 key={label}
                 href={href}
-                prefetch={false}
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
               >
                 {label}
@@ -92,7 +91,7 @@ export default function Header() {
               <DropdownMenuContent align="start">
                 {moreNavLinks.map(({ href, label }) => (
                   <DropdownMenuItem key={label} asChild>
-                    <Link href={href} prefetch={false}>{label}</Link>
+                    <Link href={href}>{label}</Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
