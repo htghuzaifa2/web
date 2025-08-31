@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import ProductQuickView from "./product-quick-view";
 import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
-import { ImageWithSkeleton } from "./image-with-skeleton";
+import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 
 interface ProductCardProps {
@@ -21,6 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
   if (!product) {
     return (
@@ -56,12 +57,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Card className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg">
         <Link href={`/product/${productSlug}`} prefetch={false} className="flex flex-col h-full">
             <div className="relative w-full overflow-hidden bg-background aspect-square">
-              <ImageWithSkeleton
+              {isImageLoading && <Skeleton className="absolute inset-0" />}
+              <Image
                 src={product.image}
                 alt={product.name}
                 fill
-                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 className="object-contain transition-transform duration-500 ease-in-out group-hover/card:scale-105"
+                onLoad={() => setIsImageLoading(false)}
               />
             </div>
             
@@ -76,7 +79,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
         </Link>
         
-        <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 transition-opacity duration-300">
+        <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
           <Button
             variant="secondary"
             size="icon"

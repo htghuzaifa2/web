@@ -6,12 +6,35 @@ import { ChevronLeft, ChevronRight, X, Share2, ExternalLink } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
-import { ImageWithSkeleton } from "./image-with-skeleton";
+import Image from "next/image";
+import { Skeleton } from "./ui/skeleton";
 
 interface ProductImageGalleryProps {
   images: string[];
   productName: string;
 }
+
+const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "" }: { src: string, alt: string, priority?: boolean, fill?: boolean, sizes?: string }) => {
+    const [isLoading, setIsLoading] = useState(true);
+
+    return (
+        <div className="relative w-full h-full">
+            {isLoading && <Skeleton className="absolute inset-0" />}
+            <Image
+                src={src}
+                alt={alt}
+                fill={fill}
+                sizes={sizes}
+                priority={priority}
+                className={cn(
+                    "object-contain transition-opacity duration-500 ease-in-out",
+                    isLoading ? "opacity-0" : "opacity-100"
+                )}
+                onLoad={() => setIsLoading(false)}
+            />
+        </div>
+    );
+};
 
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -111,13 +134,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 key={index}
                 onClick={() => openLightbox(index)}
               >
-                <ImageWithSkeleton
+                <ImageSlot
                   src={imgSrc}
                   alt={`${productName} image ${index + 1}`}
                   fill
                   priority={index === 0}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain"
+                  sizes="(max-width: 768px) 90vw, 40vw"
                 />
               </div>
             ))}
@@ -145,12 +167,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                selectedIndex === index ? "opacity-100 ring-2 ring-primary" : "opacity-60 hover:opacity-100"
                            )}
                        >
-                           <ImageWithSkeleton
+                           <ImageSlot
                                src={img}
                                alt={`${productName} thumbnail ${index + 1}`}
                                fill
                                sizes="80px"
-                               className="object-contain bg-muted/30"
                            />
                        </button>
                    ))}
@@ -170,13 +191,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               <div className="flex h-full">
                 {images.map((imgSrc, index) => (
                   <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center" key={`lightbox-main-${index}`}>
-                    <ImageWithSkeleton
+                    <ImageSlot
                       src={imgSrc}
                       alt={productName}
                       fill
                       priority={index === selectedIndex}
                       sizes="100vw"
-                      className="object-contain"
                     />
                   </div>
                 ))}
