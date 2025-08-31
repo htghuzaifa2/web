@@ -13,6 +13,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 
 const ALL_PRODUCTS: Product[] = [...productsData].reverse();
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
@@ -84,7 +85,6 @@ export default function HomeClient() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Client-side effect to set featured products
     setFeaturedProducts(getFeaturedProducts());
   }, []);
 
@@ -124,7 +124,7 @@ export default function HomeClient() {
           </h2>
            {paginatedProducts.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                 {paginatedProducts.map((product) => (
                   <ProductCard key={`paginated-${product.id}`} product={product} />
                 ))}

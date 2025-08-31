@@ -4,6 +4,8 @@
 import { Gem, ShieldCheck, Sparkles, Target, HeartHandshake } from "lucide-react";
 import Link from "next/link";
 
+export const runtime = 'edge';
+
 const principles = [
     {
         name: "Uncompromising Quality",
