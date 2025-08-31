@@ -22,7 +22,6 @@ export function ScrollToTop() {
     const winHeightPx =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
-    const scrolled = `${scrollPx / winHeightPx * 100}%`;
     
     if (winHeightPx > 0) {
         setScrollProgress(scrollPx / winHeightPx);
@@ -80,7 +79,7 @@ export function ScrollToTop() {
           strokeWidth="3"
           strokeDasharray={circumference}
           strokeDashoffset={circumference * (1 - scrollProgress)}
-          className="rotate-[-90deg] origin-center transition-all duration-300 ease-linear"
+          style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
         />
       </svg>
       <ArrowUp className="absolute h-6 w-6" />
