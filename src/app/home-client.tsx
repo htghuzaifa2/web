@@ -85,6 +85,7 @@ export default function HomeClient() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
+    // This logic runs only on the client, ensuring server/client markup matches initially
     setFeaturedProducts(getFeaturedProducts());
   }, []);
 
@@ -97,7 +98,7 @@ export default function HomeClient() {
             Explore our curated collection of high-quality apparel and digital goods at huzi.pk.
           </p>
           <Button asChild size="lg" className="mt-8">
-            <Link href="/categories" prefetch={false}>Shop Now</Link>
+            <Link href="/categories">Shop Now</Link>
           </Button>
         </div>
       </section>
@@ -107,7 +108,7 @@ export default function HomeClient() {
             <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
                 Featured Products
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                  {Array.from({ length: 8 }).map((_, index) => (
                     <ProductCard key={`featured-${index}`} product={featuredProducts[index] ?? null} priority={index < 5} />
                  ))}

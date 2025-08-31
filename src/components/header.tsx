@@ -51,12 +51,12 @@ export default function Header() {
                  <SheetHeader className="p-4">
                   <SheetTitle className="sr-only">Main Menu</SheetTitle>
                 </SheetHeader>
-                <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg px-4" prefetch={false}>
+                <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg px-4">
                   huzi.pk
                 </Link>
                 <nav className="flex flex-col space-y-2">
                   {allNavLinks.map(({ href, label }) => (
-                     <Link key={label} href={href} className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary rounded-md" prefetch={false}>
+                     <Link key={label} href={href} className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary rounded-md">
                         <SheetTrigger asChild>
                            <span>{label}</span>
                         </SheetTrigger>
