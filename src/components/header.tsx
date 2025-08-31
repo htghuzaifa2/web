@@ -91,7 +91,7 @@ export default function Header() {
               <DropdownMenuContent align="start">
                 {moreNavLinks.map(({ href, label }) => (
                   <DropdownMenuItem key={label} asChild>
-                    <Link href={href} prefetch={false}>{label}</Link>
+                    <Link href={href}>{label}</Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
