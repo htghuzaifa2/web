@@ -82,7 +82,10 @@
     animation: zoom-out 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .whatsapp-float {
-    animation: whatsapp-pulse 2s infinite;
+    animation: float-pulse 2s infinite;
+  }
+  .scroll-top-float {
+    animation: float-pulse 2s infinite;
   }
 
   @keyframes zoom-in {
@@ -105,18 +108,18 @@
       transform: scale(0.95);
     }
   }
-  @keyframes whatsapp-pulse {
+  @keyframes float-pulse {
     0% {
       transform: scale(1);
-      opacity: 1;
+      box-shadow: 0 0 0 0 hsla(var(--primary), 0.7);
     }
     70% {
       transform: scale(1.1);
-      opacity: 0.7;
+      box-shadow: 0 0 0 10px hsla(var(--primary), 0);
     }
     100% {
       transform: scale(1);
-      opacity: 1;
+      box-shadow: 0 0 0 0 hsla(var(--primary), 0);
     }
   }
   

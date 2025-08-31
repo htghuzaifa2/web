@@ -3,6 +3,11 @@ import { Suspense } from 'react';
 import HomeClient from './home-client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Separator } from '@/components/ui/separator';
+import type { Product } from '@/lib/types';
+import productsData from '@/data/products.json';
+
+
+const ALL_PRODUCTS: Product[] = [...productsData].reverse();
 
 function HomePageSkeleton() {
   return (
@@ -50,11 +55,19 @@ function HomePageSkeleton() {
   );
 }
 
+const getFeaturedProducts = () => {
+    // This logic is simple enough to not need memoization, but for more complex
+    // data fetching, you might use React.cache
+    const shuffled = [...ALL_PRODUCTS].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 8);
+}
+
 
 export default function Home() {
+  const featuredProducts = getFeaturedProducts();
   return (
     <Suspense fallback={<HomePageSkeleton />}>
-      <HomeClient />
+      <HomeClient featuredProducts={featuredProducts} />
     </Suspense>
   );
 }

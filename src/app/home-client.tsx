@@ -69,12 +69,12 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
     return pageNumbers;
 };
 
-const getFeaturedProducts = () => {
-    const shuffled = [...ALL_PRODUCTS].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 8);
+
+interface HomeClientProps {
+    featuredProducts: Product[];
 }
 
-export default function HomeClient() {
+export default function HomeClient({ featuredProducts }: HomeClientProps) {
   const searchParams = useSearchParams();
   const page = searchParams.get('page') || '1';
   const currentPage = isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
@@ -82,13 +82,6 @@ export default function HomeClient() {
   const paginatedProducts = useMemo(() => getProductsForPage(currentPage), [currentPage]);
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    // This logic runs only on the client, ensuring server/client markup matches initially
-    setFeaturedProducts(getFeaturedProducts());
-  }, []);
-
   return (
     <div className="bg-background">
       <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
@@ -110,7 +103,7 @@ export default function HomeClient() {
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                  {Array.from({ length: 8 }).map((_, index) => (
-                    <ProductCard key={`featured-${index}`} product={featuredProducts[index] ?? null} priority={index < 5} />
+                    <ProductCard key={`featured-${featuredProducts[index]?.id ?? index}`} product={featuredProducts[index] ?? null} priority={index < 5} />
                  ))}
             </div>
         </div>

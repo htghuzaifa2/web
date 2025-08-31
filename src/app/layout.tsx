@@ -101,7 +101,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://i.postimg.cc" />
         <link rel="dns-prefetch" href="https://i.postimg.cc" />
       </head>
@@ -122,7 +121,6 @@ export default function RootLayout({
             <ScrollToTop />
             <Link
                 href="https://wa.me/message/BY3URMYOW3OMH1"
-                prefetch={false}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 whatsapp-float"
