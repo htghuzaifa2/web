@@ -15,9 +15,10 @@ import { Skeleton } from "./ui/skeleton";
 
 interface ProductCardProps {
   product: Product | null;
+  priority?: boolean;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, priority = false }: ProductCardProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [quickViewOpen, setQuickViewOpen] = useState(false);
@@ -62,6 +63,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 src={product.image}
                 alt={product.name}
                 fill
+                priority={priority}
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 className="object-contain transition-transform duration-500 ease-in-out group-hover/card:scale-105"
                 onLoad={() => setIsImageLoading(false)}
