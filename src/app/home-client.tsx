@@ -81,7 +81,7 @@ export default function HomeClient() {
   const paginatedProducts = useMemo(() => getProductsForPage(currentPage), [currentPage]);
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
-  const [featuredProducts, setFeaturedProducts] = useState<Product[] | null>(null);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     // Client-side effect to set featured products
@@ -109,7 +109,7 @@ export default function HomeClient() {
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
                  {Array.from({ length: 8 }).map((_, index) => (
-                    <ProductCard key={`featured-${index}`} product={featuredProducts ? featuredProducts[index] : null} priority={index < 5} />
+                    <ProductCard key={`featured-${index}`} product={featuredProducts[index] ?? null} priority={index < 5} />
                  ))}
             </div>
         </div>

@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product | null;
@@ -58,16 +59,19 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
       <Card className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg">
         <Link href={`/product/${productSlug}`} prefetch={false} className="flex flex-col h-full">
             <div className="relative w-full overflow-hidden bg-background aspect-square">
-              {isImageLoading && <Skeleton className="absolute inset-0" />}
               <Image
                 src={product.image}
                 alt={product.name}
                 fill
                 priority={priority}
                 sizes="(max-width: 450px) 50vw, (max-width: 768px) 33vw, 20vw"
-                className="object-contain transition-transform duration-500 ease-in-out group-hover/card:scale-105"
+                className={cn(
+                  "object-contain transition-opacity duration-500 ease-in-out group-hover/card:scale-105",
+                  isImageLoading ? "opacity-0" : "opacity-100"
+                )}
                 onLoad={() => setIsImageLoading(false)}
               />
+              {isImageLoading && <Skeleton className="absolute inset-0" />}
             </div>
             
             <div className="flex flex-1 flex-col p-3 text-center">
