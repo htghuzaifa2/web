@@ -6,8 +6,6 @@ export const metadata: Metadata = {
   description: "Complete your purchase securely. Provide your shipping details and finalize your order from huzi.pk.",
 };
 
-export const runtime = 'edge';
-
 export default function CheckoutPage() {
   return <CheckoutClient />;
 }

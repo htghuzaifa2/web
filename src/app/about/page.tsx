@@ -7,8 +7,7 @@ export const metadata: Metadata = {
     description: "Discover the story behind huzi.pk. Learn about our mission to bring quality, style, and customer-first innovation to online shopping in Pakistan.",
 };
 
-export const runtime = 'edge';
-
 export default function AboutPage() {
     return <AboutClient />;
 }
+
