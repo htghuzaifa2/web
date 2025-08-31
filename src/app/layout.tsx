@@ -52,6 +52,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
+  authors: [{ name: "huzi.pk", url: siteConfig.url }],
+  creator: "huzi.pk",
+  publisher: "huzi.pk",
   icons: {
     icon: '/logo.webp',
     shortcut: '/logo.webp',
@@ -64,6 +67,7 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/logo.webp`],
+    siteName: siteConfig.name,
   },
   twitter: {
     card: "summary_large_image",

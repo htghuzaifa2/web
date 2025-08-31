@@ -2,7 +2,12 @@
 "use client";
 
 import { Gem, ShieldCheck, Sparkles, Target, HeartHandshake } from "lucide-react";
-import Link from "next/link";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "About Us - Our Story & Values",
+    description: "Discover the story behind huzi.pk. Learn about our mission to bring quality, style, and customer-first innovation to online shopping in Pakistan.",
+};
 
 export const runtime = 'edge';
 
@@ -129,7 +134,7 @@ export default function AboutPage() {
                         Huzi.pk isn’t just our story—it’s yours too.
                      </h3>
                      <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Together, we’re shaping the future of online shopping in Pakistan. Welcome to Huzi.pk. Your journey to a more stylish and empowered life starts here.
+                        Together, we’re shaping the future of online shopping in Pakistan. Welcome to huzi.pk. Your journey to a more stylish and empowered life starts here.
                      </p>
                 </footer>
             </main>
@@ -172,3 +177,4 @@ export default function AboutPage() {
         </div>
     );
 }
+
