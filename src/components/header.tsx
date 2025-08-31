@@ -76,14 +76,14 @@ export default function Header() {
               <Link
                 key={label}
                 href={href}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
+                className="transition-colors hover:text-primary text-foreground/60"
               >
                 {label}
               </Link>
             ))}
               <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="transition-colors hover:text-foreground/80 text-foreground/60 px-0">
+                <Button variant="ghost" className="transition-colors hover:text-primary text-foreground/60 px-0">
                   More
                   <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
                 </Button>

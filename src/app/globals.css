@@ -87,6 +87,15 @@
   .scroll-top-float {
     animation: float-pulse 2s infinite;
   }
+  .animate-copyright-text {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: copyright-gradient 8s linear infinite;
+  }
+
 
   @keyframes zoom-in {
     from {
@@ -120,6 +129,11 @@
     100% {
       transform: scale(1);
       box-shadow: 0 0 0 0 hsla(var(--primary), 0);
+    }
+  }
+  @keyframes copyright-gradient {
+    to {
+      background-position: 200% center;
     }
   }
   
