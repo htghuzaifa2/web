@@ -56,8 +56,6 @@ function HomePageSkeleton() {
 }
 
 const getFeaturedProducts = () => {
-    // This logic is simple enough to not need memoization, but for more complex
-    // data fetching, you might use React.cache
     const shuffled = [...ALL_PRODUCTS].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 8);
 }
