@@ -57,7 +57,7 @@ function HomePageSkeleton() {
 
 const getFeaturedProducts = () => {
     const shuffled = [...ALL_PRODUCTS].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 8);
+    return shuffled.slice(0, 10);
 }
 
 

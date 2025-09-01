@@ -139,7 +139,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                   alt={`${productName} image ${index + 1}`}
                   fill
                   priority={index === 0}
-                  sizes="(max-width: 767px) 100vw, 50vw"
+                  sizes="(max-width: 767px) 90vw, 50vw"
                 />
               </div>
             ))}
