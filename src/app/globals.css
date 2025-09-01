@@ -77,7 +77,7 @@
   }
   html {
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--primary) / 0.5) transparent;
+    scrollbar-color: hsl(var(--primary-hover)) transparent;
   }
   ::-webkit-scrollbar {
     width: 12px;
@@ -86,7 +86,7 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--primary) / 0.5);
+    background-color: hsl(var(--primary-hover));
     border-radius: 6px;
     border: 3px solid hsl(var(--background));
   }
