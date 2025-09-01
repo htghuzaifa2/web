@@ -30,7 +30,7 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
     if (totalPages <= 1) return [];
 
     const pageNumbers: (number | string)[] = [];
-    const pagesToShow = 3; // Keep it simple for mobile
+    const pagesToShow = 3; 
     
     if (totalPages <= pagesToShow + 2) {
         for (let i = 1; i <= totalPages; i++) {
@@ -54,8 +54,7 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
         }
         pageNumbers.push(totalPages);
     }
-    // Remove duplicate ellipsis
-    return pageNumbers.filter((v,i,a) => v !== '...' || a[i-1] !== '...');
+    return [...new Set(pageNumbers)];
 };
 
 
