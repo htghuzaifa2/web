@@ -53,7 +53,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
   if (!isClient) {
       // Render a static shell on the server to avoid layout shifts
       return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12 content-fade-in">
             <h1 className="mb-2 text-center font-headline text-4xl font-bold">
                 {category.name}
             </h1>
@@ -77,7 +77,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 content-fade-in">
       <h1 className="mb-2 text-center font-headline text-4xl font-bold">
         {category.name}
       </h1>

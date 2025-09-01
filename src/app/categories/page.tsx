@@ -12,7 +12,7 @@ export default function CategoriesPage() {
   const categories: Category[] = categoriesData.categories;
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 content-fade-in">
       <h1 className="mb-8 text-center font-headline text-4xl font-bold">
         All Categories
       </h1>

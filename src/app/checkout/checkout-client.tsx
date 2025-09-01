@@ -102,7 +102,7 @@ export default function CheckoutClient() {
   
   if (items.length === 0) {
       return (
-        <div className="container mx-auto px-4 py-12 text-center">
+        <div className="container mx-auto px-4 py-12 text-center content-fade-in">
             <h1 className="font-headline text-3xl font-bold">Your Cart is Empty</h1>
             <p className="mt-4 text-muted-foreground">You have no items in your cart to check out.</p>
             <Button asChild className="mt-6">
@@ -113,7 +113,7 @@ export default function CheckoutClient() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 content-fade-in">
       <h1 className="text-center font-headline text-4xl font-bold mb-8">Checkout</h1>
       <div className="grid lg:grid-cols-2 lg:gap-12 gap-8">
         <div className="lg:order-2">

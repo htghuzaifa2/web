@@ -83,7 +83,7 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
   return (
-    <div className="bg-background">
+    <div className="bg-background content-fade-in">
       <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">Discover Your Style At huzi.pk</h1>

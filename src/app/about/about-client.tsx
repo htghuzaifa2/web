@@ -23,11 +23,11 @@ const principles = [
 
 export default function AboutClient() {
     return (
-        <div className="bg-background text-foreground animate-fadeIn">
+        <div className="bg-background text-foreground content-fade-in">
             {/* Hero Section */}
             <header className="relative flex items-center justify-center h-[60vh] md:h-[70vh] bg-gradient-to-br from-primary/10 via-background to-background">
                 <div className="absolute inset-0 bg-grid-black/[0.05] dark:bg-grid-black/[0.05] [mask-image:linear-gradient(to_bottom,white_50%,transparent_100%)]"></div>
-                <div className="container mx-auto px-4 text-center z-10 animate-slide-up">
+                <div className="container mx-auto px-4 text-center z-10">
                     <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight">Beyond the Transaction</h1>
                     <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
                         Discover the story and values that drive us to redefine quality, style, and digital innovation in Pakistan.
@@ -38,7 +38,7 @@ export default function AboutClient() {
             <main className="container mx-auto px-4 py-16 md:py-24 space-y-24">
                 
                 {/* Our Origin Story */}
-                <section className="max-w-4xl mx-auto text-center animate-fade-in-up animation-delay-300">
+                <section className="max-w-4xl mx-auto text-center">
                     <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-muted-foreground">
                          <p className="lead text-xl md:text-2xl !text-foreground">
                             Every movement begins with a question. Ours began in 2024 with one that mattered:
@@ -56,7 +56,7 @@ export default function AboutClient() {
                 </section>
                 
                 {/* What We Offer */}
-                <section className="animate-fade-in-up animation-delay-500">
+                <section>
                     <div className="text-center mb-12">
                         <h2 className="font-headline text-4xl font-bold text-foreground">What We Offer</h2>
                         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -80,7 +80,7 @@ export default function AboutClient() {
                 </section>
 
                 {/* Core Principles */}
-                <section className="animate-fade-in-up animation-delay-700">
+                <section>
                      <div className="text-center mb-12">
                         <h2 className="font-headline text-4xl font-bold text-foreground">Our Core Principles</h2>
                          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -99,7 +99,7 @@ export default function AboutClient() {
                 </section>
 
                 {/* Vision & Promise */}
-                <section className="max-w-4xl mx-auto space-y-16 animate-fade-in-up animation-delay-900">
+                <section className="max-w-4xl mx-auto space-y-16">
                     <div className="text-center">
                         <Target className="h-12 w-12 mx-auto text-primary mb-4" />
                         <h2 className="font-headline text-4xl font-bold text-foreground">Our Vision for the Future</h2>
@@ -121,7 +121,7 @@ export default function AboutClient() {
                 </section>
 
                 {/* Footer */}
-                <footer className="text-center border-t border-border/50 pt-16 animate-fade-in-up animation-delay-1000">
+                <footer className="text-center border-t border-border/50 pt-16">
                      <h3 className="font-headline text-3xl md:text-4xl font-bold text-foreground max-w-3xl mx-auto">
                         Huzi.pk isn’t just our story—it’s yours too.
                      </h3>
@@ -130,42 +130,6 @@ export default function AboutClient() {
                      </p>
                 </footer>
             </main>
-            <style jsx>{`
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                @keyframes slideUp {
-                    from { transform: translateY(30px); opacity: 0; }
-                    to { transform: translateY(0); opacity: 1; }
-                }
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                .animate-fadeIn {
-                    animation: fadeIn 0.8s ease-in-out;
-                }
-                .animate-slide-up {
-                    animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
-                    opacity: 0;
-                }
-                .animate-fade-in-up {
-                    opacity: 0;
-                    animation: fadeInUp 0.8s ease-out forwards;
-                }
-                .animation-delay-300 { animation-delay: 0.3s; }
-                .animation-delay-500 { animation-delay: 0.5s; }
-                .animation-delay-700 { animation-delay: 0.7s; }
-                .animation-delay-900 { animation-delay: 0.9s; }
-                .animation-delay-1000 { animation-delay: 1.0s; }
-            `}</style>
         </div>
     );
 }

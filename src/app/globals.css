@@ -137,11 +137,11 @@
   }
   @keyframes float-pulse {
     0%, 100% {
-      transform: translateY(0);
+      transform: translateY(0) translateZ(0);
       opacity: 1;
     }
     50% {
-      transform: translateY(-5px);
+      transform: translateY(-5px) translateZ(0);
       opacity: 0.9;
     }
   }
@@ -162,5 +162,20 @@
   .bg-grid-black {
     background-image: linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px);
     background-size: 40px 40px;
+  }
+
+  .content-fade-in {
+    animation: content-fade-in 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes content-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
