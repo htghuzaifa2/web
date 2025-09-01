@@ -30,43 +30,32 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
     if (totalPages <= 1) return [];
 
     const pageNumbers: (number | string)[] = [];
-    const pagesToShow = 5;
+    const pagesToShow = 3; // Keep it simple for mobile
     
-    if (totalPages <= pagesToShow) {
+    if (totalPages <= pagesToShow + 2) {
         for (let i = 1; i <= totalPages; i++) {
             pageNumbers.push(i);
         }
-        return pageNumbers;
+    } else {
+        pageNumbers.push(1);
+        if (currentPage > 2) {
+            pageNumbers.push('...');
+        }
+        
+        const startPage = Math.max(2, currentPage - 1);
+        const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+        for (let i = startPage; i <= endPage; i++) {
+             if(i > 1 && i < totalPages) pageNumbers.push(i);
+        }
+
+        if (currentPage < totalPages - 1) {
+            pageNumbers.push('...');
+        }
+        pageNumbers.push(totalPages);
     }
-
-    pageNumbers.push(1);
-
-    let startPage = Math.max(2, currentPage - 1);
-    let endPage = Math.min(totalPages - 1, currentPage + 1);
-
-    if (currentPage <= 3) {
-        startPage = 2;
-        endPage = Math.min(totalPages - 1, 4);
-    } else if (currentPage >= totalPages - 2) {
-        startPage = Math.max(2, totalPages - 3);
-        endPage = totalPages - 1;
-    }
-
-    if (startPage > 2) {
-        pageNumbers.push('...');
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-        pageNumbers.push(i);
-    }
-
-    if (endPage < totalPages - 1) {
-        pageNumbers.push('...');
-    }
-    
-    pageNumbers.push(totalPages);
-
-    return pageNumbers;
+    // Remove duplicate ellipsis
+    return pageNumbers.filter((v,i,a) => v !== '...' || a[i-1] !== '...');
 };
 
 
