@@ -2,7 +2,7 @@
 import { notFound } from "next/navigation";
 import productsData from "@/data/products.json";
 import type { Product } from "@/lib/types";
-import ProductDetailsClient from "./product-details-client";
+import ProductDetailsClient from "./[slug]/product-details-client";
 import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
 import { Metadata } from "next";
