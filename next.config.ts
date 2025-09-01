@@ -42,6 +42,19 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   swcMinify: true,
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Link',
+            value: '<https://i.postimg.cc>; rel="preconnect"',
+          },
+        ],
+      },
+    ]
+  },
 };
 
 export default nextConfig;

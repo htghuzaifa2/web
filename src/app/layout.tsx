@@ -101,8 +101,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
-        <link rel="preconnect" href="https://i.postimg.cc" />
-        <link rel="dns-prefetch" href="https://i.postimg.cc" />
+        {/* The preconnect has been moved to next.config.ts for better performance */}
       </head>
       <body className="font-body antialiased">
         <ThemeProvider

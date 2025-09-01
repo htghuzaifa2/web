@@ -5,8 +5,7 @@
   "private": true,
   "browserslist": [
     "defaults",
-    "not ie 11",
-    "not op_mini all"
+    "not ie 11"
   ],
   "scripts": {
     "dev": "next dev",
