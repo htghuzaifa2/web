@@ -79,7 +79,7 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
   const page = searchParams.get('page') || '1';
   const currentPage = isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
   
-  const paginatedProducts = useMemo(() => getProductsForPage(currentPage), [currentPage]);
+  const paginatedProducts = getProductsForPage(currentPage);
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
   return (

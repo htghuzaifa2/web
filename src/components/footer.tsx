@@ -18,7 +18,7 @@ export default function Footer() {
               Your destination for premium quality modern clothing. Delivering physical products across Pakistan and digital products worldwide.
             </p>
             <div className="text-sm text-muted-foreground">
-                <p>contact@huzi.pk</p>
+                <a href="mailto:contact@huzi.pk" className="hover:text-primary">contact@huzi.pk</a>
             </div>
           </div>
           <div>
