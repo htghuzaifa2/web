@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
@@ -23,18 +24,43 @@ export const useCart = () => {
   return context;
 };
 
+// Set cart data to expire after 90 days (in milliseconds)
+const CART_EXPIRATION = 90 * 24 * 60 * 60 * 1000;
+
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      setItems(JSON.parse(savedCart));
+    const savedCartJSON = localStorage.getItem('cart');
+    if (savedCartJSON) {
+      try {
+        const savedCart = JSON.parse(savedCartJSON);
+        const now = new Date().getTime();
+        
+        // Check if the cart data has a timestamp and if it has expired
+        if (savedCart.timestamp && (now - savedCart.timestamp > CART_EXPIRATION)) {
+          // Cart has expired, clear it
+          localStorage.removeItem('cart');
+          setItems([]);
+        } else {
+          // Cart is valid, load the items
+          setItems(savedCart.items || []);
+        }
+      } catch (error) {
+        // If parsing fails, it might be old format data. Clear it.
+        localStorage.removeItem('cart');
+        setItems([]);
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(items));
+    // Save items along with the current timestamp
+    const cartToSave = {
+      items: items,
+      timestamp: new Date().getTime(),
+    };
+    localStorage.setItem('cart', JSON.stringify(cartToSave));
   }, [items]);
 
   const addToCart = (product: Product) => {
