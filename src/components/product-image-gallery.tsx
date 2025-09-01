@@ -139,7 +139,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                   alt={`${productName} image ${index + 1}`}
                   fill
                   priority={index === 0}
-                  sizes="(max-width: 767px) 90vw, 45vw"
+                  sizes="(max-width: 767px) 90vw, (max-width: 1024px) 45vw, 40vw"
                 />
               </div>
             ))}
@@ -225,4 +225,5 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
+
 
