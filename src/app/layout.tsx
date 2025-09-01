@@ -103,7 +103,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://i.postimg.cc" />
         <link rel="dns-prefetch" href="https://i.postimg.cc" />
-        <link rel="preload" href="/logo.webp" as="image" />
       </head>
       <body className="font-body antialiased">
         <ThemeProvider
