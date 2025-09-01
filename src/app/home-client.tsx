@@ -76,10 +76,15 @@ interface HomeClientProps {
 
 export default function HomeClient({ featuredProducts }: HomeClientProps) {
   const searchParams = useSearchParams();
-  const page = searchParams.get('page') || '1';
-  const currentPage = isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
+  const pageParam = searchParams.get('page');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const page = Number(pageParam);
+    setCurrentPage(isNaN(page) || page < 1 ? 1 : page);
+  }, [pageParam]);
   
-  const paginatedProducts = getProductsForPage(currentPage);
+  const paginatedProducts = useMemo(() => getProductsForPage(currentPage), [currentPage]);
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
   
   return (
@@ -102,8 +107,8 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
                 Featured Products
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                 {Array.from({ length: 8 }).map((_, index) => (
-                    <ProductCard key={`featured-${featuredProducts[index]?.id ?? index}`} product={featuredProducts[index] ?? null} priority={index < 5} />
+                 {featuredProducts.map((product, index) => (
+                    <ProductCard key={`featured-${product.id}`} product={product} priority={index < 5} />
                  ))}
             </div>
         </div>
