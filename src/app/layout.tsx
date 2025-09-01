@@ -13,14 +13,14 @@ import { ScrollToTop } from '@/components/scroll-to-top';
 
 const belleza = Belleza({
   subsets: ['latin'],
-  display: 'swap',
+  display: 'optional',
   variable: '--font-headline',
   weight: ['400'],
 });
 
 const alegreya = Alegreya({
   subsets: ['latin'],
-  display: 'swap',
+  display: 'optional',
   variable: '--font-body',
   weight: ['400', '700'],
 });
