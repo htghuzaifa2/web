@@ -75,6 +75,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
                 )}
                 style={{ willChange: 'transform' }}
                  onLoad={() => setIsImageLoading(false)}
+                 loading={priority ? 'eager' : 'lazy'}
               />
             </div>
             
@@ -114,3 +115,4 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
     </>
   );
 }
+

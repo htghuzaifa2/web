@@ -31,6 +31,7 @@ const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "" }: { s
                     isLoading ? "opacity-0" : "opacity-100"
                 )}
                 onLoad={() => setIsLoading(false)}
+                loading={priority ? 'eager' : 'lazy'}
             />
         </div>
     );
@@ -225,6 +226,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     </div>
   );
 }
+
 
 
 
