@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function HowToPayPage() {
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12 content-fade-in">
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-center font-headline text-4xl font-bold mb-4">Payment Methods</h1>
                 <p className="text-center text-lg text-muted-foreground mb-12">

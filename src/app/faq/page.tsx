@@ -37,7 +37,7 @@ const faqData = [
 
 export default function FaqPage() {
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12 content-fade-in">
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-center font-headline text-4xl font-bold mb-8">Frequently Asked Questions</h1>
                 <p className="text-center text-lg text-muted-foreground mb-12">
