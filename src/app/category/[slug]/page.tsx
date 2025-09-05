@@ -2,7 +2,8 @@
 import { notFound } from "next/navigation";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
-import CategoryClient from "./category-client";
+import CategoryWrapper from "./category-wrapper";
+import type { Metadata } from "next";
 
 const getCategoryData = (slug: string) => {
   const category = categoriesData.categories.find((c) => c.slug === slug);
@@ -21,6 +22,37 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const { category } = getCategoryData(params.slug);
+
+  if (!category) {
+    return {
+      title: "Category Not Found"
+    }
+  }
+
+  const title = category.name;
+  const description = `Browse our collection of ${category.name.toLowerCase()} at huzi.pk. We deliver physical products all over Pakistan and digital products worldwide.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: category.image,
+          width: 600,
+          height: 400,
+          alt: category.name,
+        }
+      ],
+    }
+  }
+}
+
+
 export default function CategoryPage({ params }: { params: { slug:string } }) {
   const { category, allCategoryProducts } = getCategoryData(params.slug);
 
@@ -28,5 +60,5 @@ export default function CategoryPage({ params }: { params: { slug:string } }) {
     notFound();
   }
 
-  return <CategoryClient category={category} allProducts={allCategoryProducts} />;
+  return <CategoryWrapper category={category} allProducts={allCategoryProducts} />;
 }
