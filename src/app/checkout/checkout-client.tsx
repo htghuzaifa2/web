@@ -3,8 +3,7 @@
 
 import { useCart } from "@/context/cart-context";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import type { z } from "zod";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -16,26 +15,39 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
 import locationData from "@/data/locations.json";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const checkoutSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  phone: z.string().min(1, { message: "Phone number is required." }).regex(/^\+?[0-9]+$/, { message: "Phone number can only contain digits and an optional leading '+'." }),
-  email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
-  province: z.string({ required_error: "Please select a province." }),
-  city: z.string({ required_error: "Please select a city." }),
-  address: z.string().optional(),
-});
+// Dynamically import zod and the resolver for smaller initial bundles
+const zod = import('zod');
+const zodResolver = import('@hookform/resolvers/zod').then(m => m.zodResolver);
 
-type CheckoutFormValues = z.infer<typeof checkoutSchema>;
+let checkoutSchema: any;
 
 export default function CheckoutClient() {
   const { items, total } = useCart();
+  const [isClient, setIsClient] = useState(false);
+  const [formResolver, setFormResolver] = useState<any>(null);
+
+  useEffect(() => {
+      setIsClient(true);
+      Promise.all([zod, zodResolver]).then(([z, resolver]) => {
+          checkoutSchema = z.object({
+              name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+              phone: z.string().min(1, { message: "Phone number is required." }).regex(/^\+?[0-9]+$/, { message: "Phone number can only contain digits and an optional leading '+'." }),
+              email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
+              province: z.string({ required_error: "Please select a province." }),
+              city: z.string({ required_error: "Please select a city." }),
+              address: z.string().optional(),
+          });
+          setFormResolver(() => resolver(checkoutSchema));
+      });
+  }, []);
   
   const shippingFee = 250;
   const finalTotal = total + shippingFee;
 
-  const form = useForm<CheckoutFormValues>({
-    resolver: zodResolver(checkoutSchema),
+  const form = useForm({
+    resolver: formResolver,
     defaultValues: {
       name: "",
       phone: "",
@@ -48,14 +60,13 @@ export default function CheckoutClient() {
   const cities = locationData.provinces.find(p => p.name === selectedProvince)?.cities || [];
 
   useEffect(() => {
-    // Reset city when province changes
     if (form.getValues("province")) {
         form.setValue("city", "");
     }
   }, [selectedProvince, form]);
 
 
-  const onSubmit = (data: CheckoutFormValues) => {
+  const onSubmit = (data: z.infer<typeof checkoutSchema>) => {
     const myWhatsAppNumber = "923219486948";
 
     let message = `*New Order from huzi.pk*\n\n`;
@@ -86,9 +97,26 @@ export default function CheckoutClient() {
     window.open(whatsappUrl, '_blank');
   };
 
-  if (typeof window === 'undefined') {
-    // This is a safeguard for server-side rendering, though the page is dynamically imported.
-    return null;
+  if (!isClient || !formResolver) {
+    return (
+        <div className="container mx-auto px-4 py-12">
+            <Skeleton className="h-10 w-1/2 mx-auto mb-8" />
+            <div className="grid lg:grid-cols-2 gap-12">
+                <div className="lg:order-2 space-y-4">
+                    <Skeleton className="h-24 w-full" />
+                    <Skeleton className="h-24 w-full" />
+                    <Skeleton className="h-24 w-full" />
+                </div>
+                <div className="lg:order-1 space-y-6">
+                    <Skeleton className="h-16 w-full" />
+                    <Skeleton className="h-16 w-full" />
+                    <Skeleton className="h-16 w-full" />
+                    <Skeleton className="h-32 w-full" />
+                    <Skeleton className="h-12 w-full" />
+                </div>
+            </div>
+        </div>
+    );
   }
   
   if (items.length === 0) {

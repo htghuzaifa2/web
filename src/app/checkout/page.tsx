@@ -13,8 +13,18 @@ const CheckoutClient = dynamic(() => import("./checkout-client"), {
      <div className="container mx-auto px-4 py-12">
         <Skeleton className="h-10 w-1/2 mx-auto mb-8" />
         <div className="grid lg:grid-cols-2 gap-12">
-            <Skeleton className="h-[500px] w-full lg:order-2" />
-            <Skeleton className="h-[600px] w-full lg:order-1" />
+            <div className="lg:order-2 space-y-4">
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full" />
+            </div>
+            <div className="lg:order-1 space-y-6">
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-32 w-full" />
+                <Skeleton className="h-12 w-full" />
+            </div>
         </div>
     </div>
   ),

@@ -12,14 +12,19 @@ const ContactClient = dynamic(() => import('./contact-client'), {
   loading: () => (
     <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-            <Skeleton className="h-10 w-1/2 mx-auto mb-8" />
+            <Skeleton className="h-10 w-1/2 mx-auto mb-4" />
             <Skeleton className="h-6 w-3/4 mx-auto mb-12" />
             <div className="grid md:grid-cols-2 gap-8 text-center mb-16">
-                <Skeleton className="h-24 w-full" />
-                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-32 w-full" />
+                <Skeleton className="h-32 w-full" />
             </div>
             <div className="max-w-2xl mx-auto">
-                <Skeleton className="h-96 w-full" />
+                 <div className="space-y-6">
+                    <Skeleton className="h-16 w-full" />
+                    <Skeleton className="h-16 w-full" />
+                    <Skeleton className="h-32 w-full" />
+                    <Skeleton className="h-12 w-full" />
+                </div>
             </div>
         </div>
     </div>
