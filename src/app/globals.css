@@ -112,6 +112,7 @@
     -webkit-background-clip: text;
     color: transparent;
     animation: cool-rgb-gradient 10s linear infinite;
+    transform: translateZ(0);
   }
 
 
