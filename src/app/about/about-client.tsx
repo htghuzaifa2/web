@@ -89,7 +89,7 @@ export default function AboutClient() {
                     </div>
                      <div className="grid md:grid-cols-3 gap-8">
                         {principles.map((principle) => (
-                            <div key={principle.name} className="flex flex-col items-center text-center p-8 bg-card rounded-xl shadow-lg border border-border/50 transition-all duration-300 hover:shadow-primary/20 hover:-translate-y-2">
+                            <div key={principle.name} className="flex flex-col items-center text-center p-8 bg-card rounded-xl shadow-lg border border-border/50 transition-all duration-300 hover:shadow-primary/20 hover-translate-y-2">
                                 <div className="mb-4">{principle.icon}</div>
                                 <h3 className="font-headline text-2xl font-semibold text-foreground mb-2">{principle.name}</h3>
                                 <p className="text-muted-foreground">{principle.description}</p>
