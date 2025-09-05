@@ -1,7 +1,29 @@
 
 import type {NextConfig} from 'next';
 
+const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data: https://placehold.co https://huzi.pk https://i.postimg.cc https://picsum.photos;
+    font-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+`;
+
+
 const securityHeaders = [
+  {
+    key: 'Content-Security-Policy',
+    value: cspHeader.replace(/\s{2,}/g, ' ').trim()
+  },
+   {
+    key: 'Permissions-Policy',
+    value: "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+  },
   {
     key: 'X-DNS-Prefetch-Control',
     value: 'on'
