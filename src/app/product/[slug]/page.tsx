@@ -7,6 +7,8 @@ import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
 import { Metadata } from "next";
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const products: Product[] = productsData;
   return products.map((product) => ({

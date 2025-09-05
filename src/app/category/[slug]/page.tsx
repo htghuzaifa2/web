@@ -5,6 +5,8 @@ import productsData from "@/data/products.json";
 import CategoryWrapper from "./category-wrapper";
 import type { Metadata } from "next";
 
+export const dynamicParams = true;
+
 const getCategoryData = (slug: string) => {
   const category = categoriesData.categories.find((c) => c.slug === slug);
   if (!category) {
