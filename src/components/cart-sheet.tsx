@@ -9,15 +9,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
 import { Badge } from "./ui/badge";
-import { useEffect, useState } from "react";
 
 export function CartSheet() {
   const { items, removeFromCart, updateQuantity, total, itemCount } = useCart();
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isClient = typeof window !== 'undefined';
 
   return (
     <Sheet>

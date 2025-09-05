@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import ProductCard from "@/components/product-card";
 import type { Category, Product } from "@/lib/types";
 import { Button } from "@/components/ui/button";
@@ -17,11 +17,6 @@ interface CategoryClientProps {
 
 export default function CategoryClient({ category, allProducts }: CategoryClientProps) {
   const [page, setPage] = useState(1);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const totalPages = Math.ceil(allProducts.length / PRODUCTS_PER_PAGE);
 
@@ -49,32 +44,6 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
   
   const showLoadPrevious = page > Math.ceil(MAX_PRODUCTS_ON_PAGE / PRODUCTS_PER_PAGE);
   const showLoadMore = page < totalPages;
-
-  if (!isClient) {
-      // Render a static shell on the server to avoid layout shifts
-      return (
-        <div className="container mx-auto px-4 py-12 content-fade-in">
-            <h1 className="mb-2 text-center font-headline text-4xl font-bold">
-                {category.name}
-            </h1>
-            <p className="mb-8 text-center text-muted-foreground">
-                {`Browse our collection of ${category.name.toLowerCase()}.`}
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                {allProducts.slice(0, PRODUCTS_PER_PAGE).map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
-            </div>
-            {allProducts.length > PRODUCTS_PER_PAGE && (
-              <div className="text-center mt-12">
-                <Button>
-                    Load More <ArrowDown className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            )}
-        </div>
-      );
-  }
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">

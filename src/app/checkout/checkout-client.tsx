@@ -30,14 +30,9 @@ type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 export default function CheckoutClient() {
   const { items, total } = useCart();
-  const [isClient, setIsClient] = useState(false);
   
   const shippingFee = 250;
   const finalTotal = total + shippingFee;
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutSchema),
@@ -91,13 +86,9 @@ export default function CheckoutClient() {
     window.open(whatsappUrl, '_blank');
   };
 
-  if (!isClient) {
-    return (
-        <div className="container mx-auto px-4 py-12 text-center">
-            <h1 className="font-headline text-3xl font-bold">Loading Checkout...</h1>
-            <p className="mt-4 text-muted-foreground">Please wait a moment while we prepare your order summary.</p>
-        </div>
-    );
+  if (typeof window === 'undefined') {
+    // This is a safeguard for server-side rendering, though the page is dynamically imported.
+    return null;
   }
   
   if (items.length === 0) {

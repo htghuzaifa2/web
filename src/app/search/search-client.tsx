@@ -17,11 +17,6 @@ interface SearchClientProps {
 
 export default function SearchClient({ allProducts, query }: SearchClientProps) {
   const [page, setPage] = useState(1);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
   
   // Reset page to 1 whenever the search query changes
   useEffect(() => {
@@ -54,37 +49,9 @@ export default function SearchClient({ allProducts, query }: SearchClientProps) 
   
   const showLoadPrevious = page > Math.ceil(MAX_PRODUCTS_ON_PAGE / PRODUCTS_PER_PAGE);
   const showLoadMore = page < totalPages;
-  
-  if (!isClient) {
-      // Render a static shell on the server to avoid layout shifts
-      return (
-        <div className="container mx-auto px-4 py-12">
-            <h1 className="mb-4 text-center font-headline text-4xl font-bold">
-                Search Results
-            </h1>
-            {query && (
-                <h3 className="mb-8 text-center text-lg text-muted-foreground">
-                Showing results for: <span className="font-semibold text-foreground">"{query}"</span>
-                </h3>
-            )}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-                {allProducts.slice(0, PRODUCTS_PER_PAGE).map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
-            </div>
-            {allProducts.length > PRODUCTS_PER_PAGE && (
-              <div className="text-center mt-12">
-                <Button>
-                    Load More <ArrowDown className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            )}
-        </div>
-      );
-  }
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 content-fade-in">
       <h1 className="mb-4 text-center font-headline text-4xl font-bold">
         Search Results
       </h1>
