@@ -10,9 +10,8 @@ type SearchPageProps = {
   searchParams: { q?: string; page?: string };
 };
 
-export async function generateMetadata({ searchParams }: { searchParams: Promise<SearchPageProps['searchParams']> }): Promise<Metadata> {
-  const { q } = await searchParams;
-  const query = q || '';
+export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+  const query = searchParams.q || '';
   if (!query) {
     return {
       title: "Search",
@@ -30,9 +29,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   };
 }
 
-export default async function SearchPage({ searchParams }: { searchParams: Promise<SearchPageProps['searchParams']> }) {
-  const { q } = await searchParams;
-  const query = q || '';
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const query = searchParams.q || '';
   const allProducts: Product[] = productsData;
 
   const filteredProducts = query
@@ -47,4 +45,3 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
     <SearchClient allProducts={filteredProducts} query={query} />
   );
 }
-
