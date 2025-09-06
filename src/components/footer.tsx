@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import { WhatsappIcon } from "@/app/layout";
+import { WhatsappIcon } from "@/components/whatsapp-icon";
 import Image from "next/image";
 
 
