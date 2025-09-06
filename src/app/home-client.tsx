@@ -11,19 +11,23 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-const ALL_PRODUCTS: Product[] = [...productsData].reverse();
+const ALL_PRODUCTS: Product[] = [...productsData];
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
 const PAGE_SIZE = 20;
 const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
 
-const getProductsForPage = (page: number) => {
+type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
+
+const getProductsForPage = (page: number, products: Product[]) => {
   const startIndex = (page - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
-  return ALL_PRODUCTS.slice(startIndex, endIndex);
+  return products.slice(startIndex, endIndex);
 };
 
 const getPaginationItems = (currentPage: number, totalPages: number) => {
@@ -65,16 +69,62 @@ interface HomeClientProps {
 export default function HomeClient({ featuredProducts }: HomeClientProps) {
   const searchParams = useSearchParams();
   const pageParam = searchParams.get('page');
+  const sortParam = searchParams.get('sort');
+
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
+  const topOfProductsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const page = Number(pageParam);
     setCurrentPage(isNaN(page) || page < 1 ? 1 : page);
-  }, [pageParam]);
+    
+    const validSortOrders: SortOrder[] = ["newest", "oldest", "price-asc", "price-desc"];
+    if (sortParam && validSortOrders.includes(sortParam as SortOrder)) {
+      setSortOrder(sortParam as SortOrder);
+    } else {
+      setSortOrder("newest");
+    }
+  }, [pageParam, sortParam]);
+
+  const sortedProducts = useMemo(() => {
+    let sorted = [...ALL_PRODUCTS];
+    switch (sortOrder) {
+      case 'newest':
+        return sorted.sort((a, b) => b.id - a.id);
+      case 'oldest':
+        return sorted.sort((a, b) => a.id - b.id);
+      case 'price-asc':
+        return sorted.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return sorted.sort((a, b) => b.price - a.price);
+      default:
+        return sorted.sort((a, b) => b.id - a.id);
+    }
+  }, [sortOrder]);
   
-  const paginatedProducts = useMemo(() => getProductsForPage(currentPage), [currentPage]);
+  const paginatedProducts = useMemo(() => getProductsForPage(currentPage, sortedProducts), [currentPage, sortedProducts]);
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
-  
+
+  const handleSortChange = (value: SortOrder) => {
+    const newUrl = `/?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
+    window.history.pushState({}, '', newUrl);
+    setSortOrder(value);
+    setCurrentPage(1); // Reset to page 1 on sort change
+    if (topOfProductsRef.current) {
+      topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const createPageUrl = (page: number) => {
+    if (page < 1 || page > TOTAL_PAGES) return '#';
+    let url = `/?page=${page}`;
+    if (sortOrder !== 'newest') {
+      url += `&sort=${sortOrder}`;
+    }
+    return url;
+  };
+
   return (
     <div className="bg-background content-fade-in">
       <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
@@ -106,9 +156,28 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
 
       <section className="py-12 md:py-16 bg-muted/50">
         <div className="container mx-auto px-4">
-          <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
+          <h2 className="mb-2 text-center font-headline text-3xl font-bold text-foreground md:text-4xl">
             All Products
           </h2>
+
+          <div ref={topOfProductsRef} className="scroll-mt-20" />
+
+          <div className="flex justify-end mb-8">
+            <div className="flex items-center gap-2">
+                <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
+                <Select onValueChange={(value: SortOrder) => handleSortChange(value)} value={sortOrder}>
+                    <SelectTrigger id="sort-by" className="w-[180px]">
+                        <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="newest">Latest (New to Old)</SelectItem>
+                        <SelectItem value="oldest">Oldest (Old to New)</SelectItem>
+                        <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                        <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+          </div>
            {paginatedProducts.length > 0 ? (
             <>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
@@ -122,7 +191,7 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
                     <PaginationContent>
                       <PaginationItem>
                          <Link
-                            href={currentPage > 1 ? `/?page=${currentPage - 1}` : '#'}
+                            href={createPageUrl(currentPage - 1)}
                             prefetch={false}
                             aria-disabled={currentPage <= 1}
                             className={cn(
@@ -139,7 +208,7 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
                       {paginationItems.map((page, index) => (
                         <PaginationItem key={index}>
                           {typeof page === 'number' ? (
-                            <PaginationLink href={`/?page=${page}`} prefetch={false} isActive={page === currentPage}>
+                            <PaginationLink href={createPageUrl(page)} prefetch={false} isActive={page === currentPage}>
                               {page}
                             </PaginationLink>
                           ) : (
@@ -150,7 +219,7 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
 
                       <PaginationItem>
                          <Link
-                            href={currentPage < TOTAL_PAGES ? `/?page=${currentPage + 1}` : '#'}
+                            href={createPageUrl(currentPage + 1)}
                             prefetch={false}
                             aria-disabled={currentPage >= TOTAL_PAGES}
                             className={cn(
