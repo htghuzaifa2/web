@@ -1,14 +1,18 @@
 
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import ProductCard from "@/components/product-card";
 import type { Product } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+
 
 const PRODUCTS_PER_PAGE = 25;
-const MAX_PRODUCTS_ON_PAGE = 50;
+type SortOrder = "relevance" | "newest" | "oldest" | "price-asc" | "price-desc";
+
 
 interface SearchClientProps {
   allProducts: Product[];
@@ -17,68 +21,92 @@ interface SearchClientProps {
 
 export default function SearchClient({ allProducts, query }: SearchClientProps) {
   const [page, setPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState<SortOrder>("relevance");
+  const topOfProductsRef = useRef<HTMLDivElement>(null);
+
+  // Memoize sorted products
+  const sortedProducts = useMemo(() => {
+    let sorted = [...allProducts];
+     switch (sortOrder) {
+      case 'relevance':
+        return allProducts; // Default relevance from server
+      case 'newest':
+        return sorted.sort((a, b) => b.id - a.id);
+      case 'oldest':
+        return sorted.sort((a, b) => a.id - b.id);
+      case 'price-asc':
+        return sorted.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return sorted.sort((a, b) => b.price - a.price);
+      default:
+        return allProducts;
+    }
+  }, [allProducts, sortOrder]);
   
-  // Reset page to 1 whenever the search query changes
+  // Reset page to 1 whenever the search query or sort order changes
   useEffect(() => {
     setPage(1);
-  }, [query]);
+    if (topOfProductsRef.current) {
+        topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [query, sortOrder]);
 
-  const totalPages = Math.ceil(allProducts.length / PRODUCTS_PER_PAGE);
-
-  const handleLoadMore = () => {
-    setPage(prevPage => Math.min(prevPage + 1, totalPages));
-  };
-
-  const handleLoadPrevious = () => {
-    setPage(prevPage => Math.max(prevPage - 1, 1));
-  };
 
   const visibleProducts = useMemo(() => {
-    // The "window" logic: how many pages to show at once
-    const pagesOnScreen = Math.ceil(MAX_PRODUCTS_ON_PAGE / PRODUCTS_PER_PAGE);
-    
-    // Determine the start and end page for the sliding window
-    const endPage = page;
-    const startPage = Math.max(1, endPage - pagesOnScreen + 1);
+    const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
+    return sortedProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+  }, [page, sortedProducts]);
 
-    const startIndex = (startPage - 1) * PRODUCTS_PER_PAGE;
-    const endIndex = endPage * PRODUCTS_PER_PAGE;
-    
-    return allProducts.slice(startIndex, endIndex);
-  }, [page, allProducts]);
-  
-  const showLoadPrevious = page > Math.ceil(MAX_PRODUCTS_ON_PAGE / PRODUCTS_PER_PAGE);
+  const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
   const showLoadMore = page < totalPages;
+
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
+
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">
+      <div ref={topOfProductsRef} className="scroll-mt-20" />
       <h1 className="mb-4 text-center font-headline text-4xl font-bold">
         Search Results
       </h1>
       {query ? (
-        <h3 className="mb-8 text-center text-lg text-muted-foreground">
-          Showing results for: <span className="font-semibold text-foreground">"{query}"</span>
-        </h3>
+        <>
+          <h3 className="mb-8 text-center text-lg text-muted-foreground">
+            Showing results for: <span className="font-semibold text-foreground">"{query}"</span>
+          </h3>
+          <div className="flex justify-end mb-8">
+            <div className="flex items-center gap-2">
+                <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
+                <Select onValueChange={(value: SortOrder) => setSortOrder(value)} defaultValue={sortOrder}>
+                    <SelectTrigger id="sort-by" className="w-[180px]">
+                        <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="relevance">Relevance</SelectItem>
+                        <SelectItem value="newest">Latest (New to Old)</SelectItem>
+                        <SelectItem value="oldest">Oldest (Old to New)</SelectItem>
+                        <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                        <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+         </div>
+        </>
       ) : (
          <p className="text-center text-muted-foreground">Please enter a search term to find products.</p>
       )}
 
-      {showLoadPrevious && (
-        <div className="text-center mb-8">
-            <Button onClick={handleLoadPrevious}>
-                <ArrowUp className="mr-2 h-4 w-4" /> Load Previous
-            </Button>
-        </div>
-      )}
 
       {query && visibleProducts.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
           {visibleProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={`${product.id}-${sortOrder}`} product={product} />
           ))}
         </div>
       ) : (
-        query && <p className="text-center text-muted-foreground">No products found matching your search.</p>
+        query && <p className="text-center text-muted-foreground py-16">No products found matching your search.</p>
       )}
 
       {showLoadMore && (

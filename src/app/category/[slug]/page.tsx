@@ -12,9 +12,10 @@ const getCategoryData = (slug: string) => {
   if (!category) {
     return { category: null, allCategoryProducts: [] };
   }
+  // Default sort: newest first
   const allCategoryProducts = productsData
     .filter((product) => product.category.includes(slug))
-    .reverse(); // Reverse to show latest products first
+    .sort((a, b) => b.id - a.id); // Sort by ID descending for "newest"
   return { category, allCategoryProducts };
 };
 
