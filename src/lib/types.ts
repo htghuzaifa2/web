@@ -5,7 +5,7 @@ export interface Product {
   price: number;
   description: string;
   longDescription?: string;
-  specifications?: Record<string, string>;
+  specifications?: Record<string, string | undefined>;
   category: string[];
   image: string;
   additionalImages: string[];
