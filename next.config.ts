@@ -46,6 +46,10 @@ const securityHeaders = [
 
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // This is to allow cross-origin requests from the Firebase Studio preview environment.
+    allowedDevOrigins: ["*.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev"],
+  },
   output: 'standalone',
   images: {
     formats: ['image/avif', 'image/webp'],
