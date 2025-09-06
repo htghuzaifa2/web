@@ -1,23 +1,12 @@
 
 import { notFound } from "next/navigation";
-import categoriesData from "@/data/categories.json";
-import productsData from "@/data/products.json";
 import CategoryWrapper from "./category-wrapper";
 import type { Metadata } from "next";
+import { getCategoryData } from "@/lib/data-fetching";
+import categoriesData from "@/data/categories.json";
+
 
 export const dynamicParams = true;
-
-const getCategoryData = (slug: string) => {
-  const category = categoriesData.categories.find((c) => c.slug === slug);
-  if (!category) {
-    return { category: null, allCategoryProducts: [] };
-  }
-  // Default sort: newest first
-  const allCategoryProducts = productsData
-    .filter((product) => product.category.includes(slug))
-    .sort((a, b) => b.id - a.id); // Sort by ID descending for "newest"
-  return { category, allCategoryProducts };
-};
 
 export async function generateStaticParams() {
     return categoriesData.categories.map((category) => ({
@@ -25,8 +14,12 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { category } = getCategoryData(params.slug);
+type CategoryPageProps = {
+    params: { slug: string };
+};
+
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+  const { category } = await getCategoryData(params.slug);
 
   if (!category) {
     return {
@@ -56,8 +49,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const { category, allCategoryProducts } = getCategoryData(params.slug);
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { category, allCategoryProducts } = await getCategoryData(params.slug);
 
   if (!category) {
     notFound();
