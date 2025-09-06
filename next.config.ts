@@ -84,13 +84,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/:path*',
-        headers: [
-          ...securityHeaders,
-          {
-            key: 'Link',
-            value: '<https://i.postimg.cc>; rel=preconnect',
-          },
-        ],
+        headers: securityHeaders
       },
     ]
   },
