@@ -21,7 +21,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 const zod = import('zod');
 const zodResolver = import('@hookform/resolvers/zod').then(m => m.zodResolver);
 
-let checkoutSchema: any;
+let checkoutSchema: z.ZodObject<any>;
+
+type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 export default function CheckoutClient() {
   const { items, total } = useCart();
@@ -46,13 +48,15 @@ export default function CheckoutClient() {
   const shippingFee = 250;
   const finalTotal = total + shippingFee;
 
-  const form = useForm({
+  const form = useForm<CheckoutFormValues>({
     resolver: formResolver,
     defaultValues: {
       name: "",
       phone: "",
       email: "",
       address: "",
+      province: "",
+      city: "",
     },
   });
 
@@ -66,7 +70,7 @@ export default function CheckoutClient() {
   }, [selectedProvince, form]);
 
 
-  const onSubmit = (data: z.infer<typeof checkoutSchema>) => {
+  const onSubmit = (data: CheckoutFormValues) => {
     const myWhatsAppNumber = "923219486948";
 
     let message = `*New Order from huzi.pk*\n\n`;
