@@ -18,8 +18,8 @@ import locationData from "@/data/locations.json";
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Dynamically import zod and the resolver for smaller initial bundles
-const zod = import('zod');
-const zodResolver = import('@hookform/resolvers/zod').then(m => m.zodResolver);
+const zodPromise = import('zod');
+const zodResolverPromise = import('@hookform/resolvers/zod').then(m => m.zodResolver);
 
 let checkoutSchema: z.ZodObject<any>;
 
@@ -32,13 +32,13 @@ export default function CheckoutClient() {
 
   useEffect(() => {
       setIsClient(true);
-      Promise.all([zod, zodResolver]).then(([z, resolver]) => {
+      Promise.all([zodPromise, zodResolverPromise]).then(([z, resolver]) => {
           checkoutSchema = z.object({
               name: z.string().min(2, { message: "Name must be at least 2 characters." }),
               phone: z.string().min(1, { message: "Phone number is required." }).regex(/^\+?[0-9]+$/, { message: "Phone number can only contain digits and an optional leading '+'." }),
               email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
-              province: z.string({ required_error: "Please select a province." }),
-              city: z.string({ required_error: "Please select a city." }),
+              province: z.string({ required_error: "Please select a province." }).min(1, "Please select a province."),
+              city: z.string({ required_error: "Please select a city." }).min(1, "Please select a city."),
               address: z.string().optional(),
           });
           setFormResolver(() => resolver(checkoutSchema));
