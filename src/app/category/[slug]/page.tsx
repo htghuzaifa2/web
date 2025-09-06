@@ -16,7 +16,6 @@ export async function generateStaticParams() {
 
 interface CategoryPageProps {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {

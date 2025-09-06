@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default function ProductPage({ params }: ProductPageProps) {
   const { slug } = params;
   const { product, relatedProducts } = getProductData(slug);
 
