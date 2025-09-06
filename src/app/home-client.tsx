@@ -5,9 +5,9 @@ import dynamic from 'next/dynamic';
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from '@/components/ui/separator';
 import type { Product } from '@/lib/types';
-import HomeClientContent from './home-client-content';
+import ProductCard from '@/components/product-card';
 
-const DynamicHomeClientContent = dynamic(() => import('./home-client-content'), {
+const HomeClientContent = dynamic(() => import('./home-client-content'), {
   ssr: false,
   loading: () => <HomePageSkeleton />,
 });
@@ -27,12 +27,8 @@ function HomePageSkeleton() {
         <div className="container mx-auto px-4">
             <Skeleton className="h-10 w-1/2 mx-auto mb-8 md:mb-12" />
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                 {Array.from({ length: 10 }).map((_, index) => (
-                    <div key={`featured-skeleton-${index}`} className="flex flex-col gap-2">
-                        <Skeleton className="aspect-square w-full" />
-                        <Skeleton className="h-6 w-3/4 mx-auto" />
-                        <Skeleton className="h-5 w-1/2 mx-auto" />
-                    </div>
+                 {Array.from({ length: 5 }).map((_, index) => (
+                    <ProductCard key={`featured-skeleton-${index}`} product={null} />
                  ))}
             </div>
         </div>
@@ -43,13 +39,12 @@ function HomePageSkeleton() {
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <Skeleton className="h-10 w-1/2 mx-auto mb-8 md:mb-12" />
+           <div className="flex justify-end mb-8">
+              <Skeleton className="h-10 w-[180px]" />
+           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-            {Array.from({ length: 20 }).map((_, index) => (
-              <div key={`paginated-skeleton-${index}`} className="flex flex-col gap-2">
-                <Skeleton className="aspect-square w-full" />
-                <Skeleton className="h-6 w-3/4 mx-auto" />
-                <Skeleton className="h-5 w-1/2 mx-auto" />
-              </div>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <ProductCard key={`paginated-skeleton-${index}`} product={null} />
             ))}
           </div>
         </div>
@@ -64,5 +59,5 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({ featuredProducts }: HomeClientProps) {
-    return <DynamicHomeClientContent featuredProducts={featuredProducts} />
+    return <HomeClientContent featuredProducts={featuredProducts} />
 }

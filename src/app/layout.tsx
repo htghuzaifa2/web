@@ -1,6 +1,5 @@
 
-
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/header';
@@ -78,6 +77,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0a09" },
+  ],
+}
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -85,10 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
-      <head>
-        {/* The preconnect has been moved to next.config.mjs for better performance */}
-      </head>
-      <body className="font-body antialiased">
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

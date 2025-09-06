@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -68,6 +68,7 @@ interface HomeClientContentProps {
 
 export default function HomeClientContent({ featuredProducts }: HomeClientContentProps) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const pageParam = searchParams.get('page');
   const sortParam = searchParams.get('sort');
 
@@ -108,9 +109,7 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
 
   const handleSortChange = (value: SortOrder) => {
     const newUrl = `/?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
-    window.history.pushState({}, '', newUrl);
-    setSortOrder(value);
-    setCurrentPage(1); // Reset to page 1 on sort change
+    router.push(newUrl, { scroll: false });
     if (topOfProductsRef.current) {
       topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
@@ -124,6 +123,18 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
     }
     return url;
   };
+  
+  const handlePageClick = (e: React.MouseEvent, page: number) => {
+    if (page < 1 || page > TOTAL_PAGES) {
+      e.preventDefault();
+      return;
+    }
+    router.push(createPageUrl(page), { scroll: false });
+     if (topOfProductsRef.current) {
+      topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
 
   return (
     <div className="bg-background content-fade-in">
@@ -192,6 +203,7 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
                       <PaginationItem>
                          <Link
                             href={createPageUrl(currentPage - 1)}
+                            onClick={(e) => handlePageClick(e, currentPage - 1)}
                             prefetch={false}
                             aria-disabled={currentPage <= 1}
                             className={cn(
@@ -208,9 +220,11 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
                       {paginationItems.map((page, index) => (
                         <PaginationItem key={index}>
                           {typeof page === 'number' ? (
-                            <PaginationLink href={createPageUrl(page)} prefetch={false} isActive={page === currentPage}>
+                            <Link href={createPageUrl(page)} prefetch={false} onClick={(e) => handlePageClick(e, page)}
+                                className={cn(buttonVariants({ variant: page === currentPage ? 'default' : 'ghost', size: 'icon' }))}
+                            >
                               {page}
-                            </PaginationLink>
+                            </Link>
                           ) : (
                             <PaginationEllipsis />
                           )}
@@ -220,6 +234,7 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
                       <PaginationItem>
                          <Link
                             href={createPageUrl(currentPage + 1)}
+                             onClick={(e) => handlePageClick(e, currentPage + 1)}
                             prefetch={false}
                             aria-disabled={currentPage >= TOTAL_PAGES}
                             className={cn(

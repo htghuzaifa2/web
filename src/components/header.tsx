@@ -83,7 +83,7 @@ export default function Header() {
             ))}
              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="text-foreground/60 hover:text-primary data-[state=open]:text-primary px-0 focus-visible:ring-0 focus-visible:ring-offset-0">
+                    <Button variant="ghost" className="text-foreground/60 hover:text-primary data-[state=open]:text-primary px-0 focus-visible:ring-0 focus-visible:ring-offset-0 hover:bg-transparent data-[state=open]:bg-transparent">
                         More
                         <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
                     </Button>

@@ -3,12 +3,14 @@ import HomeClient from './home-client';
 import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 
-
-const ALL_PRODUCTS: Product[] = [...productsData].reverse();
+const ALL_PRODUCTS: Product[] = [...productsData];
 
 const getFeaturedProducts = () => {
-    const shuffled = [...ALL_PRODUCTS].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 10);
+    // Sort by ID descending to get newest first, then take top 10 as a stable base for "featured"
+    const sorted = [...ALL_PRODUCTS].sort((a,b) => b.id - a.id);
+    const topTen = sorted.slice(0, 10);
+    // Shuffle the top 10 to make the order dynamic on each load
+    return topTen.sort(() => 0.5 - Math.random());
 }
 
 

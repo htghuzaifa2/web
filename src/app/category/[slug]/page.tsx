@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { getCategoryData } from "@/lib/data-fetching";
 import categoriesData from "@/data/categories.json";
 
-
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
@@ -15,11 +14,11 @@ export async function generateStaticParams() {
 }
 
 interface CategoryPageProps {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug } = params;
   const { category } = await getCategoryData(slug);
 
   if (!category) {
@@ -51,7 +50,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = await params;
+  const { slug } = params;
   const { category, allCategoryProducts } = await getCategoryData(slug);
 
   if (!category) {
