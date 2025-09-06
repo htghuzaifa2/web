@@ -18,7 +18,7 @@ interface CategoryPageProps {
   params: { slug: string };
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { slug } = params;
   const { category } = await getCategoryData(slug);
 
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = params;
   const { category, allCategoryProducts } = await getCategoryData(slug);
 
