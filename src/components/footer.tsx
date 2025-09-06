@@ -50,7 +50,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8 border-t pt-4 text-center text-sm font-bold animate-rgb-text">
+        <div className="mt-8 border-t pt-4 text-center text-sm font-bold text-primary">
           &copy; {new Date().getFullYear()} huzi.pk. All Rights Reserved.
         </div>
       </div>
