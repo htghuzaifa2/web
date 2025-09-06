@@ -81,20 +81,20 @@ export default function Header() {
                 {label}
               </Link>
             ))}
-              <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="transition-colors text-foreground/60 data-[state=open]:text-primary px-0 hover:text-primary focus-visible:ring-0 focus-visible:ring-offset-0">
-                  More
-                  <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                {moreNavLinks.map(({ href, label }) => (
-                  <DropdownMenuItem key={label} asChild>
-                    <Link href={href}>{label}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
+             <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="text-foreground/60 hover:text-primary data-[state=open]:text-primary px-0 focus-visible:ring-0 focus-visible:ring-offset-0">
+                        More
+                        <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                    {moreNavLinks.map(({ href, label }) => (
+                    <DropdownMenuItem key={label} asChild>
+                        <Link href={href}>{label}</Link>
+                    </DropdownMenuItem>
+                    ))}
+                </DropdownMenuContent>
             </DropdownMenu>
           </nav>
         </div>
@@ -108,4 +108,3 @@ export default function Header() {
     </header>
   );
 }
-

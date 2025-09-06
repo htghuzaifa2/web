@@ -86,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
-        {/* The preconnect has been moved to next.config.ts for better performance */}
+        {/* The preconnect has been moved to next.config.mjs for better performance */}
       </head>
       <body className="font-body antialiased">
         <ThemeProvider
