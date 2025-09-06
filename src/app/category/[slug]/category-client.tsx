@@ -22,7 +22,6 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
   const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
   const pageRef = useRef(1);
-  const scrollPositionRef = useRef(0);
   const hasLoadedFromSession = useRef(false);
   const topOfProductsRef = useRef<HTMLDivElement>(null);
 
@@ -30,8 +29,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
     let sorted = [...allProducts];
     switch (sortOrder) {
       case 'newest':
-        // The default is already newest first from the server
-        return allProducts;
+        return allProducts; // Default is already newest first
       case 'oldest':
         return [...allProducts].reverse();
       case 'price-asc':
@@ -43,7 +41,6 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
     }
   }, [allProducts, sortOrder]);
 
-  // Function to load products for a given page number
   const loadProducts = (page: number): Product[] => {
     const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
     const endIndex = startIndex + PRODUCTS_PER_PAGE;
@@ -59,14 +56,23 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
     if (storedStateJSON) {
       try {
         const storedState = JSON.parse(storedStateJSON);
-        setVisibleProducts(storedState.products || loadProducts(1));
+        // Ensure the stored products are valid before setting
+        if (storedState.products && Array.isArray(storedState.products) && storedState.products.length > 0) {
+            setVisibleProducts(storedState.products);
+        } else {
+             setVisibleProducts(loadProducts(1));
+        }
         pageRef.current = storedState.page || 1;
         setSortOrder(storedState.sortOrder || 'newest');
         
-        // Restore scroll position after a short delay to allow content to render
+        // Restore scroll position after a short delay
         setTimeout(() => {
           window.scrollTo(0, storedState.scrollPosition || 0);
         }, 100);
+
+        // Clear the state after restoring it so a refresh doesn't use old data
+        sessionStorage.removeItem(`category_${category.slug}`);
+
       } catch {
         setVisibleProducts(loadProducts(1));
       }
@@ -74,24 +80,29 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
       setVisibleProducts(loadProducts(1));
     }
 
-    // Save state on navigation away from the page
-    const handleBeforeUnload = () => {
-      const stateToStore = {
-        products: visibleProducts,
-        page: pageRef.current,
-        sortOrder: sortOrder,
-        scrollPosition: window.scrollY,
-      };
-      sessionStorage.setItem(`category_${category.slug}`, JSON.stringify(stateToStore));
+    // Save state ONLY when navigating away to a product page
+    const handleNavigation = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        const productLink = target.closest('a[href^="/product/"]');
+        
+        if (productLink) {
+            const stateToStore = {
+                products: visibleProducts,
+                page: pageRef.current,
+                sortOrder: sortOrder,
+                scrollPosition: window.scrollY,
+            };
+            sessionStorage.setItem(`category_${category.slug}`, JSON.stringify(stateToStore));
+        }
     };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    document.addEventListener("click", handleNavigation, true); // Use capture phase
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      document.removeEventListener("click", handleNavigation, true);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category.slug, sortedProducts]); // Removed allProducts and visibleProducts, added sortedProducts
+  }, [category.slug, sortedProducts]); // sortedProducts is necessary here
 
   // Effect for when sort order changes
   useEffect(() => {
@@ -101,7 +112,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
         topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortOrder, sortedProducts]);
+  }, [sortOrder]);
 
 
   const handleLoadMore = () => {
@@ -109,17 +120,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
     const newProducts = loadProducts(nextPage);
     setVisibleProducts(prevProducts => [...prevProducts, ...newProducts]);
     pageRef.current = nextPage;
-    scrollPositionRef.current = window.scrollY; // Save scroll position before new content loads
   };
-  
-  // Effect to restore scroll position after more products are loaded
-  useEffect(() => {
-      if (scrollPositionRef.current > 0) {
-        window.scrollTo(0, scrollPositionRef.current);
-        scrollPositionRef.current = 0; // Reset after scroll
-      }
-  }, [visibleProducts.length]);
-
 
   const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
   const showLoadMore = pageRef.current < totalPages;
@@ -138,7 +139,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
       <div className="flex justify-end mb-8">
         <div className="flex items-center gap-2">
             <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
-            <Select onValueChange={(value: SortOrder) => setSortOrder(value)} defaultValue={sortOrder}>
+            <Select onValueChange={(value: SortOrder) => setSortOrder(value)} value={sortOrder}>
                 <SelectTrigger id="sort-by" className="w-[180px]">
                     <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
