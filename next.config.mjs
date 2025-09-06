@@ -1,6 +1,4 @@
 
-import type {NextConfig} from 'next';
-
 const cspHeader = `
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
     style-src 'self' 'unsafe-inline';
@@ -45,7 +43,8 @@ const securityHeaders = [
 ];
 
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // This is to allow cross-origin requests from the Firebase Studio preview environment.
   allowedDevOrigins: ["*.cluster-ejd22kqny5htuv5dfowoyipt52.cloudworkstations.dev"],
   output: 'standalone',
