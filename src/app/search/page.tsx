@@ -7,11 +7,11 @@ import SearchClient from './search-client';
 export const runtime = 'edge';
 
 interface SearchPageProps {
-  searchParams: { q?: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
-  const query = searchParams.q || '';
+  const query = (searchParams.q as string) || '';
   if (!query) {
     return {
       title: "Search",
@@ -30,7 +30,7 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q || '';
+  const query = (searchParams.q as string) || '';
   const allProducts: Product[] = productsData;
 
   const filteredProducts = query
