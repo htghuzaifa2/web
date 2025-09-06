@@ -1,14 +1,13 @@
 
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import ProductCard from "@/components/product-card";
 import type { Category, Product } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 const PRODUCTS_PER_PAGE = 25;
-const MAX_PRODUCTS_ON_PAGE = 50;
 
 interface CategoryClientProps {
   category: Category;
@@ -16,34 +15,77 @@ interface CategoryClientProps {
 }
 
 export default function CategoryClient({ category, allProducts }: CategoryClientProps) {
-  const [page, setPage] = useState(1);
+  const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
+  const pageRef = useRef(1);
+  const scrollPositionRef = useRef(0);
+  const hasLoadedFromSession = useRef(false);
 
-  const totalPages = Math.ceil(allProducts.length / PRODUCTS_PER_PAGE);
+  // Function to load products for a given page number
+  const loadProducts = (page: number): Product[] => {
+    const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
+    const endIndex = startIndex + PRODUCTS_PER_PAGE;
+    return allProducts.slice(startIndex, endIndex);
+  };
+  
+  // Effect to handle initial load and session storage restoration
+  useEffect(() => {
+    if (hasLoadedFromSession.current) return;
+    hasLoadedFromSession.current = true;
+
+    const storedStateJSON = sessionStorage.getItem(`category_${category.slug}`);
+    if (storedStateJSON) {
+      try {
+        const storedState = JSON.parse(storedStateJSON);
+        setVisibleProducts(storedState.products || loadProducts(1));
+        pageRef.current = storedState.page || 1;
+        
+        // Restore scroll position after a short delay to allow content to render
+        setTimeout(() => {
+          window.scrollTo(0, storedState.scrollPosition || 0);
+        }, 100);
+      } catch {
+        setVisibleProducts(loadProducts(1));
+      }
+    } else {
+      setVisibleProducts(loadProducts(1));
+    }
+
+    // Save state on navigation away from the page
+    const handleBeforeUnload = () => {
+      const stateToStore = {
+        products: visibleProducts,
+        page: pageRef.current,
+        scrollPosition: window.scrollY,
+      };
+      sessionStorage.setItem(`category_${category.slug}`, JSON.stringify(stateToStore));
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [category.slug, allProducts, visibleProducts]); // Added visibleProducts dependency
 
   const handleLoadMore = () => {
-    setPage(prevPage => Math.min(prevPage + 1, totalPages));
+    const nextPage = pageRef.current + 1;
+    const newProducts = loadProducts(nextPage);
+    setVisibleProducts(prevProducts => [...prevProducts, ...newProducts]);
+    pageRef.current = nextPage;
+    scrollPositionRef.current = window.scrollY; // Save scroll position before new content loads
   };
-
-  const handleLoadPrevious = () => {
-    setPage(prevPage => Math.max(prevPage - 1, 1));
-  };
-
-  const visibleProducts = useMemo(() => {
-    // The "window" logic: how many pages to show at once
-    const pagesOnScreen = Math.ceil(MAX_PRODUCTS_ON_PAGE / PRODUCTS_PER_PAGE);
-    
-    // Determine the start and end page for the sliding window
-    const endPage = page;
-    const startPage = Math.max(1, endPage - pagesOnScreen + 1);
-
-    const startIndex = (startPage - 1) * PRODUCTS_PER_PAGE;
-    const endIndex = endPage * PRODUCTS_PER_PAGE;
-    
-    return allProducts.slice(startIndex, endIndex);
-  }, [page, allProducts]);
   
-  const showLoadPrevious = page > Math.ceil(MAX_PRODUCTS_ON_PAGE / PRODUCTS_PER_PAGE);
-  const showLoadMore = page < totalPages;
+  // Effect to restore scroll position after more products are loaded
+  useEffect(() => {
+      if (scrollPositionRef.current > 0) {
+        window.scrollTo(0, scrollPositionRef.current);
+        scrollPositionRef.current = 0; // Reset after scroll
+      }
+  }, [visibleProducts.length]);
+
+
+  const totalPages = Math.ceil(allProducts.length / PRODUCTS_PER_PAGE);
+  const showLoadMore = pageRef.current < totalPages;
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">
@@ -54,14 +96,6 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
         {`Browse our collection of ${category.name.toLowerCase()}.`}
       </p>
       
-      {showLoadPrevious && (
-        <div className="text-center mb-8">
-            <Button onClick={handleLoadPrevious}>
-                <ArrowUp className="mr-2 h-4 w-4" /> Load Previous
-            </Button>
-        </div>
-      )}
-
       {visibleProducts.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
           {visibleProducts.map((product) => (
