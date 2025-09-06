@@ -7,6 +7,12 @@ import type { Metadata } from "next";
 
 export const dynamicParams = true;
 
+interface CategoryPageProps {
+  params: {
+    slug: string;
+  };
+}
+
 const getCategoryData = (slug: string) => {
   const category = categoriesData.categories.find((c) => c.slug === slug);
   if (!category) {
@@ -25,7 +31,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category } = getCategoryData(params.slug);
 
   if (!category) {
@@ -56,7 +62,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 
-export default function CategoryPage({ params }: { params: { slug:string } }) {
+export default function CategoryPage({ params }: CategoryPageProps) {
   const { category, allCategoryProducts } = getCategoryData(params.slug);
 
   if (!category) {
