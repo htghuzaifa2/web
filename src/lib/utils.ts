@@ -16,7 +16,7 @@ function slugify(text: string): string {
     .replace(/--+/g, '-') // Replace multiple - with single -
 }
 
-export function generateUniqueSlug(productName: string, allProducts: Omit<Product, 'slug'>[] & { slug?: string }[]): string {
+export function generateUniqueSlug(productName: string, allProducts: Product[]): string {
     const baseSlug = slugify(productName);
     let finalSlug = baseSlug;
     let counter = 2;
