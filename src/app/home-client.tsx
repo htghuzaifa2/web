@@ -154,7 +154,7 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
 
       <Separator className="my-8 md:my-12" />
 
-      <section className="py-12 md:py-16 bg-muted/50">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <h2 className="mb-2 text-center font-headline text-3xl font-bold text-foreground md:text-4xl">
             All Products
