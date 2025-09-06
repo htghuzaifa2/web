@@ -33,11 +33,7 @@ const getProductData = (slug: string) => {
   return { product, relatedProducts };
 };
 
-interface ProductPageProps {
-  params: { slug: string };
-}
-
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { slug } = params;
   const { product } = getProductData(slug);
 
@@ -85,7 +81,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const { product, relatedProducts } = getProductData(slug);
 
