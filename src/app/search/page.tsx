@@ -29,7 +29,7 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
   };
 }
 
-export default async function SearchPage({ searchParams }: { searchParams: { q?: string; page?: string } }) {
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q || '';
   const allProducts: Product[] = productsData;
 
