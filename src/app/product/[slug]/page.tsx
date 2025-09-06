@@ -16,7 +16,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const getProductData = (slug: string) => {
+const getProductData = async (slug: string) => {
   const allProducts: Product[] = productsData;
   const product = allProducts.find(p => p.slug === slug);
 
@@ -34,12 +34,12 @@ const getProductData = (slug: string) => {
 };
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { slug } = params;
-  const { product } = getProductData(slug);
+  const { slug } = await params;
+  const { product } = await getProductData(slug);
 
   if (!product) {
     return {
@@ -85,9 +85,9 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
-  const { product, relatedProducts } = getProductData(slug);
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
+  const { product, relatedProducts } = await getProductData(slug);
 
   if (!product) {
     notFound();
