@@ -7,7 +7,7 @@ import SearchClient from './search-client';
 export const runtime = 'edge';
 
 interface SearchPageProps {
-  searchParams: { q?: string; page?: string };
+  searchParams: { q?: string };
 }
 
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
