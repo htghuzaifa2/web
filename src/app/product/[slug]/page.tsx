@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const { product, relatedProducts } = getProductData(slug);
 
