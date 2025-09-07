@@ -172,7 +172,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                src={img}
                                alt={`${productName} thumbnail ${index + 1}`}
                                fill
-                               sizes="80px"
+                               sizes="15vw"
                            />
                        </button>
                    ))}
