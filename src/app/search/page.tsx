@@ -1,15 +1,15 @@
 
 import productsData from '@/data/products.json';
 import type { Product } from '@/lib/types';
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 import SearchClient from './search-client';
 
 export const runtime = 'edge';
 
 export async function generateMetadata(
-  { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }
+  { searchParams }: { searchParams: { q?: string } }
 ): Promise<Metadata> {
-  const query = (searchParams.q as string) || '';
+  const query = searchParams.q || '';
   if (!query) {
     return {
       title: "Search",
@@ -27,8 +27,8 @@ export async function generateMetadata(
   };
 }
 
-export default async function SearchPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  const query = (searchParams.q as string) || '';
+export default async function SearchPage({ searchParams }: { searchParams: { q?: string } }) {
+  const query = searchParams.q || '';
   const allProducts: Product[] = productsData;
 
   const filteredProducts = query
