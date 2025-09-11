@@ -13,11 +13,11 @@ export async function generateStaticParams() {
     }));
 }
 
-interface CategoryPageProps {
-  params: { slug: string };
+interface CategoryPageParams {
+  slug: string;
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: CategoryPageParams }): Promise<Metadata> {
   const { slug } = params;
   const { category } = await getCategoryData(slug);
 
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: { params: CategoryPageParams }) {
   const { slug } = params;
   const { category, allCategoryProducts } = await getCategoryData(slug);
 
@@ -59,4 +59,3 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
   return <CategoryWrapper category={category} allProducts={allCategoryProducts} />;
 }
-
