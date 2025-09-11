@@ -1,3 +1,4 @@
+
 import productsData from '@/data/products.json';
 import type { Product } from '@/lib/types';
 import type { Metadata } from 'next';
@@ -5,7 +6,8 @@ import SearchClient from './search-client';
 
 export const runtime = 'edge';
 
-export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
+export async function generateMetadata({ searchParams: searchParamsPromise }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
+  const searchParams = await searchParamsPromise;
   const query = typeof searchParams.q === 'string' ? searchParams.q : '';
   if (!query) {
     return {
@@ -24,7 +26,8 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
   };
 }
 
-export default async function SearchPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default async function SearchPage({ searchParams: searchParamsPromise }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+  const searchParams = await searchParamsPromise;
   const query = typeof searchParams?.q === 'string' ? searchParams.q : '';
   const allProducts: Product[] = productsData;
 
