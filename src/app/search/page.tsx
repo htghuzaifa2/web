@@ -7,8 +7,7 @@ import SearchClient from './search-client';
 export const runtime = 'edge';
 
 export async function generateMetadata(
-  { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } },
-  parent: ResolvingMetadata
+  { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }
 ): Promise<Metadata> {
   const query = (searchParams.q as string) || '';
   if (!query) {
