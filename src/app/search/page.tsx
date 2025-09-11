@@ -28,7 +28,7 @@ export async function generateMetadata(
 }
 
 export default async function SearchPage({ searchParams }: { searchParams: { q?: string } }) {
-  const query = searchParams.q || '';
+  const query = searchParams?.q || '';
   const allProducts: Product[] = productsData;
 
   const filteredProducts = query
