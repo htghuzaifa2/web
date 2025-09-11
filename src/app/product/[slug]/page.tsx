@@ -33,8 +33,12 @@ const getProductData = async (slug: string) => {
   return { product, relatedProducts };
 };
 
+type Props = {
+  params: { slug: string };
+};
+
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { slug } = params;
@@ -84,7 +88,7 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage({ params }: Props) {
   const { slug } = params;
   const { product, relatedProducts } = await getProductData(slug);
 

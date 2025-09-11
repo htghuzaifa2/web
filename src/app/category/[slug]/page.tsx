@@ -13,8 +13,13 @@ export async function generateStaticParams() {
     }));
 }
 
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { slug } = params;
@@ -48,7 +53,7 @@ export async function generateMetadata(
 }
 
 
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: Props) {
   const { slug } = params;
   const { category, allCategoryProducts } = await getCategoryData(slug);
 
