@@ -59,3 +59,4 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
   return <CategoryWrapper category={category} allProducts={allCategoryProducts} />;
 }
+
