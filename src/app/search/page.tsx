@@ -6,12 +6,8 @@ import SearchClient from './search-client';
 
 export const runtime = 'edge';
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 export async function generateMetadata(
-  { searchParams }: Props
+  { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }
 ): Promise<Metadata> {
   const query = typeof searchParams.q === 'string' ? searchParams.q : '';
   if (!query) {
@@ -31,7 +27,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function SearchPage({ searchParams }: Props) {
+export default async function SearchPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const query = typeof searchParams?.q === 'string' ? searchParams.q : '';
   const allProducts: Product[] = productsData;
 
