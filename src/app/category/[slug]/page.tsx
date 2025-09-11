@@ -12,11 +12,15 @@ export async function generateStaticParams() {
     }));
 }
 
+interface CategoryPageProps {
+  params: { slug: string };
+}
+
 export async function generateMetadata(
-  { params: paramsPromise }: { params: Promise<{ slug: string }> },
+  { params }: CategoryPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = await paramsPromise;
+  const { slug } = params;
   const { category } = await getCategoryData(slug);
 
   if (!category) {
@@ -46,8 +50,8 @@ export async function generateMetadata(
   }
 }
 
-export default async function CategoryPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await paramsPromise;
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = params;
   const { category, allCategoryProducts } = await getCategoryData(slug);
 
   if (!category) {
