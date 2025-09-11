@@ -1,7 +1,7 @@
 
 import productsData from '@/data/products.json';
 import type { Product } from '@/lib/types';
-import { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import SearchClient from './search-client';
 
 export const runtime = 'edge';
@@ -10,7 +10,10 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata(
+  { searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const query = (searchParams.q as string) || '';
   if (!query) {
     return {
