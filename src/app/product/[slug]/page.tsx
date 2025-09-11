@@ -1,4 +1,3 @@
-
 import { notFound } from "next/navigation";
 import productsData from "@/data/products.json";
 import type { Product } from "@/lib/types";
@@ -33,15 +32,11 @@ const getProductData = async (slug: string) => {
   return { product, relatedProducts };
 };
 
-type Props = {
-  params: { slug: string };
-};
-
 export async function generateMetadata(
-  { params }: Props,
+  { params: paramsPromise }: { params: Promise<{ slug: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await paramsPromise;
   const { product } = await getProductData(slug);
 
   if (!product) {
@@ -88,8 +83,8 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProductPage({ params }: Props) {
-  const { slug } = params;
+export default async function ProductPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await paramsPromise;
   const { product, relatedProducts } = await getProductData(slug);
 
   if (!product) {

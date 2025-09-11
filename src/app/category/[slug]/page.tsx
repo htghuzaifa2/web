@@ -1,4 +1,3 @@
-
 import { notFound } from "next/navigation";
 import CategoryWrapper from "./category-wrapper";
 import type { Metadata, ResolvingMetadata } from "next";
@@ -13,15 +12,11 @@ export async function generateStaticParams() {
     }));
 }
 
-type Props = {
-  params: { slug: string };
-};
-
 export async function generateMetadata(
-  { params }: Props,
+  { params: paramsPromise }: { params: Promise<{ slug: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await paramsPromise;
   const { category } = await getCategoryData(slug);
 
   if (!category) {
@@ -51,8 +46,8 @@ export async function generateMetadata(
   }
 }
 
-export default async function CategoryPage({ params }: Props) {
-  const { slug } = params;
+export default async function CategoryPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await paramsPromise;
   const { category, allCategoryProducts } = await getCategoryData(slug);
 
   if (!category) {
