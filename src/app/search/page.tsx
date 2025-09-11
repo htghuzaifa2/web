@@ -1,4 +1,3 @@
-
 import productsData from '@/data/products.json';
 import type { Product } from '@/lib/types';
 import type { Metadata } from 'next';
