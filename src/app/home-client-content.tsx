@@ -4,7 +4,6 @@
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import Link from 'next/link';
-import { Separator } from '@/components/ui/separator';
 import ProductGrid from '@/components/product-grid';
 
 interface HomeClientContentProps {
@@ -35,13 +34,23 @@ export default function HomeClientContent({ initialProducts, allProducts }: Home
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
             <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
-                Explore Our Collection
+                Featured Products
             </h2>
             <ProductGrid initialProducts={initialProducts} allProducts={allProducts} />
         </div>
       </section>
 
-      <Separator className="my-8 md:my-12" />
+      <section className="text-center py-16">
+         <div className="container mx-auto px-4">
+             <h2 className="font-headline text-3xl font-bold">See Our Full Collection</h2>
+             <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+                 Ready to see more? Browse our entire catalog to find exactly what you're looking for.
+             </p>
+             <Button asChild size="lg" className="mt-8">
+                 <Link href="/all-products">View All Products</Link>
+             </Button>
+         </div>
+      </section>
       
     </div>
   );

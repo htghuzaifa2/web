@@ -1,10 +1,12 @@
+
 "use client";
 
 import dynamic from 'next/dynamic';
 import { Skeleton } from "@/components/ui/skeleton";
-import { Separator } from '@/components/ui/separator';
 import type { Product } from '@/lib/types';
 import ProductCard from '@/components/product-card';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const HomeClientContent = dynamic(() => import('./home-client-content'), {
   ssr: false,
@@ -27,7 +29,7 @@ function HomePageSkeleton() {
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-            <Skeleton className="h-10 w-1/2 mx-auto mb-8 md:mb-12" />
+            <Skeleton className="h-10 w-1/2 mx-auto mb-12" />
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                  {Array.from({ length: 10 }).map((_, index) => (
                     <ProductCard key={`featured-skeleton-${index}`} product={null} />
@@ -38,8 +40,13 @@ function HomePageSkeleton() {
             </div>
         </div>
       </section>
-
-      <Separator className="my-8 md:my-12" />
+       <div className="container mx-auto px-4 text-center py-16">
+          <Skeleton className="h-10 w-1/2 mx-auto mb-4" />
+          <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
+          <Button asChild size="lg">
+              <Link href="/all-products">View All Products</Link>
+          </Button>
+       </div>
     </div>
   );
 }
