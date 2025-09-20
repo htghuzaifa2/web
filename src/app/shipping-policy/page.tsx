@@ -1,7 +1,6 @@
 
 "use client";
 
-import { Metadata } from "next";
 import Link from "next/link";
 
 export default function ShippingPolicyPage() {
@@ -24,7 +23,7 @@ export default function ShippingPolicyPage() {
                         We are currently accepting payments via <strong>Easypaisa, Jazzcash, or Bank Transfer</strong>. All orders must be paid for in full at the time of purchase.
                     </p>
 
-                    <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Delivery Time</h2>
+                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Delivery Time</h2>
                     <p>
                         Orders are typically processed and dispatched within 1-2 business days. Delivery times vary based on your location in Pakistan but generally take between 7-11 business days.
                     </p>

@@ -1,7 +1,6 @@
 
 "use client";
 
-import { Metadata } from "next";
 import { Banknote, Smartphone, AlertTriangle, HelpCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";

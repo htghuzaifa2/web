@@ -24,11 +24,10 @@ const getProductData = async (slug: string) => {
     return { product: null, relatedProducts: [] };
   }
   
-  // Get 8 fully random products, excluding the current one.
   const relatedProducts = allProducts
-    .filter(p => p.id !== product.id) // Exclude the current product
-    .sort(() => 0.5 - Math.random()) // Shuffle the array randomly
-    .slice(0, 8); // Take the first 8 products
+    .filter(p => p.id !== product.id) 
+    .sort(() => 0.5 - Math.random()) 
+    .slice(0, 8); 
 
   return { product, relatedProducts };
 };
@@ -38,10 +37,9 @@ interface ProductPageProps {
 }
 
 export async function generateMetadata(
-  { params }: ProductPageProps,
+  { params: { slug } }: ProductPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
   const { product } = await getProductData(slug);
 
   if (!product) {
@@ -56,7 +54,7 @@ export async function generateMetadata(
   if (product.description) {
       description = product.description;
   } else if (product.longDescription) {
-      description = product.longDescription.split('\n')[0]; // Take first line of long description
+      description = product.longDescription.split('\n')[0]; 
   } else if (product.specifications) {
       const specs = Object.entries(product.specifications).slice(0, 2).map(([key, value]) => `${key}: ${value}`).join(', ');
       description = `Check out the ${product.name} with features like ${specs}. Available now at huzi.pk.`
