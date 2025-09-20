@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
 import CategoryWrapper from "./category-wrapper";
@@ -12,7 +11,7 @@ export async function generateStaticParams() {
 }
 
 interface CategoryPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // This is a generic metadata title. The actual title will be set on the client.
@@ -21,6 +20,6 @@ export const metadata: Metadata = {
 };
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   return <CategoryWrapper slug={slug} />;
 }
