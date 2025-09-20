@@ -42,7 +42,9 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
           <div className="flex items-center gap-4 mt-4">
               <div className="flex items-baseline gap-3">
                 <p className="font-headline text-4xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
-                <p className="font-headline text-2xl text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
+                {!isOutOfStock && (
+                  <p className="font-headline text-2xl text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
+                )}
               </div>
           </div>
           <div className="mt-2">

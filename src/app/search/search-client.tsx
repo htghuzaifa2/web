@@ -20,7 +20,7 @@ interface SearchClientProps {
 }
 
 export default function SearchClient({ allProducts, query }: SearchClientProps) {
-  const [page, setPage] = useState(1);
+  const [visibleProductsCount, setVisibleProductsCount] = useState(PRODUCTS_PER_PAGE);
   const [sortOrder, setSortOrder] = useState<SortOrder>("relevance");
   const topOfProductsRef = useRef<HTMLDivElement>(null);
 
@@ -45,23 +45,20 @@ export default function SearchClient({ allProducts, query }: SearchClientProps) 
   
   // Reset page to 1 whenever the search query or sort order changes
   useEffect(() => {
-    setPage(1);
+    setVisibleProductsCount(PRODUCTS_PER_PAGE);
     if (topOfProductsRef.current) {
         topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [query, sortOrder]);
 
-
   const visibleProducts = useMemo(() => {
-    const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-    return sortedProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
-  }, [page, sortedProducts]);
+    return sortedProducts.slice(0, visibleProductsCount);
+  }, [visibleProductsCount, sortedProducts]);
 
-  const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
-  const showLoadMore = page < totalPages;
+  const showLoadMore = visibleProductsCount < sortedProducts.length;
 
   const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1);
+    setVisibleProductsCount(prevCount => prevCount + PRODUCTS_PER_PAGE);
   };
 
 

@@ -19,10 +19,8 @@ interface CategoryClientProps {
 type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
 
 export default function CategoryClient({ category, allProducts }: CategoryClientProps) {
-  const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
+  const [visibleProductsCount, setVisibleProductsCount] = useState(PRODUCTS_PER_PAGE);
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
-  const pageRef = useRef(1);
-  const hasLoadedFromSession = useRef(false);
   const topOfProductsRef = useRef<HTMLDivElement>(null);
 
   const sortedProducts = useMemo(() => {
@@ -40,90 +38,23 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
         return allProducts;
     }
   }, [allProducts, sortOrder]);
-
-  const loadProducts = (page: number): Product[] => {
-    const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-    const endIndex = startIndex + PRODUCTS_PER_PAGE;
-    return sortedProducts.slice(startIndex, endIndex);
-  };
   
-  // Effect to handle initial load and session storage restoration
-  useEffect(() => {
-    if (hasLoadedFromSession.current) return;
-    hasLoadedFromSession.current = true;
-
-    const storedStateJSON = sessionStorage.getItem(`category_${category.slug}`);
-    if (storedStateJSON) {
-      try {
-        const storedState = JSON.parse(storedStateJSON);
-        // Ensure the stored products are valid before setting
-        if (storedState.products && Array.isArray(storedState.products) && storedState.products.length > 0) {
-            setVisibleProducts(storedState.products);
-        } else {
-             setVisibleProducts(loadProducts(1));
-        }
-        pageRef.current = storedState.page || 1;
-        setSortOrder(storedState.sortOrder || 'newest');
-        
-        // Restore scroll position after a short delay
-        setTimeout(() => {
-          window.scrollTo(0, storedState.scrollPosition || 0);
-        }, 100);
-
-        // Clear the state after restoring it so a refresh doesn't use old data
-        sessionStorage.removeItem(`category_${category.slug}`);
-
-      } catch {
-        setVisibleProducts(loadProducts(1));
-      }
-    } else {
-      setVisibleProducts(loadProducts(1));
-    }
-
-    // Save state ONLY when navigating away to a product page
-    const handleNavigation = (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        const productLink = target.closest('a[href^="/product/"]');
-        
-        if (productLink) {
-            const stateToStore = {
-                products: visibleProducts,
-                page: pageRef.current,
-                sortOrder: sortOrder,
-                scrollPosition: window.scrollY,
-            };
-            sessionStorage.setItem(`category_${category.slug}`, JSON.stringify(stateToStore));
-        }
-    };
-
-    document.addEventListener("click", handleNavigation, true); // Use capture phase
-
-    return () => {
-      document.removeEventListener("click", handleNavigation, true);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category.slug, sortedProducts]); // sortedProducts is necessary here
-
   // Effect for when sort order changes
   useEffect(() => {
-    pageRef.current = 1;
-    setVisibleProducts(loadProducts(1));
+    setVisibleProductsCount(PRODUCTS_PER_PAGE);
     if (topOfProductsRef.current) {
         topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOrder]);
 
 
   const handleLoadMore = () => {
-    const nextPage = pageRef.current + 1;
-    const newProducts = loadProducts(nextPage);
-    setVisibleProducts(prevProducts => [...prevProducts, ...newProducts]);
-    pageRef.current = nextPage;
+    setVisibleProductsCount(prevCount => prevCount + PRODUCTS_PER_PAGE);
   };
-
-  const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
-  const showLoadMore = pageRef.current < totalPages;
+  
+  const visibleProducts = useMemo(() => sortedProducts.slice(0, visibleProductsCount), [sortedProducts, visibleProductsCount]);
+  
+  const showLoadMore = visibleProductsCount < sortedProducts.length;
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">

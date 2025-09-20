@@ -1,7 +1,7 @@
+
 "use client";
 
 import ProductCard from '@/components/product-card';
-import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 import Link from 'next/link';
@@ -31,54 +31,52 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
     if (totalPages <= 1) return [];
 
     const pageNumbers: (number | string)[] = [];
-    const pagesToShow = 3; 
     
-    if (totalPages <= pagesToShow + 2) {
-        for (let i = 1; i <= totalPages; i++) {
+    // Always show first page
+    pageNumbers.push(1);
+
+    // Ellipsis after first page if needed
+    if (currentPage > 3) {
+        pageNumbers.push('...');
+    }
+
+    // Pages around the current page
+    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+        if (i > 1 && i < totalPages) {
             pageNumbers.push(i);
         }
-    } else {
-        pageNumbers.push(1);
-        if (currentPage > 2) {
-            pageNumbers.push('...');
-        }
-        
-        const startPage = Math.max(2, currentPage - 1);
-        const endPage = Math.min(totalPages - 1, currentPage + 1);
+    }
 
-        for (let i = startPage; i <= endPage; i++) {
-             if(i > 1 && i < totalPages) pageNumbers.push(i);
-        }
-
-        if (currentPage < totalPages - 1) {
-            pageNumbers.push('...');
-        }
+    // Ellipsis before last page if needed
+    if (currentPage < totalPages - 2) {
+        pageNumbers.push('...');
+    }
+    
+    // Always show last page
+    if (totalPages > 1) {
         pageNumbers.push(totalPages);
     }
+    
     return [...new Set(pageNumbers)];
 };
 
 export default function AllProductsClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const pageParam = searchParams.get('page');
-  const sortParam = searchParams.get('sort');
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
   const topOfProductsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  const pageParam = searchParams.get('page') || '1';
+  const sortParam = searchParams.get('sort') || 'newest';
+
+  const currentPage = useMemo(() => {
     const page = Number(pageParam);
-    setCurrentPage(isNaN(page) || page < 1 ? 1 : page);
-    
+    return isNaN(page) || page < 1 ? 1 : page;
+  }, [pageParam]);
+
+  const sortOrder = useMemo<SortOrder>(() => {
     const validSortOrders: SortOrder[] = ["newest", "oldest", "price-asc", "price-desc"];
-    if (sortParam && validSortOrders.includes(sortParam as SortOrder)) {
-      setSortOrder(sortParam as SortOrder);
-    } else {
-      setSortOrder("newest");
-    }
-  }, [pageParam, sortParam]);
+    return validSortOrders.includes(sortParam as SortOrder) ? sortParam as SortOrder : "newest";
+  }, [sortParam]);
 
   const sortedProducts = useMemo(() => {
     let sorted = [...ALL_PRODUCTS];
@@ -101,12 +99,9 @@ export default function AllProductsClient() {
 
   const handleSortChange = (value: SortOrder) => {
     const newUrl = `/all-products?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
-    router.push(newUrl, { scroll: false });
-    if (topOfProductsRef.current) {
-      topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    router.push(newUrl);
   };
-
+  
   const createPageUrl = (page: number) => {
     if (page < 1 || page > TOTAL_PAGES) return '#';
     let url = `/all-products?page=${page}`;
@@ -116,16 +111,12 @@ export default function AllProductsClient() {
     return url;
   };
   
-  const handlePageClick = (e: React.MouseEvent, page: number) => {
-    if (page < 1 || page > TOTAL_PAGES) {
-      e.preventDefault();
-      return;
+  useEffect(() => {
+    if (topOfProductsRef.current) {
+        topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-    router.push(createPageUrl(page), { scroll: false });
-     if (topOfProductsRef.current) {
-      topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
+  }, [currentPage, sortOrder]);
+
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
@@ -164,27 +155,26 @@ export default function AllProductsClient() {
             <div className="mt-12">
                 <Pagination>
                 <PaginationContent>
-                    <PaginationItem>
-                        <Link
-                        href={createPageUrl(currentPage - 1)}
-                        onClick={(e) => handlePageClick(e, currentPage - 1)}
-                        prefetch={false}
-                        aria-disabled={currentPage <= 1}
-                        className={cn(
-                            buttonVariants({ variant: 'ghost', size: 'default' }),
-                            'gap-1 pl-2.5',
-                            currentPage <= 1 && 'cursor-not-allowed opacity-50'
-                        )}
-                        >
-                        <ChevronLeft className="h-4 w-4" />
-                        <span>Previous</span>
-                    </Link>
-                    </PaginationItem>
+                    {currentPage > 1 && (
+                      <PaginationItem>
+                          <Link
+                          href={createPageUrl(currentPage - 1)}
+                          prefetch={false}
+                          className={cn(
+                              buttonVariants({ variant: 'ghost', size: 'default' }),
+                              'gap-1 pl-2.5'
+                          )}
+                          >
+                          <ChevronLeft className="h-4 w-4" />
+                          <span>Previous</span>
+                      </Link>
+                      </PaginationItem>
+                    )}
                     
                     {paginationItems.map((page, index) => (
                     <PaginationItem key={index}>
                         {typeof page === 'number' ? (
-                        <Link href={createPageUrl(page)} prefetch={false} onClick={(e) => handlePageClick(e, page)}
+                        <Link href={createPageUrl(page)} prefetch={false}
                             className={cn(buttonVariants({ variant: page === currentPage ? 'default' : 'ghost', size: 'icon' }))}
                         >
                             {page}
@@ -195,22 +185,21 @@ export default function AllProductsClient() {
                     </PaginationItem>
                     ))}
 
-                    <PaginationItem>
-                        <Link
-                        href={createPageUrl(currentPage + 1)}
-                            onClick={(e) => handlePageClick(e, currentPage + 1)}
-                        prefetch={false}
-                        aria-disabled={currentPage >= TOTAL_PAGES}
-                        className={cn(
-                            buttonVariants({ variant: 'ghost', size: 'default' }),
-                            'gap-1 pr-2.5',
-                            currentPage >= TOTAL_PAGES && 'cursor-not-allowed opacity-50'
-                        )}
-                        >
-                        <span>Next</span>
-                        <ChevronRight className="h-4 w-4" />
-                    </Link>
-                    </PaginationItem>
+                    {currentPage < TOTAL_PAGES && (
+                      <PaginationItem>
+                          <Link
+                          href={createPageUrl(currentPage + 1)}
+                          prefetch={false}
+                          className={cn(
+                              buttonVariants({ variant: 'ghost', size: 'default' }),
+                              'gap-1 pr-2.5'
+                          )}
+                          >
+                          <span>Next</span>
+                          <ChevronRight className="h-4 w-4" />
+                      </Link>
+                      </PaginationItem>
+                    )}
                 </PaginationContent>
                 </Pagination>
             </div>
