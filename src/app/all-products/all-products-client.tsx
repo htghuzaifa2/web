@@ -27,32 +27,9 @@ const getProductsForPage = (page: number, products: Product[]) => {
   return products.slice(startIndex, endIndex);
 };
 
-const getPaginationItems = (currentPage: number, totalPages: number) => {
+const getPaginationItems = (totalPages: number) => {
     if (totalPages <= 1) return [];
-
-    const pageNumbers: (number | string)[] = [];
-    
-    pageNumbers.push(1);
-
-    if (currentPage > 3) {
-        pageNumbers.push('...');
-    }
-
-    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-        if (i > 1 && i < totalPages) {
-            pageNumbers.push(i);
-        }
-    }
-
-    if (currentPage < totalPages - 2) {
-        pageNumbers.push('...');
-    }
-    
-    if (totalPages > 1) {
-        pageNumbers.push(totalPages);
-    }
-    
-    return [...new Set(pageNumbers)];
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
 };
 
 export default function AllProductsClient() {
@@ -90,7 +67,7 @@ export default function AllProductsClient() {
   }, [sortOrder]);
   
   const paginatedProducts = useMemo(() => getProductsForPage(currentPage, sortedProducts), [currentPage, sortedProducts]);
-  const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
+  const paginationItems = useMemo(() => getPaginationItems(TOTAL_PAGES), []);
 
   const handleSortChange = (value: SortOrder) => {
     const newUrl = `/all-products?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
