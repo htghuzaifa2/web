@@ -37,7 +37,7 @@ export default function FaqClient() {
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-center font-headline text-4xl font-bold mb-8">Frequently Asked Questions</h1>
                 <p className="text-center text-lg text-muted-foreground mb-12">
-                    Have questions? We've got answers. If you can't find what you're looking for, feel free to <Link href="/contact" className="text-primary hover:underline">contact us</Link>.
+                    Have questions? We've got answers. If you can't find what you're looking for, feel free to <Link href="/contact" prefetch={false} className="text-primary hover:underline">contact us</Link>.
                 </p>
 
                 <Accordion type="single" collapsible className="w-full">

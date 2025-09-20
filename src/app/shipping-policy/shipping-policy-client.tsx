@@ -30,7 +30,7 @@ export default function ShippingPolicyClient() {
 
                      <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Questions</h2>
                     <p>
-                        If you have any questions about our shipping policy, please don't hesitate to <Link href="/contact">contact us</Link>.
+                        If you have any questions about our shipping policy, please don't hesitate to <Link href="/contact" prefetch={false}>contact us</Link>.
                     </p>
                 </div>
             </div>

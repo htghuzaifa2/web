@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -74,7 +75,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
                         Add to Cart
                     </Button>
                     <Button size="lg" variant="outline" asChild>
-                        <Link href={`/product/${product.slug}`} onClick={() => onOpenChange(false)}>
+                        <Link href={`/product/${product.slug}`} prefetch={false} onClick={() => onOpenChange(false)}>
                             View Full Details
                         </Link>
                     </Button>
