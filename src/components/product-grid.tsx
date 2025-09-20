@@ -43,7 +43,7 @@ export default function ProductGrid({ initialProducts, allProducts }: ProductGri
     if (storedStateJSON) {
       try {
         const storedState = JSON.parse(storedStateJSON);
-        if (storedState.productPages && Array.isArray(storedState.productPages)) {
+        if (storedState.productPages && Array.isArray(storedState.productPages) && storedState.productPages.length > 0) {
             setProductPages(storedState.productPages);
             setPageHistory(storedState.pageHistory || 0);
         }
@@ -81,7 +81,8 @@ export default function ProductGrid({ initialProducts, allProducts }: ProductGri
     return () => {
       document.removeEventListener('click', handleNavigation, true);
     };
-  }, [productPages, pageHistory, initialProducts]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
   const handleLoadMore = () => {
@@ -90,14 +91,11 @@ export default function ProductGrid({ initialProducts, allProducts }: ProductGri
 
     let updatedPages = [...productPages, newProducts];
     if (updatedPages.length > MAX_PAGES) {
-      updatedPages.shift();
+      updatedPages.shift(); // Remove the oldest page
     }
+    
     setProductPages(updatedPages);
     setPageHistory(prev => prev + 1);
-
-    setTimeout(() => {
-        topOfGridRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
   };
 
   const handleLoadPrevious = () => {
@@ -106,7 +104,7 @@ export default function ProductGrid({ initialProducts, allProducts }: ProductGri
      if (newProducts.length === 0) return;
 
      let updatedPages = [newProducts, ...productPages];
-     updatedPages.pop();
+     updatedPages.pop(); // Remove the last page
      
      setProductPages(updatedPages);
      setPageHistory(prev => Math.max(0, prev - 1));
