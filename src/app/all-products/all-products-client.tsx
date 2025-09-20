@@ -9,7 +9,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -32,27 +32,22 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
 
     const pageNumbers: (number | string)[] = [];
     
-    // Always show first page
     pageNumbers.push(1);
 
-    // Ellipsis after first page if needed
     if (currentPage > 3) {
         pageNumbers.push('...');
     }
 
-    // Pages around the current page
     for (let i = currentPage - 1; i <= currentPage + 1; i++) {
         if (i > 1 && i < totalPages) {
             pageNumbers.push(i);
         }
     }
 
-    // Ellipsis before last page if needed
     if (currentPage < totalPages - 2) {
         pageNumbers.push('...');
     }
     
-    // Always show last page
     if (totalPages > 1) {
         pageNumbers.push(totalPages);
     }
@@ -100,6 +95,7 @@ export default function AllProductsClient() {
   const handleSortChange = (value: SortOrder) => {
     const newUrl = `/all-products?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
     router.push(newUrl);
+    scrollToTop();
   };
   
   const createPageUrl = (page: number) => {
@@ -111,11 +107,17 @@ export default function AllProductsClient() {
     return url;
   };
   
-  useEffect(() => {
+  const scrollToTop = () => {
     if (topOfProductsRef.current) {
         topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [currentPage, sortOrder]);
+  };
+
+  const handlePageChange = (page: number) => {
+    const url = createPageUrl(page);
+    router.push(url);
+    scrollToTop();
+  };
 
 
   return (
@@ -159,6 +161,7 @@ export default function AllProductsClient() {
                       <PaginationItem>
                           <Link
                           href={createPageUrl(currentPage - 1)}
+                          onClick={(e) => {e.preventDefault(); handlePageChange(currentPage-1)}}
                           prefetch={false}
                           className={cn(
                               buttonVariants({ variant: 'ghost', size: 'default' }),
@@ -175,6 +178,7 @@ export default function AllProductsClient() {
                     <PaginationItem key={index}>
                         {typeof page === 'number' ? (
                         <Link href={createPageUrl(page)} prefetch={false}
+                            onClick={(e) => {e.preventDefault(); handlePageChange(page)}}
                             className={cn(buttonVariants({ variant: page === currentPage ? 'default' : 'ghost', size: 'icon' }))}
                         >
                             {page}
@@ -189,6 +193,7 @@ export default function AllProductsClient() {
                       <PaginationItem>
                           <Link
                           href={createPageUrl(currentPage + 1)}
+                          onClick={(e) => {e.preventDefault(); handlePageChange(currentPage+1)}}
                           prefetch={false}
                           className={cn(
                               buttonVariants({ variant: 'ghost', size: 'default' }),

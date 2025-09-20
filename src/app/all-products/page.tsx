@@ -1,6 +1,6 @@
 
 import type { Metadata } from 'next';
-import AllProductsClient from './all-products-client';
+import AllProductsWrapper from './all-products-wrapper';
 
 export const metadata: Metadata = {
     title: "All Products",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function AllProductsPage() {
-    return <AllProductsClient />;
+    return <AllProductsWrapper />;
 }

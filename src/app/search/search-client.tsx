@@ -8,23 +8,32 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { useSearchParams } from "next/navigation";
+import productsData from '@/data/products.json';
 
 
 const PRODUCTS_PER_PAGE = 25;
 type SortOrder = "relevance" | "newest" | "oldest" | "price-asc" | "price-desc";
 
 
-interface SearchClientProps {
-  allProducts: Product[];
-  query: string;
-}
-
-export default function SearchClient({ allProducts, query }: SearchClientProps) {
+export default function SearchClient() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('q') || '';
+  
   const [visibleProductsCount, setVisibleProductsCount] = useState(PRODUCTS_PER_PAGE);
   const [sortOrder, setSortOrder] = useState<SortOrder>("relevance");
   const topOfProductsRef = useRef<HTMLDivElement>(null);
 
-  // Memoize sorted products
+  const allProducts = useMemo(() => {
+    if (!query) return [];
+    const allProductsData: Product[] = productsData;
+    return allProductsData.filter(product =>
+      product.name.toLowerCase().includes(query.toLowerCase()) ||
+      (product.description && product.description.toLowerCase().includes(query.toLowerCase())) ||
+      product.id.toString().includes(query)
+    );
+  }, [query]);
+
   const sortedProducts = useMemo(() => {
     let sorted = [...allProducts];
      switch (sortOrder) {
@@ -43,7 +52,6 @@ export default function SearchClient({ allProducts, query }: SearchClientProps) 
     }
   }, [allProducts, sortOrder]);
   
-  // Reset page to 1 whenever the search query or sort order changes
   useEffect(() => {
     setVisibleProductsCount(PRODUCTS_PER_PAGE);
     if (topOfProductsRef.current) {
@@ -116,3 +124,4 @@ export default function SearchClient({ allProducts, query }: SearchClientProps) 
     </div>
   );
 }
+
