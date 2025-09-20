@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import CategoryWrapper from "./category-wrapper";
 import type { Metadata, ResolvingMetadata } from "next";
@@ -13,14 +14,14 @@ export async function generateStaticParams() {
 }
 
 interface CategoryPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata(
   { params }: CategoryPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const { category } = await getCategoryData(slug);
 
   if (!category) {
@@ -51,7 +52,7 @@ export async function generateMetadata(
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const { category, allCategoryProducts } = await getCategoryData(slug);
 
   if (!category) {
