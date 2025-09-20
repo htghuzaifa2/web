@@ -3,11 +3,12 @@ import type { Metadata } from 'next';
 import SearchWrapper from './search-wrapper';
 
 interface SearchPageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
-  const query = typeof searchParams?.q === 'string' ? searchParams.q : '';
+  const params = await searchParams;
+  const query = typeof params?.q === 'string' ? params.q : '';
   if (!query) {
     return {
       title: "Search",
