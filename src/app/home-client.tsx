@@ -27,35 +27,17 @@ function HomePageSkeleton() {
         <div className="container mx-auto px-4">
             <Skeleton className="h-10 w-1/2 mx-auto mb-8 md:mb-12" />
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                 {Array.from({ length: 5 }).map((_, index) => (
+                 {Array.from({ length: 10 }).map((_, index) => (
                     <ProductCard key={`featured-skeleton-${index}`} product={null} />
                  ))}
+            </div>
+            <div className="mt-12 flex justify-center">
+                <Skeleton className="h-12 w-40" />
             </div>
         </div>
       </section>
 
       <Separator className="my-8 md:my-12" />
-
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <Skeleton className="h-10 w-1/2 mx-auto mb-8 md:mb-12" />
-           <div className="flex justify-end mb-8">
-              <Skeleton className="h-10 w-[180px]" />
-           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <ProductCard key={`paginated-skeleton-${index}`} product={null} />
-            ))}
-          </div>
-           <div className="mt-12 flex justify-center">
-             <Skeleton className="h-10 w-24" />
-             <Skeleton className="h-10 w-10 mx-1" />
-             <Skeleton className="h-10 w-10 mx-1" />
-             <Skeleton className="h-10 w-10 mx-1" />
-             <Skeleton className="h-10 w-24" />
-           </div>
-        </div>
-      </section>
     </div>
   );
 }
