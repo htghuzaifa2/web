@@ -1,30 +1,62 @@
 
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useMemo, useRef } from "react";
 import ProductCard from "@/components/product-card";
 import type { Product } from "@/lib/types";
-import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { useSearchParams, useRouter } from "next/navigation";
+import productsData from '@/data/products.json';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { useSearchParams } from "next/navigation";
-import productsData from '@/data/products.json';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationEllipsis } from '@/components/ui/pagination';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-
-const PRODUCTS_PER_PAGE = 25;
+const PAGE_SIZE = 25;
 type SortOrder = "relevance" | "newest" | "oldest" | "price-asc" | "price-desc";
 
+const getPaginationItems = (currentPage: number, totalPages: number) => {
+    if (totalPages <= 1) return [];
+    const pageNumbers: (number | string)[] = [];
+    pageNumbers.push(1);
+    if (currentPage > 3) {
+        pageNumbers.push('...');
+    }
+    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+        if (i > 1 && i < totalPages) {
+            pageNumbers.push(i);
+        }
+    }
+    if (currentPage < totalPages - 2) {
+        pageNumbers.push('...');
+    }
+    if (totalPages > 1) {
+        pageNumbers.push(totalPages);
+    }
+    return [...new Set(pageNumbers)];
+};
 
 export default function SearchClient() {
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const query = searchParams.get('q') || '';
-  
-  const [visibleProductsCount, setVisibleProductsCount] = useState(PRODUCTS_PER_PAGE);
-  const [sortOrder, setSortOrder] = useState<SortOrder>("relevance");
   const topOfProductsRef = useRef<HTMLDivElement>(null);
 
-  const allProducts = useMemo(() => {
+  const query = searchParams.get('q') || '';
+  const pageParam = searchParams.get('page') || '1';
+  const sortParam = searchParams.get('sort') || 'relevance';
+
+  const currentPage = useMemo(() => {
+    const page = Number(pageParam);
+    return isNaN(page) || page < 1 ? 1 : page;
+  }, [pageParam]);
+
+  const sortOrder = useMemo<SortOrder>(() => {
+    const validSorts: SortOrder[] = ["relevance", "newest", "oldest", "price-asc", "price-desc"];
+    return validSorts.includes(sortParam as SortOrder) ? sortParam as SortOrder : "relevance";
+  }, [sortParam]);
+
+  const allFoundProducts = useMemo(() => {
     if (!query) return [];
     const allProductsData: Product[] = productsData;
     return allProductsData.filter(product =>
@@ -35,10 +67,8 @@ export default function SearchClient() {
   }, [query]);
 
   const sortedProducts = useMemo(() => {
-    let sorted = [...allProducts];
-     switch (sortOrder) {
-      case 'relevance':
-        return allProducts; // Default relevance from server
+    let sorted = [...allFoundProducts];
+    switch (sortOrder) {
       case 'newest':
         return sorted.sort((a, b) => b.id - a.id);
       case 'oldest':
@@ -47,28 +77,43 @@ export default function SearchClient() {
         return sorted.sort((a, b) => a.price - b.price);
       case 'price-desc':
         return sorted.sort((a, b) => b.price - a.price);
+      case 'relevance':
       default:
-        return allProducts;
+        return sorted;
     }
-  }, [allProducts, sortOrder]);
+  }, [allFoundProducts, sortOrder]);
+
+  const TOTAL_PAGES = Math.ceil(sortedProducts.length / PAGE_SIZE);
   
-  useEffect(() => {
-    setVisibleProductsCount(PRODUCTS_PER_PAGE);
-    if (topOfProductsRef.current) {
-        topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [query, sortOrder]);
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * PAGE_SIZE;
+    return sortedProducts.slice(startIndex, startIndex + PAGE_SIZE);
+  }, [currentPage, sortedProducts]);
 
-  const visibleProducts = useMemo(() => {
-    return sortedProducts.slice(0, visibleProductsCount);
-  }, [visibleProductsCount, sortedProducts]);
+  const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage, TOTAL_PAGES]);
 
-  const showLoadMore = visibleProductsCount < sortedProducts.length;
-
-  const handleLoadMore = () => {
-    setVisibleProductsCount(prevCount => prevCount + PRODUCTS_PER_PAGE);
+  const createUrl = (page: number, newSortOrder?: SortOrder) => {
+      const finalSortOrder = newSortOrder || sortOrder;
+      const params = new URLSearchParams();
+      params.set('q', query);
+      if (page > 1) params.set('page', page.toString());
+      if (finalSortOrder !== 'relevance') params.set('sort', finalSortOrder);
+      return `/search?${params.toString()}`;
   };
 
+  const scrollToTop = () => {
+    topOfProductsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+  
+  const handleSortChange = (value: SortOrder) => {
+    router.push(createUrl(1, value));
+    scrollToTop();
+  };
+
+  const handlePageChange = (page: number) => {
+    router.push(createUrl(page));
+    scrollToTop();
+  };
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">
@@ -84,7 +129,7 @@ export default function SearchClient() {
           <div className="flex justify-end mb-8">
             <div className="flex items-center gap-2">
                 <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
-                <Select onValueChange={(value: SortOrder) => setSortOrder(value)} defaultValue={sortOrder}>
+                <Select onValueChange={(value: SortOrder) => handleSortChange(value)} value={sortOrder}>
                     <SelectTrigger id="sort-by" className="w-[180px]">
                         <SelectValue placeholder="Sort by" />
                     </SelectTrigger>
@@ -103,25 +148,72 @@ export default function SearchClient() {
          <p className="text-center text-muted-foreground">Please enter a search term to find products.</p>
       )}
 
+      {query && paginatedProducts.length > 0 ? (
+        <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+                {paginatedProducts.map((product) => (
+                    <ProductCard key={`${product.id}-${sortOrder}`} product={product} />
+                ))}
+            </div>
+            
+            {TOTAL_PAGES > 1 && (
+            <div className="mt-12">
+                <Pagination>
+                <PaginationContent>
+                    {currentPage > 1 && (
+                      <PaginationItem>
+                          <a
+                          href={createUrl(currentPage - 1)}
+                          onClick={(e) => {e.preventDefault(); handlePageChange(currentPage-1)}}
+                          className={cn(
+                              buttonVariants({ variant: 'ghost', size: 'default' }),
+                              'gap-1 pl-2.5'
+                          )}
+                          >
+                          <ChevronLeft className="h-4 w-4" />
+                          <span>Previous</span>
+                      </a>
+                      </PaginationItem>
+                    )}
+                    
+                    {paginationItems.map((page, index) => (
+                    <PaginationItem key={index}>
+                        {typeof page === 'number' ? (
+                        <a href={createUrl(page)} 
+                            onClick={(e) => {e.preventDefault(); handlePageChange(page)}}
+                            className={cn(buttonVariants({ variant: page === currentPage ? 'default' : 'ghost', size: 'icon' }))}
+                        >
+                            {page}
+                        </a>
+                        ) : (
+                        <PaginationEllipsis />
+                        )}
+                    </PaginationItem>
+                    ))}
 
-      {query && visibleProducts.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-          {visibleProducts.map((product) => (
-            <ProductCard key={`${product.id}-${sortOrder}`} product={product} />
-          ))}
-        </div>
+                    {currentPage < TOTAL_PAGES && (
+                      <PaginationItem>
+                          <a
+                          href={createUrl(currentPage + 1)}
+                          onClick={(e) => {e.preventDefault(); handlePageChange(currentPage+1)}}
+                          className={cn(
+                              buttonVariants({ variant: 'ghost', size: 'default' }),
+                              'gap-1 pr-2.5'
+                          )}
+                          >
+                          <span>Next</span>
+                          <ChevronRight className="h-4 w-4" />
+                      </a>
+                      </PaginationItem>
+                    )}
+                </PaginationContent>
+                </Pagination>
+            </div>
+            )}
+        </>
       ) : (
         query && <p className="text-center text-muted-foreground py-16">No products found matching your search.</p>
-      )}
-
-      {showLoadMore && (
-        <div className="text-center mt-12">
-            <Button onClick={handleLoadMore}>
-                Load More <ArrowDown className="ml-2 h-4 w-4" />
-            </Button>
-        </div>
       )}
     </div>
   );
 }
-
