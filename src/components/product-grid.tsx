@@ -1,20 +1,50 @@
 
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef, useEffect, useReducer } from 'react';
 import type { Product } from '@/lib/types';
 import ProductCard from './product-card';
 import { Button } from './ui/button';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-interface ProductGridProps {
-  initialProducts: Product[];
-  allProducts: Product[];
-}
 
 const PRODUCTS_PER_PAGE = 25; // 5 rows of 5 products
 const MAX_PAGES_IN_MEMORY = 2; // Keep a maximum of 2 pages (10 rows) in the display list at once
+
+interface GridState {
+  productPages: Product[][];
+  currentPageIndex: number; // Index of the *first* page currently shown
+}
+
+type GridAction =
+  | { type: 'LOAD_MORE'; newProducts: Product[] }
+  | { type: 'LOAD_PREVIOUS' }
+  | { type: 'RESTORE_STATE'; state: GridState };
+
+function gridReducer(state: GridState, action: GridAction): GridState {
+  switch (action.type) {
+    case 'LOAD_MORE': {
+      const newPages = [...state.productPages, action.newProducts];
+      const newPageIndex = newPages.length > MAX_PAGES_IN_MEMORY 
+        ? state.currentPageIndex + 1 
+        : state.currentPageIndex;
+      return {
+        productPages: newPages,
+        currentPageIndex: newPageIndex,
+      };
+    }
+    case 'LOAD_PREVIOUS': {
+      return {
+        ...state,
+        currentPageIndex: Math.max(0, state.currentPageIndex - 1),
+      };
+    }
+    case 'RESTORE_STATE':
+      return action.state;
+    default:
+      return state;
+  }
+}
 
 const getRandomProducts = (products: Product[], count: number, excludeIds: Set<number>): Product[] => {
   const availableProducts = products.filter(p => !excludeIds.has(p.id));
@@ -22,19 +52,23 @@ const getRandomProducts = (products: Product[], count: number, excludeIds: Set<n
   return shuffled.slice(0, count);
 };
 
-export default function ProductGrid({ initialProducts, allProducts }: ProductGridProps) {
-  const [productPages, setProductPages] = useState<Product[][]>([initialProducts]);
+export default function ProductGrid({ initialProducts, allProducts }: { initialProducts: Product[], allProducts: Product[] }) {
+  const initialState: GridState = {
+    productPages: [initialProducts],
+    currentPageIndex: 0,
+  };
+
+  const [state, dispatch] = useReducer(gridReducer, initialState);
   const hasLoadedFromSession = useRef(false);
   const topOfGridRef = useRef<HTMLDivElement>(null);
 
-  // Memoize the set of all currently shown product IDs for quick lookups
-  const shownProductIds = useMemo(() => {
+  // Memoize the set of all product IDs in our history for quick lookups
+  const allShownProductIds = useMemo(() => {
     const ids = new Set<number>();
-    productPages.flat().forEach(p => ids.add(p.id));
+    state.productPages.flat().forEach(p => ids.add(p.id));
     return ids;
-  }, [productPages]);
-
-
+  }, [state.productPages]);
+  
   // Session storage effect to restore state on back navigation
   useEffect(() => {
     if (hasLoadedFromSession.current) return;
@@ -45,16 +79,14 @@ export default function ProductGrid({ initialProducts, allProducts }: ProductGri
       try {
         const storedState = JSON.parse(storedStateJSON);
         if (storedState.productPages && storedState.productPages.length > 0) {
-            setProductPages(storedState.productPages);
+          dispatch({ type: 'RESTORE_STATE', state: storedState });
             
-            // Restore scroll position after a short delay to allow content to render
             setTimeout(() => {
                 window.scrollTo(0, storedState.scrollPosition || 0);
             }, 100);
         }
       } catch {
         // Fallback to initial state if parsing fails
-        setProductPages([initialProducts]);
       }
     }
 
@@ -62,25 +94,19 @@ export default function ProductGrid({ initialProducts, allProducts }: ProductGri
         const target = e.target as HTMLElement;
         const link = target.closest('a');
 
-        // Save state ONLY if clicking a product link
         if (link && link.href.includes('/product/')) {
             const stateToStore = {
-                productPages,
+                ...state,
                 scrollPosition: window.scrollY,
             };
             sessionStorage.setItem('home_product_grid', JSON.stringify(stateToStore));
         } else if (link && link.getAttribute('href')?.startsWith('/')) {
-            // If it's another internal link (not a product), clear the storage
-            // to ensure a fresh start next time the user lands on the homepage.
             sessionStorage.removeItem('home_product_grid');
         }
     };
     
-    // Listen for clicks to decide when to save state
     document.addEventListener('click', handleNavigation, true);
 
-    // On a manual refresh, browsers sometimes try to restore scroll position.
-    // This ensures we start at the top unless session storage is used.
     const handleBeforeUnload = () => {
       if (!sessionStorage.getItem('home_product_grid')) {
         window.scrollTo(0, 0);
@@ -93,28 +119,40 @@ export default function ProductGrid({ initialProducts, allProducts }: ProductGri
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Run only once on mount
+  }, []);
 
   const handleLoadMore = () => {
-    const newProducts = getRandomProducts(allProducts, PRODUCTS_PER_PAGE, shownProductIds);
-    if (newProducts.length === 0) return; // No more unique products to show
-    
-    // Add the new page and then slice to keep only the last `MAX_PAGES_IN_MEMORY` pages.
-    // This creates the cycling effect of keeping a maximum of 10 rows.
-    setProductPages(prevPages => [...prevPages, newProducts].slice(-MAX_PAGES_IN_MEMORY));
+    const newProducts = getRandomProducts(allProducts, PRODUCTS_PER_PAGE, allShownProductIds);
+    if (newProducts.length === 0) return;
+    dispatch({ type: 'LOAD_MORE', newProducts });
   };
   
-  // Determine if the "Load More" button should be visible
-  const canLoadMore = allProducts.length > shownProductIds.size;
+  const handleLoadPrevious = () => {
+    dispatch({ type: 'LOAD_PREVIOUS' });
+    topOfGridRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const visiblePages = state.productPages.slice(state.currentPageIndex, state.currentPageIndex + MAX_PAGES_IN_MEMORY);
+
+  const canLoadMore = allProducts.length > allShownProductIds.size;
+  const canLoadPrevious = state.currentPageIndex > 0;
 
   return (
     <div>
         <div ref={topOfGridRef} className="scroll-mt-20" />
+        
+        {canLoadPrevious && (
+            <div className="text-center mb-12">
+                <Button onClick={handleLoadPrevious} size="lg" variant="outline">
+                    <ArrowUp className="mr-2" /> Load Previous
+                </Button>
+            </div>
+        )}
 
         <div className="space-y-12">
-            {productPages.map((page, pageIndex) => (
+            {visiblePages.map((page, pageIndex) => (
                  <div
-                    key={page.map(p => p.id).join('-')} // A stable key based on the content of the page
+                    key={page.map(p => p.id).join('-')}
                     className={cn(
                         "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6",
                         "content-fade-in"
