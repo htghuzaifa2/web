@@ -88,7 +88,7 @@ export function SearchDialog() {
                         <span className="sr-only">Search</span>
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md p-0">
+                <DialogContent className="top-0 sm:top-[10%] translate-y-0 sm:max-w-xl rounded-t-none sm:rounded-lg border-t-0 p-0 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%]">
                     <DialogHeader className="p-4 pb-0 sr-only">
                         <DialogTitle>Search Products</DialogTitle>
                     </DialogHeader>
@@ -102,10 +102,10 @@ export function SearchDialog() {
                                     onChange={(e) => setQuery(e.target.value)}
                                     onKeyDown={handleKeyDown}
                                     placeholder="Search products..."
-                                    className="pl-10"
+                                    className="pl-10 h-11"
                                 />
                             </div>
-                            <Button type="submit" onClick={() => handleSearchSubmit(query)}>
+                            <Button type="submit" onClick={() => handleSearchSubmit(query)} size="lg">
                                 Search
                             </Button>
                         </div>
