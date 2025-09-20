@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Product Details",
 };
 
-export default function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = params;
   
   const productExists = productsData.some(p => p.slug === slug);
