@@ -3,6 +3,7 @@
   "name": "my-next-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "browserslist": [
     "last 2 versions and > 0.5%",
     "not dead"
