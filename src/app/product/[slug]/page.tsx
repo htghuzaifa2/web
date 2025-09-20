@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const slug = await params.slug;
+  const { slug } = await params;
   
   const productExists = productsData.some(p => p.slug === slug);
   if (!productExists) {
@@ -31,3 +31,4 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return <ProductDetailsClient slug={slug} />;
 }
+
