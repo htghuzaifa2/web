@@ -7,6 +7,7 @@ import ProductCard from './product-card';
 import { Button } from './ui/button';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Skeleton } from './ui/skeleton';
 
 const PRODUCTS_PER_PAGE = 25; // 5 rows of 5 products
 const MAX_PAGES_IN_MEMORY = 2; // Keep a maximum of 2 pages (5 rows * 2) = 10 rows in the display list at once
@@ -66,21 +67,25 @@ const getRandomProducts = (products: Product[], count: number, excludeIds: Set<n
 
 
 export default function PaginatedProductGrid({ allProducts, storageKey }: { allProducts: Product[], storageKey: string }) {
-  const initialProducts = useMemo(() => getRandomProducts(allProducts, PRODUCTS_PER_PAGE, new Set()), [allProducts]);
+  const [isClient, setIsClient] = useState(false);
   
   const initialState: GridState = {
-    productPages: [initialProducts],
+    productPages: [],
     currentPageIndex: 0,
-    allShownProductIds: new Set(initialProducts.map(p => p.id)),
+    allShownProductIds: new Set(),
   };
 
   const [state, dispatch] = useReducer(gridReducer, initialState);
   const hasLoadedFromSession = useRef(false);
   const topOfGridRef = useRef<HTMLDivElement>(null);
   
-  // Session storage effect to restore state on back navigation
   useEffect(() => {
-    if (hasLoadedFromSession.current) return;
+    setIsClient(true);
+  }, []);
+
+  // Session storage and initial product load effect
+  useEffect(() => {
+    if (!isClient || hasLoadedFromSession.current) return;
     hasLoadedFromSession.current = true;
 
     const storedStateJSON = sessionStorage.getItem(storageKey);
@@ -93,11 +98,18 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
             setTimeout(() => {
                 window.scrollTo(0, storedState.scrollPosition || 0);
             }, 100);
+            return;
         }
       } catch {
-        // Fallback to initial state if parsing fails
+        // Fallback to initial load if parsing fails
       }
     }
+    
+    // If no session state, load initial products
+    const initialProducts = getRandomProducts(allProducts, PRODUCTS_PER_PAGE, new Set());
+    const initialAllIds = new Set(initialProducts.map(p => p.id));
+    dispatch({ type: 'RESTORE_STATE', state: { productPages: [initialProducts], currentPageIndex: 0, allShownProductIds: initialAllIds } });
+
 
     const handleNavigation = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
@@ -121,7 +133,6 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
        if (e.persisted) return; // Ignore bfcache navigations
        if (!sessionStorage.getItem(storageKey)) {
-          // If we are navigating away for real, clear the storage
           sessionStorage.removeItem(storageKey);
        }
     };
@@ -131,7 +142,7 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
       document.removeEventListener('click', handleNavigation, true);
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [state, storageKey]);
+  }, [allProducts, state, storageKey, isClient]);
 
   const handleLoadMore = () => {
     const newProducts = getRandomProducts(allProducts, PRODUCTS_PER_PAGE, state.allShownProductIds);
@@ -149,6 +160,20 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
   const canLoadMore = allProducts.length > state.allShownProductIds.size;
   const canLoadPrevious = state.currentPageIndex > 0;
 
+  if (!isClient || state.productPages.length === 0) {
+     return (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+            {Array.from({ length: 10 }).map((_, index) => (
+                <div key={index} className="flex flex-col gap-2">
+                    <Skeleton className="aspect-square w-full" />
+                    <Skeleton className="h-6 w-3/4 mx-auto" />
+                    <Skeleton className="h-5 w-1/2 mx-auto" />
+                </div>
+            ))}
+        </div>
+     );
+  }
+
   return (
     <div>
         <div ref={topOfGridRef} className="scroll-mt-20" />
@@ -162,7 +187,7 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
         )}
 
         <div className="space-y-12">
-            {visiblePages.map((page, pageIndex) => (
+            {visiblePages.map((page) => (
                  <div
                     key={page.map(p => p.id).join('-')}
                     className={cn(
@@ -171,7 +196,7 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
                     )}
                  >
                     {page.map((product, productIndex) => (
-                        <ProductCard key={product.id} product={product} priority={pageIndex === 0 && productIndex < 10} />
+                        <ProductCard key={product.id} product={product} priority={productIndex < 10} />
                     ))}
                 </div>
             ))}
