@@ -1,12 +1,9 @@
 
+"use client";
+
 import CategoryCard from "@/components/category-card";
 import categoriesData from "@/data/categories.json";
 import type { Category } from "@/lib/types";
-
-export const metadata = {
-  title: "Categories",
-  description: "Browse all product categories at huzi.pk. We deliver physical products all over Pakistan and digital products worldwide.",
-};
 
 export default function CategoriesPage() {
   const categories: Category[] = categoriesData.categories;

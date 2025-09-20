@@ -1,11 +1,8 @@
 
+"use client";
+
 import { Metadata } from "next";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-    title: "Shipping Policy",
-    description: "Learn about our shipping policies. We charge a flat rate of PKR 250 for delivery across Pakistan.",
-};
 
 export default function ShippingPolicyPage() {
     return (

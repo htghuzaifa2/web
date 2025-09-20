@@ -1,11 +1,8 @@
 
+"use client";
+
 import { Metadata } from "next";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-    title: "Return & Refund Policy",
-    description: "Understand the return and refund policy at huzi.pk. Learn about the conditions for returning a wrong or damaged item within 3 days of delivery.",
-};
 
 export default function ReturnPolicyPage() {
     return (
