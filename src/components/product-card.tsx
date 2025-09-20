@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -12,7 +11,7 @@ import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
-import { cn } from "@/lib/utils";
+import { cn, calculateOriginalPrice } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product | null;
@@ -52,7 +51,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
   };
 
   const productSlug = product.slug || '';
-  const originalPrice = Math.round(product.price * 1.39);
+  const originalPrice = calculateOriginalPrice(product.price);
 
   return (
     <>

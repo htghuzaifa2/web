@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -12,6 +11,7 @@ import ProductImageGallery from "@/components/product-image-gallery";
 import { Badge } from "@/components/ui/badge";
 import ProductInfoAccordion from "@/app/product/[slug]/product-info-tabs";
 import { ScrollArea } from "./ui/scroll-area";
+import { calculateOriginalPrice } from "@/lib/utils";
 
 interface ProductQuickViewProps {
   product: Product;
@@ -26,7 +26,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
   if (!product) return null;
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
-  const originalPrice = Math.round(product.price * 1.39);
+  const originalPrice = calculateOriginalPrice(product.price);
 
   const handleAddToCart = () => {
     addToCart(product);

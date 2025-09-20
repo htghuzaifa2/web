@@ -6,6 +6,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function calculateOriginalPrice(price: number): number {
+  return Math.round(price * 1.39);
+}
+
 function slugify(text: string): string {
   return text
     .toString()

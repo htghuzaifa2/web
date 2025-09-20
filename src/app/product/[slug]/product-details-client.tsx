@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -13,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { getProductData } from "@/lib/data-fetching";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCard from "@/components/product-card";
+import { calculateOriginalPrice } from "@/lib/utils";
 
 interface ProductDetailsClientProps {
   slug: string;
@@ -76,7 +76,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   }
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
-  const originalPrice = Math.round(product.price * 1.39);
+  const originalPrice = calculateOriginalPrice(product.price);
 
   const handleAddToCart = () => {
     addToCart(product);
