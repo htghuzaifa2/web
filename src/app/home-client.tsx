@@ -5,7 +5,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from '@/components/ui/separator';
 import type { Product } from '@/lib/types';
 import ProductCard from '@/components/product-card';
-import { Button } from './ui/button';
 
 const HomeClientContent = dynamic(() => import('./home-client-content'), {
   ssr: false,
@@ -19,7 +18,10 @@ function HomePageSkeleton() {
         <div className="container mx-auto px-4 text-center">
           <Skeleton className="h-12 w-3/4 mx-auto" />
           <Skeleton className="h-6 w-1/2 mx-auto mt-4" />
-          <Skeleton className="h-12 w-32 mx-auto mt-8" />
+          <div className="mt-8 flex justify-center gap-4">
+            <Skeleton className="h-12 w-32" />
+            <Skeleton className="h-12 w-32" />
+          </div>
         </div>
       </section>
 
@@ -44,9 +46,10 @@ function HomePageSkeleton() {
 
 
 interface HomeClientProps {
-    featuredProducts: Product[];
+    initialProducts: Product[];
+    allProducts: Product[];
 }
 
-export default function HomeClient({ featuredProducts }: HomeClientProps) {
-    return <HomeClientContent featuredProducts={featuredProducts} />
+export default function HomeClient({ initialProducts, allProducts }: HomeClientProps) {
+    return <HomeClientContent initialProducts={initialProducts} allProducts={allProducts} />
 }

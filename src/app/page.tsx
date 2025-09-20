@@ -4,17 +4,16 @@ import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 
 const ALL_PRODUCTS: Product[] = [...productsData];
+const PRODUCTS_PER_PAGE = 25; // 5 rows of 5 products
 
-const getFeaturedProducts = () => {
-    // Sort by ID descending to get newest first, then take top 10 as a stable base for "featured"
-    const sorted = [...ALL_PRODUCTS].sort((a,b) => b.id - a.id);
-    const topTen = sorted.slice(0, 10);
-    // Shuffle the top 10 to make the order dynamic on each load
-    return topTen.sort(() => 0.5 - Math.random());
-}
+// Function to get a shuffled slice of products
+const getRandomProducts = (products: Product[], count: number): Product[] => {
+    const shuffled = [...products].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+};
 
 
 export default function Home() {
-  const featuredProducts = getFeaturedProducts();
-  return <HomeClient featuredProducts={featuredProducts} />;
+  const initialProducts = getRandomProducts(ALL_PRODUCTS, PRODUCTS_PER_PAGE);
+  return <HomeClient initialProducts={initialProducts} allProducts={ALL_PRODUCTS} />;
 }

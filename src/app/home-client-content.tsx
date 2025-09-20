@@ -1,17 +1,18 @@
 
 "use client";
 
-import ProductCard from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import ProductGrid from '@/components/product-grid';
 
 interface HomeClientContentProps {
-    featuredProducts: Product[];
+    initialProducts: Product[];
+    allProducts: Product[];
 }
 
-export default function HomeClientContent({ featuredProducts }: HomeClientContentProps) {
+export default function HomeClientContent({ initialProducts, allProducts }: HomeClientContentProps) {
   return (
     <div className="bg-background content-fade-in">
       <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
@@ -34,18 +35,9 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
             <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
-                Featured Products
+                Explore Our Collection
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                 {featuredProducts.map((product, index) => (
-                    <ProductCard key={`featured-${product.id}`} product={product} priority={index < 5} />
-                 ))}
-            </div>
-             <div className="mt-12 text-center">
-                <Button asChild size="lg">
-                    <Link href="/all-products">View All Products</Link>
-                </Button>
-            </div>
+            <ProductGrid initialProducts={initialProducts} allProducts={allProducts} />
         </div>
       </section>
 
@@ -54,4 +46,3 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
     </div>
   );
 }
-
