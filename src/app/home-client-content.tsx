@@ -20,9 +20,14 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
           <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
             Explore our curated collection of high-quality apparel and digital goods at huzi.pk.
           </p>
-          <Button asChild size="lg" className="mt-8">
-            <Link href="/categories">Shop Now</Link>
-          </Button>
+          <div className="mt-8 flex justify-center gap-4">
+            <Button asChild size="lg">
+              <Link href="/all-products">Shop Now</Link>
+            </Button>
+             <Button asChild size="lg" variant="outline">
+              <Link href="/categories">Browse Categories</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -49,3 +54,4 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
     </div>
   );
 }
+
