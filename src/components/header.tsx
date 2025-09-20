@@ -1,19 +1,19 @@
+
 "use client";
 
 import Link from "next/link";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { CartSheet } from "./cart-sheet";
-import { SearchDialog } from "./search-dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Image from "next/image";
+import { useSearch } from "@/context/search-context";
 
 
 const mainNavLinks = [
@@ -35,6 +35,8 @@ const allNavLinks = [...mainNavLinks, ...moreNavLinks];
 
 
 export default function Header() {
+  const { toggleSearch } = useSearch();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
@@ -100,7 +102,10 @@ export default function Header() {
         </div>
         
         <div className="flex items-center justify-end space-x-1 sm:space-x-2">
-            <SearchDialog />
+            <Button variant="ghost" size="icon" onClick={toggleSearch}>
+                <Search className="h-5 w-5" />
+                <span className="sr-only">Search</span>
+            </Button>
             <CartSheet />
             <ThemeToggle />
         </div>
