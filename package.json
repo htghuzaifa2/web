@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "npx @cloudflare/next-on-pages",
-    "postbuild": "cp _routes.json .vercel/output/static",
+    "build": "next build",
+    "postbuild": "cp _routes.json .vercel/output/static/_routes.json",
     "start": "next start",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
