@@ -18,10 +18,10 @@ interface CategoryPageProps {
 }
 
 export async function generateMetadata(
-  { params }: CategoryPageProps,
+  { params: { slug } }: CategoryPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { category } = await getCategoryData(params);
+  const { category } = await getCategoryData(slug);
 
   if (!category) {
     return {
@@ -50,8 +50,8 @@ export async function generateMetadata(
   }
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { category, allCategoryProducts } = await getCategoryData(params);
+export default async function CategoryPage({ params: { slug } }: CategoryPageProps) {
+  const { category, allCategoryProducts } = await getCategoryData(slug);
 
   if (!category) {
     notFound();

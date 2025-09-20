@@ -3,8 +3,7 @@ import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
 import type { Product } from "./types";
 
-export async function getCategoryData(params: { slug: string }) {
-  const { slug } = params;
+export async function getCategoryData(slug: string) {
   const category = categoriesData.categories.find((c) => c.slug === slug);
   if (!category) {
     return { category: null, allCategoryProducts: [] };
@@ -16,8 +15,7 @@ export async function getCategoryData(params: { slug: string }) {
   return { category, allCategoryProducts };
 };
 
-export const getProductData = async (params: { slug: string }) => {
-  const { slug } = params;
+export const getProductData = async (slug: string) => {
   const allProducts: Product[] = productsData;
   const product = allProducts.find(p => p.slug === slug);
 

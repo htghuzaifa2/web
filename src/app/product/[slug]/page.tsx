@@ -22,10 +22,10 @@ interface ProductPageProps {
 }
 
 export async function generateMetadata(
-  { params }: ProductPageProps,
+  { params: { slug } }: ProductPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { product } = await getProductData(params);
+  const { product } = await getProductData(slug);
 
   if (!product) {
     return {
@@ -71,8 +71,8 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { product, relatedProducts } = await getProductData(params);
+export default async function ProductPage({ params: { slug } }: ProductPageProps) {
+  const { product, relatedProducts } = await getProductData(slug);
 
   if (!product) {
     notFound();
