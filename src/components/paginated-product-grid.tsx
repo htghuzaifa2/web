@@ -9,11 +9,12 @@ import { ArrowDown, ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const PRODUCTS_PER_PAGE = 25; // 5 rows of 5 products
-const MAX_PAGES_IN_MEMORY = 2; // Keep a maximum of 2 pages (10 rows) in the display list at once
+const MAX_PAGES_IN_MEMORY = 2; // Keep a maximum of 2 pages (5 rows * 2) = 10 rows in the display list at once
 
 interface GridState {
   productPages: Product[][];
-  currentPageIndex: number; // Index of the *first* page currently shown
+  currentPageIndex: number;
+  allShownProductIds: Set<number>;
 }
 
 type GridAction =
@@ -28,19 +29,30 @@ function gridReducer(state: GridState, action: GridAction): GridState {
       const newPageIndex = newPages.length > MAX_PAGES_IN_MEMORY 
         ? state.currentPageIndex + 1 
         : state.currentPageIndex;
+      
+      const newAllIds = new Set(state.allShownProductIds);
+      action.newProducts.forEach(p => newAllIds.add(p.id));
+
       return {
         productPages: newPages,
         currentPageIndex: newPageIndex,
+        allShownProductIds: newAllIds,
       };
     }
     case 'LOAD_PREVIOUS': {
-      return {
+       if (state.currentPageIndex <= 0) return state;
+       return {
         ...state,
-        currentPageIndex: Math.max(0, state.currentPageIndex - 1),
+        currentPageIndex: state.currentPageIndex - 1,
       };
     }
     case 'RESTORE_STATE':
-      return action.state;
+        const restoredIds = new Set<number>();
+        action.state.productPages.flat().forEach(p => restoredIds.add(p.id));
+        return {
+            ...action.state,
+            allShownProductIds: restoredIds
+        };
     default:
       return state;
   }
@@ -52,29 +64,26 @@ const getRandomProducts = (products: Product[], count: number, excludeIds: Set<n
   return shuffled.slice(0, count);
 };
 
-export default function ProductGrid({ initialProducts, allProducts }: { initialProducts: Product[], allProducts: Product[] }) {
+
+export default function PaginatedProductGrid({ allProducts, storageKey }: { allProducts: Product[], storageKey: string }) {
+  const initialProducts = useMemo(() => getRandomProducts(allProducts, PRODUCTS_PER_PAGE, new Set()), [allProducts]);
+  
   const initialState: GridState = {
     productPages: [initialProducts],
     currentPageIndex: 0,
+    allShownProductIds: new Set(initialProducts.map(p => p.id)),
   };
 
   const [state, dispatch] = useReducer(gridReducer, initialState);
   const hasLoadedFromSession = useRef(false);
   const topOfGridRef = useRef<HTMLDivElement>(null);
-
-  // Memoize the set of all product IDs in our history for quick lookups
-  const allShownProductIds = useMemo(() => {
-    const ids = new Set<number>();
-    state.productPages.flat().forEach(p => ids.add(p.id));
-    return ids;
-  }, [state.productPages]);
   
   // Session storage effect to restore state on back navigation
   useEffect(() => {
     if (hasLoadedFromSession.current) return;
     hasLoadedFromSession.current = true;
 
-    const storedStateJSON = sessionStorage.getItem('home_product_grid');
+    const storedStateJSON = sessionStorage.getItem(storageKey);
     if (storedStateJSON) {
       try {
         const storedState = JSON.parse(storedStateJSON);
@@ -94,23 +103,27 @@ export default function ProductGrid({ initialProducts, allProducts }: { initialP
         const target = e.target as HTMLElement;
         const link = target.closest('a');
 
-        if (link && link.href.includes('/product/')) {
+        if (link && (link.href.includes('/product/') || link.href.includes('/category/'))) {
             const stateToStore = {
                 ...state,
                 scrollPosition: window.scrollY,
             };
-            sessionStorage.setItem('home_product_grid', JSON.stringify(stateToStore));
-        } else if (link && link.getAttribute('href')?.startsWith('/')) {
-            sessionStorage.removeItem('home_product_grid');
+            sessionStorage.setItem(storageKey, JSON.stringify(stateToStore));
+        } else if (link && (link.getAttribute('href')?.startsWith('/') || link.getAttribute('href')?.startsWith('#'))) {
+            if (!link.href.includes('/product/') && !link.href.includes('/category/')) {
+                 sessionStorage.removeItem(storageKey);
+            }
         }
     };
     
     document.addEventListener('click', handleNavigation, true);
 
-    const handleBeforeUnload = () => {
-      if (!sessionStorage.getItem('home_product_grid')) {
-        window.scrollTo(0, 0);
-      }
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+       if (e.persisted) return; // Ignore bfcache navigations
+       if (!sessionStorage.getItem(storageKey)) {
+          // If we are navigating away for real, clear the storage
+          sessionStorage.removeItem(storageKey);
+       }
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
 
@@ -118,11 +131,10 @@ export default function ProductGrid({ initialProducts, allProducts }: { initialP
       document.removeEventListener('click', handleNavigation, true);
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [state, storageKey]);
 
   const handleLoadMore = () => {
-    const newProducts = getRandomProducts(allProducts, PRODUCTS_PER_PAGE, allShownProductIds);
+    const newProducts = getRandomProducts(allProducts, PRODUCTS_PER_PAGE, state.allShownProductIds);
     if (newProducts.length === 0) return;
     dispatch({ type: 'LOAD_MORE', newProducts });
   };
@@ -134,7 +146,7 @@ export default function ProductGrid({ initialProducts, allProducts }: { initialP
 
   const visiblePages = state.productPages.slice(state.currentPageIndex, state.currentPageIndex + MAX_PAGES_IN_MEMORY);
 
-  const canLoadMore = allProducts.length > allShownProductIds.size;
+  const canLoadMore = allProducts.length > state.allShownProductIds.size;
   const canLoadPrevious = state.currentPageIndex > 0;
 
   return (

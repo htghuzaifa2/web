@@ -2,14 +2,10 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
-import ProductCard from "@/components/product-card";
 import type { Category, Product } from "@/lib/types";
-import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-
-const PRODUCTS_PER_PAGE = 25;
+import PaginatedProductGrid from "@/components/paginated-product-grid";
 
 interface CategoryClientProps {
   category: Category;
@@ -19,7 +15,6 @@ interface CategoryClientProps {
 type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
 
 export default function CategoryClient({ category, allProducts }: CategoryClientProps) {
-  const [visibleProductsCount, setVisibleProductsCount] = useState(PRODUCTS_PER_PAGE);
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
   const topOfProductsRef = useRef<HTMLDivElement>(null);
 
@@ -41,20 +36,12 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
   
   // Effect for when sort order changes
   useEffect(() => {
-    setVisibleProductsCount(PRODUCTS_PER_PAGE);
     if (topOfProductsRef.current) {
         topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [sortOrder]);
 
-
-  const handleLoadMore = () => {
-    setVisibleProductsCount(prevCount => prevCount + PRODUCTS_PER_PAGE);
-  };
-  
-  const visibleProducts = useMemo(() => sortedProducts.slice(0, visibleProductsCount), [sortedProducts, visibleProductsCount]);
-  
-  const showLoadMore = visibleProductsCount < sortedProducts.length;
+  const storageKey = `category_grid_${category.slug}_${sortOrder}`;
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">
@@ -84,24 +71,16 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
         </div>
       </div>
       
-      {visibleProducts.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-          {visibleProducts.map((product) => (
-            <ProductCard key={`${product.id}-${sortOrder}`} product={product} />
-          ))}
-        </div>
+      {sortedProducts.length > 0 ? (
+         <PaginatedProductGrid 
+            key={storageKey} // Force re-mount when sort order changes
+            allProducts={sortedProducts} 
+            storageKey={storageKey} 
+        />
       ) : (
         <p className="text-center text-muted-foreground py-16">
           No products found in this category yet.
         </p>
-      )}
-
-      {showLoadMore && (
-        <div className="text-center mt-12">
-            <Button onClick={handleLoadMore}>
-                Load More <ArrowDown className="ml-2 h-4 w-4" />
-            </Button>
-        </div>
       )}
     </div>
   );

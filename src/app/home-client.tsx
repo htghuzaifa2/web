@@ -5,8 +5,6 @@ import dynamic from 'next/dynamic';
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Product } from '@/lib/types';
 import ProductCard from '@/components/product-card';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 const HomeClientContent = dynamic(() => import('./home-client-content'), {
   ssr: false,
@@ -43,9 +41,7 @@ function HomePageSkeleton() {
        <div className="container mx-auto px-4 text-center py-16">
           <Skeleton className="h-10 w-1/2 mx-auto mb-4" />
           <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
-          <Button asChild size="lg">
-              <Link href="/all-products">View All Products</Link>
-          </Button>
+          <Skeleton className="h-12 w-48" />
        </div>
     </div>
   );
@@ -53,10 +49,9 @@ function HomePageSkeleton() {
 
 
 interface HomeClientProps {
-    initialProducts: Product[];
     allProducts: Product[];
 }
 
-export default function HomeClient({ initialProducts, allProducts }: HomeClientProps) {
-    return <HomeClientContent initialProducts={initialProducts} allProducts={allProducts} />
+export default function HomeClient({ allProducts }: HomeClientProps) {
+    return <HomeClientContent allProducts={allProducts} />
 }

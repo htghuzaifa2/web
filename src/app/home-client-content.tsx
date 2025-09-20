@@ -4,14 +4,13 @@
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import Link from 'next/link';
-import ProductGrid from '@/components/product-grid';
+import PaginatedProductGrid from '@/components/paginated-product-grid';
 
 interface HomeClientContentProps {
-    initialProducts: Product[];
     allProducts: Product[];
 }
 
-export default function HomeClientContent({ initialProducts, allProducts }: HomeClientContentProps) {
+export default function HomeClientContent({ allProducts }: HomeClientContentProps) {
   return (
     <div className="bg-background content-fade-in">
       <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
@@ -36,7 +35,7 @@ export default function HomeClientContent({ initialProducts, allProducts }: Home
             <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
                 Featured Products
             </h2>
-            <ProductGrid initialProducts={initialProducts} allProducts={allProducts} />
+            <PaginatedProductGrid allProducts={allProducts} storageKey="home_product_grid" />
         </div>
       </section>
 
