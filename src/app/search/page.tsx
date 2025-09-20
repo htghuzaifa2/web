@@ -1,3 +1,4 @@
+
 import productsData from '@/data/products.json';
 import type { Product } from '@/lib/types';
 import type { Metadata } from 'next';
@@ -9,7 +10,7 @@ interface SearchPageProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+export function generateMetadata({ searchParams }: SearchPageProps): Metadata {
   const query = typeof searchParams?.q === 'string' ? searchParams.q : '';
   if (!query) {
     return {
