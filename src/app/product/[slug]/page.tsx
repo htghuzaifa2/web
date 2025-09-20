@@ -6,6 +6,7 @@ import ProductDetailsClient from "./product-details-client";
 import ProductCard from "@/components/product-card";
 import { Separator } from "@/components/ui/separator";
 import type { Metadata, ResolvingMetadata } from "next";
+import { getProductData } from "@/lib/data-fetching";
 
 export const dynamicParams = true;
 
@@ -16,31 +17,15 @@ export async function generateStaticParams() {
   }));
 }
 
-const getProductData = async (slug: string) => {
-  const allProducts: Product[] = productsData;
-  const product = allProducts.find(p => p.slug === slug);
-
-  if (!product) {
-    return { product: null, relatedProducts: [] };
-  }
-  
-  const relatedProducts = allProducts
-    .filter(p => p.id !== product.id) 
-    .sort(() => 0.5 - Math.random()) 
-    .slice(0, 8); 
-
-  return { product, relatedProducts };
-};
-
 interface ProductPageProps {
   params: { slug: string };
 }
 
 export async function generateMetadata(
-  { params: { slug } }: ProductPageProps,
+  { params }: ProductPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { product } = await getProductData(slug);
+  const { product } = await getProductData(params);
 
   if (!product) {
     return {
@@ -86,8 +71,8 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProductPage({ params: { slug } }: ProductPageProps) {
-  const { product, relatedProducts } = await getProductData(slug);
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { product, relatedProducts } = await getProductData(params);
 
   if (!product) {
     notFound();
