@@ -1,7 +1,7 @@
 
 import { notFound } from "next/navigation";
 import productsData from "@/data/products.json";
-import ProductDetailsWrapper from "./product-details-wrapper";
+import ProductDetailsClient from "./product-details-client";
 import type { Metadata } from "next";
 
 export const dynamicParams = true;
@@ -24,11 +24,10 @@ export const metadata: Metadata = {
 export default function ProductPage({ params }: ProductPageProps) {
   const { slug } = params;
   
-  // Pre-validate the slug to show a 404 if it's invalid.
   const productExists = productsData.some(p => p.slug === slug);
   if (!productExists) {
       notFound();
   }
 
-  return <ProductDetailsWrapper slug={slug} />;
+  return <ProductDetailsClient slug={slug} />;
 }

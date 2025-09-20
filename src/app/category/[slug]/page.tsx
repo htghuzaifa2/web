@@ -1,6 +1,6 @@
 
 import { notFound } from "next/navigation";
-import CategoryWrapper from "./category-wrapper";
+import CategoryClient from "./category-client";
 import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
 
@@ -24,11 +24,10 @@ export const metadata: Metadata = {
 export default function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = params;
   
-  // Pre-validate the slug to show a 404 if it's invalid.
   const categoryExists = categoriesData.categories.some(c => c.slug === slug);
   if (!categoryExists) {
       notFound();
   }
 
-  return <CategoryWrapper slug={slug} />;
+  return <CategoryClient slug={slug} />;
 }
