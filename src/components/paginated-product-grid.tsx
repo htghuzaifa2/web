@@ -131,7 +131,7 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
     document.addEventListener('click', handleNavigation, true);
 
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-       if (e.persisted) return; // Ignore bfcache navigations
+       if ((e as any).persisted) return; // Ignore bfcache navigations
        if (!sessionStorage.getItem(storageKey)) {
           sessionStorage.removeItem(storageKey);
        }
