@@ -68,7 +68,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
                 alt={product.name}
                 fill
                 priority={priority}
-                sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 20vw"
+                sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, 18vw"
                 className={cn(
                   "object-contain transition-transform duration-500 ease-in-out group-hover/card:scale-105",
                    isImageLoading ? 'opacity-0' : 'opacity-100'
