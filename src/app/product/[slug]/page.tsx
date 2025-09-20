@@ -88,8 +88,8 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { product, relatedProducts } = await getProductData(params.slug);
+export default async function ProductPage({ params: { slug } }: ProductPageProps) {
+  const { product, relatedProducts } = await getProductData(slug);
 
   if (!product) {
     notFound();
