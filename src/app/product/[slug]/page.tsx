@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import productsData from "@/data/products.json";
 import type { Product } from "@/lib/types";
@@ -88,8 +89,7 @@ export async function generateMetadata(
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
-  const { product, relatedProducts } = await getProductData(slug);
+  const { product, relatedProducts } = await getProductData(params.slug);
 
   if (!product) {
     notFound();
