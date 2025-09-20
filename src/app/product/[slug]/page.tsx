@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import productsData from "@/data/products.json";
 import ProductDetailsWrapper from "./product-details-wrapper";
