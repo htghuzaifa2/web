@@ -3,9 +3,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
 import { getCategoryData } from "@/lib/data-fetching";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import PaginatedProductGrid from "@/components/paginated-product-grid";
 import CategoryClient from "./category-client";
 
 export const dynamicParams = true;

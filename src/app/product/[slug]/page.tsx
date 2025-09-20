@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+  const slug = await params.slug;
   
   const productExists = productsData.some(p => p.slug === slug);
   if (!productExists) {
