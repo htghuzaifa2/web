@@ -25,11 +25,10 @@ export default function ProductPage({ params }: ProductPageProps) {
   const { slug } = params;
   
   // Pre-validate the slug to show a 404 if it's invalid.
-  // This check is safe because it's in a Server Component context.
   const productExists = productsData.some(p => p.slug === slug);
   if (!productExists) {
       notFound();
   }
-  
+
   return <ProductDetailsWrapper slug={slug} />;
 }
