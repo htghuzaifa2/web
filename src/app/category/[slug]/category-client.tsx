@@ -33,6 +33,10 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
       setCategory(fetchedCategory);
       setAllProducts(allCategoryProducts);
       setIsLoading(false);
+
+      if (fetchedCategory) {
+        document.title = `${fetchedCategory.name} - huzi.pk`;
+      }
     }
     fetchData();
   }, [slug]);
