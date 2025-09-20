@@ -18,7 +18,8 @@ export async function getProductData(slug: string) {
       p.category.some(cat => product.category.includes(cat))
     )
     .sort(() => 0.5 - Math.random()) // Shuffle related products
-    .slice(0, 5);
+    .slice(0, 10);
 
   return { product, relatedProducts };
 }
+
