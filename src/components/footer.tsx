@@ -24,12 +24,12 @@ export default function Footer() {
           <div>
             <h3 className="font-headline text-lg font-semibold">Company</h3>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><Link href="/about" prefetch={false} className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="/contact" prefetch={false} className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
-              <li><Link href="/shipping-policy" prefetch={false} className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</Link></li>
-              <li><Link href="/return-policy" prefetch={false} className="text-muted-foreground hover:text-primary transition-colors">Return Policy</Link></li>
-              <li><Link href="/how-to-pay" prefetch={false} className="text-muted-foreground hover:text-primary transition-colors">How to Pay</Link></li>
-              <li><Link href="/faq" prefetch={false} className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
+              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
+              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link href="/shipping-policy" className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</Link></li>
+              <li><Link href="/return-policy" className="text-muted-foreground hover:text-primary transition-colors">Return Policy</Link></li>
+              <li><Link href="/how-to-pay" className="text-muted-foreground hover:text-primary transition-colors">How to Pay</Link></li>
+              <li><Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
             </ul>
           </div>
           <div>

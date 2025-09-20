@@ -129,7 +129,7 @@ export default function CheckoutClient() {
             <h1 className="font-headline text-3xl font-bold">Your Cart is Empty</h1>
             <p className="mt-4 text-muted-foreground">You have no items in your cart to check out.</p>
             <Button asChild className="mt-6">
-                <Link href="/" prefetch={false}>Continue Shopping</Link>
+                <Link href="/">Continue Shopping</Link>
             </Button>
         </div>
       )

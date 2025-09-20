@@ -30,7 +30,7 @@ export default function ShippingInfo() {
         </ul>
       <p className="mt-4">
         For more detailed information, please see our full{" "}
-        <Link href="/shipping-policy" prefetch={false} className="text-primary hover:underline">
+        <Link href="/shipping-policy" className="text-primary hover:underline">
           Shipping Policy
         </Link>.
       </p>

@@ -12,7 +12,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useMemo, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/componentsui/select';
 
 const ALL_PRODUCTS: Product[] = [...productsData];
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
@@ -139,7 +139,6 @@ export default function AllProductsClient() {
                           <Link
                           href={createPageUrl(currentPage - 1)}
                           onClick={(e) => {e.preventDefault(); handlePageChange(currentPage-1)}}
-                          prefetch={false}
                           className={cn(
                               buttonVariants({ variant: 'ghost', size: 'default' }),
                               'gap-1 pl-2.5'
@@ -154,7 +153,7 @@ export default function AllProductsClient() {
                     {paginationItems.map((page, index) => (
                     <PaginationItem key={index}>
                         {typeof page === 'number' ? (
-                        <Link href={createPageUrl(page)} prefetch={false}
+                        <Link href={createPageUrl(page)}
                             onClick={(e) => {e.preventDefault(); handlePageChange(page)}}
                             className={cn(buttonVariants({ variant: page === currentPage ? 'default' : 'ghost', size: 'icon' }))}
                         >
@@ -171,7 +170,6 @@ export default function AllProductsClient() {
                           <Link
                           href={createPageUrl(currentPage + 1)}
                           onClick={(e) => {e.preventDefault(); handlePageChange(currentPage+1)}}
-                          prefetch={false}
                           className={cn(
                               buttonVariants({ variant: 'ghost', size: 'default' }),
                               'gap-1 pr-2.5'
