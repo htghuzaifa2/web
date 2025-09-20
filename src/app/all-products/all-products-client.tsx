@@ -6,19 +6,17 @@ import type { Product } from '@/lib/types';
 import productsData from '@/data/products.json';
 import Link from 'next/link';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationEllipsis } from '@/components/ui/pagination';
-import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const ALL_PRODUCTS: Product[] = [...productsData];
 const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
-const PAGE_SIZE = 10; // Show fewer products on the homepage
+const PAGE_SIZE = 20;
 const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
 
 type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
@@ -60,12 +58,7 @@ const getPaginationItems = (currentPage: number, totalPages: number) => {
     return [...new Set(pageNumbers)];
 };
 
-
-interface HomeClientContentProps {
-    featuredProducts: Product[];
-}
-
-export default function HomeClientContent({ featuredProducts }: HomeClientContentProps) {
+export default function AllProductsClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pageParam = searchParams.get('page');
@@ -107,7 +100,7 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
   const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage]);
 
   const handleSortChange = (value: SortOrder) => {
-    const newUrl = `/?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
+    const newUrl = `/all-products?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
     router.push(newUrl, { scroll: false });
     if (topOfProductsRef.current) {
       topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -116,7 +109,7 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
 
   const createPageUrl = (page: number) => {
     if (page < 1 || page > TOTAL_PAGES) return '#';
-    let url = `/?page=${page}`;
+    let url = `/all-products?page=${page}`;
     if (sortOrder !== 'newest') {
       url += `&sort=${sortOrder}`;
     }
@@ -134,79 +127,98 @@ export default function HomeClientContent({ featuredProducts }: HomeClientConten
     }
   }
 
-
   return (
-    <div className="bg-background content-fade-in">
-      <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">Discover Your Style At huzi.pk</h1>
-          <p className="font-body mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-            Explore our curated collection of high-quality apparel and digital goods at huzi.pk.
-          </p>
-          <Button asChild size="lg" className="mt-8">
-            <Link href="/categories">Shop Now</Link>
-          </Button>
-        </div>
-      </section>
+    <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
+        <div ref={topOfProductsRef} className="scroll-mt-20" />
+        <h1 className="mb-2 text-center font-headline text-3xl font-bold text-foreground md:text-4xl">
+            All Products
+        </h1>
+        <p className="mb-8 text-center text-muted-foreground">
+            Browse our entire collection.
+        </p>
 
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-            <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
-                Featured Products
-            </h2>
+        <div className="flex justify-end mb-8">
+        <div className="flex items-center gap-2">
+            <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
+            <Select onValueChange={(value: SortOrder) => handleSortChange(value)} value={sortOrder}>
+                <SelectTrigger id="sort-by" className="w-[180px]">
+                    <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="newest">Latest (New to Old)</SelectItem>
+                    <SelectItem value="oldest">Oldest (Old to New)</SelectItem>
+                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                </SelectContent>
+            </Select>
+        </div>
+        </div>
+        {paginatedProducts.length > 0 ? (
+        <>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                 {featuredProducts.map((product, index) => (
-                    <ProductCard key={`featured-${product.id}`} product={product} priority={index < 5} />
-                 ))}
+            {paginatedProducts.map((product) => (
+                <ProductCard key={`paginated-${product.id}`} product={product} />
+            ))}
             </div>
-        </div>
-      </section>
+            {TOTAL_PAGES > 1 && (
+            <div className="mt-12">
+                <Pagination>
+                <PaginationContent>
+                    <PaginationItem>
+                        <Link
+                        href={createPageUrl(currentPage - 1)}
+                        onClick={(e) => handlePageClick(e, currentPage - 1)}
+                        prefetch={false}
+                        aria-disabled={currentPage <= 1}
+                        className={cn(
+                            buttonVariants({ variant: 'ghost', size: 'default' }),
+                            'gap-1 pl-2.5',
+                            currentPage <= 1 && 'cursor-not-allowed opacity-50'
+                        )}
+                        >
+                        <ChevronLeft className="h-4 w-4" />
+                        <span>Previous</span>
+                    </Link>
+                    </PaginationItem>
+                    
+                    {paginationItems.map((page, index) => (
+                    <PaginationItem key={index}>
+                        {typeof page === 'number' ? (
+                        <Link href={createPageUrl(page)} prefetch={false} onClick={(e) => handlePageClick(e, page)}
+                            className={cn(buttonVariants({ variant: page === currentPage ? 'default' : 'ghost', size: 'icon' }))}
+                        >
+                            {page}
+                        </Link>
+                        ) : (
+                        <PaginationEllipsis />
+                        )}
+                    </PaginationItem>
+                    ))}
 
-      <Separator className="my-8 md:my-12" />
-
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="mb-2 text-center font-headline text-3xl font-bold text-foreground md:text-4xl">
-            Our Collection
-          </h2>
-
-          <div ref={topOfProductsRef} className="scroll-mt-20" />
-
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-            <p className="text-muted-foreground">Showing a few of our products. <Link href="/all-products" className="text-primary hover:underline font-semibold">View all.</Link></p>
-            <div className="flex items-center gap-2">
-                <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
-                <Select onValueChange={(value: SortOrder) => handleSortChange(value)} value={sortOrder}>
-                    <SelectTrigger id="sort-by" className="w-[180px]">
-                        <SelectValue placeholder="Sort by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="newest">Latest (New to Old)</SelectItem>
-                        <SelectItem value="oldest">Oldest (Old to New)</SelectItem>
-                        <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                        <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                    </SelectContent>
-                </Select>
+                    <PaginationItem>
+                        <Link
+                        href={createPageUrl(currentPage + 1)}
+                            onClick={(e) => handlePageClick(e, currentPage + 1)}
+                        prefetch={false}
+                        aria-disabled={currentPage >= TOTAL_PAGES}
+                        className={cn(
+                            buttonVariants({ variant: 'ghost', size: 'default' }),
+                            'gap-1 pr-2.5',
+                            currentPage >= TOTAL_PAGES && 'cursor-not-allowed opacity-50'
+                        )}
+                        >
+                        <span>Next</span>
+                        <ChevronRight className="h-4 w-4" />
+                    </Link>
+                    </PaginationItem>
+                </PaginationContent>
+                </Pagination>
             </div>
-          </div>
-           {paginatedProducts.length > 0 ? (
-            <>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                {paginatedProducts.map((product) => (
-                  <ProductCard key={`paginated-${product.id}`} product={product} />
-                ))}
-              </div>
-              <div className="mt-12 text-center">
-                  <Button asChild>
-                    <Link href="/all-products">View All Products</Link>
-                  </Button>
-              </div>
-            </>
-          ) : (
-            <p className="text-center text-muted-foreground">The store is currently empty. Check back later!</p>
-          )}
-        </div>
-      </section>
+            )}
+        </>
+        ) : (
+        <p className="text-center text-muted-foreground">The store is currently empty. Check back later!</p>
+        )}
     </div>
   );
 }

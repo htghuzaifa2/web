@@ -1,4 +1,3 @@
-
 "use client";
 
 import dynamic from 'next/dynamic';
@@ -6,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from '@/components/ui/separator';
 import type { Product } from '@/lib/types';
 import ProductCard from '@/components/product-card';
+import { Button } from './ui/button';
 
 const HomeClientContent = dynamic(() => import('./home-client-content'), {
   ssr: false,
@@ -47,6 +47,13 @@ function HomePageSkeleton() {
               <ProductCard key={`paginated-skeleton-${index}`} product={null} />
             ))}
           </div>
+           <div className="mt-12 flex justify-center">
+             <Skeleton className="h-10 w-24" />
+             <Skeleton className="h-10 w-10 mx-1" />
+             <Skeleton className="h-10 w-10 mx-1" />
+             <Skeleton className="h-10 w-10 mx-1" />
+             <Skeleton className="h-10 w-24" />
+           </div>
         </div>
       </section>
     </div>

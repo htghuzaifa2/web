@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -19,6 +18,7 @@ import Image from "next/image";
 
 const mainNavLinks = [
   { href: "/", label: "Home" },
+  { href: "/all-products", label: "All Products" },
   { href: "/categories", label: "Categories" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
