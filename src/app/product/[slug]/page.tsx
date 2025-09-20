@@ -4,7 +4,6 @@ import productsData from "@/data/products.json";
 import ProductDetailsWrapper from "./product-details-wrapper";
 import type { Metadata } from "next";
 
-// export const dynamic = 'force-static';
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
@@ -24,8 +23,9 @@ export const metadata: Metadata = {
 
 export default function ProductPage({ params }: ProductPageProps) {
   const { slug } = params;
-
-  // Pre-validate slug to show 404 if it's invalid, preventing client-side errors for bad URLs.
+  
+  // Pre-validate the slug to show a 404 if it's invalid.
+  // This check is safe because it's in a Server Component context.
   const productExists = productsData.some(p => p.slug === slug);
   if (!productExists) {
       notFound();
