@@ -2,9 +2,7 @@
 import { notFound } from "next/navigation";
 import productsData from "@/data/products.json";
 import type { Product } from "@/lib/types";
-import ProductDetailsClient from "./product-details-client";
-import ProductCard from "@/components/product-card";
-import { Separator } from "@/components/ui/separator";
+import ProductDetailsWrapper from "./product-details-wrapper";
 import type { Metadata, ResolvingMetadata } from "next";
 import { getProductData } from "@/lib/data-fetching";
 
@@ -22,9 +20,10 @@ interface ProductPageProps {
 }
 
 export async function generateMetadata(
-  { params: { slug } }: ProductPageProps,
+  { params }: ProductPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const { slug } = params;
   const { product } = await getProductData(slug);
 
   if (!product) {
@@ -71,75 +70,13 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProductPage({ params: { slug } }: ProductPageProps) {
-  const { product, relatedProducts } = await getProductData(slug);
+export default function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params;
 
-  if (!product) {
-    notFound();
+  const productExists = productsData.some(p => p.slug === slug);
+  if (!productExists) {
+      notFound();
   }
   
-  const isProductInStock = product.stock !== undefined && product.stock > 0;
-
-  const jsonLd: any = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    image: product.image,
-    description: product.description,
-    sku: product.id.toString(),
-    offers: {
-      '@type': 'Offer',
-      price: product.price.toFixed(2),
-      priceCurrency: 'PKR',
-      priceValidUntil: '2026-12-31',
-      availability: isProductInStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      url: `https://huzi.pk/product/${product.slug}`,
-    },
-  };
-
-  if (isProductInStock) {
-    jsonLd.offers.shippingDetails = {
-      '@type': 'OfferShippingDetails',
-      shippingRate: {
-        '@type': 'MonetaryAmount',
-        value: '250',
-        currency: 'PKR',
-      },
-      shippingDestination: {
-        '@type': 'DefinedRegion',
-        addressCountry: 'PK',
-      },
-    };
-    jsonLd.offers.hasMerchantReturnPolicy = {
-      '@type': 'MerchantReturnPolicy',
-      applicableCountry: 'PK',
-      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-      merchantReturnDays: 3,
-      returnMethod: 'https://schema.org/ReturnByMail',
-      returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
-    };
-  }
-
-
-  return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ProductDetailsClient key={product.id} product={product} />
-
-      {relatedProducts.length > 0 && (
-         <div className="mt-16 md:mt-24">
-            <Separator className="mb-12"/>
-            <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-                {relatedProducts.map(relatedProduct => (
-                    <ProductCard key={relatedProduct.id} product={relatedProduct} />
-                ))}
-            </div>
-        </div>
-      )}
-    </div>
-  );
+  return <ProductDetailsWrapper slug={slug} />;
 }

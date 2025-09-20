@@ -18,10 +18,10 @@ interface CategoryPageProps {
 }
 
 export async function generateMetadata(
-  { params: { slug } }: CategoryPageProps,
+  { params }: CategoryPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { category } = await getCategoryData(slug);
+  const { category } = await getCategoryData(params.slug);
 
   if (!category) {
     return {
@@ -50,12 +50,16 @@ export async function generateMetadata(
   }
 }
 
-export default async function CategoryPage({ params: { slug } }: CategoryPageProps) {
-  const { category, allCategoryProducts } = await getCategoryData(slug);
-
-  if (!category) {
-    notFound();
+export default function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = params;
+  
+  // This page now only serves as a wrapper to pass the slug to a client component.
+  // The client component will handle the actual data fetching.
+  // We can pre-validate the slug to show a 404 if it's invalid.
+  const categoryExists = categoriesData.categories.some(c => c.slug === slug);
+  if (!categoryExists) {
+      notFound();
   }
 
-  return <CategoryWrapper category={category} allProducts={allCategoryProducts} />;
+  return <CategoryWrapper slug={slug} />;
 }

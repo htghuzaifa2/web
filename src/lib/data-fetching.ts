@@ -3,6 +3,7 @@ import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
 import type { Product } from "./types";
 
+// This function can now be simpler as it just receives a string
 export async function getCategoryData(slug: string) {
   const category = categoriesData.categories.find((c) => c.slug === slug);
   if (!category) {
@@ -15,6 +16,7 @@ export async function getCategoryData(slug: string) {
   return { category, allCategoryProducts };
 };
 
+// This function can now be simpler as it just receives a string
 export const getProductData = async (slug: string) => {
   const allProducts: Product[] = productsData;
   const product = allProducts.find(p => p.slug === slug);
@@ -24,7 +26,7 @@ export const getProductData = async (slug: string) => {
   }
   
   const relatedProducts = allProducts
-    .filter(p => p.id !== product.id) 
+    .filter(p => p.id !== product.id && p.category.some(cat => product.category.includes(cat)))
     .sort(() => 0.5 - Math.random()) 
     .slice(0, 8); 
 

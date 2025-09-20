@@ -1,24 +1,41 @@
 
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import type { Category, Product } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import PaginatedProductGrid from "@/components/paginated-product-grid";
 import { useRouter, useSearchParams } from "next/navigation";
+import { getCategoryData } from "@/lib/data-fetching";
+import { Skeleton } from "@/components/ui/skeleton";
+import ProductCard from "@/components/product-card";
 
 interface CategoryClientProps {
-  category: Category;
-  allProducts: Product[];
+  slug: string;
 }
 
 type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
 
-export default function CategoryClient({ category, allProducts }: CategoryClientProps) {
+export default function CategoryClient({ slug }: CategoryClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const topOfProductsRef = useRef<HTMLDivElement>(null);
+
+  const [category, setCategory] = useState<Category | null>(null);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const { category: fetchedCategory, allCategoryProducts } = await getCategoryData(slug);
+      setCategory(fetchedCategory);
+      setAllProducts(allCategoryProducts);
+      setIsLoading(false);
+    }
+    fetchData();
+  }, [slug]);
 
   const sortParam = searchParams.get('sort') || 'newest';
 
@@ -28,6 +45,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
   }, [sortParam]);
 
   const sortedProducts = useMemo(() => {
+    if (!allProducts) return [];
     let sorted = [...allProducts];
     switch (sortOrder) {
       case 'newest':
@@ -44,6 +62,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
   }, [allProducts, sortOrder]);
 
   const handleSortChange = (value: SortOrder) => {
+    if (!category) return;
     const newUrl = `/category/${category.slug}${value !== 'newest' ? `?sort=${value}` : ''}`;
     router.push(newUrl);
     if (topOfProductsRef.current) {
@@ -51,7 +70,32 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
     }
   };
 
-  const storageKey = `category_grid_${category.slug}_${sortOrder}`;
+  const storageKey = `category_grid_${slug}_${sortOrder}`;
+  
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-12">
+          <Skeleton className="h-10 w-1/2 mx-auto mb-2" />
+          <Skeleton className="h-6 w-2/3 mx-auto mb-8" />
+           <div className="flex justify-end mb-8">
+            <Skeleton className="h-10 w-[180px]" />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            {Array.from({ length: 10 }).map((_, index) => (
+              <ProductCard key={`skeleton-${index}`} product={null} />
+            ))}
+          </div>
+      </div>
+    )
+  }
+
+  if (!category) {
+    return (
+       <div className="container mx-auto px-4 py-12 text-center">
+        <h1 className="text-2xl font-bold">Category not found</h1>
+      </div>
+    )
+  }
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">

@@ -3,10 +3,7 @@
 
 import dynamic from 'next/dynamic';
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Category, Product } from '@/lib/types';
 import ProductCard from '@/components/product-card';
-import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
 
 const CategoryClient = dynamic(() => import('./category-client'), {
   ssr: false,
@@ -19,20 +16,14 @@ const CategoryClient = dynamic(() => import('./category-client'), {
             <ProductCard key={`skeleton-${index}`} product={null} />
           ))}
         </div>
-        <div className="text-center mt-12">
-          <Button disabled>
-              Load More <ArrowDown className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
     </div>
   ),
 });
 
 interface CategoryWrapperProps {
-  category: Category;
-  allProducts: Product[];
+  slug: string;
 }
 
-export default function CategoryWrapper({ category, allProducts }: CategoryWrapperProps) {
-  return <CategoryClient category={category} allProducts={allProducts} />;
+export default function CategoryWrapper({ slug }: CategoryWrapperProps) {
+  return <CategoryClient slug={slug} />;
 }

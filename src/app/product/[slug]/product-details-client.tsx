@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
@@ -9,14 +10,66 @@ import ProductImageGallery from "@/components/product-image-gallery";
 import { Badge } from "@/components/ui/badge";
 import ProductInfoAccordion from "./product-info-tabs";
 import { Separator } from "@/components/ui/separator";
+import { getProductData } from "@/lib/data-fetching";
+import { Skeleton } from "@/components/ui/skeleton";
+import ProductCard from "@/components/product-card";
 
 interface ProductDetailsClientProps {
-  product: Product;
+  slug: string;
 }
 
-export default function ProductDetailsClient({ product }: ProductDetailsClientProps) {
+export default function ProductDetailsClient({ slug }: ProductDetailsClientProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
+
+  const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const { product: fetchedProduct, relatedProducts: fetchedRelated } = await getProductData(slug);
+      setProduct(fetchedProduct);
+      setRelatedProducts(fetchedRelated);
+      setIsLoading(false);
+    }
+    fetchData();
+  }, [slug]);
+
+  if (isLoading) {
+     return (
+        <div className="container mx-auto px-4 py-8 md:py-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
+            <div className="md:col-span-1">
+                <Skeleton className="w-full aspect-square" />
+                <div className="flex gap-2 mt-4">
+                    <Skeleton className="w-1/4 aspect-square" />
+                    <Skeleton className="w-1/4 aspect-square" />
+                    <Skeleton className="w-1/4 aspect-square" />
+                    <Skeleton className="w-1/4 aspect-square" />
+                </div>
+            </div>
+            <div className="flex flex-col justify-start md:col-span-1 gap-4">
+                <Skeleton className="h-10 w-3/4" />
+                <Skeleton className="h-12 w-1/2" />
+                <Skeleton className="h-6 w-24" />
+                <Skeleton className="h-5 w-full" />
+                <Skeleton className="h-5 w-5/6" />
+                <Skeleton className="h-12 w-48 mt-4" />
+            </div>
+            </div>
+        </div>
+    );
+  }
+
+  if (!product) {
+    return (
+       <div className="container mx-auto px-4 py-12 text-center">
+        <h1 className="text-2xl font-bold">Product not found</h1>
+      </div>
+    )
+  }
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
   const originalPrice = Math.round(product.price * 1.39);
@@ -30,9 +83,53 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
   };
 
   const images = [product.image, ...(product.additionalImages || [])];
+  
+  const jsonLd: any = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: product.image,
+    description: product.description,
+    sku: product.id.toString(),
+    offers: {
+      '@type': 'Offer',
+      price: product.price.toFixed(2),
+      priceCurrency: 'PKR',
+      priceValidUntil: '2026-12-31',
+      availability: !isOutOfStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      url: `https://huzi.pk/product/${product.slug}`,
+    },
+  };
+
+  if (!isOutOfStock) {
+    jsonLd.offers.shippingDetails = {
+      '@type': 'OfferShippingDetails',
+      shippingRate: {
+        '@type': 'MonetaryAmount',
+        value: '250',
+        currency: 'PKR',
+      },
+      shippingDestination: {
+        '@type': 'DefinedRegion',
+        addressCountry: 'PK',
+      },
+    };
+    jsonLd.offers.hasMerchantReturnPolicy = {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'PK',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 3,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
+    };
+  }
 
   return (
-    <>
+    <div className="container mx-auto px-4 py-8 md:py-12 content-fade-in">
+       <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
         <div className="md:col-span-1">
           <ProductImageGallery images={images} productName={product.name} />
@@ -75,6 +172,17 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
             />
           </div>
       </div>
-    </>
+       {relatedProducts.length > 0 && (
+         <div className="mt-16 md:mt-24">
+            <Separator className="mb-12"/>
+            <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+                {relatedProducts.map(relatedProduct => (
+                    <ProductCard key={relatedProduct.id} product={relatedProduct} />
+                ))}
+            </div>
+        </div>
+      )}
+    </div>
   );
 }
