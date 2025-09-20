@@ -1,10 +1,6 @@
 
-import HomeClient from './home-client';
-import type { Product } from '@/lib/types';
-import productsData from '@/data/products.json';
-
-const ALL_PRODUCTS: Product[] = [...productsData];
+import HomeWrapper from './home-wrapper';
 
 export default function Home() {
-  return <HomeClient allProducts={ALL_PRODUCTS} />;
+  return <HomeWrapper />;
 }

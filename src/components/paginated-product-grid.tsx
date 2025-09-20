@@ -187,9 +187,9 @@ export default function PaginatedProductGrid({ allProducts, storageKey }: { allP
         )}
 
         <div className="space-y-12">
-            {visiblePages.map((page) => (
+            {visiblePages.map((page, index) => (
                  <div
-                    key={page.map(p => p.id).join('-')}
+                    key={`${storageKey}-page-${state.currentPageIndex + index}`}
                     className={cn(
                         "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6",
                         "content-fade-in"

@@ -1,6 +1,6 @@
 
 import type { Metadata } from 'next';
-import AboutClient from './about-client';
+import AboutWrapper from './about-wrapper';
 
 export const metadata: Metadata = {
     title: "About Us - Our Story & Values",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-    return <AboutClient />;
+    return <AboutWrapper />;
 }

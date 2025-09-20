@@ -1,8 +1,7 @@
 
-import { notFound } from "next/navigation";
-import productsData from "@/data/products.json";
-import ProductDetailsClient from "./product-details-client";
 import type { Metadata } from "next";
+import productsData from "@/data/products.json";
+import ProductDetailsWrapper from "./product-details-wrapper";
 
 export const dynamicParams = true;
 
@@ -21,14 +20,7 @@ export const metadata: Metadata = {
   title: "Product Details",
 };
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
-  
-  const productExists = productsData.some(p => p.slug === slug);
-  if (!productExists) {
-      notFound();
-  }
-
-  return <ProductDetailsClient slug={slug} />;
+export default function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params;
+  return <ProductDetailsWrapper slug={slug} />;
 }
-
