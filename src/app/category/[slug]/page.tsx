@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Category",
 };
 
-export default function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = params;
   return <CategoryWrapper slug={slug} />;
 }
