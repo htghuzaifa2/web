@@ -1,11 +1,12 @@
 
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useRef } from "react";
 import type { Category, Product } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import PaginatedProductGrid from "@/components/paginated-product-grid";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface CategoryClientProps {
   category: Category;
@@ -15,31 +16,40 @@ interface CategoryClientProps {
 type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
 
 export default function CategoryClient({ category, allProducts }: CategoryClientProps) {
-  const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const topOfProductsRef = useRef<HTMLDivElement>(null);
+
+  const sortParam = searchParams.get('sort') || 'newest';
+
+  const sortOrder = useMemo<SortOrder>(() => {
+    const validSortOrders: SortOrder[] = ["newest", "oldest", "price-asc", "price-desc"];
+    return validSortOrders.includes(sortParam as SortOrder) ? sortParam as SortOrder : "newest";
+  }, [sortParam]);
 
   const sortedProducts = useMemo(() => {
     let sorted = [...allProducts];
     switch (sortOrder) {
       case 'newest':
-        return allProducts; // Default is already newest first
+        return sorted.sort((a, b) => b.id - a.id);
       case 'oldest':
-        return [...allProducts].reverse();
+        return sorted.sort((a, b) => a.id - b.id);
       case 'price-asc':
         return sorted.sort((a, b) => a.price - b.price);
       case 'price-desc':
         return sorted.sort((a, b) => b.price - a.price);
       default:
-        return allProducts;
+        return sorted;
     }
   }, [allProducts, sortOrder]);
-  
-  // Effect for when sort order changes
-  useEffect(() => {
+
+  const handleSortChange = (value: SortOrder) => {
+    const newUrl = `/category/${category.slug}${value !== 'newest' ? `?sort=${value}` : ''}`;
+    router.push(newUrl);
     if (topOfProductsRef.current) {
         topOfProductsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [sortOrder]);
+  };
 
   const storageKey = `category_grid_${category.slug}_${sortOrder}`;
 
@@ -57,7 +67,7 @@ export default function CategoryClient({ category, allProducts }: CategoryClient
       <div className="flex justify-end mb-8">
         <div className="flex items-center gap-2">
             <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
-            <Select onValueChange={(value: SortOrder) => setSortOrder(value)} value={sortOrder}>
+            <Select onValueChange={(value: SortOrder) => handleSortChange(value)} value={sortOrder}>
                 <SelectTrigger id="sort-by" className="w-[180px]">
                     <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
