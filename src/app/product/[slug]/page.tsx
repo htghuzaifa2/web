@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     title: product.name,
     description: product.description,
     openGraph: {
+      type: 'article',
       title: product.name,
       description: product.description,
       url: `/product/${slug}`,
@@ -51,7 +52,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
           alt: `${product.name} additional image`,
         }))
       ],
-      type: 'article',
       siteName: 'huzi.pk'
     },
     twitter: {
