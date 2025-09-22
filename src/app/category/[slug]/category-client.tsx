@@ -5,7 +5,7 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import type { Category, Product } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import PaginatedProductGrid from "@/components/paginated-product-grid";
+import { ProductGridLoader } from "@/components/product-grid-loader";
 import { useRouter, useSearchParams } from "next/navigation";
 import categoriesData from "@/data/categories.json";
 import productsData from "@/data/products.json";
@@ -20,12 +20,9 @@ type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
 const getCategoryData = (slug: string) => {
   const category = categoriesData.categories.find((c) => c.slug === slug);
   if (!category) {
-    return { category: null, allCategoryProducts: [] };
+    return { category: null };
   }
-  const allCategoryProducts = productsData
-    .filter((product) => product.category.includes(slug))
-    .sort((a, b) => b.id - a.id);
-  return { category, allCategoryProducts };
+  return { category };
 };
 
 export default function CategoryClient({ slug }: CategoryClientProps) {
@@ -34,18 +31,16 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
   const topOfProductsRef = useRef<HTMLDivElement>(null);
   
   const [category, setCategory] = useState<Category | null>(null);
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const { category: fetchedCategory, allCategoryProducts: fetchedProducts } = getCategoryData(slug);
+    const { category: fetchedCategory } = getCategoryData(slug);
     
     if (!fetchedCategory) {
       notFound();
     }
     
     setCategory(fetchedCategory);
-    setAllProducts(fetchedProducts);
     setIsLoading(false);
     
     document.title = `${fetchedCategory.name} - huzi.pk`;
@@ -57,22 +52,6 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
     const validSortOrders: SortOrder[] = ["newest", "oldest", "price-asc", "price-desc"];
     return validSortOrders.includes(sortParam as SortOrder) ? sortParam as SortOrder : "newest";
   }, [sortParam]);
-
-  const sortedProducts = useMemo(() => {
-    let sorted = [...allProducts];
-    switch (sortOrder) {
-      case 'newest':
-        return sorted.sort((a, b) => b.id - a.id);
-      case 'oldest':
-        return sorted.sort((a, b) => a.id - b.id);
-      case 'price-asc':
-        return sorted.sort((a, b) => a.price - b.price);
-      case 'price-desc':
-        return sorted.sort((a, b) => b.price - a.price);
-      default:
-        return sorted;
-    }
-  }, [allProducts, sortOrder]);
 
   const handleSortChange = (value: SortOrder) => {
     if (!category) return;
@@ -86,8 +65,6 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
   if (isLoading || !category) {
       return null; // The skeleton from the wrapper will be shown
   }
-
-  const storageKey = `category_grid_${category.slug}_${sortOrder}`;
 
   return (
     <div className="container mx-auto px-4 py-12 content-fade-in">
@@ -117,17 +94,7 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
         </div>
       </div>
       
-      {sortedProducts.length > 0 ? (
-         <PaginatedProductGrid 
-            key={storageKey} 
-            allProducts={sortedProducts} 
-            storageKey={storageKey} 
-        />
-      ) : (
-        <p className="text-center text-muted-foreground py-16">
-          No products found in this category yet.
-        </p>
-      )}
+       <ProductGridLoader key={`${slug}-${sortOrder}`} category={slug} sortBy={sortOrder} />
     </div>
   );
 }

@@ -3,16 +3,12 @@
 
 import dynamic from 'next/dynamic';
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Product } from '@/lib/types';
 import ProductCard from '@/components/product-card';
-import productsData from '@/data/products.json';
 
 const HomeClientContent = dynamic(() => import('./home-client-content'), {
   ssr: false,
   loading: () => <HomePageSkeleton />,
 });
-
-const ALL_PRODUCTS: Product[] = [...productsData];
 
 function HomePageSkeleton() {
   return (
@@ -52,5 +48,5 @@ function HomePageSkeleton() {
 
 
 export default function HomeClient() {
-    return <HomeClientContent allProducts={ALL_PRODUCTS} />
+    return <HomeClientContent />
 }
