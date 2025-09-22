@@ -4,7 +4,12 @@ import ShippingPolicyWrapper from './shipping-policy-wrapper';
 
 export const metadata: Metadata = {
     title: 'Shipping Policy',
-    description: 'Learn about the shipping policy at huzi.pk, including our flat-rate shipping charges, payment methods, and estimated delivery times across Pakistan.'
+    description: 'Learn about the shipping policy at huzi.pk, including our flat-rate shipping charges, payment methods, and estimated delivery times across Pakistan.',
+    openGraph: {
+        title: 'Shipping Policy',
+        description: 'Learn about the shipping policy at huzi.pk, including our flat-rate shipping charges, payment methods, and estimated delivery times across Pakistan.',
+        url: '/shipping-policy',
+    }
 };
 
 

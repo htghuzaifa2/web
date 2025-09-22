@@ -3,6 +3,10 @@ import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
 import CategoryWrapper from "./category-wrapper";
 
+interface CategoryPageProps {
+  params: { slug: string };
+}
+
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
@@ -11,16 +15,37 @@ export async function generateStaticParams() {
     }));
 }
 
-interface CategoryPageProps {
-  params: Promise<{ slug: string }>;
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+  const slug = params.slug;
+  const category = categoriesData.categories.find((c) => c.slug === slug);
+
+  if (!category) {
+    return {
+      title: "Category Not Found",
+      description: "The category you are looking for does not exist.",
+    };
+  }
+
+  return {
+    title: `${category.name} Collection`,
+    description: `Shop the latest ${category.name.toLowerCase()} collection at huzi.pk. Discover trendy and high-quality products with delivery across Pakistan.`,
+    openGraph: {
+      title: `${category.name} Collection`,
+      description: `Shop the latest ${category.name.toLowerCase()} collection at huzi.pk.`,
+      url: `/category/${slug}`,
+      images: [
+        {
+          url: category.image,
+          width: 600,
+          height: 400,
+          alt: category.name,
+        },
+      ],
+    },
+  };
 }
 
-// This is a generic metadata title. The actual title will be set on the client.
-export const metadata: Metadata = {
-  title: "Category",
-};
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = await params;
+export default function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = params;
   return <CategoryWrapper slug={slug} />;
 }

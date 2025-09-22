@@ -4,7 +4,12 @@ import HowToPayWrapper from './how-to-pay-wrapper';
 
 export const metadata: Metadata = {
     title: 'How to Pay',
-    description: 'Learn about the available payment methods at huzi.pk, including Bank Transfer, JazzCash, and EasyPaisa.'
+    description: 'Learn about the available payment methods at huzi.pk, including Bank Transfer, JazzCash, and EasyPaisa.',
+    openGraph: {
+        title: 'How to Pay',
+        description: 'Learn about the available payment methods at huzi.pk, including Bank Transfer, JazzCash, and EasyPaisa.',
+        url: '/how-to-pay',
+    }
 };
 
 export default function HowToPayPage() {
