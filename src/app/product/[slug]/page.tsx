@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
           alt: `${product.name} additional image`,
         }))
       ],
-      type: 'product',
+      type: 'article',
       siteName: 'huzi.pk'
     },
     twitter: {
