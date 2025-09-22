@@ -1,6 +1,4 @@
 
-"use client";
-
 import type { Metadata } from 'next';
 import CategoryCard from "@/components/category-card";
 import categoriesData from "@/data/categories.json";

@@ -2,6 +2,8 @@
 import type { Metadata } from 'next';
 import SearchWrapper from './search-wrapper';
 
+export const runtime = 'edge';
+
 interface SearchPageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
