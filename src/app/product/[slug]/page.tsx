@@ -26,8 +26,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
-  const isOutOfStock = product.stock !== undefined && product.stock <= 0;
-
   return {
     title: product.name,
     description: product.description,
@@ -35,7 +33,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       type: 'article',
       title: product.name,
       description: product.description,
-      url: `/product/${slug}`,
+      url: `/product/${product.slug}`,
       images: [
         {
           url: product.image,
@@ -61,6 +59,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  return <ProductDetailsWrapper slug={params.slug} />;
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
+  return <ProductDetailsWrapper slug={slug} />;
 }
