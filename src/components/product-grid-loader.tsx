@@ -72,17 +72,7 @@ export function ProductGridLoader({ category, sortBy }: { category?: string, sor
 
   const loadPreviousProducts = () => {
     if (currentPage > 1 && !isLoading) {
-      const targetPage = currentPage - 1;
-       // Since we only keep 2 pages, going back more than 1 page requires a fresh fetch
-      if (products.length > BATCH_SIZE) {
-         setProducts(products.slice(0, BATCH_SIZE));
-         setCurrentPage(targetPage);
-         if (gridRef.current) {
-            gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-         }
-      } else {
-         fetchAndSetProducts(targetPage, false);
-      }
+       fetchAndSetProducts(currentPage - 1, false);
     }
   };
   
@@ -105,7 +95,7 @@ export function ProductGridLoader({ category, sortBy }: { category?: string, sor
   return (
     <div>
        <div ref={gridRef} className="scroll-mt-20" />
-      {currentPage > 1 && products.length > BATCH_SIZE && (
+      {currentPage > 1 && (
         <div className="mb-8 flex justify-center">
           <Button onClick={loadPreviousProducts} disabled={isLoading} variant="outline" size="lg">
              <ArrowUp className="mr-2" />
