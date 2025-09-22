@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import productsData from "@/data/products.json";
 import ProductDetailsWrapper from "./product-details-wrapper";
-import { calculateOriginalPrice } from "@/lib/utils";
 
 interface ProductPageProps {
   params: { slug: string };
@@ -26,8 +25,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       description: "The product you are looking for does not exist.",
     };
   }
-  
-  const originalPrice = calculateOriginalPrice(product.price);
+
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
 
   return {
@@ -63,7 +61,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
-  return <ProductDetailsWrapper slug={slug} />;
+export default function ProductPage({ params }: ProductPageProps) {
+  return <ProductDetailsWrapper slug={params.slug} />;
 }

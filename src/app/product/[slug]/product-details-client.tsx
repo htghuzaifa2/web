@@ -13,6 +13,7 @@ import { getProductData } from "@/lib/data-fetching";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCard from "@/components/product-card";
 import { calculateOriginalPrice } from "@/lib/utils";
+import { notFound } from 'next/navigation';
 
 interface ProductDetailsClientProps {
   slug: string;
@@ -30,6 +31,11 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
     async function fetchData() {
       setIsLoading(true);
       const { product: fetchedProduct, relatedProducts: fetchedRelated } = await getProductData(slug);
+      
+      if (!fetchedProduct) {
+        notFound();
+      }
+
       setProduct(fetchedProduct);
       setRelatedProducts(fetchedRelated);
       setIsLoading(false);
@@ -68,11 +74,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   }
 
   if (!product) {
-    return (
-       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold">Product not found</h1>
-      </div>
-    )
+    return null; // notFound() would have been called
   }
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
