@@ -27,10 +27,38 @@ const getProductsForPage = (page: number, products: Product[]) => {
   return products.slice(startIndex, endIndex);
 };
 
-const getPaginationItems = (totalPages: number) => {
+const getPaginationItems = (currentPage: number, totalPages: number) => {
     if (totalPages <= 1) return [];
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const pageNumbers: (number | string)[] = [];
+    const delta = 1; // pages to show around current page
+    const left = currentPage - delta;
+    const right = currentPage + delta + 1;
+    let range: number[] = [];
+    let rangeWithDots: (number|string)[] = [];
+    
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= left && i < right)) {
+            range.push(i);
+        }
+    }
+
+    let l: number | null = null;
+    for (let i of range) {
+        if (l) {
+            if (i - l === 2) {
+                rangeWithDots.push(l + 1);
+            } else if (i - l !== 1) {
+                rangeWithDots.push('...');
+            }
+        }
+        rangeWithDots.push(i);
+        l = i;
+    }
+
+    return rangeWithDots;
 };
+
 
 export default function AllProductsClient() {
   const searchParams = useSearchParams();
@@ -67,7 +95,7 @@ export default function AllProductsClient() {
   }, [sortOrder]);
   
   const paginatedProducts = useMemo(() => getProductsForPage(currentPage, sortedProducts), [currentPage, sortedProducts]);
-  const paginationItems = useMemo(() => getPaginationItems(TOTAL_PAGES), []);
+  const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage, TOTAL_PAGES]);
 
   const handleSortChange = (value: SortOrder) => {
     const newUrl = `/all-products?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
