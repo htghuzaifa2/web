@@ -20,29 +20,27 @@ function ProductGridSkeleton() {
   );
 }
 
-export function ProductGridLoader({ category, sortBy }: { category?: string, sortBy?: string }) {
+export function ProductGridLoader({ category, sortBy, randomize = false }: { category?: string, sortBy?: string, randomize?: boolean }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const gridRef = useRef<HTMLDivElement>(null);
+  
+  // Create a unique key for session storage based on the component's context
+  const storageKey = `product_grid_${category || 'all'}_${sortBy || 'default'}_${randomize ? 'random' : ''}`;
+
 
   const fetchAndSetProducts = useCallback(
     async (page: number, keepExisting = false) => {
       setIsLoading(true);
-      const { products: newProducts, total } = await serverFetchProducts({ page, limit: BATCH_SIZE, category, sortBy });
+      const { products: newProducts, total } = await serverFetchProducts({ page, limit: BATCH_SIZE, category, sortBy, randomize });
 
       setProducts((prev) => {
         const currentProducts = keepExisting ? prev : [];
         const allProducts = [...currentProducts, ...newProducts];
         const productMap = new Map(allProducts.map(p => [p.id, p]));
-        const uniqueProducts = Array.from(productMap.values());
-        
-        // Keep only the latest two batches (50 products)
-        if (uniqueProducts.length > BATCH_SIZE * 2) {
-          return uniqueProducts.slice(-BATCH_SIZE * 2);
-        }
-        return uniqueProducts;
+        return Array.from(productMap.values());
       });
 
       setHasMore(products.length + newProducts.length < total);
@@ -53,16 +51,83 @@ export function ProductGridLoader({ category, sortBy }: { category?: string, sor
         gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     },
-    [category, sortBy, products.length]
+    [category, sortBy, randomize, products.length]
   );
+  
+  // Effect for saving state to session storage
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      const stateToSave = {
+        products,
+        currentPage,
+        hasMore,
+        scrollPosition: window.scrollY,
+      };
+      sessionStorage.setItem(storageKey, JSON.stringify(stateToSave));
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [products, currentPage, hasMore, storageKey]);
+
 
   useEffect(() => {
-    setProducts([]);
-    setCurrentPage(1);
-    setHasMore(true);
-    fetchAndSetProducts(1, false);
+    const savedStateJSON = sessionStorage.getItem(storageKey);
+    let shouldFetchNew = true;
+
+    if (savedStateJSON) {
+      try {
+        const savedState = JSON.parse(savedStateJSON);
+        setProducts(savedState.products);
+        setCurrentPage(savedState.currentPage);
+        setHasMore(savedState.hasMore);
+        setIsLoading(false);
+        shouldFetchNew = false;
+        
+        // Restore scroll position after a short delay
+        setTimeout(() => {
+            window.scrollTo(0, savedState.scrollPosition);
+        }, 100);
+
+      } catch (e) {
+        sessionStorage.removeItem(storageKey);
+      }
+    }
+
+    if (shouldFetchNew) {
+        setProducts([]);
+        setCurrentPage(1);
+        setHasMore(true);
+        fetchAndSetProducts(1, false);
+    }
+    
+     // Clear session storage on hard reload (but not on back/forward nav)
+    const handlePageShow = (event: PageTransitionEvent) => {
+        if (!event.persisted) {
+             sessionStorage.removeItem(storageKey);
+        }
+    }
+    window.addEventListener('pageshow', handlePageShow);
+
+
+    return () => {
+        // When the component unmounts, save the current state
+        if (gridRef.current) {
+             const stateToSave = {
+                products,
+                currentPage,
+                hasMore,
+                scrollPosition: window.scrollY,
+            };
+            sessionStorage.setItem(storageKey, JSON.stringify(stateToSave));
+        }
+        window.removeEventListener('pageshow', handlePageShow);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, sortBy]);
+  }, [category, sortBy, randomize]);
 
   const loadMoreProducts = () => {
     if (hasMore && !isLoading) {
@@ -104,7 +169,7 @@ export function ProductGridLoader({ category, sortBy }: { category?: string, sor
         </div>
       )}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-        {products.map((p, i) => <ProductCard key={p.id} product={p} priority={i < 10}/>)}
+        {products.map((p, i) => <ProductCard key={`${p.id}-${i}`} product={p} priority={i < 10}/>)}
       </div>
 
       {isLoading && products.length > 0 && 

@@ -8,44 +8,45 @@ export async function fetchProducts({
   limit = 25,
   category,
   sortBy = 'newest',
-  allProducts: providedProducts,
+  randomize = false,
 }: {
   page?: number;
   limit?: number;
   category?: string;
   sortBy?: string;
-  allProducts?: Product[];
+  randomize?: boolean;
 }) {
-  let productsToProcess: Product[];
+  let productsToProcess: Product[] = [...productsData];
 
-  if (providedProducts) {
-    productsToProcess = [...providedProducts];
-  } else {
-    let allProducts: Product[] = [...productsData];
-    if (category) {
-      allProducts = allProducts.filter(p => p.category.includes(category));
-    }
-    productsToProcess = allProducts;
+  if (category) {
+    productsToProcess = productsToProcess.filter(p => p.category.includes(category));
   }
 
-  // Sorting logic based on sortBy parameter
-  switch (sortBy) {
-    case 'newest':
-      productsToProcess.sort((a, b) => b.id - a.id);
-      break;
-    case 'oldest':
-      productsToProcess.sort((a, b) => a.id - b.id);
-      break;
-    case 'price-asc':
-      productsToProcess.sort((a, b) => a.price - b.price);
-      break;
-    case 'price-desc':
-      productsToProcess.sort((a, b) => b.price - a.price);
-      break;
-    default:
-      // Default to newest if sort is unrecognized
-      productsToProcess.sort((a, b) => b.id - a.id);
-      break;
+  if (randomize) {
+    // Shuffle the array for random order
+    for (let i = productsToProcess.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [productsToProcess[i], productsToProcess[j]] = [productsToProcess[j], productsToProcess[i]];
+    }
+  } else {
+    // Sorting logic based on sortBy parameter
+    switch (sortBy) {
+      case 'newest':
+        productsToProcess.sort((a, b) => b.id - a.id);
+        break;
+      case 'oldest':
+        productsToProcess.sort((a, b) => a.id - b.id);
+        break;
+      case 'price-asc':
+        productsToProcess.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-desc':
+        productsToProcess.sort((a, b) => b.price - a.price);
+        break;
+      default:
+        productsToProcess.sort((a, b) => b.id - a.id);
+        break;
+    }
   }
   
   const start = (page - 1) * limit;

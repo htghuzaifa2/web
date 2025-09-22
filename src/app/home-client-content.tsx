@@ -30,7 +30,7 @@ export default function HomeClientContent() {
             <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
                 Featured Products
             </h2>
-            <ProductGridLoader />
+            <ProductGridLoader randomize={true} />
         </div>
       </section>
 
