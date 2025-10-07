@@ -61,6 +61,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-export default function ProductPage({ params: { slug } }: ProductPageProps) {
+export default async function ProductPage({ params: { slug } }: ProductPageProps) {
   return <ProductDetailsWrapper slug={slug} />;
 }
