@@ -35,6 +35,7 @@ function ProductPageSkeleton() {
   );
 }
 
-export default function ProductDetailsWrapper({ slug }: { slug: string }) {
+export default function ProductDetailsWrapper({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   return <ProductDetailsClient slug={slug} />;
 }

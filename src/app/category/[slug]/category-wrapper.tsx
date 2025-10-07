@@ -28,6 +28,7 @@ function CategoryPageSkeleton() {
 }
 
 
-export default function CategoryWrapper({ slug }: { slug: string }) {
+export default function CategoryWrapper({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   return <CategoryClient slug={slug} />;
 }
