@@ -36,6 +36,8 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
       setIsLoading(true);
       const { products: newProducts, total } = await serverFetchProducts({ page, limit: BATCH_SIZE, category, sortBy, randomize });
 
+      const totalProductsAfterLoad = (keepExisting ? products.length : 0) + newProducts.length;
+
       setProducts((prev) => {
         const currentProducts = keepExisting ? prev : [];
         const allProducts = [...currentProducts, ...newProducts];
@@ -43,7 +45,7 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
         return Array.from(productMap.values());
       });
 
-      setHasMore(products.length + newProducts.length < total);
+      setHasMore(totalProductsAfterLoad < total);
       setCurrentPage(page);
       setIsLoading(false);
 
@@ -51,7 +53,8 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
         gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     },
-    [category, sortBy, randomize, products.length]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [category, sortBy, randomize]
   );
   
   // Effect for saving state to session storage
@@ -127,7 +130,7 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
         window.removeEventListener('pageshow', handlePageShow);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, sortBy, randomize]);
+  }, [category, sortBy, randomize, fetchAndSetProducts]);
 
   const loadMoreProducts = () => {
     if (hasMore && !isLoading) {
