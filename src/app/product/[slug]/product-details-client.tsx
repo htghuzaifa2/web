@@ -53,6 +53,9 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   if (isLoading) {
      return (
         <div className="container mx-auto px-4 py-8 md:py-12">
+            <div className="mb-6">
+                <Skeleton className="h-10 w-24" />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
             <div className="md:col-span-1">
                 <Skeleton className="w-full aspect-square" />
@@ -192,8 +195,8 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
             <Separator className="mb-12"/>
             <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8">You Might Also Like</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-                {relatedProducts.map(relatedProduct => (
-                    <ProductCard key={relatedProduct.id} product={relatedProduct} />
+                {relatedProducts.map((relatedProduct, index) => (
+                    <ProductCard key={relatedProduct.id} product={relatedProduct} priority={index < 5} />
                 ))}
             </div>
         </div>
