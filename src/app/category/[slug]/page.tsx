@@ -48,6 +48,5 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = params;
-  return <CategoryWrapper slug={slug} />;
+  return <CategoryWrapper slug={params.slug} />;
 }
