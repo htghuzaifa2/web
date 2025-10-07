@@ -6,7 +6,7 @@ import { fetchProducts as serverFetchProducts } from '@/app/actions';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import ProductCard from './product-card';
-import { ArrowDown, ArrowUp } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 const BATCH_SIZE = 25;
 
@@ -26,18 +26,11 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const gridRef = useRef<HTMLDivElement>(null);
-  
-  // Create a unique key for session storage based on the component's context
-  const storageKey = `product_grid_${category || 'all'}_${sortBy || 'default'}_${randomize ? 'random' : ''}`;
-
 
   const fetchAndSetProducts = useCallback(
     async (page: number, keepExisting = false) => {
       setIsLoading(true);
       const { products: newProducts, total } = await serverFetchProducts({ page, limit: BATCH_SIZE, category, sortBy, randomize });
-
-      const currentProductList = keepExisting ? products : [];
-      const totalProductsAfterLoad = currentProductList.length + newProducts.length;
 
       setProducts((prev) => {
         const currentProducts = keepExisting ? prev : [];
@@ -46,77 +39,23 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
         return Array.from(productMap.values());
       });
 
-      setHasMore(totalProductsAfterLoad < total);
+      setHasMore(newProducts.length > 0 && (page * BATCH_SIZE) < total);
       setCurrentPage(page);
       setIsLoading(false);
 
       if (!keepExisting && gridRef.current) {
-        // Using a timeout to ensure the scroll happens after the new content has rendered
         setTimeout(() => gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [category, sortBy, randomize, products] // products is needed for keepExisting
+    [category, sortBy, randomize]
   );
   
-  // Effect for saving state to session storage before unload
   useEffect(() => {
-    const handleBeforeUnload = () => {
-      const stateToSave = {
-        products,
-        currentPage,
-        hasMore,
-        scrollPosition: window.scrollY,
-      };
-      sessionStorage.setItem(storageKey, JSON.stringify(stateToSave));
-    };
-    
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [products, currentPage, hasMore, storageKey]);
-
-
-  useEffect(() => {
-    const savedStateJSON = sessionStorage.getItem(storageKey);
-    let shouldFetchNew = true;
-
-    // This logic runs when props (category, sortBy) change.
-    // We want to fetch new data, so we clear old session storage for the new key.
-    sessionStorage.removeItem(storageKey);
-
     setProducts([]);
     setCurrentPage(1);
     setHasMore(true);
     fetchAndSetProducts(1, false);
-    
-     // Clear session storage on hard reload (but not on back/forward nav)
-    const handlePageShow = (event: PageTransitionEvent) => {
-        if (event.persisted === false) { // event.persisted is false on first load/reload
-             sessionStorage.removeItem(storageKey);
-        }
-    }
-    window.addEventListener('pageshow', handlePageShow);
-
-
-    return () => {
-        // When the component unmounts, save the current state
-        if (gridRef.current) {
-             const stateToSave = {
-                products,
-                currentPage,
-                hasMore,
-                scrollPosition: window.scrollY,
-            };
-            sessionStorage.setItem(storageKey, JSON.stringify(stateToSave));
-        }
-        window.removeEventListener('pageshow', handlePageShow);
-    };
-  // The effect MUST re-run when category or sortBy change.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, sortBy, randomize]);
+  }, [category, sortBy, randomize, fetchAndSetProducts]);
 
   const loadMoreProducts = () => {
     if (hasMore && !isLoading) {
