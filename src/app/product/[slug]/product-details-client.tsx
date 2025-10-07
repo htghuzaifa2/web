@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -13,7 +14,8 @@ import { getProductData } from "@/lib/data-fetching";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCard from "@/components/product-card";
 import { calculateOriginalPrice } from "@/lib/utils";
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
+import { ArrowLeft } from "lucide-react";
 
 interface ProductDetailsClientProps {
   slug: string;
@@ -22,6 +24,7 @@ interface ProductDetailsClientProps {
 export default function ProductDetailsClient({ slug }: ProductDetailsClientProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const router = useRouter();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
@@ -136,6 +139,12 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <div className="mb-6">
+        <Button variant="ghost" onClick={() => router.back()} className="text-muted-foreground">
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back
+        </Button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
         <div className="md:col-span-1">
           <ProductImageGallery images={images} productName={product.name} />

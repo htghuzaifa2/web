@@ -26,13 +26,15 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
+  const description = product.description || product.longDescription || "Discover high-quality products at huzi.pk";
+
   return {
     title: product.name,
-    description: product.description,
+    description: description,
     openGraph: {
       type: 'article',
       title: product.name,
-      description: product.description,
+      description: description,
       url: `/product/${product.slug}`,
       images: [
         {
@@ -53,13 +55,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     twitter: {
       card: 'summary_large_image',
       title: product.name,
-      description: product.description,
+      description: description,
       images: [product.image],
     },
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
+export default function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params;
   return <ProductDetailsWrapper slug={slug} />;
 }

@@ -26,12 +26,14 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     };
   }
 
+  const description = `Shop the latest ${category.name.toLowerCase()} collection at huzi.pk. Discover trendy and high-quality products with delivery across Pakistan.`;
+
   return {
     title: `${category.name} Collection`,
-    description: `Shop the latest ${category.name.toLowerCase()} collection at huzi.pk. Discover trendy and high-quality products with delivery across Pakistan.`,
+    description: description,
     openGraph: {
       title: `${category.name} Collection`,
-      description: `Shop the latest ${category.name.toLowerCase()} collection at huzi.pk.`,
+      description: description,
       url: `/category/${slug}`,
       images: [
         {
