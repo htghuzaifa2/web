@@ -15,8 +15,8 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = categoriesData.categories.find((c) => c.slug === params.slug);
+export async function generateMetadata({ params: { slug } }: CategoryPageProps): Promise<Metadata> {
+  const category = categoriesData.categories.find((c) => c.slug === slug);
 
   if (!category) {
     return {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     openGraph: {
       title: `${category.name} Collection`,
       description: description,
-      url: `/category/${params.slug}`,
+      url: `/category/${slug}`,
       images: [
         {
           url: category.image,
