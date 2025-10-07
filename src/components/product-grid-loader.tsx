@@ -13,7 +13,7 @@ const BATCH_SIZE = 25;
 function ProductGridSkeleton() {
   return (
     <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
-      {Array.from({ length: BATCH_SIZE }).map((_, i) => (
+      {Array.from({ length: 10 }).map((_, i) => (
         <ProductCard key={`skeleton-${i}`} product={null} />
       ))}
     </div>
@@ -36,7 +36,8 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
       setIsLoading(true);
       const { products: newProducts, total } = await serverFetchProducts({ page, limit: BATCH_SIZE, category, sortBy, randomize });
 
-      const totalProductsAfterLoad = (keepExisting ? products.length : 0) + newProducts.length;
+      const currentProductList = keepExisting ? products : [];
+      const totalProductsAfterLoad = currentProductList.length + newProducts.length;
 
       setProducts((prev) => {
         const currentProducts = keepExisting ? prev : [];
@@ -50,14 +51,15 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
       setIsLoading(false);
 
       if (!keepExisting && gridRef.current) {
-        gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Using a timeout to ensure the scroll happens after the new content has rendered
+        setTimeout(() => gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [category, sortBy, randomize]
+    [category, sortBy, randomize, products] // products is needed for keepExisting
   );
   
-  // Effect for saving state to session storage
+  // Effect for saving state to session storage before unload
   useEffect(() => {
     const handleBeforeUnload = () => {
       const stateToSave = {
@@ -81,35 +83,18 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
     const savedStateJSON = sessionStorage.getItem(storageKey);
     let shouldFetchNew = true;
 
-    if (savedStateJSON) {
-      try {
-        const savedState = JSON.parse(savedStateJSON);
-        setProducts(savedState.products);
-        setCurrentPage(savedState.currentPage);
-        setHasMore(savedState.hasMore);
-        setIsLoading(false);
-        shouldFetchNew = false;
-        
-        // Restore scroll position after a short delay
-        setTimeout(() => {
-            window.scrollTo(0, savedState.scrollPosition);
-        }, 100);
+    // This logic runs when props (category, sortBy) change.
+    // We want to fetch new data, so we clear old session storage for the new key.
+    sessionStorage.removeItem(storageKey);
 
-      } catch (e) {
-        sessionStorage.removeItem(storageKey);
-      }
-    }
-
-    if (shouldFetchNew) {
-        setProducts([]);
-        setCurrentPage(1);
-        setHasMore(true);
-        fetchAndSetProducts(1, false);
-    }
+    setProducts([]);
+    setCurrentPage(1);
+    setHasMore(true);
+    fetchAndSetProducts(1, false);
     
      // Clear session storage on hard reload (but not on back/forward nav)
     const handlePageShow = (event: PageTransitionEvent) => {
-        if (!event.persisted) {
+        if (event.persisted === false) { // event.persisted is false on first load/reload
              sessionStorage.removeItem(storageKey);
         }
     }
@@ -129,18 +114,13 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
         }
         window.removeEventListener('pageshow', handlePageShow);
     };
+  // The effect MUST re-run when category or sortBy change.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, sortBy, randomize, fetchAndSetProducts]);
+  }, [category, sortBy, randomize]);
 
   const loadMoreProducts = () => {
     if (hasMore && !isLoading) {
       fetchAndSetProducts(currentPage + 1, true);
-    }
-  };
-
-  const loadPreviousProducts = () => {
-    if (currentPage > 1 && !isLoading) {
-       fetchAndSetProducts(currentPage - 1, false);
     }
   };
   
@@ -155,7 +135,7 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
   if (products.length === 0 && !isLoading) {
      return (
        <div className="text-center py-16 text-muted-foreground">
-          No products found.
+          No products found in this category.
        </div>
      )
   }
@@ -163,14 +143,6 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
   return (
     <div>
        <div ref={gridRef} className="scroll-mt-20" />
-      {currentPage > 1 && (
-        <div className="mb-8 flex justify-center">
-          <Button onClick={loadPreviousProducts} disabled={isLoading} variant="outline" size="lg">
-             <ArrowUp className="mr-2" />
-            {isLoading ? 'Loading...' : 'Load Previous'}
-          </Button>
-        </div>
-      )}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
         {products.map((p, i) => <ProductCard key={`${p.id}-${i}`} product={p} priority={i < 10}/>)}
       </div>
