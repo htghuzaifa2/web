@@ -42,10 +42,6 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
       setHasMore(newProducts.length > 0 && (page * BATCH_SIZE) < total);
       setCurrentPage(page);
       setIsLoading(false);
-
-      if (!keepExisting && gridRef.current) {
-        setTimeout(() => gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-      }
     },
     [category, sortBy, randomize]
   );
@@ -96,7 +92,7 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
         <div className="mt-8 flex justify-center">
           <Button onClick={loadMoreProducts} disabled={isLoading} size="lg">
             {isLoading ? 'Loading...' : 'Load More'}
-            <ArrowDown className="ml-2" />
+            <ArrowDown className="ml-2 h-4 w-4" />
           </Button>
         </div>
       )}

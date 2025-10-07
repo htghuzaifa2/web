@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import productsData from "@/data/products.json";
 import ProductDetailsWrapper from "./product-details-wrapper";
@@ -15,8 +14,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { slug } = params;
+export async function generateMetadata({ params: { slug } }: ProductPageProps): Promise<Metadata> {
   const product = productsData.find((p) => p.slug === slug);
 
   if (!product) {
@@ -62,5 +60,5 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  return <ProductDetailsWrapper params={params} />;
+  return <ProductDetailsWrapper slug={params.slug} />;
 }

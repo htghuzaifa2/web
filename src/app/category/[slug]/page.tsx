@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
 import CategoryWrapper from "./category-wrapper";
@@ -15,8 +14,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const { slug } = params;
+export async function generateMetadata({ params: { slug } }: CategoryPageProps): Promise<Metadata> {
   const category = categoriesData.categories.find((c) => c.slug === slug);
 
   if (!category) {

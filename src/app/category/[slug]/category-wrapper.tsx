@@ -1,4 +1,3 @@
-
 "use client";
 
 import dynamic from 'next/dynamic';
@@ -29,6 +28,5 @@ function CategoryPageSkeleton() {
 
 
 export default function CategoryWrapper({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  return <CategoryClient slug={slug} />;
+  return <CategoryClient slug={params.slug} />;
 }

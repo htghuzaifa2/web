@@ -12,11 +12,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
     
-    /* Light Theme - Navy Blue & Sky Blue */
-    --primary: 220 100% 28%; /* Navy Blue (#00308F) */
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 210 40% 81%; /* Light Blue (#ADD8E6) */
-    --accent: 197 71% 73%; /* Sky Blue (#87CEEB) */
+    /* Light Theme - Slate Gray & Cool Gray */
+    --primary: 221 39% 11%; /* Slate Gray */
+    --primary-foreground: 210 40% 98%;
+    --primary-hover: 221 39% 25%;
+    --accent: 210 40% 96.1%; /* Lighter Slate for accents */
     --accent-foreground: 222.2 47.4% 11.2%;
     
     --secondary: 210 40% 96.1%;
@@ -27,24 +27,24 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 220 100% 28%;
-    --price: 220 100% 28%;
+    --ring: 221 39% 11%;
+    --price: 221 39% 11%;
     --radius: 0.5rem;
   }
  
   .dark {
-    --background: 224 71% 4%; /* Dark Gray (#333333 is approx hsl(0,0,20) but we want a bit of blue)*/
+    --background: 224 71% 4%;
     --foreground: 210 40% 98%;
     --card: 224 71% 4%;
     --card-foreground: 210 40% 98%;
     --popover: 224 71% 4%;
     --popover-foreground: 210 40% 98%;
 
-    /* Dark Theme - Deep Orange & Gold */
-    --primary: 33 100% 50%; /* Deep Orange (#FF8C00) */
-    --primary-foreground: 210 40% 98%;
-    --primary-hover: 30 95% 55%; /* Cool Orange */
-    --accent: 30 95% 55%; /* Cool Orange */
+    /* Dark Theme - Amber/Orange & Warm Gray */
+    --primary: 38 92% 50%; /* Amber/Orange */
+    --primary-foreground: 224 71% 4%;
+    --primary-hover: 38 92% 60%;
+    --accent: 217.2 32.6% 17.5%; /* Warm gray for accents */
     --accent-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -55,8 +55,8 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 33 100% 50%;
-    --price: 33 100% 50%;
+    --ring: 38 92% 50%;
+    --price: 38 92% 50%;
     --radius: 0.5rem;
   }
 }
