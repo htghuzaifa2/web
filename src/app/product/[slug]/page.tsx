@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import productsData from "@/data/products.json";
 import ProductDetailsWrapper from "./product-details-wrapper";
-import { notFound } from "next/navigation";
 
 interface ProductPageProps {
   params: { slug: string };
@@ -63,6 +62,5 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
-  return <ProductDetailsWrapper slug={slug} />;
+  return <ProductDetailsWrapper slug={params.slug} />;
 }
