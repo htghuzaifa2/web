@@ -2,12 +2,13 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, X, Share2, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
+import { useLightbox } from "@/context/lightbox-context";
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -38,10 +39,8 @@ const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "" }: { s
 };
 
 export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mainApi, setMainApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
   const [thumbApi, setThumbApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
-  const [lightboxApi, setLightboxApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const [mainRef, emblaMainApi] = useEmblaCarousel({ loop: images.length > 1 });
@@ -49,11 +48,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     containScroll: "keepSnaps",
     dragFree: true,
   });
-  const [lightboxRef, emblaLightboxApi] = useEmblaCarousel({ loop: images.length > 1 });
+
+  const { openLightbox } = useLightbox();
 
   useEffect(() => setMainApi(emblaMainApi), [emblaMainApi]);
   useEffect(() => setThumbApi(emblaThumbApi), [emblaThumbApi]);
-  useEffect(() => setLightboxApi(emblaLightboxApi), [emblaLightboxApi]);
 
   const onThumbClick = useCallback((index: number) => {
     if (!mainApi) return;
@@ -65,8 +64,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     const newSelectedIndex = mainApi.selectedScrollSnap();
     setSelectedIndex(newSelectedIndex);
     thumbApi.scrollTo(newSelectedIndex);
-    if (lightboxApi) lightboxApi.scrollTo(newSelectedIndex, true);
-  }, [mainApi, thumbApi, lightboxApi]);
+  }, [mainApi, thumbApi]);
 
   useEffect(() => {
     if (!mainApi) return;
@@ -75,52 +73,12 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     mainApi.on("reInit", onSelect);
     return () => { mainApi.off("select", onSelect) };
   }, [mainApi, onSelect]);
-
-  const openLightbox = (index: number) => {
-    setSelectedIndex(index);
-    setLightboxOpen(true);
-    setTimeout(() => lightboxApi?.scrollTo(index, true), 0);
-  };
   
-  const closeLightbox = () => setLightboxOpen(false);
-
   const scrollPrev = useCallback(() => mainApi?.scrollPrev(), [mainApi]);
   const scrollNext = useCallback(() => mainApi?.scrollNext(), [mainApi]);
-  
-  const lightboxScrollPrev = useCallback(() => lightboxApi?.scrollPrev(), [lightboxApi]);
-  const lightboxScrollNext = useCallback(() => lightboxApi?.scrollNext(), [lightboxApi]);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (lightboxOpen) {
-        if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") lightboxScrollNext();
-        if (e.key === "ArrowLeft") lightboxScrollPrev();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxOpen, lightboxScrollNext, lightboxScrollPrev]);
-
-  const handleShare = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const urlToShare = window.location.href;
-    const shareData = {
-      title: productName,
-      text: `Check out this product: ${productName}`,
-      url: urlToShare,
-    };
-
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(urlToShare);
-        alert("Link copied to clipboard!");
-      }
-    } catch (err) {
-      console.error("Share failed:", err);
-    }
+  const handleOpenLightbox = (index: number) => {
+    openLightbox(images, index, productName);
   };
 
   return (
@@ -133,7 +91,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               <div
                 className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer h-full"
                 key={index}
-                onClick={() => openLightbox(index)}
+                onClick={() => handleOpenLightbox(index)}
               >
                 <ImageSlot
                   src={imgSrc}
@@ -178,49 +136,6 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                    ))}
                </div>
            </div>
-        </div>
-      )}
-
-      {/* Lightbox */}
-      {lightboxOpen && (
-        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm lightbox-zoom-in" onClick={closeLightbox}>
-          <div
-            className="relative w-full h-full p-4 flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="overflow-hidden h-full w-full" ref={lightboxRef}>
-              <div className="flex h-full">
-                {images.map((imgSrc, index) => (
-                  <div className="relative w-full h-full flex-shrink-0 flex-grow-0 basis-full flex items-center justify-center" key={`lightbox-main-${index}`}>
-                    <ImageSlot
-                      src={imgSrc}
-                      alt={productName}
-                      fill
-                      priority={index === selectedIndex}
-                      sizes="100vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="absolute top-4 right-4 flex gap-2">
-            <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80 h-10 w-10" onClick={handleShare}>
-              <Share2 className="h-5 w-5" />
-            </Button>
-            <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80 h-10 w-10" asChild>
-              <a href={images[selectedIndex]} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                <ExternalLink className="h-5 w-5" />
-              </a>
-            </Button>
-            <Button size="icon" variant="ghost" className="text-white bg-black/50 hover:bg-black/80 h-10 w-10" onClick={(e) => { e.stopPropagation(); closeLightbox(); }}><X className="h-5 w-5" /></Button>
-          </div>
-          {images.length > 1 && (
-            <>
-              <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:left-4 h-11 w-11" onClick={(e) => { e.stopPropagation(); lightboxScrollPrev(); }}><ChevronLeft size={32} /></Button>
-              <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/80 md:right-4 h-11 w-11" onClick={(e) => { e.stopPropagation(); lightboxScrollNext(); }}><ChevronRight size={32} /></Button>
-            </>
-          )}
         </div>
       )}
     </div>
