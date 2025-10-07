@@ -183,7 +183,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
       {/* Lightbox */}
       {lightboxOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm lightbox-zoom-in" onClick={closeLightbox}>
+        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm lightbox-zoom-in" onClick={closeLightbox}>
           <div
             className="relative w-full h-full p-4 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
