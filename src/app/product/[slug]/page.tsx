@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const slug = params.slug;
+  const { slug } = params;
   const product = productsData.find((p) => p.slug === slug);
 
   if (!product) {
