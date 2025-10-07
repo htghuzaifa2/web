@@ -1,3 +1,4 @@
+
 "use client";
 
 import dynamic from "next/dynamic";
@@ -34,6 +35,6 @@ function ProductPageSkeleton() {
   );
 }
 
-export default function ProductDetailsWrapper({ slug }: { slug: string }) {
-  return <ProductDetailsClient slug={slug} />;
+export default function ProductDetailsWrapper({ params }: { params: { slug: string } }) {
+  return <ProductDetailsClient slug={params.slug} />;
 }
