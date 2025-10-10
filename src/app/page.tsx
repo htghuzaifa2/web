@@ -1,6 +1,5 @@
-
-import HomeLoader from './home-loader';
+import HomeClient from './home-client';
 
 export default function Home() {
-  return <HomeLoader />;
+  return <HomeClient />;
 }
