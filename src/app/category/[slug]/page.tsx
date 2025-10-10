@@ -14,8 +14,9 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: CategoryPageProps): Promise<Metadata> {
+  const { slug } = params;
   const category = categoriesData.categories.find((c) => c.slug === slug);
 
   if (!category) {
@@ -39,6 +40,7 @@ export async function generateMetadata({
   };
 }
 
-export default function CategoryPage({ params: { slug } }: CategoryPageProps) {
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = params;
   return <CategoryClient slug={slug} />;
 }
