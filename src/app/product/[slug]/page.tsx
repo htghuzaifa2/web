@@ -1,13 +1,13 @@
-
 'use client';
 
+import { use } from 'react';
 import ProductDetailsClient from './product-details-client';
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+  const { slug } = use(params);
   return <ProductDetailsClient slug={slug} />;
 }
