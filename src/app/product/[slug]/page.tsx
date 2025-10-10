@@ -1,7 +1,6 @@
 
 import type { Metadata } from "next";
 import productsData from "@/data/products.json";
-import CategoryClient from "../../category/[slug]/category-client";
 import ProductDetailsClient from "./product-details-client";
 
 interface ProductPageProps {
@@ -9,9 +8,8 @@ interface ProductPageProps {
 }
 
 export async function generateMetadata({
-  params,
+  params: { slug },
 }: ProductPageProps): Promise<Metadata> {
-  const { slug } = params;
   const product = productsData.find((p) => p.slug === slug);
 
   if (!product) {
@@ -50,7 +48,6 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+export default function ProductPage({ params: { slug } }: ProductPageProps) {
   return <ProductDetailsClient slug={slug} />;
 }
