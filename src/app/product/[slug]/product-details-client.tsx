@@ -37,15 +37,20 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       
       if (!fetchedProduct) {
         notFound();
+        return;
       }
 
       setProduct(fetchedProduct);
       setRelatedProducts(fetchedRelated);
       setIsLoading(false);
       
-      if (fetchedProduct) {
-        document.title = `${fetchedProduct.name} - huzi.pk`;
+      document.title = `${fetchedProduct.name} - huzi.pk`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        const descriptionText = fetchedProduct.description || fetchedProduct.longDescription || "Check out this product on huzi.pk";
+        metaDescription.setAttribute('content', descriptionText.substring(0, 160));
       }
+
     }
     fetchData();
   }, [slug]);
@@ -80,7 +85,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   }
 
   if (!product) {
-    return null; // notFound() would have been called
+    return null; 
   }
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;

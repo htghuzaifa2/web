@@ -60,7 +60,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
         className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow duration-300 hover:shadow-lg"
         style={{ transform: 'translateZ(0)' }}
       >
-        <Link href={`/product/${productSlug}`} className="flex flex-col h-full" prefetch={priority}>
+        <Link href={`/product/${productSlug}`} className="flex flex-col h-full" prefetch={priority ? true : undefined}>
             <div className="relative w-full overflow-hidden bg-background aspect-square">
               {isImageLoading && <Skeleton className="absolute inset-0" />}
               <Image

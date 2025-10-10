@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useMemo, useRef, useEffect } from "react";
@@ -5,12 +6,10 @@ import type { Category } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { ProductGridLoader } from "@/components/product-grid-loader";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, notFound } from "next/navigation";
 import categoriesData from "@/data/categories.json";
-import { notFound } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCard from "@/components/product-card";
-
 
 interface CategoryClientProps {
   slug: string;
@@ -56,12 +55,18 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
     
     if (!fetchedCategory) {
       notFound();
+      return;
     }
     
     setCategory(fetchedCategory);
     setIsLoading(false);
     
     document.title = `${fetchedCategory.name} - huzi.pk`;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.setAttribute('content', `Shop for ${fetchedCategory.name} and more at huzi.pk.`);
+    }
+
   }, [slug]);
 
   const sortParam = searchParams.get('sort') || 'newest';
