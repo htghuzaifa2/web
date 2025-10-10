@@ -1,52 +1,39 @@
 
+"use client";
+
 import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
-import CategoryWrapper from "./category-wrapper";
+import dynamic from 'next/dynamic';
+import { Skeleton } from '@/components/ui/skeleton';
+import ProductCard from '@/components/product-card';
 
-interface CategoryPageProps {
-  params: { slug: string };
+const CategoryClient = dynamic(() => import('./category-client'), {
+  ssr: false,
+  loading: () => <CategoryPageSkeleton />,
+});
+
+function CategoryPageSkeleton() {
+  return (
+    <div className="container mx-auto px-4 py-12">
+      <Skeleton className="h-10 w-1/2 mx-auto mb-2" />
+      <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
+      <div className="flex justify-end mb-8">
+        <Skeleton className="h-10 w-[180px]" />
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <ProductCard key={`skeleton-${index}`} product={null} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export const dynamicParams = true;
+// Note: generateMetadata and generateStaticParams are server-side functions.
+// They cannot be used in a client component. If dynamic metadata is needed,
+// this page would need to be a server component that wraps the client component.
+// For this simplified structure, we'll rely on the client to set the title.
 
-export async function generateStaticParams() {
-    return categoriesData.categories.map((category) => ({
-        slug: category.slug,
-    }));
-}
-
-export async function generateMetadata(props: CategoryPageProps): Promise<Metadata> {
-  const slug = props.params.slug;
-  const category = categoriesData.categories.find((c) => c.slug === slug);
-
-  if (!category) {
-    return {
-      title: "Category Not Found",
-      description: "The category you are looking for does not exist.",
-    };
-  }
-
-  const description = `Shop the latest ${category.name.toLowerCase()} collection at huzi.pk. Discover trendy and high-quality products with delivery across Pakistan.`;
-
-  return {
-    title: `${category.name} Collection`,
-    description: description,
-    openGraph: {
-      title: `${category.name} Collection`,
-      description: description,
-      url: `/category/${slug}`,
-      images: [
-        {
-          url: category.image,
-          width: 600,
-          height: 400,
-          alt: category.name,
-        },
-      ],
-    },
-  };
-}
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  return <CategoryWrapper params={params} />;
+export default function CategoryPage({ params }: { params: { slug: string } }) {
+  return <CategoryClient slug={params.slug} />;
 }
