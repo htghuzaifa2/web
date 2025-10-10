@@ -13,8 +13,8 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(props: ProductPageProps): Promise<Metadata> {
-  const slug = props.params.slug;
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = params;
   const product = productsData.find((p) => p.slug === slug);
 
   if (!product) {
@@ -53,7 +53,7 @@ export async function generateMetadata(props: ProductPageProps): Promise<Metadat
   };
 }
 
-export default function ProductPage(props: ProductPageProps) {
-  const slug = props.params.slug;
+export default function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params;
   return <ProductDetailsClient slug={slug} />;
 }

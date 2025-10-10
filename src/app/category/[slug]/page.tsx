@@ -13,8 +13,8 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(props: CategoryPageProps): Promise<Metadata> {
-    const slug = props.params.slug;
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+    const { slug } = params;
     const category = categoriesData.categories.find((c) => c.slug === slug);
 
     if (!category) {
@@ -39,7 +39,7 @@ export async function generateMetadata(props: CategoryPageProps): Promise<Metada
 }
 
 
-export default function CategoryPage(props: CategoryPageProps) {
-  const slug = props.params.slug;
+export default function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = params;
   return <CategoryClient slug={slug} />;
 }
