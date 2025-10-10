@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import productsData from "@/data/products.json";
 import ProductDetailsClient from "./product-details-client";
@@ -46,6 +47,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  return <ProductDetailsClient slug={params.slug} />;
+export default async function ProductPage({ params }: ProductPageProps) {
+  const awaitedParams = await params;
+  return <ProductDetailsClient slug={awaitedParams.slug} />;
 }

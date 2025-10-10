@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
 import CategoryClient from "./category-client";
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  return <CategoryClient slug={params.slug} />;
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const awaitedParams = await params;
+  return <CategoryClient slug={awaitedParams.slug} />;
 }
