@@ -6739,15 +6739,577 @@
                 "https://i.postimg.cc/L8SShf6f/imgi-14-p18003-embroidered-lawn-dress-3.jpg"
               ],
               "stock": 10
-            }
-]
+            },
+              {
+                "id": 234,
+                "slug": "mens-unstitched-boski-suit-premium-super-soft-blended-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Boski Suit – Premium Super Soft Blended Fabric | Summer Wear Pakistan",
+                "price": 3600,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Cream",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/Y04cRB6j/imgi-142-MUNS-602-1.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/RFp5wZnj/imgi-17-MUNS-602-2.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 235,
+                "slug": "mens-unstitched-black-suit-premium-super-soft-blended-wash-n-wear-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Black Suit – Premium Super Soft Blended Wash N Wear Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Black",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/PrjsZ9Lf/imgi-16-MUNS-594-1.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/jd4VhcNH/imgi-17-MUNS-594-2.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 236,
+                "slug": "mens-unstitched-cotton-kurta-shalwar-navy-blue-premium-cotton-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Cotton Kurta Shalwar – Navy Blue Premium Cotton Fabric | Summer Wear Pakistan",
+                "price": 5000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Size": "Standard",
+                  "Fabric": "Cotton",
+                  "Color": "Blue"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/cCKHnj6B/imgi-128-MUNS-588-2.jpg",
+                "additionalImages": [],
+                "stock": 10
+              },
+              {
+                "id": 237,
+                "slug": "mens-unstitched-black-cotton-kurta-shalwar-premium-cotton-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Black Cotton Kurta Shalwar – Premium Cotton Fabric | Summer Collection Pakistan",
+                "price": 5000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Black",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/52p6Dwcv/imgi-122-GFC-AR-135-dc5d577a-8677-476e-9969-da4fecc3d7a6.jpg",
+                "additionalImages": [],
+                "stock": 10
+              },
+              {
+                "id": 238,
+                "slug": "mens-unstitched-skin-cotton-kurta-shalwar-premium-cotton-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Skin Cotton Kurta Shalwar – Premium Cotton Fabric | Summer Wear Pakistan",
+                "price": 5000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Cream",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/mZQZ0QCD/imgi-118-GFC-AR-134-234ff866-9258-43ab-9531-0b91f6df9dd3.jpg",
+                "additionalImages": [],
+                "stock": 10
+              },
+              {
+                "id": 239,
+                "slug": "mens-unstitched-off-white-cotton-kurta-shalwar-premium-cotton-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Off White Cotton Kurta Shalwar – Premium Cotton Fabric | Summer Collection Pakistan",
+                "price": 5000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "White",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/0Nn5zx5w/imgi-118-GFC-AR-136-3842e54d-08b4-4a96-8136-85f7b97a37fa.jpg",
+                "additionalImages": [],
+                "stock": 10
+              },
+              {
+                "id": 240,
+                "slug": "mens-unstitched-white-cotton-kurta-shalwar-premium-cotton-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched White Cotton Kurta Shalwar – Premium Cotton Fabric | Summer Wear Pakistan",
+                "price": 5000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "White",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/8PkYG6jD/imgi-120-GFC-AR-132-7033a349-cc30-4c93-a0bc-6ef942fe6e40.jpg",
+                "additionalImages": [],
+                "stock": 10
+              },
+              {
+                "id": 241,
+                "slug": "mens-unstitched-white-cotton-kurta-shalwar-premium-cotton-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched White Cotton Kurta Shalwar – Premium Cotton Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "White",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/1RH4YLkX/imgi-16-MUNS-614-1.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/P5Bqwhw3/imgi-17-MUNS-614-2.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 242,
+                "slug": "mens-unstitched-navy-blue-suit-premium-super-soft-blended-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Navy Blue Suit – Premium Super Soft Blended Fabric | Summer Wear Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Blue",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/yx9M24dd/imgi-154-GFB-AR-466-1-a20e3da5-4cd6-48cd-b142-a9f7cab2a741.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/k4krjX7z/imgi-19-GFB-AR-466-2-Thumbnail.jpg",
+                  "https://i.postimg.cc/pT9bYnMK/imgi-20-GFB-AR-466-3.jpg",
+                  "https://i.postimg.cc/PqVnwQ9t/imgi-21-GFB-AR-466-4.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 243,
+                "slug": "mens-unstitched-off-white-suit-premium-super-soft-blended-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Off White Suit – Premium Super Soft Blended Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "White",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/TYxNTHYZ/imgi-132-MUNS-618-1-451b3f56-7e36-4ffe-8315-a6c5f1839c90.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/MH2PM90f/imgi-17-MUNS-618-2-c8d28aa1-f25c-49e1-94ab-878030ceeef9.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 244,
+                "slug": "mens-unstitched-deep-wine-suit-premium-super-soft-blended-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Deep Wine Suit – Premium Super Soft Blended Fabric | Summer Wear Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Purple",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/k4Y25Hxq/imgi-132-GFB-AR-457-f.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/d3zD2THf/imgi-17-GFB-AR-457-z.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 245,
+                "slug": "mens-unstitched-charcoal-grey-suit-premium-super-soft-blended-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Charcoal Grey Suit – Premium Super Soft Blended Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Grey",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/TY3Bv4PC/imgi-134-MUNS-597-1.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/7ZpR7PnW/imgi-17-MUNS-597-2.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 246,
+                "slug": "mens-unstitched-dark-chocolate-brown-suit-premium-super-soft-blended-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Dark Chocolate Brown Suit – Premium Super Soft Blended Fabric | Summer Wear Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Brown",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/tgNKFZC4/imgi-16-MUNS-593-1.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/B6ZdpSXc/imgi-17-MUNS-593-2.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 247,
+                "slug": "mens-unstitched-black-suit-premium-cotton-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Black Suit – Premium Cotton Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Black",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/XYxnfzv5/imgi-128-GFC-AJ-144-1-069dd021-2e7e-4542-91a8-3e0b43c0b23d.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/SN6SssFD/imgi-17-GFC-AJ-144-Z.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 248,
+                "slug": "mens-unstitched-dark-grey-suit-premium-cotton-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Dark Grey Suit – Premium Cotton Fabric | Summer Collection Pakistan",
+                "price": 4200,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Gray",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/pr9BZ4xL/imgi-17-MUNS-610-2.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/hvH13sPb/imgi-124-MUNS-610-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 249,
+                "slug": "mens-unstitched-chocolate-brown-suit-premium-cotton-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Chocolate Brown Suit – Premium Cotton Fabric | Summer Wear Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Brown",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/JhDJSJvp/imgi-128-MUNS-616-F.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/9FCdzDwf/imgi-17-MUNS-616-Z.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 250,
+                "slug": "mens-unstitched-navy-blue-suit-premium-cotton-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Navy Blue Suit – Premium Cotton Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Navy",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/tRMb4xM3/imgi-128-MUNS-608-1.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/zv6Ytsgt/imgi-17-MUNS-608-2.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 251,
+                "slug": "mens-unstitched-beige-suit-premium-cotton-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Beige Suit – Premium Cotton Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Beige",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/cL7PwgX5/imgi-126-MUNS-616-2-113c1751-95b0-48d5-af3a-e2d216ddaf92.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/dVczhmmy/imgi-17-MUNS-616-1-523371fc-7e57-4bea-beaa-5959dc614b80.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 252,
+                "slug": "mens-unstitched-silver-grey-cotton-kurta-shalwar-premium-cotton-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Silver Grey Cotton Kurta Shalwar – Premium Cotton Fabric | Summer Wear Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Gray",
+                  "Size": "Standard",
+                  "Fabric": "Cotton"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/kGqLjWwH/imgi-94-MUNS-615-2.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/3xq5K4Jy/imgi-17-MUNS-615-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 253,
+                "slug": "mens-unstitched-black-kurta-shalwar-premium-super-soft-blended-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Black Kurta Shalwar – Premium Super Soft Blended Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Black",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/fRwKyDRY/imgi-16-GFB-At-488-2.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/TYj0TpfR/imgi-17-GFB-At-488-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 254,
+                "slug": "mens-unstitched-off-white-kurta-shalwar-premium-super-soft-blended-fabric-summer-wear-pakistan",
+                "name": "Men’s Unstitched Off White Kurta Shalwar – Premium Super Soft Blended Fabric | Summer Wear Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "White",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/gkPVnm2N/imgi-17-GFB-At-487-1.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/Nf71XSyY/imgi-135-GFB-At-487-2.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 255,
+                "slug": "mens-unstitched-grey-kurta-shalwar-premium-super-soft-blended-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Grey Kurta Shalwar – Premium Super Soft Blended Fabric | Summer Collection Pakistan",
+                "price": 4000,
+                "description": "Shirt/Trouser Size 4.25 Mtr",
+                "specifications": {
+                  "Color": "Gray",
+                  "Size": "Standard",
+                  "Fabric": "Wash N Wear"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/L8G686Hs/imgi-173-GFB-At-486-2.jpg",
+                "additionalImages": [],
+                "stock": 10
+              },
+              {
+                "id": 256,
+                "slug": "fashion-mens-unstitched-shalwar-kameez-premium-soft-egyptian-cotton-fabric-summer-wear-pakistan",
+                "name": "Fashion Men’s Unstitched Shalwar Kameez – Premium Soft Egyptian Cotton Fabric | Summer Wear Pakistan",
+                "price": 3000,
+                "description": "Un-Stitched Suit for Boys and Men, 4.5 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "IB Swiss Soft Cotton",
+                  "Length": "4.5 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Shown in Pictures",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/HsVg8Dv8/imgi-20-p13711-mens-shalwar-kameez-update.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/Pr9km303/imgi-12-p13711-mens-shalwar-kameez-update-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 257,
+                "slug": "ib-swiss-fashion-mens-unstitched-shalwar-kameez-soft-egyptian-cotton-fabric-premium-summer-collection-pakistan",
+                "name": "IB Swiss Fashion Men’s Unstitched Shalwar Kameez – Soft Egyptian Cotton Fabric | Premium Summer Collection Pakistan",
+                "price": 3300,
+                "description": "Un-Stitched Suit for Boys and Men, 4.5 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "Soft Egyptian Cotton",
+                  "Length": "4.5 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Shown in Pictures",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/cJJj2Qqg/imgi-11-p13869-mens-cotton-shalwar-kameez.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/XvDhbp32/imgi-12-p13869-mens-cotton-shalwar-kameez-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 258,
+                "slug": "ib-swiss-fashion-mens-unstitched-shalwar-kameez-premium-soft-egyptian-cotton-fabric-summer-wear-pakistan",
+                "name": "IB Swiss Fashion Men’s Unstitched Shalwar Kameez – Premium Soft Egyptian Cotton Fabric | Summer Wear Pakistan",
+                "price": 3300,
+                "description": "Un-Stitched Suit for Boys and Men, 4.5 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "Soft Egyptian Cotton",
+                  "Length": "4.5 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Shown in Pictures",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/28w0YV74/imgi-14-p13870-mens-cotton-shalwar-kameez.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/15Pvbpwm/imgi-12-p13870-mens-cotton-shalwar-kameez-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 259,
+                "slug": "mens-unstitched-wash-n-wear-shalwar-kameez-suit-premium-fabric-summer-collection-pakistan",
+                "name": "Men’s Unstitched Wash n Wear Shalwar Kameez Suit – Premium Fabric | Summer Collection Pakistan",
+                "price": 2600,
+                "description": "Un-Stitched Suit for Boys and Men, 4 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "Wash N Wear",
+                  "Length": "4 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Show in Picture",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/BnRHf0kT/imgi-11-p17963-mens-wash-n-wear-shalwar-kameez.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/vZ4fKBq8/imgi-12-p17963-mens-wash-n-wear-shalwar-kameez-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 260,
+                "slug": "ib-swiss-fashion-mens-unstitched-shalwar-kameez-premium-soft-egyptian-cotton-fabric-summer-wear-pakistan",
+                "name": "IB Swiss Fashion Men’s Unstitched Shalwar Kameez – Premium Soft Egyptian Cotton Fabric | Summer Wear Pakistan",
+                "price": 3000,
+                "description": "Un-Stitched Suit for Boys and Men, 4.5 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "IB Swiss Soft Cotton",
+                  "Length": "4.5 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Shown in Pictures",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/SRNbSH3d/imgi-11-p13110-mens-soft-egyptian-cotton-update.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/2jwCs7MT/imgi-12-p13110-mens-soft-egyptian-cotton-update-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 261,
+                "slug": "ib-swiss-fashion-mens-unstitched-shalwar-kameez-soft-egyptian-cotton-fabric-premium-summer-collection-pakistan",
+                "name": "IB Swiss Fashion Men’s Unstitched Shalwar Kameez – Soft Egyptian Cotton Fabric | Premium Summer Collection Pakistan",
+                "price": 3100,
+                "description": "Un-Stitched Suit for Boys and Men, 4.5 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "IB Swiss Soft Cotton",
+                  "Length": "4.5 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Shown in Pictures",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/KYSV1W4n/imgi-19-p13714-unstitched-mens-shalwar-kameez-new.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/d1JxBT23/imgi-12-p13714-unstitched-mens-shalwar-kameez-new-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 262,
+                "slug": "ib-swiss-fashion-mens-unstitched-shalwar-kameez-premium-soft-egyptian-cotton-fabric-summer-wear-pakistan",
+                "name": "IB Swiss Fashion Men’s Unstitched Shalwar Kameez – Premium Soft Egyptian Cotton Fabric | Summer Wear Pakistan",
+                "price": 3500,
+                "description": "Un-Stitched Suit for Boys and Men, 4.5 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "IB Swiss Soft Cotton",
+                  "Length": "4.5 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Shown in Pictures",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/rs4JSVDg/imgi-18-p13715-mens-shalwar-kameez-new.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/28pTCZtt/imgi-12-p13715-mens-shalwar-kameez-new-1.jpg"
+                ],
+                "stock": 10
+              },
+              {
+                "id": 263,
+                "slug": "ib-swiss-fashion-mens-unstitched-shalwar-kameez-premium-soft-egyptian-cotton-fabric-summer-collection-pakistan",
+                "name": "IB Swiss Fashion Men’s Unstitched Shalwar Kameez – Premium Soft Egyptian Cotton Fabric | Summer Collection Pakistan",
+                "price": 3300,
+                "description": "Un-Stitched Suit for Boys and Men, 4.5 Meter length, 54 inches width",
+                "specifications": {
+                  "Un-Stitched Suit": "Yes",
+                  "Gender": "For Boys and Men",
+                  "Material": "IB Swiss Soft Cotton",
+                  "Length": "4.5 Meter",
+                  "Width (Araz)": "54 inches",
+                  "Color": "As Shown in Pictures",
+                  "Made with High Quality Fabric": "Yes"
+                },
+                "category": ["men"],
+                "image": "https://i.postimg.cc/XYg0f3FV/imgi-16-p13867-mens-egyptian-cotton-update.jpg",
+                "additionalImages": [
+                  "https://i.postimg.cc/3wJQ96C2/imgi-12-p13867-mens-egyptian-cotton-update-1.jpg"
+                ],
+                "stock": 10
+              }
 
 
 
+              
+            ]
 
 
 
-    
 
 
     

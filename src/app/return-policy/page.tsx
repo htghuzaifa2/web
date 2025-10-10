@@ -1,35 +1,17 @@
 
-"use client";
-
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-import { Skeleton } from '@/components/ui/skeleton';
+import ReturnPolicyLoader from './return-policy-loader';
 
-const ReturnPolicyClient = dynamic(() => import('./return-policy-client'), {
-  ssr: false,
-  loading: () => <ReturnPolicyPageSkeleton />,
-});
-
-function ReturnPolicyPageSkeleton() {
-    return (
-        <div className="container mx-auto px-4 py-12">
-            <div className="max-w-4xl mx-auto">
-                <Skeleton className="h-10 w-96 mx-auto mb-8" />
-                <div className="space-y-6">
-                    <Skeleton className="h-6 w-full" />
-                    <Skeleton className="h-8 w-1/2 mt-8 mb-4" />
-                    <Skeleton className="h-6 w-full" />
-                    <Skeleton className="h-6 w-5/6" />
-                    <Skeleton className="h-8 w-1/2 mt-8 mb-4" />
-                    <Skeleton className="h-6 w-full" />
-                    <Skeleton className="h-8 w-1/2 mt-8 mb-4" />
-                    <Skeleton className="h-6 w-full" />
-                </div>
-            </div>
-        </div>
-    );
-}
+export const metadata: Metadata = {
+    title: "Return & Refund Policy",
+    description: "Read the return and refund policy for huzi.pk. Understand the conditions for returning damaged, incorrect, or faulty items.",
+    openGraph: {
+        title: "Return & Refund Policy",
+        description: "Read the return and refund policy for huzi.pk. Understand the conditions for returning damaged, incorrect, or faulty items.",
+        url: "/return-policy",
+    }
+};
 
 export default function ReturnPolicyPage() {
-    return <ReturnPolicyClient />;
+    return <ReturnPolicyLoader />;
 }

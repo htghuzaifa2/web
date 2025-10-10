@@ -1,46 +1,51 @@
-
-"use client";
-
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import { Skeleton } from "@/components/ui/skeleton";
+import productsData from "@/data/products.json";
+import ProductDetailsClient from "./product-details-client";
 
-const ProductDetailsClient = dynamic(() => import("./product-details-client"), {
-  ssr: false,
-  loading: () => <ProductPageSkeleton />,
-});
-
-function ProductPageSkeleton() {
-  return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
-        <div className="md:col-span-1">
-          <Skeleton className="w-full aspect-square" />
-          <div className="flex gap-2 mt-4">
-            <Skeleton className="w-1/4 aspect-square" />
-            <Skeleton className="w-1/4 aspect-square" />
-            <Skeleton className="w-1/4 aspect-square" />
-            <Skeleton className="w-1/4 aspect-square" />
-          </div>
-        </div>
-        <div className="flex flex-col justify-start md:col-span-1 gap-4">
-          <Skeleton className="h-10 w-3/4" />
-          <Skeleton className="h-12 w-1/2" />
-          <Skeleton className="h-6 w-24" />
-          <Skeleton className="h-5 w-full" />
-          <Skeleton className="h-5 w-5/6" />
-          <Skeleton className="h-12 w-48 mt-4" />
-        </div>
-      </div>
-    </div>
-  );
+interface ProductPageProps {
+  params: { slug: string };
 }
 
-// Metadata cannot be dynamically generated in a fully client-rendered page.
-// The document title will be set dynamically in the ProductDetailsClient component.
-// For full SEO, this page would need to be a Server Component fetching data
-// and passing it to the client component.
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = params;
+  const product = productsData.find((p) => p.slug === slug);
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      description: "The product you are looking for does not exist.",
+    };
+  }
+
+  const title = `${product.name} - huzi.pk`;
+  const description = product.description;
+  const imageUrl = product.image;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: imageUrl,
+          width: 800,
+          height: 800,
+          alt: product.name,
+        },
+      ],
+      url: `/product/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
+
+export default function ProductPage({ params }: ProductPageProps) {
   return <ProductDetailsClient slug={params.slug} />;
 }

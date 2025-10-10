@@ -1,39 +1,43 @@
-
-"use client";
-
 import type { Metadata } from "next";
 import categoriesData from "@/data/categories.json";
-import dynamic from 'next/dynamic';
-import { Skeleton } from '@/components/ui/skeleton';
-import ProductCard from '@/components/product-card';
+import CategoryClient from "./category-client";
 
-const CategoryClient = dynamic(() => import('./category-client'), {
-  ssr: false,
-  loading: () => <CategoryPageSkeleton />,
-});
-
-function CategoryPageSkeleton() {
-  return (
-    <div className="container mx-auto px-4 py-12">
-      <Skeleton className="h-10 w-1/2 mx-auto mb-2" />
-      <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
-      <div className="flex justify-end mb-8">
-        <Skeleton className="h-10 w-[180px]" />
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <ProductCard key={`skeleton-${index}`} product={null} />
-        ))}
-      </div>
-    </div>
-  );
+interface CategoryPageProps {
+  params: { slug: string };
 }
 
-// Note: generateMetadata and generateStaticParams are server-side functions.
-// They cannot be used in a client component. If dynamic metadata is needed,
-// this page would need to be a server component that wraps the client component.
-// For this simplified structure, we'll rely on the client to set the title.
+export function generateStaticParams() {
+  return categoriesData.categories.map((category) => ({
+    slug: category.slug,
+  }));
+}
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+    const { slug } = params;
+    const category = categoriesData.categories.find((c) => c.slug === slug);
+
+    if (!category) {
+        return {
+            title: "Category Not Found",
+            description: "The category you are looking for does not exist.",
+        };
+    }
+
+    const title = `${category.name} - huzi.pk`;
+    const description = `Browse products in the ${category.name} category on huzi.pk.`;
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `/category/${slug}`,
+        },
+    };
+}
+
+
+export default function CategoryPage({ params }: CategoryPageProps) {
   return <CategoryClient slug={params.slug} />;
 }

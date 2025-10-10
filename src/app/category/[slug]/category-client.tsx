@@ -1,15 +1,16 @@
-
 "use client";
 
 import { useState, useMemo, useRef, useEffect } from "react";
-import type { Category, Product } from "@/lib/types";
+import type { Category } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { ProductGridLoader } from "@/components/product-grid-loader";
 import { useRouter, useSearchParams } from "next/navigation";
 import categoriesData from "@/data/categories.json";
-import productsData from "@/data/products.json";
 import { notFound } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
+import ProductCard from "@/components/product-card";
+
 
 interface CategoryClientProps {
   slug: string;
@@ -24,6 +25,23 @@ const getCategoryData = (slug: string) => {
   }
   return { category };
 };
+
+function CategoryPageSkeleton() {
+  return (
+    <div className="container mx-auto px-4 py-12">
+      <Skeleton className="h-10 w-1/2 mx-auto mb-2" />
+      <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
+      <div className="flex justify-end mb-8">
+        <Skeleton className="h-10 w-[180px]" />
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <ProductCard key={`skeleton-${index}`} product={null} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function CategoryClient({ slug }: CategoryClientProps) {
   const router = useRouter();
@@ -63,7 +81,7 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
   };
 
   if (isLoading || !category) {
-      return null; // The skeleton from the wrapper will be shown
+      return <CategoryPageSkeleton />;
   }
 
   return (
