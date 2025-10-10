@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
-             <Link href="/" className="inline-block text-2xl font-bold">
+             <Link href="/" className="inline-block text-2xl font-bold" prefetch={true}>
                huzi.pk
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -24,8 +24,8 @@ export default function Footer() {
           <div>
             <h3 className="font-headline text-lg font-semibold">Company</h3>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>About Us</Link></li>
+              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>Contact</Link></li>
               <li><Link href="/shipping-policy" className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</Link></li>
               <li><Link href="/return-policy" className="text-muted-foreground hover:text-primary transition-colors">Return Policy</Link></li>
               <li><Link href="/how-to-pay" className="text-muted-foreground hover:text-primary transition-colors">How to Pay</Link></li>

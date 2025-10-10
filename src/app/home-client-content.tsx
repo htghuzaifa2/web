@@ -16,10 +16,10 @@ export default function HomeClientContent() {
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <Button asChild size="lg">
-              <Link href="/all-products">Shop Now</Link>
+              <Link href="/all-products" prefetch={true}>Shop Now</Link>
             </Button>
              <Button asChild size="lg" variant="outline">
-              <Link href="/categories">Browse Categories</Link>
+              <Link href="/categories" prefetch={true}>Browse Categories</Link>
             </Button>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function HomeClientContent() {
                  Ready to see more? Browse our entire catalog to find exactly what you're looking for.
              </p>
              <Button asChild size="lg" className="mt-8">
-                 <Link href="/all-products">View All Products</Link>
+                 <Link href="/all-products" prefetch={true}>View All Products</Link>
              </Button>
          </div>
       </section>

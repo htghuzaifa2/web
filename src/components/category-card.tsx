@@ -10,7 +10,7 @@ interface CategoryCardProps {
 
 export default function CategoryCard({ category }: CategoryCardProps) {
   return (
-    <Link href={`/category/${category.slug}`} className="group block" prefetch>
+    <Link href={`/category/${category.slug}`} className="group block" prefetch={true}>
       <Card className="relative overflow-hidden rounded-lg">
         <div className="aspect-[3/2] w-full">
           <Image
