@@ -48,7 +48,6 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
+export default function ProductPage({ params: { slug } }: ProductPageProps) {
   return <ProductDetailsClient slug={slug} />;
 }

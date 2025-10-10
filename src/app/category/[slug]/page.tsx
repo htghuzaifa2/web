@@ -39,7 +39,6 @@ export async function generateMetadata({
   };
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = await params;
+export default function CategoryPage({ params: { slug } }: CategoryPageProps) {
   return <CategoryClient slug={slug} />;
 }
