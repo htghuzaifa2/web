@@ -7,9 +7,8 @@ interface ProductPageProps {
   params: { slug: string };
 }
 
-export async function generateMetadata({
-  params: { slug },
-}: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = params;
   const product = productsData.find((p) => p.slug === slug);
 
   if (!product) {
@@ -48,6 +47,7 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductPage({ params: { slug } }: ProductPageProps) {
+export default function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params;
   return <ProductDetailsClient slug={slug} />;
 }
