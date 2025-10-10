@@ -1,6 +1,7 @@
 
 import type { Metadata } from "next";
 import productsData from "@/data/products.json";
+import CategoryClient from "../../category/[slug]/category-client";
 import ProductDetailsClient from "./product-details-client";
 
 interface ProductPageProps {
