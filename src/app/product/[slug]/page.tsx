@@ -4,7 +4,7 @@ import { use } from 'react';
 import ProductDetailsClient from './product-details-client';
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export const runtime = 'edge';

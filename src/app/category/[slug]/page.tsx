@@ -4,7 +4,7 @@ import { use } from 'react';
 import CategoryClient from './category-client';
 
 interface CategoryPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export const runtime = 'edge';
