@@ -4,7 +4,7 @@ import { use } from 'react';
 import ProductDetailsClient from './product-details-client';
 
 interface ProductPageProps {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
 export default function ProductPage({ params }: ProductPageProps) {

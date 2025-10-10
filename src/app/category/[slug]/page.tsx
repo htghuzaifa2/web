@@ -4,7 +4,7 @@ import { use } from 'react';
 import CategoryClient from './category-client';
 
 interface CategoryPageProps {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
