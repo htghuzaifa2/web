@@ -62,7 +62,7 @@ export function useWindowedProducts() {
   // -- Initialization and State Restoration --
   useEffect(() => {
     // This effect runs only on the client
-    const navigationEntries = performance.getEntriesByType("navigation");
+    const navigationEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
     if (navigationEntries.length > 0 && navigationEntries[0].type === 'reload') {
         sessionStorage.removeItem('featuredScrollY');
         sessionStorage.removeItem('featuredVisibleIds');
