@@ -38,7 +38,7 @@ export async function fetchProducts({
         productsToProcess.sort((a, b) => a.id - b.id);
         break;
       case 'price-asc':
-        productsToProcess.sort((a, b) => a.price - b.price);
+        productsToProcess.sort((a, b) => a.price - a.price);
         break;
       case 'price-desc':
         productsToProcess.sort((a, b) => b.price - a.price);
@@ -57,4 +57,18 @@ export async function fetchProducts({
     products,
     total: productsToProcess.length
   };
+}
+
+export async function fetchFeaturedProducts() {
+  let productsToProcess: Product[] = [...productsData];
+
+  // Shuffle the array for random order
+  for (let i = productsToProcess.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [productsToProcess[i], productsToProcess[j]] = [productsToProcess[j], productsToProcess[i]];
+  }
+
+  const products = productsToProcess.slice(0, 10);
+  
+  return products;
 }
