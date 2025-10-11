@@ -1,7 +1,7 @@
 
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,26 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
   const { addToCart } = useCart();
   const { toast } = useToast();
   
+  useEffect(() => {
+    const appRoot = document.querySelector('body > div:first-child') as HTMLElement | null;
+    if (appRoot) {
+      if (open) {
+        appRoot.setAttribute('inert', 'true');
+        appRoot.style.pointerEvents = 'none';
+      } else {
+        appRoot.removeAttribute('inert');
+        appRoot.style.pointerEvents = '';
+      }
+    }
+
+    return () => {
+      if (appRoot) {
+        appRoot.removeAttribute('inert');
+        appRoot.style.pointerEvents = '';
+      }
+    };
+  }, [open]);
+  
   if (!product) return null;
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
@@ -42,7 +62,11 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl w-[95vw] sm:w-full h-[90vh] p-0 flex flex-col">
+      <DialogContent 
+        className="max-w-4xl w-[95vw] sm:w-full h-[90vh] p-0 flex flex-col"
+        style={{ touchAction: 'none' }}
+        onOpenAutoFocus={(e) => e.preventDefault()} // Prevents focus on first element
+      >
         <DialogHeader className="p-4 pb-0 md:p-6 md:pb-0">
             <DialogTitle className="sr-only">{product.name}</DialogTitle>
         </DialogHeader>

@@ -59,6 +59,9 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     mainApi.scrollTo(index);
   }, [mainApi]);
 
+  const scrollPrev = useCallback(() => mainApi?.scrollPrev(), [mainApi]);
+  const scrollNext = useCallback(() => mainApi?.scrollNext(), [mainApi]);
+
   const onSelect = useCallback(() => {
     if (!mainApi || !thumbApi) return;
     const newSelectedIndex = mainApi.selectedScrollSnap();
@@ -71,12 +74,23 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     onSelect();
     mainApi.on("select", onSelect);
     mainApi.on("reInit", onSelect);
-    return () => { mainApi.off("select", onSelect) };
-  }, [mainApi, onSelect]);
-  
-  const scrollPrev = useCallback(() => mainApi?.scrollPrev(), [mainApi]);
-  const scrollNext = useCallback(() => mainApi?.scrollNext(), [mainApi]);
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'ArrowRight') {
+            scrollNext();
+        } else if (e.key === 'ArrowLeft') {
+            scrollPrev();
+        }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => { 
+        mainApi.off("select", onSelect);
+        window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mainApi, onSelect, scrollNext, scrollPrev]);
+  
   const handleOpenLightbox = (index: number) => {
     openLightbox(images, index, productName);
   };
