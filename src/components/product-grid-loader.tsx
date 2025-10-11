@@ -40,18 +40,9 @@ export function ProductGridLoader({ category, sortBy, randomize = false, searchQ
         category,
         sortBy,
         randomize,
-        searchQuery,
       };
 
       let productsToProcess: Product[] = [...productsData];
-
-      if (searchQuery) {
-        productsToProcess = productsToProcess.filter(p =>
-            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
-            p.id.toString().includes(searchQuery)
-        );
-      }
       
       if (category) {
         productsToProcess = productsToProcess.filter(p => p.category.includes(category));
@@ -91,10 +82,14 @@ export function ProductGridLoader({ category, sortBy, randomize = false, searchQ
       setCurrentPage(page);
       setIsLoading(false);
     },
-    [category, sortBy, randomize, searchQuery]
+    [category, sortBy, randomize]
   );
   
   useEffect(() => {
+    // This effect should not handle search query logic.
+    // It's only for category/randomized grids.
+    if (searchQuery) return;
+
     setProducts([]);
     setCurrentPage(1);
     setHasMore(true);
@@ -121,6 +116,11 @@ export function ProductGridLoader({ category, sortBy, randomize = false, searchQ
           {searchQuery ? "No products found matching your search." : "No products found in this category."}
        </div>
      )
+  }
+  
+  // Do not render if a search query is present, as search-client will handle it
+  if(searchQuery) {
+    return null;
   }
 
   return (
