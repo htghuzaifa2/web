@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
@@ -7,6 +8,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import ProductCard from './product-card';
 import { ArrowDown } from 'lucide-react';
+import productsData from '@/data/products.json';
 
 const BATCH_SIZE = 25;
 
@@ -20,17 +22,62 @@ function ProductGridSkeleton() {
   );
 }
 
-export function ProductGridLoader({ category, sortBy, randomize = false }: { category?: string, sortBy?: string, randomize?: boolean }) {
+export function ProductGridLoader({ category, sortBy, randomize = false, searchQuery }: { category?: string, sortBy?: string, randomize?: boolean, searchQuery?: string }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [total, setTotal] = useState(0);
   const gridRef = useRef<HTMLDivElement>(null);
 
   const fetchAndSetProducts = useCallback(
     async (page: number, keepExisting = false) => {
       setIsLoading(true);
-      const { products: newProducts, total } = await serverFetchProducts({ page, limit: BATCH_SIZE, category, sortBy, randomize });
+
+      const fetchParams = {
+        page,
+        limit: BATCH_SIZE,
+        category,
+        sortBy,
+        randomize,
+        searchQuery,
+      };
+
+      let productsToProcess: Product[] = [...productsData];
+
+      if (searchQuery) {
+        productsToProcess = productsToProcess.filter(p =>
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
+            p.id.toString().includes(searchQuery)
+        );
+      }
+      
+      if (category) {
+        productsToProcess = productsToProcess.filter(p => p.category.includes(category));
+      }
+
+      switch (sortBy) {
+        case 'newest':
+          productsToProcess.sort((a, b) => b.id - a.id);
+          break;
+        case 'oldest':
+          productsToProcess.sort((a, b) => a.id - b.id);
+          break;
+        case 'price-asc':
+          productsToProcess.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-desc':
+          productsToProcess.sort((a, b) => b.price - a.price);
+          break;
+        default:
+          break;
+      }
+      
+      const totalProducts = productsToProcess.length;
+      const start = (page - 1) * BATCH_SIZE;
+      const end = start + BATCH_SIZE;
+      const newProducts = productsToProcess.slice(start, end);
 
       setProducts((prev) => {
         const currentProducts = keepExisting ? prev : [];
@@ -38,12 +85,13 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
         const productMap = new Map(allProducts.map(p => [p.id, p]));
         return Array.from(productMap.values());
       });
-
-      setHasMore(newProducts.length > 0 && (page * BATCH_SIZE) < total);
+      
+      setTotal(totalProducts);
+      setHasMore(newProducts.length > 0 && (page * BATCH_SIZE) < totalProducts);
       setCurrentPage(page);
       setIsLoading(false);
     },
-    [category, sortBy, randomize]
+    [category, sortBy, randomize, searchQuery]
   );
   
   useEffect(() => {
@@ -51,7 +99,7 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
     setCurrentPage(1);
     setHasMore(true);
     fetchAndSetProducts(1, false);
-  }, [category, sortBy, randomize, fetchAndSetProducts]);
+  }, [category, sortBy, randomize, searchQuery, fetchAndSetProducts]);
 
   const loadMoreProducts = () => {
     if (hasMore && !isLoading) {
@@ -70,7 +118,7 @@ export function ProductGridLoader({ category, sortBy, randomize = false }: { cat
   if (products.length === 0 && !isLoading) {
      return (
        <div className="text-center py-16 text-muted-foreground">
-          No products found in this category.
+          {searchQuery ? "No products found matching your search." : "No products found in this category."}
        </div>
      )
   }
