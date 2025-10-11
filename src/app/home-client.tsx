@@ -1,9 +1,9 @@
 
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import FeaturedProducts from '@/components/featured-products';
 
 export default function HomeClient() {
     return (
@@ -24,6 +24,8 @@ export default function HomeClient() {
                     </div>
                 </div>
             </section>
+
+            <FeaturedProducts />
 
             <section className="text-center py-16">
                 <div className="container mx-auto px-4">
