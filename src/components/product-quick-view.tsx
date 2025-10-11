@@ -66,6 +66,8 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
         className="max-w-4xl w-[95vw] sm:w-full h-[90vh] p-0 flex flex-col"
         style={{ touchAction: 'none' }}
         onOpenAutoFocus={(e) => e.preventDefault()} // Prevents focus on first element
+        onPointerDownOutside={(e) => e.preventDefault()} // Prevents closing on backdrop click
+        onInteractOutside={(e) => e.preventDefault()} // Prevents closing on backdrop click
       >
         <DialogHeader className="p-4 pb-0 md:p-6 md:pb-0">
             <DialogTitle className="sr-only">{product.name}</DialogTitle>
