@@ -21,6 +21,28 @@ interface ProductDetailsClientProps {
   slug: string;
 }
 
+function generateMetaDescription(product: Product): string {
+    // Rule 1: Use short description if it exists and is >= 10 chars
+    if (product.description && product.description.length >= 10) {
+        return product.description;
+    }
+
+    // Rule 2: Fallback to long description
+    if (product.longDescription) {
+        // Strip HTML tags and line breaks
+        const stripped = product.longDescription.replace(/<[^>]+>/g, '').replace(/\n/g, ' ');
+        if (stripped.length > 160) {
+            // Truncate and add ellipsis
+            return stripped.substring(0, 157) + "...";
+        }
+        return stripped;
+    }
+
+    // Rule 3: If both are missing, return empty string
+    return "";
+}
+
+
 export default function ProductDetailsClient({ slug }: ProductDetailsClientProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
@@ -44,11 +66,17 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       setRelatedProducts(fetchedRelated);
       setIsLoading(false);
       
-      document.title = `${fetchedProduct.name} - huzi.pk`;
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        const descriptionText = fetchedProduct.description || fetchedProduct.longDescription || "Check out this product on huzi.pk";
-        metaDescription.setAttribute('content', descriptionText.substring(0, 160));
+      // Update meta tags dynamically
+      if (fetchedProduct.name) {
+          document.title = fetchedProduct.name;
+      } else {
+          document.title = "Product - huzi.pk";
+      }
+
+      const metaDescriptionTag = document.querySelector('meta[name="description"]');
+      if (metaDescriptionTag) {
+          const description = generateMetaDescription(fetchedProduct);
+          metaDescriptionTag.setAttribute('content', description);
       }
 
     }
