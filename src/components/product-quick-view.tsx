@@ -30,9 +30,11 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
       if (open) {
         appRoot.setAttribute('inert', 'true');
         appRoot.style.pointerEvents = 'none';
+        document.body.style.overflow = 'hidden';
       } else {
         appRoot.removeAttribute('inert');
         appRoot.style.pointerEvents = '';
+        document.body.style.overflow = '';
       }
     }
 
@@ -40,6 +42,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
       if (appRoot) {
         appRoot.removeAttribute('inert');
         appRoot.style.pointerEvents = '';
+        document.body.style.overflow = '';
       }
     };
   }, [open]);
@@ -65,9 +68,9 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
       <DialogContent 
         className="max-w-4xl w-[95vw] sm:w-full h-[90vh] p-0 flex flex-col"
         style={{ touchAction: 'none' }}
-        onOpenAutoFocus={(e) => e.preventDefault()} // Prevents focus on first element
-        onPointerDownOutside={(e) => e.preventDefault()} // Prevents closing on backdrop click
-        onInteractOutside={(e) => e.preventDefault()} // Prevents closing on backdrop click
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        onPointerDownOutside={(e) => e.preventDefault()}
+        onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader className="p-4 pb-0 md:p-6 md:pb-0">
             <DialogTitle className="sr-only">{product.name}</DialogTitle>
@@ -75,7 +78,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
         <ScrollArea className="h-full w-full">
             <div className="grid md:grid-cols-2 gap-4 p-4 md:p-0">
             <div className="md:col-span-1 p-0 md:p-4">
-                <ProductImageGallery images={images} productName={product.name} />
+                <ProductImageGallery images={images} productName={product.name} isQuickView={true} />
             </div>
             <div className="flex flex-col justify-start md:col-span-1 p-2 md:p-6">
                 <h1 className="font-headline text-2xl md:text-3xl font-bold">{product.name}</h1>

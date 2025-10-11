@@ -13,13 +13,14 @@ import { useLightbox } from "@/context/lightbox-context";
 interface ProductImageGalleryProps {
   images: string[];
   productName: string;
+  isQuickView?: boolean;
 }
 
-const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "" }: { src: string, alt: string, priority?: boolean, fill?: boolean, sizes?: string }) => {
+const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "", isQuickView = false }: { src: string, alt: string, priority?: boolean, fill?: boolean, sizes?: string, isQuickView?: boolean }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     return (
-        <div className="relative w-full h-full">
+        <div className={cn("relative w-full h-full", isQuickView ? "pointer-events-none" : "")}>
             {isLoading && <Skeleton className="absolute inset-0" />}
             <Image
                 src={src}
@@ -38,7 +39,7 @@ const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "" }: { s
     );
 };
 
-export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
+export default function ProductImageGallery({ images, productName, isQuickView = false }: ProductImageGalleryProps) {
   const [mainApi, setMainApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
   const [thumbApi, setThumbApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -77,8 +78,10 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
     const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'ArrowRight') {
+            e.stopPropagation();
             scrollNext();
         } else if (e.key === 'ArrowLeft') {
+            e.stopPropagation();
             scrollPrev();
         }
     };
@@ -92,6 +95,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   }, [mainApi, onSelect, scrollNext, scrollPrev]);
   
   const handleOpenLightbox = (index: number) => {
+    if (isQuickView) return;
     openLightbox(images, index, productName);
   };
 
@@ -103,7 +107,10 @@ export default function ProductImageGallery({ images, productName }: ProductImag
           <div className="flex h-full">
             {images.map((imgSrc, index) => (
               <div
-                className="relative w-full flex-shrink-0 flex-grow-0 basis-full cursor-pointer h-full"
+                className={cn(
+                  "relative w-full flex-shrink-0 flex-grow-0 basis-full h-full",
+                  !isQuickView && "cursor-pointer"
+                )}
                 key={index}
                 onClick={() => handleOpenLightbox(index)}
               >
@@ -113,6 +120,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                   fill
                   priority={index === 0}
                   sizes="(max-width: 767px) 90vw, 45vw"
+                  isQuickView={isQuickView}
                 />
               </div>
             ))}
@@ -145,6 +153,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                                alt={`${productName} thumbnail ${index + 1}`}
                                fill
                                sizes="15vw"
+                               isQuickView={isQuickView}
                            />
                        </button>
                    ))}

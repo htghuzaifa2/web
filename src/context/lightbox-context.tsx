@@ -121,7 +121,11 @@ const LightboxContent = ({ images, index, productName, closeLightbox }: Lightbox
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm lightbox-zoom-in">
+        <div 
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm lightbox-zoom-in"
+          onClick={closeLightbox}
+          style={{touchAction: 'none'}}
+        >
           <div
             className="relative w-full h-full p-4 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
