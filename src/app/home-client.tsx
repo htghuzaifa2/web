@@ -2,60 +2,10 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import ProductCard from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { useState, useEffect } from "react";
-import { fetchFeaturedProducts } from "./actions";
-import type { Product } from "@/lib/types";
-
-function HomePageSkeleton() {
-  return (
-    <div className="bg-background">
-      <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
-        <div className="container mx-auto px-4 text-center">
-          <Skeleton className="h-12 w-3/4 mx-auto" />
-          <Skeleton className="h-6 w-1/2 mx-auto mt-4" />
-          <div className="mt-8 flex justify-center gap-4">
-            <Skeleton className="h-12 w-32" />
-            <Skeleton className="h-12 w-32" />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-            <Skeleton className="h-10 w-1/2 mx-auto mb-12" />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                 {Array.from({ length: 10 }).map((_, index) => (
-                    <ProductCard key={`featured-skeleton-${index}`} product={null} />
-                 ))}
-            </div>
-        </div>
-      </section>
-       <div className="container mx-auto px-4 text-center py-16">
-          <Skeleton className="h-10 w-1/2 mx-auto mb-4" />
-          <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
-          <Skeleton className="h-12 w-48 mx-auto" />
-       </div>
-    </div>
-  );
-}
 
 export default function HomeClient() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        async function loadProducts() {
-            setIsLoading(true);
-            const featuredProducts = await fetchFeaturedProducts();
-            setProducts(featuredProducts);
-            setIsLoading(false);
-        }
-        loadProducts();
-    }, []);
-
     return (
         <div className="bg-background content-fade-in">
             <section className="w-full py-20 md:py-24 lg:py-32 bg-muted/50">
@@ -72,27 +22,6 @@ export default function HomeClient() {
                             <Link href="/categories" prefetch={true}>Browse Categories</Link>
                         </Button>
                     </div>
-                </div>
-            </section>
-
-            <section className="py-12 md:py-16">
-                <div className="container mx-auto px-4">
-                    <h2 className="mb-8 text-center font-headline text-3xl font-bold text-foreground md:mb-12 md:text-4xl">
-                        Featured Products
-                    </h2>
-                    {isLoading ? (
-                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                            {Array.from({ length: 10 }).map((_, index) => (
-                                <ProductCard key={`featured-skeleton-${index}`} product={null} />
-                            ))}
-                        </div>
-                    ) : (
-                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                            {products.map((product, index) => (
-                                <ProductCard key={product.id} product={product} priority={index < 5} />
-                            ))}
-                        </div>
-                    )}
                 </div>
             </section>
 
