@@ -22,6 +22,7 @@ const shuffle = (array: Product[]) => {
 
 // --- Session Storage Utilities ---
 const getSessionItem = <T>(key: string): T | null => {
+  if (typeof window === 'undefined') return null;
   try {
     const item = sessionStorage.getItem(key);
     return item ? JSON.parse(item) as T : null;
@@ -32,6 +33,7 @@ const getSessionItem = <T>(key: string): T | null => {
 };
 
 const setSessionItem = (key: string, value: unknown) => {
+  if (typeof window === 'undefined') return;
   try {
     sessionStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
@@ -59,12 +61,12 @@ export function useWindowedProducts() {
   
   // -- Initialization and State Restoration --
   useEffect(() => {
-    // Clear session storage only on hard refresh
-    const navigationType = performance.getEntriesByType("navigation")[0]?.type;
-    if (navigationType === 'reload') {
-      sessionStorage.removeItem('featuredScrollY');
-      sessionStorage.removeItem('featuredVisibleIds');
-      sessionStorage.removeItem('featuredShuffledOrder');
+    // This effect runs only on the client
+    const navigationEntries = performance.getEntriesByType("navigation");
+    if (navigationEntries.length > 0 && navigationEntries[0].type === 'reload') {
+        sessionStorage.removeItem('featuredScrollY');
+        sessionStorage.removeItem('featuredVisibleIds');
+        sessionStorage.removeItem('featuredShuffledOrder');
     }
     
     const restoredScrollY = getSessionItem<number>('featuredScrollY');
@@ -73,7 +75,7 @@ export function useWindowedProducts() {
 
     let initialShuffle: Product[];
 
-    if (restoredShuffledOrder && restoredVisibleIds) {
+    if (restoredShuffledOrder && restoredVisibleIds && restoredVisibleIds.length > 0) {
       // Recreate the exact same shuffle
       const productMap = new Map(productsData.map(p => [p.id, p]));
       initialShuffle = restoredShuffledOrder.map(id => productMap.get(id)).filter(Boolean) as Product[];
