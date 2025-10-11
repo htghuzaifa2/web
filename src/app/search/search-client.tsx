@@ -31,17 +31,23 @@ export default function SearchClient() {
       return [];
     }
 
-    // Rule a: ID search for digits-only input
     if (/^\d+$/.test(trimmedQuery)) {
       const productId = parseInt(trimmedQuery, 10);
       return ALL_PRODUCTS.filter(p => p.id === productId);
     }
 
-    // Rule b: Title search for other inputs
     const lowercasedQuery = trimmedQuery.toLowerCase();
-    return ALL_PRODUCTS.filter(p => 
+    
+    const startsWith = ALL_PRODUCTS.filter(p => 
+      p.name.toLowerCase().startsWith(lowercasedQuery)
+    );
+    
+    const contains = ALL_PRODUCTS.filter(p => 
+      !p.name.toLowerCase().startsWith(lowercasedQuery) &&
       p.name.toLowerCase().includes(lowercasedQuery)
     );
+
+    return [...startsWith, ...contains];
   }, [debouncedQuery]);
 
   useEffect(() => {
@@ -63,8 +69,6 @@ export default function SearchClient() {
 
   const hasMore = visibleCount < filteredProducts.length;
 
-  // This is a bit of a workaround to keep the input in sync with the URL
-  // on initial load and back/forward navigation.
    useEffect(() => {
     if (initialQuery !== query) {
       setQuery(initialQuery);
@@ -78,9 +82,6 @@ export default function SearchClient() {
         Search Products
       </h1>
       
-      {/* We keep the original search bar component logic in the header for consistency */}
-      {/* This client component now primarily handles displaying the results */}
-
       {initialQuery ? (
         <>
           <h3 className="mb-8 text-center text-lg text-muted-foreground">
@@ -88,12 +89,12 @@ export default function SearchClient() {
           </h3>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
               {Array.from({ length: 10 }).map((_, i) => <ProductCard key={`skel-${i}`} product={null} />)}
             </div>
           ) : displayedProducts.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                 {displayedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
