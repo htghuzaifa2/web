@@ -13,6 +13,7 @@ import { WhatsappIcon } from '@/components/whatsapp-icon';
 import { SearchProvider } from '@/context/search-context';
 import SearchBar from '@/components/search-bar';
 import { LightboxProvider, Lightbox } from '@/context/lightbox-context';
+import '@/lib/prefetch.js';
 
 const belleza = Belleza({
   subsets: ['latin'],
