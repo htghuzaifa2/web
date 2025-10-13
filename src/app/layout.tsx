@@ -98,7 +98,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
-      <Script id="google-tag-manager" strategy="afterInteractive">
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <Script id="google-tag-manager" strategy="afterInteractive">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -148,6 +149,11 @@ export default function RootLayout({
             </CartProvider>
           </SearchProvider>
         </ThemeProvider>
+        
+        {/* External Libraries */}
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script defer src="https://js.stripe.com/v3/"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
       </body>
     </html>
   );
