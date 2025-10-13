@@ -152,7 +152,6 @@ export default function RootLayout({
         
         {/* External Libraries */}
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-        <script defer src="https://js.stripe.com/v3/"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
       </body>
     </html>
