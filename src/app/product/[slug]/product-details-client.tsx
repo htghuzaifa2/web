@@ -22,24 +22,33 @@ interface ProductDetailsClientProps {
 }
 
 function generateMetaDescription(product: Product): string {
-    let description = "";
-
-    // Rule 1: Prioritize the short, clean description field.
+    // Rule: Prioritize the short, clean description field.
+    // Fallback to a generic one if it's missing or too short.
     if (product.description && product.description.length >= 10) {
-        description = product.description;
-    }
-    // Rule 2: If the short description is not suitable, create a generic one.
-    // This avoids using the longDescription which contains promotional text.
-    else {
-        description = `Buy ${product.name} at huzi.pk. Discover a wide range of quality products with delivery across Pakistan.`;
-    }
+        let cleanDescription = product.description;
 
-    // Rule 3: Truncate to a reasonable length for meta tags.
-    if (description.length > 160) {
-        return description.substring(0, 157) + "...";
+        // Remove promotional phrases
+        const promotionalPatterns = [
+          /price in pakistan/i,
+          /202\d/g, // years like 2024, 2025 etc.
+        ];
+        
+        promotionalPatterns.forEach(pattern => {
+            cleanDescription = cleanDescription.replace(pattern, '');
+        });
+
+        // Trim whitespace that might be left after replacements
+        cleanDescription = cleanDescription.trim().replace(/ +/g, ' ');
+
+        // Truncate to a reasonable length for meta tags.
+        if (cleanDescription.length > 160) {
+            return cleanDescription.substring(0, 157) + "...";
+        }
+        return cleanDescription;
     }
     
-    return description;
+    // Generic fallback
+    return `Buy ${product.name} at huzi.pk. Discover a wide range of quality products with delivery across Pakistan.`;
 }
 
 
@@ -129,6 +138,38 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
 
   const images = [product.image, ...(product.additionalImages || [])];
   
+  const offersData: any = {
+      '@type': 'Offer',
+      price: product.price,
+      priceCurrency: 'PKR',
+      priceValidUntil: '2026-12-31',
+      availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+      url: `https://huzi.pk/product/${product.slug}`,
+  };
+
+  if (!isOutOfStock) {
+    offersData.shippingDetails = {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '250',
+          currency: 'PKR',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'PK',
+        },
+      };
+    offersData.hasMerchantReturnPolicy = {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'PK',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 3,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
+      };
+  }
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -140,40 +181,8 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       '@type': 'Brand',
       name: 'huzi.pk'
     },
-    offers: {
-      '@type': 'Offer',
-      price: product.price, // Ensure this is a number
-      priceCurrency: 'PKR',
-      priceValidUntil: '2026-12-31',
-      availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-      url: `https://huzi.pk/product/${product.slug}`,
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '250',
-          currency: 'PKR',
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'PK',
-        },
-      },
-      hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'PK',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 3,
-        returnMethod: 'https://schema.org/ReturnByMail',
-        returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
-      },
-    },
+    offers: offersData,
   };
-
-  if (isOutOfStock) {
-    delete jsonLd.offers.shippingDetails;
-    delete jsonLd.offers.hasMerchantReturnPolicy;
-  }
   
 
   return (
