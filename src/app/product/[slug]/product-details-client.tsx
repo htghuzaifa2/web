@@ -22,24 +22,30 @@ interface ProductDetailsClientProps {
 }
 
 function generateMetaDescription(product: Product): string {
+    let description = "";
+
     // Rule 1: Use short description if it exists and is >= 10 chars
     if (product.description && product.description.length >= 10) {
-        return product.description;
+        description = product.description;
+    }
+    // Rule 2: Fallback to long description if short one is not suitable
+    else if (product.longDescription) {
+        const stripped = product.longDescription
+            .replace(/<[^>]+>/g, '') // Strip HTML tags
+            .replace(/\n/g, ' ')      // Replace newlines with spaces
+            .replace(/Product Highlights:/i, '') // Remove promotional text
+            .replace(/Home Delivery Nationwide with Cash on Delivery Service/i, '') // Remove promotional text
+            .trim();
+        
+        description = stripped;
     }
 
-    // Rule 2: Fallback to long description
-    if (product.longDescription) {
-        // Strip HTML tags and line breaks
-        const stripped = product.longDescription.replace(/<[^>]+>/g, '').replace(/\n/g, ' ');
-        if (stripped.length > 160) {
-            // Truncate and add ellipsis
-            return stripped.substring(0, 157) + "...";
-        }
-        return stripped;
+    // Rule 3: Truncate to a reasonable length for meta tags
+    if (description.length > 160) {
+        return description.substring(0, 157) + "...";
     }
-
-    // Rule 3: If both are missing, return empty string
-    return "";
+    
+    return description;
 }
 
 
@@ -134,11 +140,15 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
     '@type': 'Product',
     name: product.name,
     image: product.image,
-    description: product.description,
+    description: generateMetaDescription(product),
     sku: product.id.toString(),
+    brand: {
+      '@type': 'Brand',
+      name: 'huzi.pk'
+    },
     offers: {
       '@type': 'Offer',
-      price: product.price.toFixed(2),
+      price: product.price,
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
       availability: !isOutOfStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
