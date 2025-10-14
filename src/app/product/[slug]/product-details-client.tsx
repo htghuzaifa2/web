@@ -24,23 +24,17 @@ interface ProductDetailsClientProps {
 function generateMetaDescription(product: Product): string {
     let description = "";
 
-    // Rule 1: Use short description if it exists and is >= 10 chars
+    // Rule 1: Prioritize the short, clean description field.
     if (product.description && product.description.length >= 10) {
         description = product.description;
     }
-    // Rule 2: Fallback to long description if short one is not suitable
-    else if (product.longDescription) {
-        const stripped = product.longDescription
-            .replace(/<[^>]+>/g, '') // Strip HTML tags
-            .replace(/\n/g, ' ')      // Replace newlines with spaces
-            .replace(/Product Highlights:/i, '') // Remove promotional text
-            .replace(/Home Delivery Nationwide with Cash on Delivery Service/i, '') // Remove promotional text
-            .trim();
-        
-        description = stripped;
+    // Rule 2: If the short description is not suitable, create a generic one.
+    // This avoids using the longDescription which contains promotional text.
+    else {
+        description = `Buy ${product.name} at huzi.pk. Discover a wide range of quality products with delivery across Pakistan.`;
     }
 
-    // Rule 3: Truncate to a reasonable length for meta tags
+    // Rule 3: Truncate to a reasonable length for meta tags.
     if (description.length > 160) {
         return description.substring(0, 157) + "...";
     }
@@ -135,7 +129,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
 
   const images = [product.image, ...(product.additionalImages || [])];
   
-  const jsonLd: any = {
+  const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
@@ -148,36 +142,39 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
     },
     offers: {
       '@type': 'Offer',
-      price: product.price,
+      price: product.price, // Ensure this is a number
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
-      availability: !isOutOfStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
       url: `https://huzi.pk/product/${product.slug}`,
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '250',
+          currency: 'PKR',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'PK',
+        },
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'PK',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 3,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
+      },
     },
   };
 
-  if (!isOutOfStock) {
-    jsonLd.offers.shippingDetails = {
-      '@type': 'OfferShippingDetails',
-      shippingRate: {
-        '@type': 'MonetaryAmount',
-        value: '250',
-        currency: 'PKR',
-      },
-      shippingDestination: {
-        '@type': 'DefinedRegion',
-        addressCountry: 'PK',
-      },
-    };
-    jsonLd.offers.hasMerchantReturnPolicy = {
-      '@type': 'MerchantReturnPolicy',
-      applicableCountry: 'PK',
-      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-      merchantReturnDays: 3,
-      returnMethod: 'https://schema.org/ReturnByMail',
-      returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
-    };
+  if (isOutOfStock) {
+    delete jsonLd.offers.shippingDetails;
+    delete jsonLd.offers.hasMerchantReturnPolicy;
   }
+  
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12 content-fade-in">
