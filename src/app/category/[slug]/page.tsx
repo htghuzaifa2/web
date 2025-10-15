@@ -1,6 +1,6 @@
 
 import type { Metadata } from 'next';
-import CategoryClient from './category-client';
+import CategoryLoader from './category-loader';
 import categoriesData from "@/data/categories.json";
 
 interface CategoryPageProps {
@@ -42,5 +42,5 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
 export default function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = params;
-  return <CategoryClient slug={slug} />;
+  return <CategoryLoader slug={slug} />;
 }

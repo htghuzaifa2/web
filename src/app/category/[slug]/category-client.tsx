@@ -17,30 +17,9 @@ interface CategoryClientProps {
 
 type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
 
-const getCategoryData = (slug: string) => {
-  const category = categoriesData.categories.find((c) => c.slug === slug);
-  if (!category) {
-    return { category: null };
-  }
-  return { category };
+const getCategoryData = (slug: string): Category | null => {
+  return categoriesData.categories.find((c) => c.slug === slug) || null;
 };
-
-function CategoryPageSkeleton() {
-  return (
-    <div className="container mx-auto px-4 py-12">
-      <Skeleton className="h-10 w-1/2 mx-auto mb-2" />
-      <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
-      <div className="flex justify-end mb-8">
-        <Skeleton className="h-10 w-[180px]" />
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <ProductCard key={`skeleton-${index}`} product={null} />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function CategoryClient({ slug }: CategoryClientProps) {
   const router = useRouter();
@@ -49,24 +28,19 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
   
   const [category, setCategory] = useState<Category | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const { category: fetchedCategory } = getCategoryData(slug);
+    const fetchedCategory = getCategoryData(slug);
     
     if (!fetchedCategory) {
-      notFound();
+      setError(true);
       return;
     }
     
     setCategory(fetchedCategory);
     setIsLoading(false);
     
-    document.title = `${fetchedCategory.name} - huzi.pk`;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-        metaDescription.setAttribute('content', `Shop for ${fetchedCategory.name} and more at huzi.pk.`);
-    }
-
   }, [slug]);
 
   const sortParam = searchParams.get('sort') || 'newest';
@@ -85,8 +59,13 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
     }
   };
 
+  if (error) {
+    notFound();
+  }
+
   if (isLoading || !category) {
-      return <CategoryPageSkeleton />;
+    // Should be handled by the loader, but as a fallback.
+    return null;
   }
 
   return (

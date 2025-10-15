@@ -1,7 +1,7 @@
 
 import type { Metadata } from 'next';
 import { getProductData } from "@/lib/data-fetching";
-import ProductDetailsClient from './product-details-client';
+import ProductDetailsLoader from './product-details-loader';
 import { notFound } from 'next/navigation';
 
 interface ProductPageProps {
@@ -10,24 +10,12 @@ interface ProductPageProps {
 
 function generateMetaDescription(product: any): string {
     if (product.description && product.description.length > 10) {
-        let cleanDescription = product.description;
-        const promotionalPatterns = [
-          /price in pakistan/i,
-          /202\d/g,
-        ];
-        
-        promotionalPatterns.forEach(pattern => {
-            cleanDescription = cleanDescription.replace(pattern, '');
-        });
-
-        cleanDescription = cleanDescription.trim().replace(/ +/g, ' ');
-
+        let cleanDescription = product.description.replace(/price in pakistan/i, '').replace(/202\d/g, '').trim();
         if (cleanDescription.length > 155) {
             return cleanDescription.substring(0, 152) + "...";
         }
         return cleanDescription;
     }
-    
     return `Buy ${product.name} at huzi.pk. Discover a wide range of quality products with delivery across Pakistan.`;
 }
 
@@ -64,9 +52,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const data = await getProductData(params.slug);
-  if (!data.product) {
+  // We can still fetch data here to check if the product exists server-side
+  // to show a 404 page immediately if it doesn't.
+  const { product } = await getProductData(params.slug);
+  if (!product) {
     notFound();
   }
-  return <ProductDetailsClient slug={params.slug} />;
+  return <ProductDetailsLoader slug={params.slug} />;
 }

@@ -22,32 +22,13 @@ interface ProductDetailsClientProps {
 }
 
 function generateMetaDescription(product: Product): string {
-    // Rule: Prioritize the short, clean description field.
-    // Fallback to a generic one if it's missing or too short.
     if (product.description && product.description.length >= 10) {
-        let cleanDescription = product.description;
-
-        // Remove promotional phrases
-        const promotionalPatterns = [
-          /price in pakistan/i,
-          /202\d/g, // years like 2024, 2025 etc.
-        ];
-        
-        promotionalPatterns.forEach(pattern => {
-            cleanDescription = cleanDescription.replace(pattern, '');
-        });
-
-        // Trim whitespace that might be left after replacements
-        cleanDescription = cleanDescription.trim().replace(/ +/g, ' ');
-
-        // Truncate to a reasonable length for meta tags.
+        let cleanDescription = product.description.replace(/price in pakistan/i, '').replace(/202\d/g, '').trim();
         if (cleanDescription.length > 155) {
             return cleanDescription.substring(0, 152) + "...";
         }
         return cleanDescription;
     }
-    
-    // Generic fallback
     return `Buy ${product.name} at huzi.pk. Discover a wide range of quality products with delivery across Pakistan.`;
 }
 
@@ -80,32 +61,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   }, [slug]);
 
   if (isLoading) {
-     return (
-        <div className="container mx-auto px-4 py-8 md:py-12">
-            <div className="mb-6">
-                <Skeleton className="h-10 w-24" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
-            <div className="md:col-span-1">
-                <Skeleton className="w-full aspect-square" />
-                <div className="flex gap-2 mt-4">
-                    <Skeleton className="w-1/4 aspect-square" />
-                    <Skeleton className="w-1/4 aspect-square" />
-                    <Skeleton className="w-1/4 aspect-square" />
-                    <Skeleton className="w-1/4 aspect-square" />
-                </div>
-            </div>
-            <div className="flex flex-col justify-start md:col-span-1 gap-4">
-                <Skeleton className="h-10 w-3/4" />
-                <Skeleton className="h-12 w-1/2" />
-                <Skeleton className="h-6 w-24" />
-                <Skeleton className="h-5 w-full" />
-                <Skeleton className="h-5 w-5/6" />
-                <Skeleton className="h-12 w-48 mt-4" />
-            </div>
-            </div>
-        </div>
-    );
+     return null; // The loader component will handle the skeleton
   }
 
   if (!product) {
