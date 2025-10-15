@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 import CategoryLoader from './category-loader';
 import categoriesData from "@/data/categories.json";
 
-interface CategoryPageProps {
+interface Props {
   params: { slug: string };
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = categoriesData.categories.find(c => c.slug === params.slug);
 
   if (!category) {
@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     }
   }
 
-  const description = `Shop for ${category.name} at huzi.pk. Browse our collection of ${category.name.toLowerCase()} and find the perfect item for you.`;
+  const description = `Shop for ${category.name} at huzi.pk. Browse our collection of ${category.name.toLowerCase()} and find the perfect item for you.`.substring(0, 155);
 
   return {
     title: category.name,
-    description: description.length > 155 ? description.substring(0, 152) + '...' : description,
+    description: description,
     openGraph: {
       title: category.name,
-      description: description.length > 155 ? description.substring(0, 152) + '...' : description,
+      description: description,
       url: `/category/${params.slug}`,
       type: 'website',
       images: [
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 
-export default function CategoryPage({ params }: CategoryPageProps) {
+export default function CategoryPage({ params }: Props) {
   const { slug } = params;
   return <CategoryLoader slug={slug} />;
 }
