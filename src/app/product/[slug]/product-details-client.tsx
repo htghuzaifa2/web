@@ -41,8 +41,8 @@ function generateMetaDescription(product: Product): string {
         cleanDescription = cleanDescription.trim().replace(/ +/g, ' ');
 
         // Truncate to a reasonable length for meta tags.
-        if (cleanDescription.length > 160) {
-            return cleanDescription.substring(0, 157) + "...";
+        if (cleanDescription.length > 155) {
+            return cleanDescription.substring(0, 152) + "...";
         }
         return cleanDescription;
     }
@@ -74,19 +74,6 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       setProduct(fetchedProduct);
       setRelatedProducts(fetchedRelated);
       setIsLoading(false);
-      
-      // Update meta tags dynamically
-      if (fetchedProduct.name) {
-          document.title = fetchedProduct.name;
-      } else {
-          document.title = "Product - huzi.pk";
-      }
-
-      const metaDescriptionTag = document.querySelector('meta[name="description"]');
-      if (metaDescriptionTag) {
-          const description = generateMetaDescription(fetchedProduct);
-          metaDescriptionTag.setAttribute('content', description);
-      }
 
     }
     fetchData();
