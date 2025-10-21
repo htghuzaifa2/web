@@ -109,7 +109,7 @@ export default function CheckoutClient() {
     message += `*Payment Method: ${data.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Advance Payment'}*\n\n`;
     
     if (isCodSelected) {
-        message += `To save on fees next time, you can choose Advance Payment. Please confirm your order details.`;
+        message += `Choose Advance Payment to avoid the unnecessary COD fee. Please confirm your order details.`;
     } else {
         message += `Please confirm order details and I will provide payment information.`;
     }
