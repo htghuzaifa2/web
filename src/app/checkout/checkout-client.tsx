@@ -109,7 +109,7 @@ export default function CheckoutClient() {
     message += `*Payment Method: ${data.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Advance Payment'}*\n\n`;
     
     if (isCodSelected) {
-        message += `Please confirm order details. You can choose Advance Payment on the next order to avoid the Rs. 50 COD fee.`;
+        message += `To save on fees next time, you can choose Advance Payment. Please confirm your order details.`;
     } else {
         message += `Please confirm order details and I will provide payment information.`;
     }
@@ -372,5 +372,3 @@ export default function CheckoutClient() {
     </div>
   );
 }
-
-    
