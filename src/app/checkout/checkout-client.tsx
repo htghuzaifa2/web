@@ -19,6 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { CheckCircle } from "lucide-react";
+import { Label } from "@/components/ui/label";
 
 // Dynamically import zod and the resolver for smaller initial bundles
 const zodPromise = import('zod');
@@ -371,7 +372,5 @@ export default function CheckoutClient() {
     </div>
   );
 }
-
-    
 
     
