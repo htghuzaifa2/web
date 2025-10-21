@@ -59,7 +59,6 @@ export default function CheckoutClient() {
       address: "",
       province: "",
       city: "",
-      paymentMethod: "advance",
     },
   });
 
@@ -105,7 +104,12 @@ export default function CheckoutClient() {
     }
     message += `*Total: PKR ${Math.round(finalTotal)}*\n\n`;
     message += `*Payment Method: ${data.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Advance Payment'}*\n\n`;
-    message += `Please confirm order details.`;
+    
+    if (isCodSelected) {
+        message += `Please confirm order details. You can choose Advance Payment on the next order to avoid the Rs. 50 COD fee.`;
+    } else {
+        message += `Please confirm order details and I will provide payment information.`;
+    }
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
     
