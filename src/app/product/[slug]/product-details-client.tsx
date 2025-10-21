@@ -83,7 +83,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   
   const offersData: any = {
       '@type': 'Offer',
-      price: product.price,
+      price: String(product.price),
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
       availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
