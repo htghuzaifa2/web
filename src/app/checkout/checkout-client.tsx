@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import locationData from "@/data/locations.json";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { cn } from "@/lib/utils";
+import { CheckCircle } from "lucide-react";
 
 // Dynamically import zod and the resolver for smaller initial bundles
 const zodPromise = import('zod');
@@ -325,30 +327,34 @@ export default function CheckoutClient() {
                     control={form.control}
                     name="paymentMethod"
                     render={({ field }) => (
-                        <FormItem className="space-y-3">
+                        <FormItem className="space-y-4">
                         <FormLabel>Payment Method</FormLabel>
                         <FormControl>
                             <RadioGroup
                             onValueChange={field.onChange}
                             defaultValue={field.value}
-                            className="flex flex-col space-y-1"
+                            className="grid grid-cols-1 gap-4"
                             >
-                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                <FormControl>
-                                <RadioGroupItem value="advance" />
-                                </FormControl>
-                                <FormLabel className="font-normal">
-                                 Advance Payment (Bank, EasyPaisa, JazzCash)
-                                </FormLabel>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                <FormControl>
-                                <RadioGroupItem value="cod" />
-                                </FormControl>
-                                <FormLabel className="font-normal">
-                                Cash on Delivery (COD) <span className="text-muted-foreground text-xs">(+Rs.50 Fee)</span>
-                                </FormLabel>
-                            </FormItem>
+                            <Label htmlFor="advance" className={cn(
+                                "flex flex-col items-start space-y-1 rounded-md border-2 p-4 cursor-pointer transition-colors relative",
+                                field.value === "advance" ? "border-primary bg-primary/5" : "border-muted hover:border-accent-foreground/50"
+                            )}>
+                                 <RadioGroupItem value="advance" id="advance" className="sr-only" />
+                                <span className="font-semibold text-foreground">Advance Payment</span>
+                                <span className="text-sm text-muted-foreground">Bank, EasyPaisa, JazzCash</span>
+                                {field.value === 'advance' && <CheckCircle className="h-5 w-5 text-primary absolute top-4 right-4" />}
+                            </Label>
+                            
+                            <Label htmlFor="cod" className={cn(
+                                "flex flex-col items-start space-y-1 rounded-md border-2 p-4 cursor-pointer transition-colors relative",
+                                field.value === "cod" ? "border-primary bg-primary/5" : "border-muted hover:border-accent-foreground/50"
+                            )}>
+                                <RadioGroupItem value="cod" id="cod" className="sr-only" />
+                               <span className="font-semibold text-foreground">Cash on Delivery (COD)</span>
+                               <span className="text-sm text-muted-foreground">Pay at your doorstep. <span className="font-bold text-foreground">(+Rs.50 Fee)</span></span>
+                               {field.value === 'cod' && <CheckCircle className="h-5 w-5 text-primary absolute top-4 right-4" />}
+                            </Label>
+
                             </RadioGroup>
                         </FormControl>
                         <FormMessage />
@@ -365,5 +371,7 @@ export default function CheckoutClient() {
     </div>
   );
 }
+
+    
 
     
