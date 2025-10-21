@@ -16,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
 import locationData from "@/data/locations.json";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 // Dynamically import zod and the resolver for smaller initial bundles
 const zodPromise = import('zod');
@@ -40,14 +41,15 @@ export default function CheckoutClient() {
               province: z.string({ required_error: "Please select a province." }).min(1, "Please select a province."),
               city: z.string({ required_error: "Please select a city." }).min(1, "Please select a city."),
               address: z.string().optional(),
+              paymentMethod: z.enum(["advance", "cod"], { required_error: "Please select a payment method." }),
           });
           setFormResolver(() => resolver(checkoutSchema));
       });
   }, []);
   
   const shippingFee = 250;
-  const finalTotal = total + shippingFee;
-
+  const codFee = 50;
+  
   const form = useForm<CheckoutFormValues>({
     resolver: formResolver,
     defaultValues: {
@@ -57,11 +59,16 @@ export default function CheckoutClient() {
       address: "",
       province: "",
       city: "",
+      paymentMethod: "advance",
     },
   });
 
   const selectedProvince = form.watch("province");
+  const paymentMethod = form.watch("paymentMethod");
   const cities = locationData.provinces.find(p => p.name === selectedProvince)?.cities || [];
+  
+  const isCodSelected = paymentMethod === 'cod';
+  const finalTotal = total + shippingFee + (isCodSelected ? codFee : 0);
 
   useEffect(() => {
     if (form.getValues("province")) {
@@ -93,8 +100,12 @@ export default function CheckoutClient() {
     
     message += `\nSubtotal: PKR ${Math.round(total)}\n`;
     message += `Shipping: PKR ${shippingFee}\n`;
+    if (isCodSelected) {
+        message += `COD Fee: PKR ${codFee}\n`;
+    }
     message += `*Total: PKR ${Math.round(finalTotal)}*\n\n`;
-    message += `Please confirm payment method (Easypaisa, Jazzcash, or Bank Transfer).`;
+    message += `*Payment Method: ${data.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Advance Payment'}*\n\n`;
+    message += `Please confirm order details.`;
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
     
@@ -177,6 +188,12 @@ export default function CheckoutClient() {
                     <p>Shipping</p>
                     <p className="font-medium text-price">{`PKR ${shippingFee}`}</p>
                   </div>
+                  {isCodSelected && (
+                    <div className="flex justify-between">
+                        <p>Cash on Delivery Fee</p>
+                        <p className="font-medium text-price">{`PKR ${codFee}`}</p>
+                    </div>
+                  )}
                   <div className="flex justify-between font-bold text-lg">
                     <p>Total</p>
                     <p className="text-price">{`PKR ${Math.round(finalTotal)}`}</p>
@@ -192,7 +209,7 @@ export default function CheckoutClient() {
         <div className="lg:order-1">
           <Card>
             <CardHeader>
-              <CardTitle>Shipping Information</CardTitle>
+              <CardTitle>Shipping & Payment</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <Form {...form}>
@@ -300,6 +317,40 @@ export default function CheckoutClient() {
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="paymentMethod"
+                    render={({ field }) => (
+                        <FormItem className="space-y-3">
+                        <FormLabel>Payment Method</FormLabel>
+                        <FormControl>
+                            <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex flex-col space-y-1"
+                            >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                <RadioGroupItem value="advance" />
+                                </FormControl>
+                                <FormLabel className="font-normal">
+                                 Advance Payment (Bank, EasyPaisa, JazzCash)
+                                </FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                <RadioGroupItem value="cod" />
+                                </FormControl>
+                                <FormLabel className="font-normal">
+                                Cash on Delivery (COD) <span className="text-muted-foreground text-xs">(+Rs.50 Fee)</span>
+                                </FormLabel>
+                            </FormItem>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                    />
                   <Button type="submit" className="w-full" size="lg">Place Order on WhatsApp</Button>
                 </form>
               </Form>
@@ -310,3 +361,5 @@ export default function CheckoutClient() {
     </div>
   );
 }
+
+    

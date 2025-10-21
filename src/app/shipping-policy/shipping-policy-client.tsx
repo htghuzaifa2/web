@@ -20,7 +20,7 @@ export default function ShippingPolicyClient() {
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Payment Methods</h2>
                     <p>
-                        We are currently accepting payments via <strong>Easypaisa, Jazzcash, or Bank Transfer</strong>. All orders must be paid for in full at the time of purchase.
+                        We accept payments via <strong>Cash on Delivery (COD), Easypaisa, Jazzcash, or Bank Transfer</strong>. Please note that an additional fee of Rs. 50 is applied to all COD orders. For advance payments, your order will be processed after payment is confirmed.
                     </p>
 
                      <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Delivery Time</h2>
@@ -37,3 +37,5 @@ export default function ShippingPolicyClient() {
         </div>
     );
 }
+
+    

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Banknote, Smartphone, AlertTriangle, HelpCircle } from "lucide-react";
+import { Banknote, Smartphone, AlertTriangle, HelpCircle, PackageCheck } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
@@ -14,51 +14,70 @@ export default function HowToPayClient() {
                    At huzi.pk, we want to make your shopping experience easy and stress-free. Once you’ve selected your products and placed your order, you can choose one of the following secure payment methods:
                 </p>
 
-                <div className="grid md:grid-cols-2 gap-8 mb-12">
+                <div className="grid md:grid-cols-1 gap-8 mb-12">
                     <Card>
                         <CardHeader>
                             <CardTitle className="flex items-center gap-3 font-headline text-2xl">
-                                <Banknote className="h-8 w-8 text-primary" />
-                                <span>Bank Transfer</span>
+                                <PackageCheck className="h-8 w-8 text-primary" />
+                                <span>Cash on Delivery (COD)</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4 text-muted-foreground p-6">
-                            <div>
-                                <p className="font-semibold text-foreground">Bank</p>
-                                <p>Meezan Bank Limited</p>
-                            </div>
-                            <div>
-                                <p className="font-semibold text-foreground">Account Title</p>
-                                <p>Muhammad Huzaifa Tanveer</p>
-                            </div>
-                            <div>
-                                <p className="font-semibold text-foreground">Account Number</p>
-                                <p className="font-mono text-base tracking-wider">00300112449820</p>
-                            </div>
-                             <div>
-                                <p className="font-semibold text-foreground">IBAN</p>
-                                <p className="font-mono text-base tracking-wider">PK95MEZN0000300112449820</p>
-                            </div>
+                        <CardContent className="space-y-2 text-muted-foreground p-6">
+                            <p>You can pay in cash to the courier rider upon receiving your parcel. This is the most convenient way to shop!</p>
+                            <p className="text-sm font-semibold text-primary">A standard fee of Rs. 50 will be charged for all Cash on Delivery orders.</p>
                         </CardContent>
                     </Card>
-                     <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-3 font-headline text-2xl">
-                                <Smartphone className="h-8 w-8 text-primary" />
-                                <span>JazzCash / EasyPaisa</span>
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4 text-muted-foreground p-6">
-                           <div>
-                                <p className="font-semibold text-foreground">Account Title</p>
-                                <p>Muhammad Huzaifa Tanveer</p>
-                            </div>
-                            <div>
-                                <p className="font-semibold text-foreground">Account Number</p>
-                                <p className="font-mono text-base tracking-wider">0321-9486948</p>
-                            </div>
-                        </CardContent>
-                    </Card>
+
+                    <div className="text-center">
+                        <h3 className="font-headline text-2xl font-semibold">Or Pay in Advance via</h3>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-8">
+                         <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3 font-headline text-2xl">
+                                    <Banknote className="h-8 w-8 text-primary" />
+                                    <span>Bank Transfer</span>
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4 text-muted-foreground p-6">
+                                <div>
+                                    <p className="font-semibold text-foreground">Bank</p>
+                                    <p>Meezan Bank Limited</p>
+                                </div>
+                                <div>
+                                    <p className="font-semibold text-foreground">Account Title</p>
+                                    <p>Muhammad Huzaifa Tanveer</p>
+                                </div>
+                                <div>
+                                    <p className="font-semibold text-foreground">Account Number</p>
+                                    <p className="font-mono text-base tracking-wider">00300112449820</p>
+                                </div>
+                                 <div>
+                                    <p className="font-semibold text-foreground">IBAN</p>
+                                    <p className="font-mono text-base tracking-wider">PK95MEZN0000300112449820</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                         <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3 font-headline text-2xl">
+                                    <Smartphone className="h-8 w-8 text-primary" />
+                                    <span>JazzCash / EasyPaisa</span>
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4 text-muted-foreground p-6">
+                               <div>
+                                    <p className="font-semibold text-foreground">Account Title</p>
+                                    <p>Muhammad Huzaifa Tanveer</p>
+                                </div>
+                                <div>
+                                    <p className="font-semibold text-foreground">Account Number</p>
+                                    <p className="font-mono text-base tracking-wider">0321-9486948</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
 
                 <Card className="bg-muted/50 border-primary/50 mb-12">
@@ -70,7 +89,7 @@ export default function HowToPayClient() {
                     </CardHeader>
                     <CardContent className="space-y-3 text-muted-foreground p-6">
                        <p>Please wait for an availability confirmation message or call before making any advance payment.</p>
-                       <p>After sending payment, please share your payment screenshot on WhatsApp: <strong className="text-foreground">0321-9486948</strong></p>
+                       <p>After sending an advance payment, please share your payment screenshot on WhatsApp: <strong className="text-foreground">0321-9486948</strong></p>
                     </CardContent>
                 </Card>
 
@@ -85,3 +104,5 @@ export default function HowToPayClient() {
         </div>
     );
 }
+
+    

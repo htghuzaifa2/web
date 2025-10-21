@@ -11,7 +11,7 @@ const faqData = [
     },
     {
         question: "What payment methods do you accept?",
-        answer: "We currently accept payments via Easypaisa, Jazzcash, or direct Bank Transfer. All orders must be paid for in full at the time of purchase."
+        answer: "We accept Cash on Delivery (COD), Easypaisa, Jazzcash, or direct Bank Transfer. For COD orders, there is an additional fee of Rs. 50."
     },
     {
         question: "How long does delivery take?",
@@ -56,3 +56,5 @@ export default function FaqClient() {
         </div>
     );
 }
+
+    
