@@ -1,3 +1,4 @@
+
 {
   "name": "my-next-app",
   "version": "0.1.0",
@@ -9,7 +10,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "opennext build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -55,6 +56,7 @@
     "@types/node": "^20.14.19",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "open-next": "^3.0.4",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.5.4"
   }
