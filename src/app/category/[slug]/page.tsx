@@ -3,11 +3,7 @@ import type { Metadata } from 'next';
 import CategoryLoader from './category-loader';
 import categoriesData from "@/data/categories.json";
 
-interface PageProps {
-  params: { slug: string };
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const category = categoriesData.categories.find(c => c.slug === params.slug);
 
   if (!category) {
@@ -40,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 
-export default function CategoryPage({ params }: PageProps) {
+export default function CategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   return <CategoryLoader slug={slug} />;
 }
