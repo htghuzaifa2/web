@@ -8,6 +8,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import useEmblaCarousel from "embla-carousel-react";
+import { useToast } from '@/hooks/use-toast';
 
 interface LightboxContextType {
   openLightbox: (images: string[], index: number, productName: string) => void;
@@ -79,6 +80,7 @@ const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "" }: { s
 const LightboxContent = ({ images, index, productName, closeLightbox }: LightboxState & { closeLightbox: () => void }) => {
     const [lightboxApi, setLightboxApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
     const [lightboxRef, emblaLightboxApi] = useEmblaCarousel({ loop: images.length > 1, startIndex: index });
+    const { toast } = useToast();
 
     useEffect(() => {
         setLightboxApi(emblaLightboxApi);
@@ -113,10 +115,15 @@ const LightboxContent = ({ images, index, productName, closeLightbox }: Lightbox
                 await navigator.share(shareData);
             } else {
                 await navigator.clipboard.writeText(urlToShare);
-                alert("Link copied to clipboard!");
+                 toast({
+                    title: "Link Copied!",
+                    description: "The product link has been copied to your clipboard.",
+                });
             }
         } catch (err) {
             console.error("Share failed:", err);
+            // Fallback for when clipboard also fails (e.g. in sandboxed environments)
+            window.prompt("Copy this link:", urlToShare);
         }
     };
 
