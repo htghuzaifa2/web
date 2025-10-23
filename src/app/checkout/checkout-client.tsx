@@ -109,9 +109,9 @@ export default function CheckoutClient() {
     message += `*Payment Method: ${data.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Advance Payment'}*\n\n`;
     
     if (isCodSelected) {
-        message += `Choose Advance Payment to avoid the unnecessary COD fee. Please confirm your order details.`;
+        message += `Choose Advance Payment to avoid the additional COD fee and enjoy faster processing. Please confirm your order details.`;
     } else {
-        message += `Please confirm order details and I will provide payment information.`;
+        message += `Please review your order details and wait for our team to confirm your order. Once confirmed, we will share our official payment information for completing the advance payment`;
     }
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
