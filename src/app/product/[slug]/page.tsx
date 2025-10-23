@@ -1,8 +1,6 @@
-
 import type { Metadata } from 'next';
 import ProductDetailsLoader from './product-details-loader';
 import productsData from '@/data/products.json';
-import { getProductData } from '@/lib/data-fetching';
 
 type PageProps = {
   params: { slug: string };
@@ -15,7 +13,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { product } = await getProductData(params.slug);
+  const product = productsData.find((p) => p.slug === params.slug);
 
   if (!product) {
     return {
@@ -43,6 +41,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+export default function ProductPage({ params }: PageProps) {
   return <ProductDetailsLoader slug={params.slug} />;
 }

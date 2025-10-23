@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import CategoryLoader from './category-loader';
 import categoriesData from '@/data/categories.json';
@@ -42,6 +41,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
+export default function CategoryPage({ params }: PageProps) {
   return <CategoryLoader slug={params.slug} />;
 }
