@@ -16,7 +16,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cloudflare/next-on-pages": "^1.13.3",
     "@genkit-ai/googleai": "^1.15.2",
     "@genkit-ai/next": "^1.15.2",
     "@hookform/resolvers": "^3.9.0",
