@@ -14,24 +14,12 @@ import { getProductData } from "@/lib/data-fetching";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCard from "@/components/product-card";
 import { calculateOriginalPrice } from "@/lib/utils";
-import { notFound, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ArrowLeft } from "lucide-react";
 
 interface ProductDetailsClientProps {
   slug: string;
 }
-
-function generateMetaDescription(product: Product): string {
-    if (product.description && product.description.length >= 10) {
-        let cleanDescription = product.description.replace(/price in pakistan/i, '').replace(/202\d/g, '').trim();
-        if (cleanDescription.length > 155) {
-            return cleanDescription.substring(0, 152) + "...";
-        }
-        return cleanDescription;
-    }
-    return `Buy ${product.name} at huzi.pk. Discover a wide range of quality products with delivery across Pakistan.`;
-}
-
 
 export default function ProductDetailsClient({ slug }: ProductDetailsClientProps) {
   const { addToCart } = useCart();
@@ -48,7 +36,10 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       const { product: fetchedProduct, relatedProducts: fetchedRelated } = await getProductData(slug);
       
       if (!fetchedProduct) {
-        notFound();
+        // You might want to handle this case, e.g., redirect or show a "not found" message.
+        // For a static site, this should ideally not happen if generateStaticParams is correct.
+        console.error("Product not found on client-side");
+        setIsLoading(false);
         return;
       }
 
@@ -56,8 +47,6 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       setRelatedProducts(fetchedRelated);
       setIsLoading(false);
       
-      document.title = `${fetchedProduct.name} - huzi.pk`;
-
     }
     fetchData();
   }, [slug]);
@@ -67,7 +56,12 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   }
 
   if (!product) {
-    return null; 
+    return (
+        <div className="container mx-auto px-4 py-12 text-center">
+            <h1 className="text-2xl font-bold">Product Not Found</h1>
+            <p className="text-muted-foreground mt-2">The product you're looking for does not exist.</p>
+        </div>
+    );
   }
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
@@ -83,59 +77,8 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
 
   const images = [product.image, ...(product.additionalImages || [])];
   
-  const offersData: any = {
-      '@type': 'Offer',
-      price: String(product.price),
-      priceCurrency: 'PKR',
-      priceValidUntil: '2026-12-31',
-      availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-      url: `https://huzi.pk/product/${product.slug}`,
-  };
-
-  if (!isOutOfStock) {
-    offersData.shippingDetails = {
-        '@type': 'OfferShippingDetails',
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '250',
-          currency: 'PKR',
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'PK',
-        },
-      };
-    offersData.hasMerchantReturnPolicy = {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'PK',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 3,
-        returnMethod: 'https://schema.org/ReturnByMail',
-        returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
-      };
-  }
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    image: product.image,
-    description: generateMetaDescription(product),
-    sku: product.id.toString(),
-    brand: {
-      '@type': 'Brand',
-      name: 'huzi.pk'
-    },
-    offers: offersData,
-  };
-  
-
   return (
     <div className="container mx-auto px-4 py-8 md:py-12 content-fade-in">
-       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <div className="mb-6">
         <Button variant="ghost" onClick={() => router.back()} className="text-muted-foreground">
           <ArrowLeft className="mr-2 h-4 w-4" />

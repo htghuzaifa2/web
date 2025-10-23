@@ -35,15 +35,12 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
     
     if (!fetchedCategory) {
       setError(true);
-      // In a real app, you might redirect to a 404 page from the client
-      // For now, we'll just show an error state.
       console.error("Category not found");
       setIsLoading(false);
       return;
     }
     
     setCategory(fetchedCategory);
-    document.title = `${fetchedCategory.name} - huzi.pk`;
     setIsLoading(false);
     
   }, [slug]);
