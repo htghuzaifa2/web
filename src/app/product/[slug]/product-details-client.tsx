@@ -55,6 +55,8 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       setProduct(fetchedProduct);
       setRelatedProducts(fetchedRelated);
       setIsLoading(false);
+      
+      document.title = `${fetchedProduct.name} - huzi.pk`;
 
     }
     fetchData();
