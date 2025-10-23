@@ -29,6 +29,7 @@ export default function Footer() {
               <li><Link href="/shipping-policy" className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</Link></li>
               <li><Link href="/return-policy" className="text-muted-foreground hover:text-primary transition-colors">Return Policy</Link></li>
               <li><Link href="/how-to-pay" className="text-muted-foreground hover:text-primary transition-colors">How to Pay</Link></li>
+              <li><Link href="/cash-on-delivery" className="text-muted-foreground hover:text-primary transition-colors">COD</Link></li>
               <li><Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
             </ul>
           </div>

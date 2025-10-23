@@ -28,6 +28,7 @@ const moreNavLinks = [
     { href: "/shipping-policy", label: "Shipping Policy" },
     { href: "/return-policy", label: "Return Policy" },
     { href: "/how-to-pay", label: "How to Pay" },
+    { href: "/cash-on-delivery", label: "COD" },
     { href: "/faq", label: "FAQ" },
 ];
 

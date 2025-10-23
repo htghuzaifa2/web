@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next';
 import productsData from '@/data/products.json';
 import categoriesData from '@/data/categories.json';
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/how-to-pay',
     '/shipping-policy',
     '/return-policy',
+    '/cash-on-delivery',
   ].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
