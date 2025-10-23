@@ -6,7 +6,7 @@ import type { Category } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { ProductGridLoader } from "@/components/product-grid-loader";
-import { useRouter, useSearchParams, notFound } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import categoriesData from "@/data/categories.json";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCard from "@/components/product-card";
@@ -35,6 +35,10 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
     
     if (!fetchedCategory) {
       setError(true);
+      // In a real app, you might redirect to a 404 page from the client
+      // For now, we'll just show an error state.
+      console.error("Category not found");
+      setIsLoading(false);
       return;
     }
     
@@ -61,7 +65,12 @@ export default function CategoryClient({ slug }: CategoryClientProps) {
   };
 
   if (error) {
-    notFound();
+    return (
+        <div className="container mx-auto px-4 py-12 text-center">
+            <h1 className="text-2xl font-bold">Category Not Found</h1>
+            <p className="text-muted-foreground mt-2">The category you're looking for does not exist.</p>
+        </div>
+    );
   }
 
   if (isLoading || !category) {
