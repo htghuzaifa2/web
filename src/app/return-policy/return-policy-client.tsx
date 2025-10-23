@@ -38,9 +38,16 @@ export default function ReturnPolicyClient() {
                         To initiate a return for a damaged, incorrect, or faulty item, please <Link href="/contact">contact our customer service team</Link> with your order number and clear photos or a video showing the issue. We will guide you through the next steps.
                     </p>
                     
-                    <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Refund Process</h2>
+                    <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Our Full Refund Promise</h2>
                     <p>
-                        Once your return is approved and the item has been received and inspected by us, we will process your refund. The amount will be returned through the original payment method or another mutually agreed-upon method.
+                        We stand by the quality of our products and want you to shop with complete confidence. Once your return is approved and we receive the returned item, we will process your refund. Our commitment to you is a complete and hassle-free refund:
+                    </p>
+                     <ul>
+                        <li><strong className="text-foreground">Full Refund Amount:</strong> We will refund the entire amount of your order, including the original delivery charges and any Cash on Delivery (COD) fees paid.</li>
+                        <li><strong className="text-foreground">Return Shipping Covered:</strong> We will also reimburse you for the courier charges you incur to send the product back to us. Your refund will be a full, no-cost-to-you transaction.</li>
+                    </ul>
+                    <p>
+                        The refund will be processed through a mutually agreed-upon method, such as a bank transfer or mobile wallet.
                     </p>
                     
                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Questions</h2>
