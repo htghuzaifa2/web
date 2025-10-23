@@ -72,7 +72,7 @@ export default function CashOnDeliveryClient() {
                     </CardHeader>
                     <CardContent className="space-y-4 text-muted-foreground p-6">
                        <p>
-                         A standard, non-refundable fee of <strong className="text-foreground">Rs. 50</strong> is automatically added to all Cash on Delivery orders. This fee is charged by the courier service for handling cash transactions.
+                         A standard fee of <strong className="text-foreground">Rs. 50</strong> is automatically added to all Cash on Delivery orders. This fee is charged by the courier service for handling cash transactions.
                        </p>
                        <p>
                         To avoid this extra charge and enjoy faster processing, we recommend using our <Link href="/how-to-pay" className="text-primary font-semibold hover:underline">Advance Payment</Link> options like Bank Transfer, EasyPaisa, or JazzCash.
