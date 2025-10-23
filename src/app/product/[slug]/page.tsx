@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { getProductData } from "@/lib/data-fetching";
 import ProductDetailsLoader from './product-details-loader';
 import { notFound } from 'next/navigation';
+import productsData from "@/data/products.json";
+import { Product } from '@/lib/types';
+
 
 interface ProductPageProps {
   params: { slug: string };
@@ -20,7 +23,7 @@ function generateMetaDescription(product: any): string {
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { product } = await getProductData(params.slug);
+  const product: Product | undefined = productsData.find((p) => p.slug === params.slug);
 
   if (!product) {
     return {
@@ -51,10 +54,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  // We can still fetch data here to check if the product exists server-side
-  // to show a 404 page immediately if it doesn't.
-  const { product } = await getProductData(params.slug);
+export default function ProductPage({ params }: ProductPageProps) {
+  const product = productsData.find((p) => p.slug === params.slug);
   if (!product) {
     notFound();
   }
