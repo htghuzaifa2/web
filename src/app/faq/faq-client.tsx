@@ -51,7 +51,8 @@ export default function FaqClient() {
                                 <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline text-foreground">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-muted-foreground prose prose-sm max-w-none dark:prose-invert" dangerouslySetInnerHTML={{ __html: item.answer }}>
+                                <AccordionContent>
+                                    <div className="text-muted-foreground prose prose-sm max-w-none dark:prose-invert" dangerouslySetInnerHTML={{ __html: item.answer }} />
                                 </AccordionContent>
                             </AccordionItem>
                         ))}
