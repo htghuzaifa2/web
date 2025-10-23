@@ -4,12 +4,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, MessageSquare, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 
 const contactSchema = z.object({
@@ -53,79 +53,88 @@ export default function ContactClient() {
 
 
     return (
-        <div className="container mx-auto px-4 py-12 content-fade-in">
+        <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-center font-headline text-4xl font-bold mb-8">Contact Us</h1>
-                <p className="text-center text-lg text-muted-foreground mb-12">
-                    We'd love to hear from you! Whether you have a question about our products, an order, or just want to say hello, feel free to reach out.
-                </p>
-
-                <div className="grid md:grid-cols-2 gap-8 text-center">
-                    <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
-                        <Mail className="h-10 w-10 text-primary mb-4" />
-                        <h2 className="font-headline text-xl font-semibold mb-2">Email Us</h2>
-                        <a href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</a>
-                    </div>
-                    <div className="flex flex-col items-center p-6 bg-muted/50 rounded-lg">
-                        <Phone className="h-10 w-10 text-primary mb-4" />
-                        <h2 className="font-headline text-xl font-semibold mb-2">Call Us</h2>
-                        <p className="text-muted-foreground">+92 321 9486948</p>
-                    </div>
+                <div className="text-center mb-12">
+                    <h1 className="font-headline text-4xl md:text-5xl font-bold">Get In Touch</h1>
+                    <p className="mt-4 text-lg text-muted-foreground">
+                        We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, our team is here to help.
+                    </p>
                 </div>
 
-                <div className="mt-16">
-                    <Card className="max-w-2xl mx-auto">
-                        <CardHeader>
-                            <CardTitle className="text-center font-headline text-3xl">Send us a Message</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-6">
-                             <Form {...form}>
-                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                                    <FormField
-                                        control={form.control}
-                                        name="name"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Full Name</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Your full name" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="email"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Email Address</FormLabel>
-                                                <FormControl>
-                                                    <Input type="email" placeholder="Your email address" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="message"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Your Message</FormLabel>
-                                                <FormControl>
-                                                    <Textarea placeholder="Type your message here..." {...field} rows={5} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <Button type="submit" className="w-full" size="lg">Send Message via WhatsApp</Button>
-                                </form>
-                            </Form>
-                        </CardContent>
+                <div className="grid md:grid-cols-2 gap-8 mb-16">
+                    <Card className="flex flex-col items-center justify-center text-center p-8 transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
+                        <Mail className="h-12 w-12 text-primary mb-4" />
+                        <CardTitle className="font-headline text-2xl">Email Us</CardTitle>
+                        <CardDescription className="mt-2">For support, inquiries, or feedback.</CardDescription>
+                        <a href="mailto:contact@huzi.pk" className="mt-4 font-semibold text-primary hover:underline">
+                            contact@huzi.pk
+                        </a>
+                    </Card>
+                     <Card className="flex flex-col items-center justify-center text-center p-8 transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
+                        <Phone className="h-12 w-12 text-primary mb-4" />
+                        <CardTitle className="font-headline text-2xl">Call Us</CardTitle>
+                        <CardDescription className="mt-2">Talk to a team member directly.</CardDescription>
+                        <p className="mt-4 font-semibold text-foreground">+92 321 9486948</p>
                     </Card>
                 </div>
+
+                <Card className="max-w-2xl mx-auto shadow-lg">
+                    <CardHeader className="text-center">
+                        <MessageSquare className="h-10 w-10 mx-auto text-primary mb-2" />
+                        <CardTitle className="font-headline text-3xl">Send us a Message</CardTitle>
+                        <CardDescription>Fill out the form below and we'll get back to you via WhatsApp.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                         <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                                <FormField
+                                    control={form.control}
+                                    name="name"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Full Name</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="Your full name" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Email Address</FormLabel>
+                                            <FormControl>
+                                                <Input type="email" placeholder="Your email address" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="message"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Your Message</FormLabel>
+                                            <FormControl>
+                                                <Textarea placeholder="Type your message here..." {...field} rows={5} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <Button type="submit" className="w-full" size="lg">
+                                    <Send className="mr-2 h-4 w-4" />
+                                    Send Message via WhatsApp
+                                </Button>
+                            </form>
+                        </Form>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );

@@ -2,42 +2,64 @@
 "use client";
 
 import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Truck, Package, Clock, CreditCard, HelpCircle } from "lucide-react";
+
+const policies = [
+    {
+        icon: <Truck className="h-8 w-8 text-primary" />,
+        title: "Nationwide Delivery",
+        description: "We deliver physical products to every corner of Pakistan. No location is out of reach.",
+    },
+    {
+        icon: <Package className="h-8 w-8 text-primary" />,
+        title: "Flat Shipping Rate",
+        description: "A standard fee of PKR 250 applies to all orders, regardless of size, weight, or destination.",
+    },
+    {
+        icon: <Clock className="h-8 w-8 text-primary" />,
+        title: "Delivery Time",
+        description: "Orders are processed within 1-2 business days and typically arrive within 7-11 business days after dispatch.",
+    },
+    {
+        icon: <CreditCard className="h-8 w-8 text-primary" />,
+        title: "Payment Methods",
+        description: "We accept Cash on Delivery (COD), Bank Transfer, Easypaisa, and Jazzcash. A Rs. 50 fee applies to COD orders.",
+    },
+]
 
 export default function ShippingPolicyClient() {
     return (
-        <div className="container mx-auto px-4 py-12 content-fade-in">
+        <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-center font-headline text-4xl font-bold mb-8">Shipping Policy</h1>
-                <div className="prose prose-lg max-w-none text-muted-foreground">
-                    <p>
-                        Thank you for shopping at huzi.pk. Here you will find all the information regarding our shipping policies and procedures for deliveries across Pakistan.
+                <div className="text-center mb-12">
+                    <Truck className="h-12 w-12 mx-auto text-primary mb-4" />
+                    <h1 className="font-headline text-4xl md:text-5xl font-bold">Shipping Policy</h1>
+                    <p className="mt-4 text-lg text-muted-foreground">
+                        Everything you need to know about how we get your order to your doorstep.
                     </p>
+                </div>
 
-                    <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Shipping Charges</h2>
-                    <p>
-                        We offer a **flat shipping rate of PKR 250** on all orders across Pakistan, regardless of the number of items or the total weight of your order. The price you see for the products plus the flat shipping fee is the total amount you will pay.
-                    </p>
-                    
-                    <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Payment Methods</h2>
-                    <p>
-                        We accept payments via <strong>Cash on Delivery (COD), Easypaisa, Jazzcash, or Bank Transfer</strong>. Please note that an additional fee of Rs. 50 is applied to all COD orders. For advance payments, your order will be processed after payment is confirmed.
-                    </p>
+                <div className="grid md:grid-cols-2 gap-8 mb-16">
+                    {policies.map((policy) => (
+                         <Card key={policy.title} className="p-6 flex items-start gap-4 transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
+                            <div className="flex-shrink-0">{policy.icon}</div>
+                            <div>
+                                <h3 className="font-headline text-xl font-semibold mb-2 text-foreground">{policy.title}</h3>
+                                <p className="text-muted-foreground">{policy.description}</p>
+                            </div>
+                        </Card>
+                    ))}
+                </div>
 
-                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Delivery Time</h2>
-                    <p>
-                        Orders are typically processed and dispatched within 1-2 business days. Delivery times vary based on your location in Pakistan but generally take between 7-11 business days.
-                    </p>
-
-                     <h2 className="font-headline text-2xl font-bold mt-8 mb-4 text-foreground">Questions</h2>
-                    <p>
-                        If you have any questions about our shipping policy, please don't hesitate to <Link href="/contact">contact us</Link>.
+                <div className="text-center">
+                    <HelpCircle className="h-8 w-8 mx-auto text-primary mb-2" />
+                    <h3 className="font-headline text-xl font-semibold">More Questions?</h3>
+                    <p className="text-muted-foreground mt-2">
+                        If you have any other questions, please don't hesitate to <Link href="/contact" className="text-primary hover:underline">contact us</Link>.
                     </p>
                 </div>
             </div>
         </div>
     );
 }
-
-    
-
-    

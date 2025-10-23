@@ -2,27 +2,30 @@
 "use client";
 
 import { Package, Truck, Wallet, CheckCircle, AlertTriangle, Info } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function CashOnDeliveryClient() {
     return (
-        <div className="container mx-auto px-4 py-12 content-fade-in">
+        <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-center font-headline text-4xl font-bold mb-4">Cash on Delivery (COD)</h1>
-                <p className="text-center text-lg text-muted-foreground mb-12">
-                   Pay for your order in cash when it arrives at your doorstep. Here’s everything you need to know about our COD service.
-                </p>
+                <div className="text-center mb-12">
+                    <Wallet className="h-12 w-12 mx-auto text-primary mb-4" />
+                    <h1 className="text-center font-headline text-4xl md:text-5xl font-bold">Cash on Delivery (COD)</h1>
+                    <p className="text-center text-lg text-muted-foreground mt-4">
+                       Pay for your order in cash when it arrives at your doorstep. Here’s everything you need to know.
+                    </p>
+                </div>
 
-                <Card className="mb-12">
+                <Card className="mb-12 shadow-lg">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-3 font-headline text-2xl">
                             <Truck className="h-8 w-8 text-primary" />
                             <span>How It Works: Step-by-Step</span>
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6 text-muted-foreground p-6">
+                    <CardContent className="space-y-6 text-muted-foreground">
                         <div className="flex items-start gap-4">
                             <div className="flex-shrink-0 flex flex-col items-center">
                                 <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg">1</div>
@@ -63,14 +66,14 @@ export default function CashOnDeliveryClient() {
                     </CardContent>
                 </Card>
 
-                <Card className="bg-muted/50 border-primary/50 mb-12">
+                <Card className="bg-muted/50 border-primary/50 mb-16">
                      <CardHeader>
                         <CardTitle className="flex items-center gap-3 font-headline text-2xl">
                             <AlertTriangle className="h-8 w-8 text-destructive" />
                             <span>COD Fee & Important Details</span>
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4 text-muted-foreground p-6">
+                    <CardContent className="space-y-4 text-muted-foreground">
                        <p>
                          A standard fee of <strong className="text-foreground">Rs. 50</strong> is automatically added to all Cash on Delivery orders. This fee is charged by the courier service for handling cash transactions.
                        </p>
@@ -86,7 +89,7 @@ export default function CashOnDeliveryClient() {
                     <p className="text-muted-foreground mt-2 mb-6">
                         Browse our collections and enjoy the convenience of paying when your order arrives.
                     </p>
-                    <Button asChild>
+                    <Button asChild size="lg">
                         <Link href="/all-products">Start Shopping</Link>
                     </Button>
                 </div>

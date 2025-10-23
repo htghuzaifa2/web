@@ -2,45 +2,53 @@
 "use client";
 
 import { Banknote, Smartphone, AlertTriangle, HelpCircle, PackageCheck } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import Link from "next/link";
 
 export default function HowToPayClient() {
     return (
-        <div className="container mx-auto px-4 py-12 content-fade-in">
+        <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-center font-headline text-4xl font-bold mb-4">Payment Methods</h1>
-                <p className="text-center text-lg text-muted-foreground mb-12">
-                   At huzi.pk, we want to make your shopping experience easy and stress-free. Once you’ve selected your products and placed your order, you can choose one of the following secure payment methods:
-                </p>
+                <div className="text-center mb-12">
+                    <h1 className="font-headline text-4xl md:text-5xl font-bold">Payment Methods</h1>
+                    <p className="mt-4 text-lg text-muted-foreground">
+                       Secure and convenient options to complete your purchase at huzi.pk.
+                    </p>
+                </div>
 
                 <div className="grid md:grid-cols-1 gap-8 mb-12">
-                    <Card>
+                    <Card className="shadow-lg">
                         <CardHeader>
                             <CardTitle className="flex items-center gap-3 font-headline text-2xl">
                                 <PackageCheck className="h-8 w-8 text-primary" />
                                 <span>Cash on Delivery (COD)</span>
                             </CardTitle>
+                            <CardDescription>Pay in cash when your order arrives.</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-2 text-muted-foreground p-6">
+                        <CardContent className="space-y-2 text-muted-foreground">
                             <p>You can pay in cash to the courier rider upon receiving your parcel. This is the most convenient way to shop!</p>
-                            <p className="text-sm font-semibold text-primary">A standard fee of Rs. 50 will be charged for all Cash on Delivery orders.</p>
+                            <p className="font-semibold text-primary">A standard fee of Rs. 50 will be charged by the courier for all Cash on Delivery orders.</p>
                         </CardContent>
                     </Card>
 
-                    <div className="text-center">
-                        <h3 className="font-headline text-2xl font-semibold">Or Pay in Advance via</h3>
+                    <div className="relative my-4">
+                        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div className="w-full border-t border-border"></div>
+                        </div>
+                        <div className="relative flex justify-center">
+                            <span className="bg-background px-4 text-muted-foreground font-semibold uppercase">Or Pay in Advance</span>
+                        </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-8">
-                         <Card>
+                         <Card className="transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3 font-headline text-2xl">
                                     <Banknote className="h-8 w-8 text-primary" />
                                     <span>Bank Transfer</span>
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent className="space-y-4 text-muted-foreground p-6">
+                            <CardContent className="space-y-4 text-muted-foreground">
                                 <div>
                                     <p className="font-semibold text-foreground">Bank</p>
                                     <p>Meezan Bank Limited</p>
@@ -59,14 +67,14 @@ export default function HowToPayClient() {
                                 </div>
                             </CardContent>
                         </Card>
-                         <Card>
+                         <Card className="transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3 font-headline text-2xl">
                                     <Smartphone className="h-8 w-8 text-primary" />
                                     <span>JazzCash / EasyPaisa</span>
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent className="space-y-4 text-muted-foreground p-6">
+                            <CardContent className="space-y-4 text-muted-foreground">
                                <div>
                                     <p className="font-semibold text-foreground">Account Title</p>
                                     <p>Muhammad Huzaifa Tanveer</p>
@@ -80,29 +88,21 @@ export default function HowToPayClient() {
                     </div>
                 </div>
 
-                <Card className="bg-muted/50 border-primary/50 mb-12">
+                <Card className="bg-muted/50 border-primary/20">
                      <CardHeader>
                         <CardTitle className="flex items-center gap-3 font-headline text-2xl">
                             <AlertTriangle className="h-8 w-8 text-destructive" />
                             <span>Important Notes</span>
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-muted-foreground p-6">
-                       <p>Please wait for an availability confirmation message or call before making any advance payment.</p>
-                       <p>After sending an advance payment, please share your payment screenshot on WhatsApp: <strong className="text-foreground">0321-9486948</strong></p>
+                    <CardContent className="prose prose-base dark:prose-invert max-w-none text-muted-foreground pt-4">
+                       <ul className="space-y-2">
+                            <li>Please wait for an availability confirmation message or call before making any advance payment.</li>
+                            <li>After sending an advance payment, please share your payment screenshot on WhatsApp: <strong className="text-foreground">0321-9486948</strong>.</li>
+                       </ul>
                     </CardContent>
                 </Card>
-
-                <div className="text-center">
-                    <HelpCircle className="h-8 w-8 mx-auto text-primary mb-2" />
-                    <h3 className="font-headline text-xl font-semibold">Need Help?</h3>
-                    <p className="text-muted-foreground mt-2">
-                        For any queries about payments or your order, contact us anytime: <Link href="mailto:contact@huzi.pk" className="text-primary hover:underline">contact@huzi.pk</Link>
-                    </p>
-                </div>
             </div>
         </div>
     );
 }
-
-    
