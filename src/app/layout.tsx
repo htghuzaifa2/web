@@ -98,6 +98,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
+        <Script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3951816267285710"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <Script id="google-tag-manager" strategy="afterInteractive">
         {`
