@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import ProductDetailsLoader from './product-details-loader';
 import productsData from '@/data/products.json';
+import Script from 'next/script';
 
 type PageProps = {
   params: { slug: string };
@@ -23,6 +24,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const isOutOfStock = product.stock !== undefined && product.stock <= 0;
+  const availability = isOutOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: product.image,
+    sku: product.id.toString(),
+    offers: {
+      '@type': 'Offer',
+      price: product.price.toFixed(2),
+      priceCurrency: 'PKR',
+      availability: availability,
+    },
+  };
+
   return {
     title: product.name,
     description: product.description,
@@ -39,6 +58,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
       ],
     },
+    other: {
+      "structured-data": JSON.stringify(structuredData)
+    }
   };
 }
 
@@ -46,9 +68,7 @@ export default function ProductPage({ params }: PageProps) {
   const product = productsData.find((p) => p.slug === params.slug);
   
   if (!product) {
-      // This should ideally not be reached due to generateStaticParams,
-      // but it's good practice for robustness.
-      return <ProductDetailsLoader slug={params.slug} structuredData={null} />;
+      return <ProductDetailsLoader slug={params.slug} />;
   }
 
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
@@ -69,5 +89,14 @@ export default function ProductPage({ params }: PageProps) {
     },
   };
 
-  return <ProductDetailsLoader slug={params.slug} structuredData={structuredData} />;
+  return (
+    <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <ProductDetailsLoader slug={params.slug} />
+    </>
+  );
 }

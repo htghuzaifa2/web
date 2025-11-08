@@ -160,23 +160,13 @@ export default function RootLayout({
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
         
-        {/* Structured Data Script */}
+        {/* This script is a placeholder that will be populated by the page component */}
         <script
-          type="application/ld+json"
           id="structured-data"
-          dangerouslySetInnerHTML={{ __html: '' }} // This will be populated by the page
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: '' }} 
         />
       </body>
     </html>
   );
 }
-
-// Function to inject structured data
-const injectStructuredData = (data: any) => {
-  if (typeof window !== 'undefined') {
-    const script = document.getElementById('structured-data');
-    if (script) {
-      script.innerHTML = JSON.stringify(data);
-    }
-  }
-};

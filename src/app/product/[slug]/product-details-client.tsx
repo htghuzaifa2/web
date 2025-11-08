@@ -19,19 +19,9 @@ import { ArrowLeft } from "lucide-react";
 
 interface ProductDetailsClientProps {
   slug: string;
-  serverStructuredData: any;
 }
 
-const injectStructuredData = (data: any) => {
-  if (typeof window !== 'undefined') {
-    const script = document.getElementById('structured-data');
-    if (script) {
-      script.innerHTML = data ? JSON.stringify(data) : '';
-    }
-  }
-};
-
-export default function ProductDetailsClient({ slug, serverStructuredData }: ProductDetailsClientProps) {
+export default function ProductDetailsClient({ slug }: ProductDetailsClientProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const router = useRouter();
@@ -41,11 +31,6 @@ export default function ProductDetailsClient({ slug, serverStructuredData }: Pro
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Inject server-provided structured data on initial load
-    if (serverStructuredData) {
-      injectStructuredData(serverStructuredData);
-    }
-    
     async function fetchData() {
       setIsLoading(true);
       const { product: fetchedProduct, relatedProducts: fetchedRelated } = await getProductData(slug);
@@ -53,8 +38,6 @@ export default function ProductDetailsClient({ slug, serverStructuredData }: Pro
       if (!fetchedProduct) {
         console.error("Product not found on client-side");
         setIsLoading(false);
-        // Clear any previous structured data
-        injectStructuredData(null);
         return;
       }
 
@@ -65,12 +48,7 @@ export default function ProductDetailsClient({ slug, serverStructuredData }: Pro
     }
     fetchData();
 
-    // Cleanup structured data when component unmounts
-    return () => {
-      injectStructuredData(null);
-    };
-
-  }, [slug, serverStructuredData]);
+  }, [slug]);
 
   if (isLoading) {
      return null; // The loader component will handle the skeleton
