@@ -12,7 +12,6 @@ import ProductImageGallery from "@/components/product-image-gallery";
 import { Badge } from "@/components/ui/badge";
 import ProductInfoAccordion from "@/app/product/[slug]/product-info-tabs";
 import { ScrollArea } from "./ui/scroll-area";
-import { calculateOriginalPrice } from "@/lib/utils";
 
 interface ProductQuickViewProps {
   product: Product;
@@ -50,7 +49,6 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
   if (!product) return null;
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
-  const originalPrice = calculateOriginalPrice(product.price);
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -85,7 +83,6 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
                 <div className="flex items-center gap-4 mt-3">
                     <div className="flex items-baseline gap-3">
                         <p className="font-headline text-3xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
-                        <p className="font-headline text-xl text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
                     </div>
                 </div>
                 <div className="mt-2">

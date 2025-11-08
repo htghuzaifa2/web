@@ -13,7 +13,6 @@ import { Separator } from "@/components/ui/separator";
 import { getProductData } from "@/lib/data-fetching";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCard from "@/components/product-card";
-import { calculateOriginalPrice } from "@/lib/utils";
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from "lucide-react";
 
@@ -64,7 +63,6 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   }
   
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
-  const originalPrice = calculateOriginalPrice(product.price);
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -93,9 +91,6 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
           <div className="flex items-center gap-4 mt-4">
               <div className="flex items-baseline gap-3">
                 <p className="font-headline text-4xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
-                {!isOutOfStock && (
-                  <p className="font-headline text-2xl text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
-                )}
               </div>
           </div>
           <div className="mt-2">

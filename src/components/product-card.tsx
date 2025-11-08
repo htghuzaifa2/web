@@ -12,7 +12,7 @@ import { Button } from "./ui/button";
 import { Eye, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
-import { cn, calculateOriginalPrice } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product | null;
@@ -52,7 +52,6 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
   };
 
   const productSlug = product.slug || '';
-  const originalPrice = calculateOriginalPrice(product.price);
 
   return (
     <>
@@ -85,7 +84,6 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
               </h3>
               <div className="mt-auto flex items-baseline justify-center gap-2 pt-2">
                 <p className="text-base font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
-                <p className="text-sm text-muted-foreground line-through">{`PKR ${originalPrice}`}</p>
               </div>
             </div>
         </Link>
