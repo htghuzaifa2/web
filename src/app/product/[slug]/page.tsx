@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import ProductDetailsLoader from './product-details-loader';
 import productsData from '@/data/products.json';
@@ -22,6 +23,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const isOutOfStock = product.stock !== undefined && product.stock <= 0;
+  const availability = isOutOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: product.image,
+    sku: product.id.toString(),
+    offers: {
+      '@type': 'Offer',
+      price: product.price.toFixed(2),
+      priceCurrency: 'PKR',
+      availability: availability,
+    },
+  };
+
   return {
     title: product.name,
     description: product.description,
@@ -37,6 +56,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           alt: product.name,
         },
       ],
+    },
+    other: {
+      'structured-data': JSON.stringify(structuredData),
     },
   };
 }

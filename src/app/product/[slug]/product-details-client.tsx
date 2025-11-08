@@ -21,6 +21,15 @@ interface ProductDetailsClientProps {
   slug: string;
 }
 
+const injectStructuredData = (data: any) => {
+  if (typeof window !== 'undefined') {
+    const script = document.getElementById('structured-data');
+    if (script) {
+      script.innerHTML = data ? JSON.stringify(data) : '';
+    }
+  }
+};
+
 export default function ProductDetailsClient({ slug }: ProductDetailsClientProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
@@ -36,19 +45,44 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       const { product: fetchedProduct, relatedProducts: fetchedRelated } = await getProductData(slug);
       
       if (!fetchedProduct) {
-        // You might want to handle this case, e.g., redirect or show a "not found" message.
-        // For a static site, this should ideally not happen if generateStaticParams is correct.
         console.error("Product not found on client-side");
         setIsLoading(false);
+        // Clear any previous structured data
+        injectStructuredData(null);
         return;
       }
 
       setProduct(fetchedProduct);
       setRelatedProducts(fetchedRelated);
-      setIsLoading(false);
       
+      // Inject structured data
+      const isOutOfStock = fetchedProduct.stock !== undefined && fetchedProduct.stock <= 0;
+      const availability = isOutOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
+      const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: fetchedProduct.name,
+        description: fetchedProduct.description,
+        image: fetchedProduct.image,
+        sku: fetchedProduct.id.toString(),
+        offers: {
+          '@type': 'Offer',
+          price: fetchedProduct.price.toFixed(2),
+          priceCurrency: 'PKR',
+          availability: availability,
+        },
+      };
+      injectStructuredData(structuredData);
+
+      setIsLoading(false);
     }
     fetchData();
+
+    // Cleanup structured data when component unmounts
+    return () => {
+      injectStructuredData(null);
+    };
+
   }, [slug]);
 
   if (isLoading) {
