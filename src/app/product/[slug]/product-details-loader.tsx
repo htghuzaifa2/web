@@ -48,8 +48,9 @@ function ProductDetailsSkeleton() {
 
 interface ProductDetailsLoaderProps {
     slug: string;
+    structuredData: any;
 }
 
-export default function ProductDetailsLoader({ slug }: ProductDetailsLoaderProps) {
-    return <ProductDetailsClient slug={slug} />;
+export default function ProductDetailsLoader({ slug, structuredData }: ProductDetailsLoaderProps) {
+    return <ProductDetailsClient slug={slug} serverStructuredData={structuredData} />;
 }

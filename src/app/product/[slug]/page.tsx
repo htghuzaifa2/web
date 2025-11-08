@@ -23,6 +23,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      url: `/product/${product.slug}`,
+      images: [
+        {
+          url: product.image,
+          width: 800,
+          height: 800,
+          alt: product.name,
+        },
+      ],
+    },
+  };
+}
+
+export default function ProductPage({ params }: PageProps) {
+  const product = productsData.find((p) => p.slug === params.slug);
+  
+  if (!product) {
+      // This should ideally not be reached due to generateStaticParams,
+      // but it's good practice for robustness.
+      return <ProductDetailsLoader slug={params.slug} structuredData={null} />;
+  }
+
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
   const availability = isOutOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
 
@@ -41,28 +69,5 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
   };
 
-  return {
-    title: product.name,
-    description: product.description,
-    openGraph: {
-      title: product.name,
-      description: product.description,
-      url: `/product/${product.slug}`,
-      images: [
-        {
-          url: product.image,
-          width: 800,
-          height: 800,
-          alt: product.name,
-        },
-      ],
-    },
-    other: {
-      'structured-data': JSON.stringify(structuredData),
-    },
-  };
-}
-
-export default function ProductPage({ params }: PageProps) {
-  return <ProductDetailsLoader slug={params.slug} />;
+  return <ProductDetailsLoader slug={params.slug} structuredData={structuredData} />;
 }

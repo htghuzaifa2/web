@@ -19,6 +19,7 @@ import { ArrowLeft } from "lucide-react";
 
 interface ProductDetailsClientProps {
   slug: string;
+  serverStructuredData: any;
 }
 
 const injectStructuredData = (data: any) => {
@@ -30,7 +31,7 @@ const injectStructuredData = (data: any) => {
   }
 };
 
-export default function ProductDetailsClient({ slug }: ProductDetailsClientProps) {
+export default function ProductDetailsClient({ slug, serverStructuredData }: ProductDetailsClientProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const router = useRouter();
@@ -40,6 +41,11 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Inject server-provided structured data on initial load
+    if (serverStructuredData) {
+      injectStructuredData(serverStructuredData);
+    }
+    
     async function fetchData() {
       setIsLoading(true);
       const { product: fetchedProduct, relatedProducts: fetchedRelated } = await getProductData(slug);
@@ -55,25 +61,6 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       setProduct(fetchedProduct);
       setRelatedProducts(fetchedRelated);
       
-      // Inject structured data
-      const isOutOfStock = fetchedProduct.stock !== undefined && fetchedProduct.stock <= 0;
-      const availability = isOutOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
-      const structuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: fetchedProduct.name,
-        description: fetchedProduct.description,
-        image: fetchedProduct.image,
-        sku: fetchedProduct.id.toString(),
-        offers: {
-          '@type': 'Offer',
-          price: fetchedProduct.price.toFixed(2),
-          priceCurrency: 'PKR',
-          availability: availability,
-        },
-      };
-      injectStructuredData(structuredData);
-
       setIsLoading(false);
     }
     fetchData();
@@ -83,7 +70,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       injectStructuredData(null);
     };
 
-  }, [slug]);
+  }, [slug, serverStructuredData]);
 
   if (isLoading) {
      return null; // The loader component will handle the skeleton
