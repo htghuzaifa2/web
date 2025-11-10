@@ -15,6 +15,12 @@ function AllProductsSkeleton() {
     <div className="container mx-auto px-4 py-12">
       <Skeleton className="h-10 w-1/2 mx-auto mb-2" />
       <Skeleton className="h-6 w-3/4 mx-auto mb-8" />
+      <div className="mb-8 space-y-4">
+        <Skeleton className="h-8 w-48 mx-auto" />
+        <div className="flex flex-wrap justify-center gap-2">
+            {Array.from({ length: 9 }).map((_, i) => <Skeleton key={i} className="h-10 w-24" />)}
+        </div>
+      </div>
       <div className="flex justify-end mb-8">
         <Skeleton className="h-10 w-[180px]" />
       </div>
@@ -30,3 +36,5 @@ function AllProductsSkeleton() {
 export default function AllProductsLoader() {
     return <AllProductsClient />;
 }
+
+    

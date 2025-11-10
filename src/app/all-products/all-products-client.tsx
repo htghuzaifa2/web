@@ -2,12 +2,14 @@
 "use client";
 
 import ProductCard from '@/components/product-card';
-import type { Product } from '@/lib/types';
+import type { Product, Category } from '@/lib/types';
 import productsData from '@/data/products.json';
+import categoriesData from '@/data/categories.json';
 import Link from 'next/link';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationEllipsis } from '@/components/ui/pagination';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useMemo, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -15,9 +17,8 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const ALL_PRODUCTS: Product[] = [...productsData];
-const TOTAL_PRODUCTS = ALL_PRODUCTS.length;
+const ALL_CATEGORIES: Category[] = [{ id: 0, name: "All", slug: "all", image: "" }, ...categoriesData.categories];
 const PAGE_SIZE = 20;
-const TOTAL_PAGES = Math.ceil(TOTAL_PRODUCTS / PAGE_SIZE);
 
 type SortOrder = "newest" | "oldest" | "price-asc" | "price-desc";
 
@@ -67,6 +68,7 @@ export default function AllProductsClient() {
 
   const pageParam = searchParams.get('page') || '1';
   const sortParam = searchParams.get('sort') || 'newest';
+  const categoryParam = searchParams.get('category') || 'all';
 
   const currentPage = useMemo(() => {
     const page = Number(pageParam);
@@ -78,38 +80,51 @@ export default function AllProductsClient() {
     return validSortOrders.includes(sortParam as SortOrder) ? sortParam as SortOrder : "newest";
   }, [sortParam]);
 
-  const sortedProducts = useMemo(() => {
-    let sorted = [...ALL_PRODUCTS];
+  const filteredProducts = useMemo(() => {
+    let products = [...ALL_PRODUCTS];
+
+    if (categoryParam && categoryParam !== 'all') {
+      products = products.filter(p => p.category.includes(categoryParam));
+    }
+
     switch (sortOrder) {
       case 'newest':
-        return sorted.sort((a, b) => b.id - a.id);
+        return products.sort((a, b) => b.id - a.id);
       case 'oldest':
-        return sorted.sort((a, b) => a.id - b.id);
+        return products.sort((a, b) => a.id - b.id);
       case 'price-asc':
-        return sorted.sort((a, b) => a.price - b.price);
+        return products.sort((a, b) => a.price - b.price);
       case 'price-desc':
-        return sorted.sort((a, b) => b.price - a.price);
+        return products.sort((a, b) => b.price - a.price);
       default:
-        return sorted.sort((a, b) => b.id - a.id);
+        return products.sort((a, b) => b.id - a.id);
     }
-  }, [sortOrder]);
+  }, [sortOrder, categoryParam]);
   
-  const paginatedProducts = useMemo(() => getProductsForPage(currentPage, sortedProducts), [currentPage, sortedProducts]);
-  const paginationItems = useMemo(() => getPaginationItems(currentPage, TOTAL_PAGES), [currentPage, TOTAL_PAGES]);
+  const totalProducts = filteredProducts.length;
+  const totalPages = Math.ceil(totalProducts / PAGE_SIZE);
 
-  const handleSortChange = (value: SortOrder) => {
-    const newUrl = `/all-products?page=1${value !== 'newest' ? `&sort=${value}` : ''}`;
-    router.push(newUrl);
+  const paginatedProducts = useMemo(() => getProductsForPage(currentPage, filteredProducts), [currentPage, filteredProducts]);
+  const paginationItems = useMemo(() => getPaginationItems(currentPage, totalPages), [currentPage, totalPages]);
+
+  const handleFilterChange = (type: 'sort' | 'category', value: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(type, value);
+    params.set('page', '1'); // Reset to first page on filter change
+    
+    if (type === 'category' && value === 'all') {
+        params.delete('category');
+    }
+
+    router.push(`/all-products?${params.toString()}`);
     scrollToTop();
   };
   
   const createPageUrl = (page: number) => {
-    if (page < 1 || page > TOTAL_PAGES) return '#';
-    let url = `/all-products?page=${page}`;
-    if (sortOrder !== 'newest') {
-      url += `&sort=${sortOrder}`;
-    }
-    return url;
+    if (page < 1 || page > totalPages) return '#';
+    const params = new URLSearchParams(searchParams);
+    params.set('page', String(page));
+    return `/all-products?${params.toString()}`;
   };
   
   const scrollToTop = () => {
@@ -124,7 +139,6 @@ export default function AllProductsClient() {
     scrollToTop();
   };
 
-
   return (
     <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
         <div ref={topOfProductsRef} className="scroll-mt-20" />
@@ -135,22 +149,38 @@ export default function AllProductsClient() {
             Browse our entire collection.
         </p>
 
+        <div className="mb-8">
+            <h3 className="mb-4 text-center text-lg font-semibold">Filter by Category</h3>
+            <div className="flex flex-wrap justify-center gap-2">
+                {ALL_CATEGORIES.map(category => (
+                    <Button 
+                        key={category.id}
+                        variant={categoryParam === category.slug ? 'default' : 'outline'}
+                        onClick={() => handleFilterChange('category', category.slug)}
+                    >
+                        {category.name}
+                    </Button>
+                ))}
+            </div>
+        </div>
+
         <div className="flex justify-end mb-8">
-        <div className="flex items-center gap-2">
-            <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
-            <Select onValueChange={(value: SortOrder) => handleSortChange(value)} value={sortOrder}>
-                <SelectTrigger id="sort-by" className="w-[180px]">
-                    <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="newest">Latest (New to Old)</SelectItem>
-                    <SelectItem value="oldest">Oldest (Old to New)</SelectItem>
-                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                </SelectContent>
-            </Select>
+            <div className="flex items-center gap-2">
+                <Label htmlFor="sort-by" className="text-sm font-medium">Sort by</Label>
+                <Select onValueChange={(value: SortOrder) => handleFilterChange('sort', value)} value={sortOrder}>
+                    <SelectTrigger id="sort-by" className="w-[180px]">
+                        <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="newest">Latest (New to Old)</SelectItem>
+                        <SelectItem value="oldest">Oldest (Old to New)</SelectItem>
+                        <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                        <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
         </div>
-        </div>
+
         {paginatedProducts.length > 0 ? (
         <>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
@@ -158,7 +188,7 @@ export default function AllProductsClient() {
                 <ProductCard key={`paginated-${product.id}`} product={product} />
             ))}
             </div>
-            {TOTAL_PAGES > 1 && (
+            {totalPages > 1 && (
             <div className="mt-12">
                 <Pagination>
                 <PaginationContent>
@@ -193,7 +223,7 @@ export default function AllProductsClient() {
                     </PaginationItem>
                     ))}
 
-                    {currentPage < TOTAL_PAGES && (
+                    {currentPage < totalPages && (
                       <PaginationItem>
                           <Link
                           href={createPageUrl(currentPage + 1)}
@@ -214,8 +244,10 @@ export default function AllProductsClient() {
             )}
         </>
         ) : (
-        <p className="text-center text-muted-foreground">The store is currently empty. Check back later!</p>
+        <p className="text-center text-muted-foreground py-16">No products found in this category. Try selecting another one!</p>
         )}
     </div>
   );
 }
+
+    
