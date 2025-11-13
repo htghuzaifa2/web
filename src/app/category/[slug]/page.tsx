@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import CategoryLoader from './category-loader';
 import categoriesData from '@/data/categories.json';
@@ -23,11 +24,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: category.name,
-    description: `Explore products in the ${category.name} category at huzi.pk.`,
+    title: `${category.name} Collection`,
+    description: `Shop the best ${category.name} at huzi.pk. Explore our curated collection and find the latest trends in ${category.name.toLowerCase()}.`,
     openGraph: {
-      title: category.name,
-      description: `Explore products in the ${category.name} category at huzi.pk.`,
+      title: `${category.name} Collection`,
+      description: `Shop the best ${category.name} at huzi.pk. Explore our curated collection and find the latest trends in ${category.name.toLowerCase()}.`,
       url: `/category/${category.slug}`,
       images: [
         {

@@ -3,11 +3,11 @@ import { Metadata } from 'next';
 import ShippingPolicyLoader from './shipping-policy-loader';
 
 export const metadata: Metadata = {
-    title: "Shipping Policy",
-    description: "Learn about the shipping policy at huzi.pk, including our flat shipping rate and estimated delivery times within Pakistan.",
+    title: "Shipping Policy - Pakistan-Wide Delivery",
+    description: "Learn about huzi.pk's shipping policy. We offer a flat delivery rate across Pakistan with an estimated delivery time of 7-11 business days.",
     openGraph: {
-        title: "Shipping Policy",
-        description: "Learn about the shipping policy at huzi.pk, including our flat shipping rate and estimated delivery times within Pakistan.",
+        title: "Shipping Policy - Pakistan-Wide Delivery",
+        description: "Learn about huzi.pk's shipping policy. We offer a flat delivery rate across Pakistan with an estimated delivery time of 7-11 business days.",
         url: "/shipping-policy",
     }
 };

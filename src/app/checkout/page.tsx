@@ -3,11 +3,11 @@ import CheckoutLoader from "./checkout-loader";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Checkout",
-    description: "Complete your purchase at huzi.pk. Provide your shipping details to place your order.",
+    title: "Checkout - Secure Your Order",
+    description: "Complete your purchase at huzi.pk. Enter your shipping and payment details to securely place your order for delivery anywhere in Pakistan.",
     openGraph: {
-        title: "Checkout",
-        description: "Complete your purchase at huzi.pk. Provide your shipping details to place your order.",
+        title: "Checkout - Secure Your Order",
+        description: "Complete your purchase at huzi.pk. Enter your shipping and payment details to securely place your order for delivery anywhere in Pakistan.",
         url: "/checkout",
     }
 };

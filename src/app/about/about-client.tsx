@@ -28,9 +28,9 @@ export default function AboutClient() {
             <header className="relative flex items-center justify-center h-[60vh] md:h-[70vh] bg-gradient-to-br from-primary/10 via-background to-background">
                 <div className="absolute inset-0 bg-grid-black/[0.05] dark:bg-grid-black/[0.05] [mask-image:linear-gradient(to_bottom,white_50%,transparent_100%)]"></div>
                 <div className="container mx-auto px-4 text-center z-10">
-                    <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight">Beyond the Transaction</h1>
+                    <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight">Our Story</h1>
                     <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                        Discover the story and values that drive us to redefine quality, style, and digital innovation in Pakistan.
+                        Discover the values that drive us to redefine quality, style, and digital innovation in Pakistan.
                     </p>
                 </div>
             </header>

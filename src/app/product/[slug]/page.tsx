@@ -23,13 +23,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: 'The product you are looking for does not exist.',
     };
   }
+  
+  const description = product.description.length > 150 ? product.description.substring(0, 147) + '...' : product.description;
 
   return {
     title: product.name,
-    description: product.description,
+    description: description,
     openGraph: {
       title: product.name,
-      description: product.description,
+      description: description,
       url: `/product/${product.slug}`,
       images: [
         {

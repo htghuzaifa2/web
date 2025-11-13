@@ -33,8 +33,8 @@ const alegreya = Alegreya({
 const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
-  title: "huzi.pk | Your Destination for Quality & Variety in Pakistan",
-  description: "huzi.pk brings together quality, style, and innovation in one platform. From electronics and fashion to home essentials and digital goods, discover products that fit your lifestyle.",
+  title: "huzi.pk | Quality & Style, Delivered in Pakistan",
+  description: "Shop quality fashion, electronics, and digital goods at huzi.pk. Discover products that fit your lifestyle with reliable delivery in Pakistan.",
   keywords: [
     "online shopping in Pakistan",
     "huzi.pk online store",

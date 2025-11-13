@@ -4,10 +4,10 @@ import FaqLoader from './faq-loader';
 
 export const metadata: Metadata = {
     title: "Frequently Asked Questions (FAQ)",
-    description: "Find answers to common questions about shopping at huzi.pk, including shipping, payments, and our return policy.",
+    description: "Find answers to common questions about huzi.pk. Learn about shipping, payments, returns, and how to place an order. Your questions, answered.",
     openGraph: {
         title: "Frequently Asked Questions (FAQ)",
-        description: "Find answers to common questions about shopping at huzi.pk, including shipping, payments, and our return policy.",
+        description: "Find answers to common questions about huzi.pk. Learn about shipping, payments, returns, and how to place an order. Your questions, answered.",
         url: "/faq",
     }
 };
