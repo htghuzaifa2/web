@@ -24,24 +24,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const isOutOfStock = product.stock !== undefined && product.stock <= 0;
-  const availability = isOutOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
-
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    description: product.description,
-    image: product.image,
-    sku: product.id.toString(),
-    offers: {
-      '@type': 'Offer',
-      price: product.price.toFixed(2),
-      priceCurrency: 'PKR',
-      availability: availability,
-    },
-  };
-
   return {
     title: product.name,
     description: product.description,
@@ -58,9 +40,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
       ],
     },
-    other: {
-      "structured-data": JSON.stringify(structuredData)
-    }
   };
 }
 
@@ -68,6 +47,7 @@ export default function ProductPage({ params }: PageProps) {
   const product = productsData.find((p) => p.slug === params.slug);
   
   if (!product) {
+      // This should ideally not be reached if generateStaticParams is exhaustive
       return <ProductDetailsLoader slug={params.slug} />;
   }
 
@@ -83,8 +63,9 @@ export default function ProductPage({ params }: PageProps) {
     sku: product.id.toString(),
     offers: {
       '@type': 'Offer',
-      price: product.price.toFixed(2),
+      url: `https://huzi.pk/product/${product.slug}`,
       priceCurrency: 'PKR',
+      price: product.price.toFixed(2),
       availability: availability,
     },
   };
