@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import CashOnDeliveryLoader from './cash-on-delivery-loader';
 

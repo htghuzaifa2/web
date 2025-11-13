@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import CategoryLoader from './category-loader';
 import categoriesData from '@/data/categories.json';

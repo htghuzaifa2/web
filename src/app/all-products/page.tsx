@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import AllProductsLoader from './all-products-loader';
 

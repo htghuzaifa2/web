@@ -123,7 +123,7 @@ export default function AboutClient() {
                 {/* Footer */}
                 <footer className="text-center border-t border-border/50 pt-16">
                      <h3 className="font-headline text-3xl md:text-4xl font-bold text-foreground max-w-3xl mx-auto">
-                        Huzi.pk isn’t just our story—it’s yours too.
+                        Join Us on Our Journey
                      </h3>
                      <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
                         Together, we’re shaping the future of online shopping in Pakistan. Welcome to huzi.pk. Your journey to a more stylish and empowered life starts here.

@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import ProductDetailsLoader from './product-details-loader';
 import productsData from '@/data/products.json';
@@ -24,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   
-  const description = product.description.length > 150 ? product.description.substring(0, 147) + '...' : product.description;
+  const description = `${product.name}. ${product.description}`.substring(0, 150);
 
   return {
     title: product.name,

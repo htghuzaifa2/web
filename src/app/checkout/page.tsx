@@ -1,4 +1,3 @@
-
 import CheckoutLoader from "./checkout-loader";
 import { Metadata } from 'next';
 

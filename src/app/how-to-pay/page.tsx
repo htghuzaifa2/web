@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import HowToPayLoader from './how-to-pay-loader';
 

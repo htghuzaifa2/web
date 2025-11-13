@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import ReturnPolicyLoader from './return-policy-loader';
 

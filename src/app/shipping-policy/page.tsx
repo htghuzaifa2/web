@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import ShippingPolicyLoader from './shipping-policy-loader';
 
