@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://huzi.pk/sitemap.xml
+Sitemap: https://huzi.pk/products.xml
