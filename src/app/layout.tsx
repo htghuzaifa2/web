@@ -15,6 +15,7 @@ import SearchBar from '@/components/search-bar';
 import { LightboxProvider, Lightbox } from '@/context/lightbox-context';
 import '@/lib/prefetch.js';
 import Script from 'next/script';
+import { AdsTxt } from '@/components/ads';
 
 const belleza = Belleza({
   subsets: ['latin'],
@@ -99,12 +100,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
         <Script 
+          id="google-adsense"
           async 
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3951816267285710"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <Script id="google-tag-manager" strategy="afterInteractive">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -114,6 +115,7 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-WHDRXHH8');
         `}
       </Script>
+      <AdsTxt />
       </head>
       <body>
         <noscript>
@@ -155,10 +157,6 @@ export default function RootLayout({
             </CartProvider>
           </SearchProvider>
         </ThemeProvider>
-        
-        {/* External Libraries */}
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
         
         {/* This script is a placeholder that will be populated by the page component */}
         <script

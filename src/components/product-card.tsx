@@ -13,6 +13,7 @@ import { Eye, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 import { cn } from "@/lib/utils";
+import placeholderImages from '@/lib/placeholder-images.json';
 
 interface ProductCardProps {
   product: Product | null;
@@ -52,6 +53,8 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
   };
 
   const productSlug = product.slug || '';
+  const placeholder = placeholderImages.products.find(p => p.id === product.id) || placeholderImages.products[0];
+
 
   return (
     <>
@@ -63,18 +66,19 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
             <div className="relative w-full overflow-hidden bg-background aspect-square">
               {isImageLoading && <Skeleton className="absolute inset-0" />}
               <Image
-                src={product.image}
+                src={placeholder.url}
                 alt={product.name}
-                fill
+                width={300}
+                height={300}
                 priority={priority}
-                sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, 18vw"
                 className={cn(
-                  "object-contain transition-transform duration-500 ease-in-out group-hover/card:scale-105",
+                  "object-contain transition-transform duration-500 ease-in-out group-hover/card:scale-105 w-full h-full",
                    isImageLoading ? 'opacity-0' : 'opacity-100'
                 )}
                 style={{ willChange: 'transform' }}
                  onLoad={() => setIsImageLoading(false)}
                  loading={priority ? 'eager' : 'lazy'}
+                 data-ai-hint={placeholder.aiHint}
               />
             </div>
             

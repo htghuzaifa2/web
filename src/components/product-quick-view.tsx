@@ -76,7 +76,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
         <ScrollArea className="h-full w-full">
             <div className="grid md:grid-cols-2 gap-4 p-4 md:p-0">
             <div className="md:col-span-1 p-0 md:p-4">
-                <ProductImageGallery images={images} productName={product.name} isQuickView={true} />
+                <ProductImageGallery images={images} productName={product.name} productId={product.id} isQuickView={true} />
             </div>
             <div className="flex flex-col justify-start md:col-span-1 p-2 md:p-6">
                 <h1 className="font-headline text-2xl md:text-3xl font-bold">{product.name}</h1>

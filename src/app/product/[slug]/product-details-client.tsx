@@ -84,7 +84,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
         <div className="md:col-span-1">
-          <ProductImageGallery images={images} productName={product.name} />
+          <ProductImageGallery images={images} productName={product.name} productId={product.id} />
         </div>
         <div className="flex flex-col justify-start md:col-span-1">
           <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
