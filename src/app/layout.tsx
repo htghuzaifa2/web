@@ -15,7 +15,6 @@ import SearchBar from '@/components/search-bar';
 import { LightboxProvider, Lightbox } from '@/context/lightbox-context';
 import '@/lib/prefetch.js';
 import Script from 'next/script';
-import { AdsTxt } from '@/components/ads';
 
 const belleza = Belleza({
   subsets: ['latin'],
@@ -81,6 +80,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [`${siteConfig.url}/logo.webp`],
   },
+  other: {
+    'google-adsense-account': 'ca-pub-3951816267285710',
+  }
 };
 
 export const viewport: Viewport = {
@@ -90,7 +92,6 @@ export const viewport: Viewport = {
   ],
 }
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -99,9 +100,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
-        <Script 
+        <Script
           id="google-adsense"
-          async 
+          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3951816267285710"
           crossOrigin="anonymous"
           strategy="afterInteractive"
@@ -115,7 +116,6 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-WHDRXHH8');
         `}
       </Script>
-      <AdsTxt />
       </head>
       <body>
         <noscript>
