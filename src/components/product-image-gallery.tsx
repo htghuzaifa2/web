@@ -9,7 +9,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 import { useLightbox } from "@/context/lightbox-context";
-import placeholderImages from '@/lib/placeholder-images.json';
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -18,7 +17,7 @@ interface ProductImageGalleryProps {
   isQuickView?: boolean;
 }
 
-const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "", isQuickView = false, aiHint }: { src: string, alt: string, priority?: boolean, fill?: boolean, sizes?: string, isQuickView?: boolean, aiHint?: string }) => {
+const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "", isQuickView = false }: { src: string, alt: string, priority?: boolean, fill?: boolean, sizes?: string, isQuickView?: boolean }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     return (
@@ -38,7 +37,6 @@ const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "", isQui
                 )}
                 onLoad={() => setIsLoading(false)}
                 loading={priority ? 'eager' : 'lazy'}
-                data-ai-hint={aiHint}
             />
         </div>
     );
@@ -54,9 +52,6 @@ export default function ProductImageGallery({ images, productName, productId, is
     containScroll: "keepSnaps",
     dragFree: true,
   });
-  
-  const productPlaceholders = placeholderImages.products.find(p => p.id === productId);
-  const galleryPlaceholders = productPlaceholders?.gallery || [productPlaceholders || placeholderImages.products[0]];
 
   const { openLightbox } = useLightbox();
 
@@ -104,8 +99,7 @@ export default function ProductImageGallery({ images, productName, productId, is
   
   const handleOpenLightbox = (index: number) => {
     if (isQuickView) return;
-    const urls = galleryPlaceholders.map(p => p.url);
-    openLightbox(urls, index, productName);
+    openLightbox(images, index, productName);
   };
 
   return (
@@ -113,7 +107,7 @@ export default function ProductImageGallery({ images, productName, productId, is
       <div className="relative w-full overflow-hidden rounded-lg group aspect-square bg-muted/30">
         <div className="overflow-hidden h-full" ref={mainRef}>
           <div className="flex h-full">
-            {galleryPlaceholders.map((placeholder, index) => (
+            {images.map((imgSrc, index) => (
               <div
                 className={cn(
                   "relative w-full flex-shrink-0 flex-grow-0 basis-full h-full",
@@ -123,19 +117,18 @@ export default function ProductImageGallery({ images, productName, productId, is
                 onClick={() => handleOpenLightbox(index)}
               >
                 <ImageSlot
-                  src={placeholder.url}
+                  src={imgSrc}
                   alt={`${productName} image ${index + 1}`}
                   fill
                   priority={index === 0}
                   sizes="(max-width: 767px) 90vw, 45vw"
                   isQuickView={isQuickView}
-                  aiHint={placeholder.aiHint}
                 />
               </div>
             ))}
           </div>
         </div>
-        {galleryPlaceholders.length > 1 && (
+        {images.length > 1 && (
           <>
             <Button size="icon" variant="ghost" className="absolute left-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={scrollPrev}><ChevronLeft size={24} /></Button>
             <Button size="icon" variant="ghost" className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground bg-background/50 hover:bg-background/80" onClick={scrollNext}><ChevronRight size={24} /></Button>
@@ -143,11 +136,11 @@ export default function ProductImageGallery({ images, productName, productId, is
         )}
       </div>
 
-      {galleryPlaceholders.length > 1 && (
+      {images.length > 1 && (
         <div className="relative w-full">
            <div className="overflow-hidden" ref={thumbRef}>
                <div className="flex gap-2">
-                   {galleryPlaceholders.map((placeholder, index) => (
+                   {images.map((imgSrc, index) => (
                        <button
                            key={index}
                            onClick={() => onThumbClick(index)}
@@ -157,12 +150,11 @@ export default function ProductImageGallery({ images, productName, productId, is
                            )}
                        >
                            <ImageSlot
-                               src={placeholder.url}
+                               src={imgSrc}
                                alt={`${productName} thumbnail ${index + 1}`}
                                fill
                                sizes="15vw"
                                isQuickView={isQuickView}
-                               aiHint={placeholder.aiHint}
                            />
                        </button>
                    ))}
