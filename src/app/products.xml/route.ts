@@ -4,6 +4,7 @@ import type { Product } from "@/lib/types";
 
 // Function to escape XML special characters
 function escapeXml(unsafe: string): string {
+    if (!unsafe) return "";
     return unsafe.replace(/[<>&"']/g, (c) => {
         switch (c) {
             case '<': return '&lt;';
@@ -20,28 +21,38 @@ export async function GET() {
   const products: Product[] = productsData;
   const siteUrl = "https://huzi.pk";
 
-  const productEntries = products
+  const productItems = products
     .map((p) => {
       const isOutOfStock = p.stock !== undefined && p.stock <= 0;
       const availability = isOutOfStock ? "out of stock" : "in stock";
 
+      // Basic mapping of your categories to a broad Google category
+      const googleCategory = "Apparel & Accessories > Clothing";
+
       return `
-    <product>
-      <id>${p.id}</id>
-      <title>${escapeXml(p.name)}</title>
-      <link>${siteUrl}/product/${p.slug}</link>
-      <price>${p.price.toFixed(2)} PKR</price>
-      <image_link>${p.image}</image_link>
-      <availability>${availability}</availability>
-      <description>${escapeXml(p.description)}</description>
-    </product>`;
+    <item>
+      <g:id>${p.id}</g:id>
+      <g:title>${escapeXml(p.name)}</g:title>
+      <g:description>${escapeXml(p.description)}</g:description>
+      <g:link>${siteUrl}/product/${p.slug}</g:link>
+      <g:image_link>${p.image}</g:image_link>
+      <g:availability>${availability}</g:availability>
+      <g:price>${p.price.toFixed(2)} PKR</g:price>
+      <g:condition>new</g:condition>
+      <g:google_product_category>${googleCategory}</g:google_product_category>
+    </item>`;
     })
     .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<products>
-${productEntries}
-</products>`;
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>huzi.pk</title>
+    <link>${siteUrl}</link>
+    <description>Product feed for huzi.pk</description>
+${productItems}
+  </channel>
+</rss>`;
 
   return new Response(xml, {
     headers: {
