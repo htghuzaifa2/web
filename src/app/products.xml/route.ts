@@ -4,7 +4,9 @@ import type { Product } from "@/lib/types";
 
 // Function to escape XML special characters
 function escapeXml(unsafe: string): string {
-    if (!unsafe) return "";
+    if (typeof unsafe !== 'string') {
+        return '';
+    }
     return unsafe.replace(/[<>&"']/g, (c) => {
         switch (c) {
             case '<': return '&lt;';
@@ -39,7 +41,7 @@ export async function GET() {
       <g:availability>${availability}</g:availability>
       <g:price>${p.price.toFixed(2)} PKR</g:price>
       <g:condition>new</g:condition>
-      <g:google_product_category>${googleCategory}</g:google_product_category>
+      <g:google_product_category>${escapeXml(googleCategory)}</g:google_product_category>
     </item>`;
     })
     .join("");
