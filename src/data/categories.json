@@ -96,6 +96,12 @@
       "name": "Office & School Supplies",
       "slug": "office-school-supplies",
       "image": "https://i.postimg.cc/5NrBFqgk/soon.webp"
+    },
+    {
+      "id": 17,
+      "name": "Party Dresses",
+      "slug": "party-dresses",
+      "image": "https://i.postimg.cc/5tKsFD5F/party-dresses.webp"
     }
   ]
 }
