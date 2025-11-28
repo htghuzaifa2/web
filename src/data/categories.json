@@ -156,6 +156,12 @@
       "name": "Chiffon Dresses",
       "slug": "chiffon-dresses",
       "image": "https://i.postimg.cc/Y2xNZJZC/Chiffon-dresses.webp"
+    },
+    {
+      "id": 27,
+      "name": "Silk Dresses",
+      "slug": "silk-dresses",
+      "image": "https://i.postimg.cc/vTPVTdwV/silk-dresses.webp"
     }
   ]
 }
