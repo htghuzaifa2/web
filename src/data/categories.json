@@ -102,6 +102,12 @@
       "name": "Party Dresses",
       "slug": "party-dresses",
       "image": "https://i.postimg.cc/5tKsFD5F/party-dresses.webp"
+    },
+    {
+      "id": 18,
+      "name": "Mehndi Dresses",
+      "slug": "mehndi-dresses",
+      "image": "https://i.postimg.cc/fyyZfG1W/mehndi-dresses.webp"
     }
   ]
 }
