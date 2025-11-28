@@ -144,6 +144,12 @@
       "name": "Saree Dresses",
       "slug": "saree-dresses",
       "image": "https://i.postimg.cc/5NR4t2T3/saree-dresses.webp"
+    },
+    {
+      "id": 25,
+      "name": "Cotton Dresses",
+      "slug": "cotton-dresses",
+      "image": "https://i.postimg.cc/QtvL3FHN/cotton-dresses.webp"
     }
   ]
 }
