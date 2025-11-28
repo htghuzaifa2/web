@@ -126,6 +126,12 @@
       "name": "Maxi Dresses",
       "slug": "maxi-dresses",
       "image": "https://i.postimg.cc/5tKsFD5F/party-dresses.webp"
+    },
+    {
+      "id": 22,
+      "name": "Lehenga Dresses",
+      "slug": "lehenga-dresses",
+      "image": "https://i.postimg.cc/QxLhTy0G/Pakistani-Bridal-Dresses.webp"
     }
   ]
 }
