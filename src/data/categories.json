@@ -150,6 +150,12 @@
       "name": "Cotton Dresses",
       "slug": "cotton-dresses",
       "image": "https://i.postimg.cc/QtvL3FHN/cotton-dresses.webp"
+    },
+    {
+      "id": 26,
+      "name": "Chiffon Dresses",
+      "slug": "chiffon-dresses",
+      "image": "https://i.postimg.cc/Y2xNZJZC/Chiffon-dresses.webp"
     }
   ]
 }
