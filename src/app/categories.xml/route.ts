@@ -1,28 +1,28 @@
 
 import { MetadataRoute } from 'next';
-import productsData from '@/data/products.json';
+import categoriesData from '@/data/categories.json';
 
 const siteUrl = 'https://huzi.pk';
 
-function generateSitemap(products: any[]): string {
-  const productEntries = products
-    .map(product => `
+function generateSitemap(categories: any[]): string {
+  const categoryEntries = categories
+    .map(category => `
     <url>
-      <loc>${siteUrl}/product/${product.slug}</loc>
+      <loc>${siteUrl}/category/${category.slug}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
       <changefreq>weekly</changefreq>
-      <priority>0.7</priority>
+      <priority>0.6</priority>
     </url>
   `).join('');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${productEntries}
+  ${categoryEntries}
 </urlset>`;
 }
 
 export async function GET() {
-  const sitemap = generateSitemap(productsData);
+  const sitemap = generateSitemap(categoriesData.categories);
 
   return new Response(sitemap, {
     headers: {

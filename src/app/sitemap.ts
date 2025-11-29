@@ -1,7 +1,5 @@
 
 import { MetadataRoute } from 'next';
-import productsData from '@/data/products.json';
-import categoriesData from '@/data/categories.json';
 
 const siteUrl = 'https://huzi.pk';
 
@@ -9,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     '/',
     '/about',
+    '/all-products',
     '/categories',
     '/contact',
     '/faq',
@@ -23,19 +22,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '/' ? 1 : 0.8,
   }));
 
-  const productPages = productsData.map((product) => ({
-    url: `${siteUrl}/product/${product.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
-
-  const categoryPages = categoriesData.categories.map((category) => ({
-    url: `${siteUrl}/category/${category.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
-
-  return [...staticPages, ...productPages, ...categoryPages];
+  return staticPages;
 }
