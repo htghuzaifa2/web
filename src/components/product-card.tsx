@@ -63,8 +63,8 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
             <div className="relative w-full overflow-hidden bg-background aspect-square">
               {isImageLoading && <Skeleton className="absolute inset-0" />}
               <Image
-                src={product.image}
-                alt={product.name}
+                src={product.image.url}
+                alt={product.image.alt}
                 width={300}
                 height={300}
                 priority={priority}

@@ -9,11 +9,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 import { useLightbox } from "@/context/lightbox-context";
+import type { ImageObject } from "@/lib/types";
 
 interface ProductImageGalleryProps {
-  images: string[];
+  images: ImageObject[];
   productName: string;
-  productId: number;
   isQuickView?: boolean;
 }
 
@@ -42,7 +42,7 @@ const ImageSlot = ({ src, alt, priority = false, fill = false, sizes = "", isQui
     );
 };
 
-export default function ProductImageGallery({ images, productName, productId, isQuickView = false }: ProductImageGalleryProps) {
+export default function ProductImageGallery({ images, productName, isQuickView = false }: ProductImageGalleryProps) {
   const [mainApi, setMainApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
   const [thumbApi, setThumbApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -99,7 +99,8 @@ export default function ProductImageGallery({ images, productName, productId, is
   
   const handleOpenLightbox = (index: number) => {
     if (isQuickView) return;
-    openLightbox(images, index, productName);
+    const imageUrls = images.map(img => img.url);
+    openLightbox(imageUrls, index, productName);
   };
 
   return (
@@ -107,7 +108,7 @@ export default function ProductImageGallery({ images, productName, productId, is
       <div className="relative w-full overflow-hidden rounded-lg group aspect-square bg-muted/30">
         <div className="overflow-hidden h-full" ref={mainRef}>
           <div className="flex h-full">
-            {images.map((imgSrc, index) => (
+            {images.map((img, index) => (
               <div
                 className={cn(
                   "relative w-full flex-shrink-0 flex-grow-0 basis-full h-full",
@@ -117,8 +118,8 @@ export default function ProductImageGallery({ images, productName, productId, is
                 onClick={() => handleOpenLightbox(index)}
               >
                 <ImageSlot
-                  src={imgSrc}
-                  alt={`${productName} image ${index + 1}`}
+                  src={img.url}
+                  alt={img.alt}
                   fill
                   priority={index === 0}
                   sizes="(max-width: 767px) 90vw, 45vw"
@@ -140,7 +141,7 @@ export default function ProductImageGallery({ images, productName, productId, is
         <div className="relative w-full">
            <div className="overflow-hidden" ref={thumbRef}>
                <div className="flex gap-2">
-                   {images.map((imgSrc, index) => (
+                   {images.map((img, index) => (
                        <button
                            key={index}
                            onClick={() => onThumbClick(index)}
@@ -150,8 +151,8 @@ export default function ProductImageGallery({ images, productName, productId, is
                            )}
                        >
                            <ImageSlot
-                               src={imgSrc}
-                               alt={`${productName} thumbnail ${index + 1}`}
+                               src={img.url}
+                               alt={img.alt}
                                fill
                                sizes="15vw"
                                isQuickView={isQuickView}

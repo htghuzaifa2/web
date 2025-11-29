@@ -1,4 +1,10 @@
 
+
+export interface ImageObject {
+  url: string;
+  alt: string;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -8,8 +14,8 @@ export interface Product {
   longDescription?: string;
   specifications?: Record<string, any>;
   category: string[];
-  image: string;
-  additionalImages: string[];
+  image: ImageObject;
+  additionalImages: ImageObject[];
   stock?: number;
 }
 

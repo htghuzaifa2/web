@@ -169,8 +169,8 @@ export default function CheckoutClient() {
                     <div className="flex items-center gap-4">
                        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
                           <Image
-                            src={item.image}
-                            alt={item.name}
+                            src={item.image.url}
+                            alt={item.image.alt}
                             fill
                             className="object-contain"
                             sizes="64px"

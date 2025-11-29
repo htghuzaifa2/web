@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
-import type { Product } from "@/lib/types";
+import type { Product, ImageObject } from "@/lib/types";
 import ProductImageGallery from "@/components/product-image-gallery";
 import { Badge } from "@/components/ui/badge";
 import ProductInfoAccordion from "./product-info-tabs";
@@ -72,7 +72,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
     });
   };
 
-  const images = [product.image, ...(product.additionalImages || [])];
+  const images: ImageObject[] = [product.image, ...product.additionalImages];
   
   return (
     <div className="container mx-auto px-4 py-8 md:py-12 content-fade-in">
@@ -84,7 +84,7 @@ export default function ProductDetailsClient({ slug }: ProductDetailsClientProps
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-8 lg:gap-12">
         <div className="md:col-span-1">
-          <ProductImageGallery images={images} productName={product.name} productId={product.id} />
+          <ProductImageGallery images={images} productName={product.name} />
         </div>
         <div className="flex flex-col justify-start md:col-span-1">
           <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>

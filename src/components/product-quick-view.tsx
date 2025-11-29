@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
-import type { Product } from "@/lib/types";
+import type { Product, ImageObject } from "@/lib/types";
 import ProductImageGallery from "@/components/product-image-gallery";
 import { Badge } from "@/components/ui/badge";
 import ProductInfoAccordion from "@/app/product/[slug]/product-info-tabs";
@@ -59,7 +59,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
     onOpenChange(false); // Close dialog on add to cart
   };
 
-  const images = [product.image, ...(product.additionalImages || [])];
+  const images: ImageObject[] = [product.image, ...product.additionalImages];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -76,7 +76,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
         <ScrollArea className="h-full w-full">
             <div className="grid md:grid-cols-2 gap-4 p-4 md:p-0">
             <div className="md:col-span-1 p-0 md:p-4">
-                <ProductImageGallery images={images} productName={product.name} productId={product.id} isQuickView={true} />
+                <ProductImageGallery images={images} productName={product.name} isQuickView={true} />
             </div>
             <div className="flex flex-col justify-start md:col-span-1 p-2 md:p-6">
                 <h1 className="font-headline text-2xl md:text-3xl font-bold">{product.name}</h1>

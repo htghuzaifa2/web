@@ -40,8 +40,8 @@ export function CartSheet() {
                     <div key={item.id} className="flex items-center gap-4">
                       <Link href={`/product/${item.slug}`} className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
                         <Image
-                          src={item.image}
-                          alt={item.name}
+                          src={item.image.url}
+                          alt={item.image.alt}
                           fill
                           className="object-contain"
                           sizes="80px"

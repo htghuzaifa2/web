@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import ProductDetailsLoader from './product-details-loader';
 import productsData from '@/data/products.json';
@@ -34,10 +35,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `/product/${product.slug}`,
       images: [
         {
-          url: product.image,
+          url: product.image.url,
           width: 800,
           height: 800,
-          alt: product.name,
+          alt: product.image.alt,
         },
       ],
     },
@@ -60,7 +61,7 @@ export default function ProductPage({ params }: PageProps) {
     '@type': 'Product',
     name: product.name,
     description: product.description,
-    image: product.image,
+    image: product.image.url,
     sku: product.id.toString(),
     offers: {
       '@type': 'Offer',

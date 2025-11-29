@@ -1,12 +1,62 @@
+
 import HomeLoader from './home-loader';
 import type { Metadata } from 'next';
+import productsData from '@/data/products.json';
+import Script from 'next/script';
 
-export const metadata: Metadata = {
+const siteConfig = {
+  name: "huzi.pk",
+  url: "https://huzi.pk",
   title: "huzi.pk | Quality & Style, Delivered in Pakistan",
   description: "Shop quality fashion, electronics, and digital goods at huzi.pk. Discover products that fit your lifestyle with reliable delivery in Pakistan.",
 };
 
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  description: siteConfig.description,
+};
 
 export default function Home() {
-  return <HomeLoader />;
+  const featuredProducts = productsData.slice(0, 5);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": siteConfig.url,
+    "name": siteConfig.name,
+    "description": siteConfig.description,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${siteConfig.url}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "mainEntity": [
+      ...featuredProducts.map(product => ({
+        "@type": "Product",
+        "name": product.name,
+        "image": product.image.url,
+        "description": product.description,
+        "url": `${siteConfig.url}/product/${product.slug}`,
+        "offers": {
+          "@type": "Offer",
+          "price": product.price,
+          "priceCurrency": "PKR"
+        }
+      }))
+    ]
+  };
+
+  return (
+    <>
+      <Script
+        id="home-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <HomeLoader />
+    </>
+  );
 }

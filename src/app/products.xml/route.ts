@@ -37,7 +37,7 @@ export async function GET() {
       <g:title>${escapeXml(p.name)}</g:title>
       <g:description>${escapeXml(p.description)}</g:description>
       <g:link>${siteUrl}/product/${p.slug}</g:link>
-      <g:image_link>${p.image}</g:image_link>
+      <g:image_link>${p.image.url}</g:image_link>
       <g:availability>${availability}</g:availability>
       <g:price>${p.price.toFixed(2)} PKR</g:price>
       <g:condition>new</g:condition>
