@@ -21,11 +21,9 @@ function escapeXml(unsafe: string): string {
     });
 }
 
-function generateProductFeed(products: Product[]): string {
+function generateBingProductFeed(products: Product[]): string {
   const productEntries = products.map(product => {
     const availability = product.stock !== undefined && product.stock <= 0 ? 'out of stock' : 'in stock';
-    
-    // This can be made more sophisticated later if needed
     const googleProductCategory = 'Apparel & Accessories > Clothing';
 
     const additionalImages = product.additionalImages.map(img => 
@@ -59,7 +57,7 @@ function generateProductFeed(products: Product[]): string {
 
 export async function GET() {
   const products: Product[] = productsData;
-  const feed = generateProductFeed(products);
+  const feed = generateBingProductFeed(products);
 
   return new Response(feed, {
     headers: {
