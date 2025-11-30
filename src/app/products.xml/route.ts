@@ -43,7 +43,7 @@ function generateProductFeed(products: Product[]): string {
       <g:availability>${availability}</g:availability>
       <g:price>${product.price.toFixed(2)} PKR</g:price>
       <g:condition>new</g:condition>
-      <g:google_product_category>${googleProductCategory}</g:google_product_category>
+      <g:google_product_category>${escapeXml(googleProductCategory)}</g:google_product_category>
     </item>`;
   }).join('');
 
