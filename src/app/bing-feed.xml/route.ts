@@ -30,12 +30,13 @@ function generateBingProductFeed(products: Product[]): string {
       `<g:additional_image_link>${escapeXml(img.url)}</g:additional_image_link>`
     ).join('\n      ');
 
+    // Using standard RSS and common feed elements without g: prefix for Bing
     return `
     <item>
       <g:id>${product.id}</g:id>
-      <g:title>${escapeXml(product.name)}</g:title>
-      <g:description>${escapeXml(product.description)}</g:description>
-      <g:link>${siteUrl}/product/${product.slug}</g:link>
+      <title>${escapeXml(product.name)}</title>
+      <description>${escapeXml(product.description)}</description>
+      <link>${siteUrl}/product/${product.slug}</link>
       <g:image_link>${escapeXml(product.image.url)}</g:image_link>
       ${additionalImages}
       <g:availability>${availability}</g:availability>
