@@ -34,18 +34,24 @@ const siteConfig = {
   name: "huzi.pk",
   url: "https://huzi.pk",
   title: "huzi.pk | Quality & Style, Delivered in Pakistan",
-  description: "Shop quality fashion, electronics, and digital goods at huzi.pk. Discover products that fit your lifestyle with reliable delivery in Pakistan.",
+  description: "Huzi.pk: Your trusted hub for premium quality Pakistani Fashion & Tech Products. Shop confidently with nationwide delivery. Digital Products & E-Books available worldwide! Find quality and style. Shop Now!",
   keywords: [
-    "online shopping in Pakistan",
-    "huzi.pk online store",
-    "buy electronics online Pakistan",
-    "fashion & clothing Pakistan",
-    "lawn suits online shopping",
-    "home & kitchen appliances",
-    "mobile accessories Pakistan",
-    "digital products worldwide",
-    "e-commerce Pakistan",
-    "best online store Pakistan"
+    "online shopping pakistan", 
+    "e-commerce store pakistan", 
+    "huzi pk", 
+    "trusted online shop", 
+    "Pakistani fashion online", 
+    "tech products pakistan", 
+    "digital products worldwide", 
+    "buy e-books online", 
+    "lawn suits online", 
+    "bridal dresses pakistan", 
+    "watches and bags online", 
+    "premium quality clothing pakistan", 
+    "buy maxi dresses online", 
+    "office and school supplies pakistan", 
+    "fashion accessories for men and women", 
+    "Pakistani wedding dresses online"
   ]
 };
 

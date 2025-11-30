@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import ProductDetailsLoader from './product-details-loader';
 import productsData from '@/data/products.json';
+import categoriesData from '@/data/categories.json';
 import Script from 'next/script';
 
 type PageProps = {
@@ -24,7 +25,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   
-  const description = `${product.name}. ${product.description}`.substring(0, 150);
+  // Find the full category name from the slug
+  const primaryCategoryName = categoriesData.categories.find(c => c.slug === product.category[0])?.name || product.category[0];
+
+  const description = `Shop the ${product.name}, a premium ${primaryCategoryName} at huzi.pk. ${product.description} Enjoy nationwide delivery in Pakistan.`.substring(0, 160);
 
   return {
     title: product.name,
