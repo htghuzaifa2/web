@@ -104,7 +104,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2328387425845131"
-          crossorigin="anonymous"></script>
+          crossOrigin="anonymous"></script>
       </head>
       <body>
         <ThemeProvider
