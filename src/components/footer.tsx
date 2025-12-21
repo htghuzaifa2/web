@@ -26,6 +26,8 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>About Us</Link></li>
               <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>Contact</Link></li>
+              <li><Link href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>Terms & Conditions</Link></li>
               <li><Link href="/shipping-policy" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>Shipping Policy</Link></li>
               <li><Link href="/return-policy" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>Return Policy</Link></li>
               <li><Link href="/how-to-pay" className="text-muted-foreground hover:text-primary transition-colors" prefetch={true}>How to Pay</Link></li>
