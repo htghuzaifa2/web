@@ -22,7 +22,7 @@ interface ProductQuickViewProps {
 export default function ProductQuickView({ product, open, onOpenChange }: ProductQuickViewProps) {
   const { addToCart } = useCart();
   const { toast } = useToast();
-  
+
   useEffect(() => {
     const appRoot = document.querySelector('body > div:first-child') as HTMLElement | null;
     if (appRoot) {
@@ -45,9 +45,9 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
       }
     };
   }, [open]);
-  
+
   if (!product) return null;
-  
+
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
 
   const handleAddToCart = () => {
@@ -63,7 +63,7 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent 
+      <DialogContent
         className="max-w-4xl w-[95vw] sm:w-full h-[90vh] p-0 flex flex-col"
         style={{ touchAction: 'none' }}
         onOpenAutoFocus={(e) => e.preventDefault()}
@@ -71,51 +71,52 @@ export default function ProductQuickView({ product, open, onOpenChange }: Produc
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader className="p-4 pb-0 md:p-6 md:pb-0">
-            <DialogTitle className="sr-only">{product.name}</DialogTitle>
+          <DialogTitle className="sr-only">{product.name}</DialogTitle>
         </DialogHeader>
         <ScrollArea className="h-full w-full">
-            <div className="grid md:grid-cols-2 gap-4 p-4 md:p-0">
-            <div className="md:col-span-1 p-0 md:p-4">
-                <ProductImageGallery images={images} productName={product.name} isQuickView={true} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 md:p-0">
+            <div className="lg:col-span-1 p-0 md:p-4">
+              <ProductImageGallery images={images} productName={product.name} isQuickView={true} />
             </div>
-            <div className="flex flex-col justify-start md:col-span-1 p-2 md:p-6">
-                <h1 className="font-headline text-2xl md:text-3xl font-bold">{product.name}</h1>
-                <div className="flex items-center gap-4 mt-3">
-                    <div className="flex items-baseline gap-3">
-                        <p className="font-headline text-3xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
-                    </div>
+            <div className="flex flex-col justify-start lg:col-span-1 p-2 md:p-6">
+              <h1 className="font-headline text-2xl md:text-3xl font-bold">{product.name}</h1>
+              <div className="flex items-center gap-4 mt-3">
+                <div className="flex items-baseline gap-3">
+                  <p className="font-headline text-3xl font-bold text-price">{`PKR ${Math.round(product.price)}`}</p>
                 </div>
-                <div className="mt-2">
-                    <Badge variant={isOutOfStock ? "destructive" : "default"}>
-                        {isOutOfStock ? "Out of Stock" : "In Stock"}
-                    </Badge>
-                </div>
-                <p className="mt-4 text-muted-foreground text-sm">{product.description}</p>
-                
-                <div className="mt-6 flex flex-col gap-3">
-                    <Button 
-                        size="lg" 
-                        onClick={handleAddToCart}
-                        disabled={isOutOfStock}
-                    >
-                        Add to Cart
-                    </Button>
-                    <Button size="lg" variant="outline" asChild>
-                        <Link href={`/product/${product.slug}`} onClick={() => onOpenChange(false)}>
-                            View Full Details
-                        </Link>
-                    </Button>
-                </div>
-                <p className="text-xs text-muted-foreground mt-4">ID : {product.id}</p>
+              </div>
+              <div className="mt-2">
+                <Badge variant={isOutOfStock ? "destructive" : "default"}>
+                  {isOutOfStock ? "Out of Stock" : "In Stock"}
+                </Badge>
+              </div>
+              <p className="mt-4 text-muted-foreground text-sm animate-in fade-in slide-in-from-bottom-2 duration-500 delay-100">{product.shortDescription}</p>
 
-                <div className="mt-8">
-                     <ProductInfoAccordion
-                        description={product.longDescription} 
-                        specifications={product.specifications} 
-                    />
-                </div>
+              <div className="mt-6 flex flex-col gap-3">
+                <Button
+                  size="lg"
+                  onClick={handleAddToCart}
+                  disabled={isOutOfStock}
+                >
+                  Add to Cart
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link href={`/product/${product.slug}`} onClick={() => onOpenChange(false)}>
+                    View Full Details
+                  </Link>
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground mt-4">ID : {product.id}</p>
+
+              <div className="mt-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                <ProductInfoAccordion
+                  description={product.description}
+                  specifications={product.specs || product.specifications}
+                  defaultOpen=""
+                />
+              </div>
             </div>
-            </div>
+          </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>

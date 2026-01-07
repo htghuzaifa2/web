@@ -10,4 +10,4 @@ This repository is a **private project** and is **NOT open source**.
 
 ---
 
-© 2025 huzi.pk – All rights reserved.
+© 2026 HTG – All rights reserved.

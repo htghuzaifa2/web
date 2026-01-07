@@ -28,7 +28,7 @@ const faqData = [
     },
     {
         question: "How can I contact customer service?",
-        answer: "You can reach us through our <a href='/contact' class='text-primary font-semibold hover:underline'>contact page</a>, by emailing us at contact@huzi.pk, or by calling us at +92 321 9486948. We're always happy to help!"
+        answer: "You can reach us through our <a href='/contact' class='text-primary font-semibold hover:underline'>contact page</a>, by emailing us at contact@htg.com.pk, or by calling us at +92 321 9486948. We're always happy to help!"
     }
 ];
 
@@ -37,7 +37,7 @@ export default function FaqClient() {
         <div className="container mx-auto px-4 py-12 md:py-16 content-fade-in">
             <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
-                     <HelpCircle className="h-12 w-12 mx-auto text-primary mb-4" />
+                    <HelpCircle className="h-12 w-12 mx-auto text-primary mb-4" />
                     <h1 className="font-headline text-4xl md:text-5xl font-bold">Frequently Asked Questions</h1>
                     <p className="mt-4 text-lg text-muted-foreground">
                         Have questions? We've got answers. If you can't find what you're looking for, feel free to <Link href="/contact" className="text-primary hover:underline">contact us</Link>.

@@ -90,7 +90,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
           </div>
         </Link>
 
-        <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover/card:opacity-100 transition-all duration-300 translate-x-2 group-hover/card:translate-x-0">
+        <div className="absolute top-3 right-3 z-10 hidden lg:flex flex-col gap-2 opacity-0 group-hover/card:opacity-100 transition-all duration-300 translate-x-2 group-hover/card:translate-x-0">
           <Button
             variant="secondary"
             size="icon"

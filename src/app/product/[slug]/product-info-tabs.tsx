@@ -7,17 +7,19 @@ import ShippingInfo from "@/components/shipping-info";
 interface ProductInfoAccordionProps {
     description?: string;
     specifications?: Record<string, string>;
+    defaultOpen?: string;
 }
 
-export default function ProductInfoAccordion({ description, specifications }: ProductInfoAccordionProps) {
+export default function ProductInfoAccordion({ description, specifications, defaultOpen }: ProductInfoAccordionProps) {
     const hasDescription = description && description.trim() !== "";
     const hasSpecifications = specifications && Object.keys(specifications).length > 0;
-    
-    // Determine the default opened item.
-    const defaultOpenValue = hasDescription ? "description" : hasSpecifications ? "specifications" : "shipping";
+
+    // Determine the default opened item if not specified
+    const calculatedDefault = hasDescription ? "description" : hasSpecifications ? "specifications" : "shipping";
+    const actualDefault = defaultOpen !== undefined ? defaultOpen : calculatedDefault;
 
     return (
-        <Accordion type="single" collapsible defaultValue={defaultOpenValue} className="w-full">
+        <Accordion type="single" collapsible defaultValue={actualDefault} className="w-full">
             {hasDescription && (
                 <AccordionItem value="description">
                     <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
@@ -31,7 +33,7 @@ export default function ProductInfoAccordion({ description, specifications }: Pr
 
             {hasSpecifications && (
                 <AccordionItem value="specifications">
-                     <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+                    <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
                         Specifications
                     </AccordionTrigger>
                     <AccordionContent className="pt-2">
@@ -46,7 +48,7 @@ export default function ProductInfoAccordion({ description, specifications }: Pr
                     </AccordionContent>
                 </AccordionItem>
             )}
-            
+
             <AccordionItem value="shipping">
                 <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
                     Shipping & Delivery

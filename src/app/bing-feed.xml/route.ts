@@ -2,23 +2,23 @@
 import productsData from '@/data/products.json';
 import type { Product } from '@/lib/types';
 
-const siteUrl = 'https://huzi.pk';
+const siteUrl = 'https://htg.com.pk';
 
 // Helper function to escape XML special characters
 function escapeXml(unsafe: string): string {
-    if (typeof unsafe !== 'string') {
-        return '';
+  if (typeof unsafe !== 'string') {
+    return '';
+  }
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      default: return c;
     }
-    return unsafe.replace(/[<>&'"]/g, (c) => {
-        switch (c) {
-            case '<': return '&lt;';
-            case '>': return '&gt;';
-            case '&': return '&amp;';
-            case '\'': return '&apos;';
-            case '"': return '&quot;';
-            default: return c;
-        }
-    });
+  });
 }
 
 function generateBingProductFeed(products: Product[]): string {
@@ -26,7 +26,7 @@ function generateBingProductFeed(products: Product[]): string {
     const availability = product.stock !== undefined && product.stock <= 0 ? 'out of stock' : 'in stock';
     const googleProductCategory = 'Apparel & Accessories > Clothing';
 
-    const additionalImages = product.additionalImages.map(img => 
+    const additionalImages = product.additionalImages.map(img =>
       `<g:additional_image_link>${escapeXml(img.url)}</g:additional_image_link>`
     ).join('\n      ');
 
@@ -49,9 +49,9 @@ function generateBingProductFeed(products: Product[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
   <channel>
-    <title>huzi.pk</title>
+    <title>HTG</title>
     <link>${siteUrl}</link>
-    <description>Product feed for huzi.pk</description>${productEntries}
+    <description>Product feed for HTG</description>${productEntries}
   </channel>
 </rss>`;
 }

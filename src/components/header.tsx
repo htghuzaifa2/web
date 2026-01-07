@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSearch } from "@/context/search-context";
+import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +29,7 @@ const mainNavLinks = [
 ];
 
 const moreNavLinks = [
+  { href: "/games", label: "Games" },
   { href: "/shipping-policy", label: "Shipping Policy" },
   { href: "/return-policy", label: "Return Policy" },
   { href: "/how-to-pay", label: "How to Pay" },
@@ -39,10 +41,18 @@ const allNavLinks = [...mainNavLinks, ...moreNavLinks];
 
 
 export default function Header() {
+  const router = useRouter();
   const { toggleSearch } = useSearch();
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+
+  useEffect(() => {
+    // Eagerly prefetch hidden 'More' menu links for instant navigation
+    moreNavLinks.forEach((link) => {
+      router.prefetch(link.href);
+    });
+  }, [router]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,8 +104,8 @@ export default function Header() {
                   <SheetTitle className="sr-only">Main Menu</SheetTitle>
                 </SheetHeader>
                 <Link href="/" className="mr-6 mb-6 flex items-center font-bold text-lg px-4" prefetch={true}>
-                  <Image src="/favicon.ico" alt="huzi.pk logo" width={24} height={24} className="mr-2" />
-                  huzi.pk
+                  <Image src="/favicon.ico" alt="HTG logo" width={24} height={24} className="mr-2" />
+                  HTG
                 </Link>
                 <nav className="flex flex-col space-y-2">
                   {allNavLinks.map(({ href, label }) => (
@@ -110,9 +120,9 @@ export default function Header() {
             </Sheet>
           </div>
           <Link href="/" className="mr-4 flex items-center" prefetch={true}>
-            <Image src="/favicon.ico" alt="huzi.pk logo" width={28} height={28} className="mr-2" />
-            <span className="hidden sm:inline-block font-bold text-xl">huzi.pk</span>
-            <span className="sm:hidden font-bold text-xl">huzi.pk</span>
+            <Image src="/favicon.ico" alt="HTG logo" width={28} height={28} className="mr-2" />
+            <span className="hidden sm:inline-block font-bold text-xl">HTG</span>
+            <span className="sm:hidden font-bold text-xl">HTG</span>
           </Link>
 
           <nav className="hidden sm:flex items-center space-x-6 text-sm font-medium">

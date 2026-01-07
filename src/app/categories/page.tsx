@@ -3,11 +3,11 @@ import CategoriesLoader from './categories-loader';
 
 export const metadata: Metadata = {
   title: 'Product Categories - Fashion, Tech & More',
-  description: 'Explore all product categories at huzi.pk. Browse our curated collections of fashion, tech, digital goods, and more to find exactly what you need.',
+  description: 'Explore all product categories at HTG. Browse our curated collections of fashion, tech, digital goods, and more to find exactly what you need.',
   openGraph: {
-      title: 'Product Categories - Fashion, Tech & More',
-      description: 'Explore all product categories at huzi.pk. Browse our curated collections of fashion, tech, digital goods, and more to find exactly what you need.',
-      url: '/categories',
+    title: 'Product Categories - Fashion, Tech & More',
+    description: 'Explore all product categories at HTG. Browse our curated collections of fashion, tech, digital goods, and more to find exactly what you need.',
+    url: '/categories',
   }
 };
 

@@ -1,7 +1,9 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'export',
     images: {
+        unoptimized: true,
         remotePatterns: [
             {
                 protocol: 'https',
@@ -9,33 +11,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'picsum.photos',
+            }
         ],
     },
-    async redirects() {
-        return [
-            {
-                source: '/blog',
-                destination: '/',
-                permanent: true,
-            },
-            {
-                source: '/blogs',
-                destination: '/',
-                permanent: true,
-            },
-            {
-                source: '/tool',
-                destination: '/',
-                permanent: true,
-            },
-            {
-                source: '/tools',
-                destination: '/',
-                permanent: true,
-            },
-        ];
-    },
-    output: 'export',
 };
 
 export default nextConfig;

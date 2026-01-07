@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import PrivacyPolicyLoader from './privacy-policy-loader';
 
 export const metadata: Metadata = {
-    title: "Privacy Policy - huzi.pk",
-    description: "Read our privacy policy to understand how we value your privacy and handle information at huzi.pk. We do not collect any user data.",
+    title: "Privacy Policy - HTG",
+    description: "Read our privacy policy to understand how we value your privacy and handle information at HTG. We do not collect any user data.",
     openGraph: {
-        title: "Privacy Policy - huzi.pk",
-        description: "Read our privacy policy to understand how we value your privacy and handle information at huzi.pk. We do not collect any user data.",
+        title: "Privacy Policy - HTG",
+        description: "Read our privacy policy to understand how we value your privacy and handle information at HTG. We do not collect any user data.",
         url: "/privacy-policy",
     }
 };

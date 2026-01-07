@@ -11,7 +11,7 @@ export default function PrivacyPolicyClient() {
                     <ShieldCheck className="h-12 w-12 mx-auto text-primary mb-4" />
                     <h1 className="font-headline text-4xl md:text-5xl font-bold">Privacy Policy</h1>
                     <p className="mt-4 text-lg text-muted-foreground">
-                        Your privacy is our priority. At huzi.pk, we believe in radical transparency.
+                        Your privacy is our priority. At HTG, we believe in radical transparency.
                     </p>
                 </div>
 
@@ -25,7 +25,7 @@ export default function PrivacyPolicyClient() {
                         </CardHeader>
                         <CardContent className="prose prose-base dark:prose-invert max-w-none text-muted-foreground">
                             <p>
-                                We value your privacy above all else. Unlike many other websites, <strong>huzi.pk does not collect, store, or process any personal user data</strong>.
+                                We value your privacy above all else. Unlike many other websites, <strong>HTG does not collect, store, or process any personal user data</strong>.
                             </p>
                             <ul>
                                 <li>We do not have a user registration system.</li>

@@ -4,7 +4,7 @@ export const dynamic = 'force-static';
 
 export async function GET() {
     const routes = getAllBlogRoutes();
-    const domain = "https://huzi.pk";
+    const domain = "https://htg.com.pk";
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

@@ -1,0 +1,97 @@
+{
+    "games": [
+        {
+            "id": 1,
+            "name": "Type Master - Typing Speed Test",
+            "slug": "type-master",
+            "description": "Improve your typing speed and accuracy with Type Master! Practice touch typing, track your WPM (words per minute), and master keyboard skills. Perfect for students, professionals, and anyone looking to type faster.",
+            "embedUrl": "https://games.huzi.pk/type-master",
+            "thumbnail": "https://i.postimg.cc/yxqsFqnD/Wireless-keyboard-KB036-for-laptop-and-mobile-smooth-silent-keys-available-in-Pakistan.png",
+            "category": "typing"
+        },
+        {
+            "id": 2,
+            "name": "Subway Surfers",
+            "slug": "subway-surfers",
+            "description": "Dash as fast as you can! Dodge the oncoming trains! Help Jake, Tricky & Fresh escape from the grumpy Inspector and his dog.",
+            "embedUrl": "https://g.igroutka.ru/games/164/Xm2W5MIcPqrF1Y90/12/subway_surfers_easter_edinburgh/",
+            "thumbnail": "/subway-surfers-card.png",
+            "category": "action",
+            "servers": [
+                {
+                    "name": "Server 1",
+                    "url": "https://g.igroutka.ru/games/164/Xm2W5MIcPqrF1Y90/12/subway_surfers_easter_edinburgh/"
+                },
+                {
+                    "name": "Server 2",
+                    "url": "https://g.igroutka.ru/games/164/qtOy1VpCMRY7gxFv/12/subway_surfers_vancouver/"
+                },
+                {
+                    "name": "Server 3",
+                    "url": "https://g.igroutka.ru/games/164/W2ayMEduI9QDGFNp/12/subway_surfers_year_of_the_snake/"
+                },
+                {
+                    "name": "Server 4",
+                    "url": "https://g.igroutka.ru/games/164/CjgS2O06mqMahbd8/12/subway_surfers_iceland/"
+                },
+                {
+                    "name": "Server 5",
+                    "url": "https://g.igroutka.ru/games/164/NpBgPruAK8CiHj9D/12/subway_surfers_winter_wonderland/"
+                },
+                {
+                    "name": "Server 6",
+                    "url": "https://g.igroutka.ru/games/164/zjXhl6CEI5PO70dS/12/subway_surfers_istanbul/"
+                },
+                {
+                    "name": "Server 7",
+                    "url": "https://g.igroutka.ru/games/164/x19EutN8ewAkUTJl/10/subway_surfers_sydney/"
+                },
+                {
+                    "name": "Server 8",
+                    "url": "https://g.igroutka.ru/games/164/7mJkjtiaHp8n2QP0/10/subway_surfers_paris_summer_games/"
+                },
+                {
+                    "name": "Server 9",
+                    "url": "https://g.igroutka.ru/games/164/CuKFQPWtdby6UYev/10/subway_surfers_hollywood/"
+                },
+                {
+                    "name": "Server 10",
+                    "url": "https://g.igroutka.ru/games/164/0JpgASOqf2MHRWIk/8/subway_surfers_underwater/"
+                },
+                {
+                    "name": "Server 11",
+                    "url": "https://g.igroutka.ru/games/164/iu4mVlSRFT17sBHk/8/subway_surfers_easter_ireland/"
+                },
+                {
+                    "name": "Server 12",
+                    "url": "https://g.igroutka.ru/games/164/P8Amh02af73pN9nT/8/subway_surfers_love_odyssey/"
+                },
+                {
+                    "name": "Server 13",
+                    "url": "https://g.igroutka.ru/games/164/nVYwUtODM6LSgzIX/8/subway_surfers_shenzhen_showdown/"
+                },
+                {
+                    "name": "Server 14",
+                    "url": "https://g.igroutka.ru/games/164/lqr1ZpeBKhEA628z/6/subway_surfers_london_2023/"
+                }
+            ]
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "All",
+            "slug": "all"
+        },
+        {
+            "id": 2,
+            "name": "Typing",
+            "slug": "typing"
+        },
+        {
+            "id": 3,
+            "name": "Action",
+            "slug": "action"
+        }
+    ]
+}

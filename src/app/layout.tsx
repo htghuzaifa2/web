@@ -13,7 +13,7 @@ import { WhatsappIcon } from '@/components/whatsapp-icon';
 import { SearchProvider } from '@/context/search-context';
 import SearchBar from '@/components/search-bar';
 import { LightboxProvider, Lightbox } from '@/context/lightbox-context';
-import ExternalPrefetch from "@/components/ExternalPrefetch";
+import ExternalPrefetch from '@/components/ExternalPrefetch';
 import Script from 'next/script';
 
 const belleza = Belleza({
@@ -31,27 +31,25 @@ const alegreya = Alegreya({
 });
 
 const siteConfig = {
-  name: "huzi.pk",
-  url: "https://huzi.pk",
-  title: "huzi.pk | Quality & Style, Delivered in Pakistan",
-  description: "Huzi.pk: Your trusted hub for premium quality Pakistani Fashion & Tech Products. Shop confidently with nationwide delivery. Digital Products & E-Books available worldwide! Find quality and style. Shop Now!",
+  name: "HTG",
+  url: "https://htg.com.pk",
+  title: "HTG – Style Without Borders | Shop Premium Clothing",
+  description: "Shop HTG for premium hoodies, jackets, tracksuits & gaming apparel for men, women & kids. Quality craftsmanship meets streetwear style. Shipped worldwide.",
   keywords: [
-    "online shopping pakistan",
-    "e-commerce store pakistan",
-    "huzi pk",
-    "trusted online shop",
-    "Pakistani fashion online",
-    "tech products pakistan",
-    "digital products worldwide",
-    "buy e-books online",
-    "lawn suits online",
-    "bridal dresses pakistan",
-    "watches and bags online",
-    "premium quality clothing pakistan",
-    "buy maxi dresses online",
-    "office and school supplies pakistan",
-    "fashion accessories for men and women",
-    "Pakistani wedding dresses online"
+    "HTG brand",
+    "premium clothing Pakistan",
+    "shop hoodies Pakistan",
+    "jackets Pakistan",
+    "shirts Pakistan",
+    "tracksuits Pakistan",
+    "men's fashion",
+    "women's fashion",
+    "kids clothing",
+    "fashion essentials",
+    "streetwear Pakistan",
+    "casual wear Pakistan",
+    "worldwide shipping",
+    "quality apparel"
   ]
 };
 
@@ -59,13 +57,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: `%s - huzi.pk`,
+    // Template removed to disable dynamic suffix
+    template: `%s`,
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-  authors: [{ name: "huzi.pk", url: siteConfig.url }],
-  creator: "huzi.pk",
-  publisher: "huzi.pk",
+  authors: [{ name: "HTG", url: siteConfig.url }],
+  creator: "HTG",
+  publisher: "HTG",
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
@@ -103,8 +102,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${alegreya.variable} ${belleza.variable}`}>
       <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2328387425845131"
-          crossOrigin="anonymous"></script>
       </head>
       <body>
         <ThemeProvider

@@ -3,7 +3,7 @@ import productsData from '@/data/products.json';
 
 export const dynamic = 'force-static';
 
-const siteUrl = 'https://huzi.pk';
+const siteUrl = 'https://htg.com.pk';
 
 export async function GET() {
   const productEntries = productsData.map(product => `

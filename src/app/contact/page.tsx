@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import ContactLoader from "./contact-loader";
 
 export const metadata: Metadata = {
-    title: "Contact Us - Get In Touch",
-    description: "Contact huzi.pk for questions about products, orders, or support. We're here to help you. Reach us by email, phone, or our contact form.",
+    title: "Contact HTG - WhatsApp & Customer Support",
+    description: "Get in touch with HTG via WhatsApp, email, or phone. Expert support for your premium clothing orders, sizing queries, and returns.",
     openGraph: {
-        title: "Contact Us - Get In Touch",
-        description: "Contact huzi.pk for questions about products, orders, or support. We're here to help you. Reach us by email, phone, or our contact form.",
+        title: "Contact HTG - WhatsApp & Customer Support",
+        description: "Get in touch with HTG via WhatsApp, email, or phone. Expert support for your premium clothing orders, sizing queries, and returns.",
         url: "/contact",
     }
 };

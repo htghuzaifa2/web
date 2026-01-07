@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: 'The product you are looking for does not exist.',
     };
   }
-  
+
   // Find the full category name from the slug
   const primaryCategoryName = categoriesData.categories.find(c => c.slug === product.category[0])?.name || product.category[0];
 
-  const description = `Shop the ${product.name}, a premium ${primaryCategoryName} at huzi.pk. ${product.description} Enjoy nationwide delivery in Pakistan.`.substring(0, 160);
+  const description = `Shop the ${product.name}, a premium ${primaryCategoryName} at HTG. ${product.description} Enjoy nationwide delivery in Pakistan.`.substring(0, 160);
 
   return {
     title: product.name,
@@ -51,10 +51,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ProductPage({ params }: PageProps) {
   const product = productsData.find((p) => p.slug === params.slug);
-  
+
   if (!product) {
-      // This should ideally not be reached if generateStaticParams is exhaustive
-      return <ProductDetailsLoader slug={params.slug} />;
+    // This should ideally not be reached if generateStaticParams is exhaustive
+    return <ProductDetailsLoader slug={params.slug} />;
   }
 
   const isOutOfStock = product.stock !== undefined && product.stock <= 0;
@@ -69,7 +69,7 @@ export default function ProductPage({ params }: PageProps) {
     sku: product.id.toString(),
     offers: {
       '@type': 'Offer',
-      url: `https://huzi.pk/product/${product.slug}`,
+      url: `https://htg.com.pk/product/${product.slug}`,
       priceCurrency: 'PKR',
       price: product.price.toFixed(2),
       availability: availability,

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://huzi.pk/sitemap.xml
+Sitemap: https://htg.com.pk/sitemap.xml

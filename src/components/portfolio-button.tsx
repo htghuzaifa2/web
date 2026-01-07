@@ -40,7 +40,7 @@ const PortfolioButton = () => {
         for (let i = 0; i < 60; i++) {
             createParticle(x, y);
         }
-        window.open('https://htghuzaifa.huzi.pk/', '_blank', 'noopener,noreferrer');
+        window.open('https://htg.com.pk/', '_blank', 'noopener,noreferrer');
     };
 
     return (

@@ -12,7 +12,7 @@ export default function TermsAndConditionsClient() {
                     <FileText className="h-12 w-12 mx-auto text-primary mb-4" />
                     <h1 className="font-headline text-4xl md:text-5xl font-bold">Terms & Conditions</h1>
                     <p className="mt-4 text-lg text-muted-foreground">
-                        Welcome to huzi.pk. By using our website, you agree to the following terms.
+                        Welcome to HTG. By using our website, you agree to the following terms.
                     </p>
                 </div>
 
@@ -26,7 +26,7 @@ export default function TermsAndConditionsClient() {
                         </CardHeader>
                         <CardContent className="prose prose-base dark:prose-invert max-w-none text-muted-foreground">
                             <p>
-                                By accessing huzi.pk, you agree to be bound by these Terms and Conditions and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+                                By accessing HTG, you agree to be bound by these Terms and Conditions and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
                             </p>
                         </CardContent>
                     </Card>
@@ -68,7 +68,7 @@ export default function TermsAndConditionsClient() {
                         </CardHeader>
                         <CardContent className="prose prose-base dark:prose-invert max-w-none text-muted-foreground">
                             <p>
-                                huzi.pk shall not be liable for any damages arising out of the use or inability to use the products on our site. We strive for accuracy, but we do not warrant that product descriptions or other content are error-free, complete, or current.
+                                HTG shall not be liable for any damages arising out of the use or inability to use the products on our site. We strive for accuracy, but we do not warrant that product descriptions or other content are error-free, complete, or current.
                             </p>
                         </CardContent>
                     </Card>

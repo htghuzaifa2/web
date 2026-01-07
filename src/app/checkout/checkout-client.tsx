@@ -35,24 +35,24 @@ export default function CheckoutClient() {
   const [formResolver, setFormResolver] = useState<any>(null);
 
   useEffect(() => {
-      setIsClient(true);
-      Promise.all([zodPromise, zodResolverPromise]).then(([z, resolver]) => {
-          checkoutSchema = z.object({
-              name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-              phone: z.string().min(1, { message: "Phone number is required." }).regex(/^\+?[0-9]+$/, { message: "Phone number can only contain digits and an optional leading '+'." }),
-              email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
-              province: z.string({ required_error: "Please select a province." }).min(1, "Please select a province."),
-              city: z.string({ required_error: "Please select a city." }).min(1, "Please select a city."),
-              address: z.string().optional(),
-              paymentMethod: z.enum(["advance", "cod"], { required_error: "Please select a payment method." }),
-          });
-          setFormResolver(() => resolver(checkoutSchema));
+    setIsClient(true);
+    Promise.all([zodPromise, zodResolverPromise]).then(([z, resolver]) => {
+      checkoutSchema = z.object({
+        name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+        phone: z.string().min(1, { message: "Phone number is required." }).regex(/^\+?[0-9]+$/, { message: "Phone number can only contain digits and an optional leading '+'." }),
+        email: z.string().email({ message: "Invalid email format." }).or(z.literal("")).optional(),
+        province: z.string({ required_error: "Please select a province." }).min(1, "Please select a province."),
+        city: z.string({ required_error: "Please select a city." }).min(1, "Please select a city."),
+        address: z.string().optional(),
+        paymentMethod: z.enum(["advance", "cod"], { required_error: "Please select a payment method." }),
       });
+      setFormResolver(() => resolver(checkoutSchema));
+    });
   }, []);
-  
+
   const shippingFee = 250;
   const codFee = 50;
-  
+
   const form = useForm<CheckoutFormValues>({
     resolver: formResolver,
     defaultValues: {
@@ -68,13 +68,13 @@ export default function CheckoutClient() {
   const selectedProvince = form.watch("province");
   const paymentMethod = form.watch("paymentMethod");
   const cities = locationData.provinces.find(p => p.name === selectedProvince)?.cities || [];
-  
+
   const isCodSelected = paymentMethod === 'cod';
   const finalTotal = total + shippingFee + (isCodSelected ? codFee : 0);
 
   useEffect(() => {
     if (form.getValues("province")) {
-        form.setValue("city", "");
+      form.setValue("city", "");
     }
   }, [selectedProvince, form]);
 
@@ -82,7 +82,7 @@ export default function CheckoutClient() {
   const onSubmit = (data: CheckoutFormValues) => {
     const myWhatsAppNumber = "923219486948";
 
-    let message = `*New Order from huzi.pk*\n\n`;
+    let message = `*New Order from HTG*\n\n`;
     message += `*Customer Details:*\n`;
     message += `Name: ${data.name}\n`;
     message += `Phone: ${data.phone}\n`;
@@ -99,58 +99,58 @@ export default function CheckoutClient() {
     items.forEach(item => {
       message += `- ${item.name} (ID: ${item.id}) (x${item.quantity}) - PKR ${Math.round(item.price * item.quantity)}\n`;
     });
-    
+
     message += `\nSubtotal: PKR ${Math.round(total)}\n`;
     message += `Shipping: PKR ${shippingFee}\n`;
     if (isCodSelected) {
-        message += `COD Fee: PKR ${codFee}\n`;
+      message += `COD Fee: PKR ${codFee}\n`;
     }
     message += `*Total: PKR ${Math.round(finalTotal)}*\n\n`;
     message += `*Payment Method: ${data.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Advance Payment'}*\n\n`;
-    
+
     if (isCodSelected) {
-        message += `Choose Advance Payment to avoid the additional COD fee and enjoy faster processing. Please confirm your order details.`;
+      message += `Choose Advance Payment to avoid the additional COD fee and enjoy faster processing. Please confirm your order details.`;
     } else {
-        message += `Please review your order details and wait for our team to confirm your order. Once confirmed, we will share our official payment information for completing the advance payment`;
+      message += `Please review your order details and wait for our team to confirm your order. Once confirmed, we will share our official payment information for completing the advance payment`;
     }
 
     const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
-    
+
     window.open(whatsappUrl, '_blank');
   };
 
   if (!isClient || !formResolver) {
     return (
-        <div className="container mx-auto px-4 py-12">
-            <Skeleton className="h-10 w-1/2 mx-auto mb-8" />
-            <div className="grid lg:grid-cols-2 gap-12">
-                <div className="lg:order-2 space-y-4">
-                    <Skeleton className="h-24 w-full" />
-                    <Skeleton className="h-24 w-full" />
-                    <Skeleton className="h-24 w-full" />
-                </div>
-                <div className="lg:order-1 space-y-6">
-                    <Skeleton className="h-16 w-full" />
-                    <Skeleton className="h-16 w-full" />
-                    <Skeleton className="h-16 w-full" />
-                    <Skeleton className="h-32 w-full" />
-                    <Skeleton className="h-12 w-full" />
-                </div>
-            </div>
+      <div className="container mx-auto px-4 py-12">
+        <Skeleton className="h-10 w-1/2 mx-auto mb-8" />
+        <div className="grid lg:grid-cols-2 gap-12">
+          <div className="lg:order-2 space-y-4">
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-24 w-full" />
+          </div>
+          <div className="lg:order-1 space-y-6">
+            <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-32 w-full" />
+            <Skeleton className="h-12 w-full" />
+          </div>
         </div>
+      </div>
     );
   }
-  
+
   if (items.length === 0) {
-      return (
-        <div className="container mx-auto px-4 py-12 text-center content-fade-in">
-            <h1 className="font-headline text-3xl font-bold">Your Cart is Empty</h1>
-            <p className="mt-4 text-muted-foreground">You have no items in your cart to check out.</p>
-            <Button asChild className="mt-6">
-                <Link href="/">Continue Shopping</Link>
-            </Button>
-        </div>
-      )
+    return (
+      <div className="container mx-auto px-4 py-12 text-center content-fade-in">
+        <h1 className="font-headline text-3xl font-bold">Your Cart is Empty</h1>
+        <p className="mt-4 text-muted-foreground">You have no items in your cart to check out.</p>
+        <Button asChild className="mt-6">
+          <Link href="/">Continue Shopping</Link>
+        </Button>
+      </div>
+    )
   }
 
   return (
@@ -158,7 +158,7 @@ export default function CheckoutClient() {
       <h1 className="text-center font-headline text-4xl font-bold mb-8">Checkout</h1>
       <div className="grid lg:grid-cols-2 lg:gap-12 gap-8">
         <div className="lg:order-2">
-           <Card>
+          <Card>
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
             </CardHeader>
@@ -167,19 +167,19 @@ export default function CheckoutClient() {
                 {items.map(item => (
                   <div key={item.id} className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                       <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
-                          <Image
-                            src={item.image.url}
-                            alt={item.image.alt}
-                            fill
-                            className="object-contain"
-                            sizes="64px"
-                          />
-                        </div>
-                        <div>
-                            <p className="font-semibold">{item.name}</p>
-                            <p className="text-sm text-muted-foreground">Quantity: {item.quantity}</p>
-                        </div>
+                      <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+                        <Image
+                          src={item.image.url}
+                          alt={item.image.alt}
+                          fill
+                          className="object-contain"
+                          sizes="64px"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-semibold">{item.name}</p>
+                        <p className="text-sm text-muted-foreground">Quantity: {item.quantity}</p>
+                      </div>
                     </div>
                     <p className="font-medium text-price">{`PKR ${Math.round(item.price * item.quantity)}`}</p>
                   </div>
@@ -187,32 +187,32 @@ export default function CheckoutClient() {
               </div>
               <Separator className="my-6" />
               <div className="space-y-2">
+                <div className="flex justify-between">
+                  <p>Subtotal</p>
+                  <p className="font-medium text-price">{`PKR ${Math.round(total)}`}</p>
+                </div>
+                <div className="flex justify-between">
+                  <p>Shipping</p>
+                  <p className="font-medium text-price">{`PKR ${shippingFee}`}</p>
+                </div>
+                {isCodSelected && (
                   <div className="flex justify-between">
-                    <p>Subtotal</p>
-                    <p className="font-medium text-price">{`PKR ${Math.round(total)}`}</p>
+                    <p>Cash on Delivery Fee</p>
+                    <p className="font-medium text-price">{`PKR ${codFee}`}</p>
                   </div>
-                   <div className="flex justify-between">
-                    <p>Shipping</p>
-                    <p className="font-medium text-price">{`PKR ${shippingFee}`}</p>
-                  </div>
-                  {isCodSelected && (
-                    <div className="flex justify-between">
-                        <p>Cash on Delivery Fee</p>
-                        <p className="font-medium text-price">{`PKR ${codFee}`}</p>
-                    </div>
-                  )}
-                  <div className="flex justify-between font-bold text-lg">
-                    <p>Total</p>
-                    <p className="text-price">{`PKR ${Math.round(finalTotal)}`}</p>
-                  </div>
+                )}
+                <div className="flex justify-between font-bold text-lg">
+                  <p>Total</p>
+                  <p className="text-price">{`PKR ${Math.round(finalTotal)}`}</p>
+                </div>
               </div>
               <div className="mt-4 text-sm text-muted-foreground text-center">
-                  You will be redirected to WhatsApp to confirm your order.
+                You will be redirected to WhatsApp to confirm your order.
               </div>
             </CardContent>
           </Card>
         </div>
-        
+
         <div className="lg:order-1">
           <Card>
             <CardHeader>
@@ -241,11 +241,11 @@ export default function CheckoutClient() {
                       <FormItem>
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
-                          <Input 
-                            type="text" 
+                          <Input
+                            type="text"
                             inputMode="tel"
-                            placeholder="Your phone number" 
-                            {...field} 
+                            placeholder="Your phone number"
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage />
@@ -267,48 +267,48 @@ export default function CheckoutClient() {
                   />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
-                        control={form.control}
-                        name="province"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Province</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select a province" />
-                                </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                {locationData.provinces.map(province => (
-                                    <SelectItem key={province.name} value={province.name}>{province.name}</SelectItem>
-                                ))}
-                                </SelectContent>
-                            </Select>
-                            <FormMessage />
-                            </FormItem>
-                        )}
+                      control={form.control}
+                      name="province"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Province</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a province" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {locationData.provinces.map(province => (
+                                <SelectItem key={province.name} value={province.name}>{province.name}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
                     <FormField
-                        control={form.control}
-                        name="city"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>City</FormLabel>
-                            <Select onValueChange={field.onChange} value={field.value} disabled={!selectedProvince}>
-                                <FormControl>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select a city" />
-                                </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                {cities.map(city => (
-                                    <SelectItem key={city} value={city}>{city}</SelectItem>
-                                ))}
-                                </SelectContent>
-                            </Select>
-                            <FormMessage />
-                            </FormItem>
-                        )}
+                      control={form.control}
+                      name="city"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>City</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={!selectedProvince}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a city" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {cities.map(city => (
+                                <SelectItem key={city} value={city}>{city}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
                   </div>
                   <FormField
@@ -328,40 +328,40 @@ export default function CheckoutClient() {
                     control={form.control}
                     name="paymentMethod"
                     render={({ field }) => (
-                        <FormItem className="space-y-4">
+                      <FormItem className="space-y-4">
                         <FormLabel>Payment Method</FormLabel>
                         <FormControl>
-                            <RadioGroup
+                          <RadioGroup
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                             className="grid grid-cols-1 gap-4"
-                            >
+                          >
                             <Label htmlFor="advance" className={cn(
-                                "flex flex-col items-start space-y-1 rounded-md border-2 p-4 cursor-pointer transition-colors relative",
-                                field.value === "advance" ? "border-primary bg-primary/5" : "border-muted hover:border-accent-foreground/50"
+                              "flex flex-col items-start space-y-1 rounded-md border-2 p-4 cursor-pointer transition-colors relative",
+                              field.value === "advance" ? "border-primary bg-primary/5" : "border-muted hover:border-accent-foreground/50"
                             )}>
-                                 <RadioGroupItem value="advance" id="advance" className="sr-only" />
-                                <span className="font-semibold text-foreground">Advance Payment</span>
-                                <span className="text-sm text-muted-foreground">Bank, EasyPaisa, JazzCash</span>
-                                {field.value === 'advance' && <CheckCircle className="h-5 w-5 text-primary absolute top-4 right-4" />}
-                            </Label>
-                            
-                            <Label htmlFor="cod" className={cn(
-                                "flex flex-col items-start space-y-1 rounded-md border-2 p-4 cursor-pointer transition-colors relative",
-                                field.value === "cod" ? "border-primary bg-primary/5" : "border-muted hover:border-accent-foreground/50"
-                            )}>
-                                <RadioGroupItem value="cod" id="cod" className="sr-only" />
-                               <span className="font-semibold text-foreground">Cash on Delivery (COD)</span>
-                               <span className="text-sm text-muted-foreground">Pay at your doorstep. <span className="font-bold text-foreground">(+Rs.50 Fee)</span></span>
-                               {field.value === 'cod' && <CheckCircle className="h-5 w-5 text-primary absolute top-4 right-4" />}
+                              <RadioGroupItem value="advance" id="advance" className="sr-only" />
+                              <span className="font-semibold text-foreground">Advance Payment</span>
+                              <span className="text-sm text-muted-foreground">Bank, EasyPaisa, JazzCash</span>
+                              {field.value === 'advance' && <CheckCircle className="h-5 w-5 text-primary absolute top-4 right-4" />}
                             </Label>
 
-                            </RadioGroup>
+                            <Label htmlFor="cod" className={cn(
+                              "flex flex-col items-start space-y-1 rounded-md border-2 p-4 cursor-pointer transition-colors relative",
+                              field.value === "cod" ? "border-primary bg-primary/5" : "border-muted hover:border-accent-foreground/50"
+                            )}>
+                              <RadioGroupItem value="cod" id="cod" className="sr-only" />
+                              <span className="font-semibold text-foreground">Cash on Delivery (COD)</span>
+                              <span className="text-sm text-muted-foreground">Pay at your doorstep. <span className="font-bold text-foreground">(+Rs.50 Fee)</span></span>
+                              {field.value === 'cod' && <CheckCircle className="h-5 w-5 text-primary absolute top-4 right-4" />}
+                            </Label>
+
+                          </RadioGroup>
                         </FormControl>
                         <FormMessage />
-                        </FormItem>
+                      </FormItem>
                     )}
-                    />
+                  />
                   <Button type="submit" className="w-full" size="lg">Place Order on WhatsApp</Button>
                 </form>
               </Form>

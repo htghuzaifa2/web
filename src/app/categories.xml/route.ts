@@ -4,7 +4,7 @@ import categoriesData from '@/data/categories.json';
 
 export const dynamic = 'force-static';
 
-const siteUrl = 'https://huzi.pk';
+const siteUrl = 'https://htg.com.pk';
 
 function generateSitemap(categories: any[]): string {
   const categoryEntries = categories

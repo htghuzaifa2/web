@@ -14,13 +14,13 @@ export async function generateMetadata({ params }: { params: { topic: string; sl
         if (!post) return {}
 
         return {
-            title: `${post.title} | huzi.pk`,
+            title: `${post.title} | HTG Blog`,
             description: post.description,
             openGraph: {
                 title: post.title,
                 description: post.description,
                 type: 'article',
-                url: `https://huzi.pk/blog/${params.topic}/${params.slug}`,
+                url: `https://htg.com.pk/blog/${params.topic}/${params.slug}`,
                 images: post.image ? [{ url: post.image }] : undefined,
             },
             twitter: {

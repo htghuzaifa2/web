@@ -1,8 +1,31 @@
-# Speed up prefetch delivery
-/prefetch.js
-  Cache-Control: public, max-age=31536000, immutable
-  X-Content-Type-Options: nosniff
+# Cloudflare Pages Headers - Optimized for Performance
 
-# Global caching rules for Cloudflare Pages
+# Next.js static assets - aggressive caching (1 year)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images and fonts - aggressive caching
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Sitemap and robots - moderate caching
+/sitemap.xml
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/robots.txt
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Global HTML caching - short cache with SWR
 /*
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin

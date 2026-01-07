@@ -14,7 +14,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const category = categoriesData.categories.find(c => c.slug === params.slug);
-  
+
   if (!category) {
     return {
       title: 'Category Not Found',
@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${category.name} Collection`,
-    description: `Shop the best ${category.name} at huzi.pk. Explore our curated collection and find the latest trends in ${category.name.toLowerCase()}.`,
+    description: `Shop the best ${category.name} at HTG. Explore our curated collection and find the latest trends in ${category.name.toLowerCase()}.`,
     openGraph: {
       title: `${category.name} Collection`,
-      description: `Shop the best ${category.name} at huzi.pk. Explore our curated collection and find the latest trends in ${category.name.toLowerCase()}.`,
+      description: `Shop the best ${category.name} at HTG. Explore our curated collection and find the latest trends in ${category.name.toLowerCase()}.`,
       url: `/category/${category.slug}`,
       images: [
         {

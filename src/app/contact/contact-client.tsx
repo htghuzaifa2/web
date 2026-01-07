@@ -13,9 +13,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { useToast } from "@/hooks/use-toast";
 
 const contactSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+    name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+    email: z.string().email({ message: "Please enter a valid email address." }),
+    message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -34,18 +34,18 @@ export default function ContactClient() {
 
     const onSubmit = (data: ContactFormValues) => {
         const myWhatsAppNumber = "923219486948";
-        let message = `*New Contact Inquiry from huzi.pk*\n\n`;
+        let message = `*New Contact Inquiry from HTG*\n\n`;
         message += `*Name:* ${data.name}\n`;
         message += `*Email:* ${data.email}\n`;
         message += `*Message:*\n${data.message}`;
 
         const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
-        
+
         window.open(whatsappUrl, '_blank');
-        
+
         toast({
-          title: "Message Prepared",
-          description: "Please send the message in WhatsApp to complete your inquiry.",
+            title: "Message Prepared",
+            description: "Please send the message in WhatsApp to complete your inquiry.",
         });
 
         form.reset();
@@ -67,11 +67,11 @@ export default function ContactClient() {
                         <Mail className="h-12 w-12 text-primary mb-4" />
                         <CardTitle className="font-headline text-2xl">Email Us</CardTitle>
                         <CardDescription className="mt-2">For support, inquiries, or feedback.</CardDescription>
-                        <a href="mailto:contact@huzi.pk" className="mt-4 font-semibold text-primary hover:underline">
-                            contact@huzi.pk
+                        <a href="mailto:contact@htg.com.pk" className="mt-4 font-semibold text-primary hover:underline">
+                            contact@htg.com.pk
                         </a>
                     </Card>
-                     <Card className="flex flex-col items-center justify-center text-center p-8 transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
+                    <Card className="flex flex-col items-center justify-center text-center p-8 transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
                         <Phone className="h-12 w-12 text-primary mb-4" />
                         <CardTitle className="font-headline text-2xl">Call Us</CardTitle>
                         <CardDescription className="mt-2">Talk to a team member directly.</CardDescription>
@@ -86,7 +86,7 @@ export default function ContactClient() {
                         <CardDescription>Fill out the form below and we'll get back to you via WhatsApp.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                         <Form {...form}>
+                        <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                 <FormField
                                     control={form.control}

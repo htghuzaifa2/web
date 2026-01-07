@@ -21,8 +21,8 @@ const linkRenderer = renderer.link
 renderer.link = (token: any) => {
     const html = linkRenderer.call(renderer, token)
     const href = token.href
-    // Add target="_blank" only for external links (not huzi.pk or localhost)
-    if (href?.startsWith("http") && !href.includes("huzi.pk") && !href.includes("localhost")) {
+    // Add target="_blank" only for external links (not htg.com.pk or localhost)
+    if (href?.startsWith("http") && !href.includes("htg.com.pk") && !href.includes("localhost")) {
         return html.replace(/^<a /, '<a target="_blank" rel="noopener noreferrer" ')
     }
     return html

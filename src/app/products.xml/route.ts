@@ -4,7 +4,7 @@ import type { Product } from '@/lib/types';
 
 export const dynamic = 'force-static';
 
-const siteUrl = 'https://huzi.pk';
+const siteUrl = 'https://htg.com.pk';
 
 // Helper function to escape XML special characters
 function escapeXml(unsafe: string): string {
@@ -52,9 +52,9 @@ function generateProductFeed(products: Product[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
   <channel>
-    <title>huzi.pk</title>
+    <title>HTG</title>
     <link>${siteUrl}</link>
-    <description>Product feed for huzi.pk</description>${productEntries}
+    <description>Product feed for HTG</description>${productEntries}
   </channel>
 </rss>`;
 }

@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 
 export const dynamic = 'force-static';
 
-const siteUrl = 'https://huzi.pk';
+const siteUrl = 'https://htg.com.pk';
 
 export async function GET() {
   const staticPages = [

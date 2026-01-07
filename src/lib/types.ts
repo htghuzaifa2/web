@@ -17,6 +17,15 @@ export interface Product {
   image: ImageObject;
   additionalImages: ImageObject[];
   stock?: number;
+  // SEO and Merchant Center Fields
+  brand?: string;
+  condition?: 'new' | 'used' | 'refurbished';
+  availability?: 'in_stock' | 'out_of_stock' | 'preorder';
+  googleProductCategory?: string;
+  currency?: string;
+  shortDescription?: string;
+  specs?: Record<string, any>; // The new JSON uses 'specs' sometimes, mapping it to specifications or keeping both
+  notes?: string;
 }
 
 export interface Category {

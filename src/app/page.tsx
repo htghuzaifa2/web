@@ -5,10 +5,10 @@ import productsData from '@/data/products.json';
 import Script from 'next/script';
 
 const siteConfig = {
-  name: "huzi.pk",
-  url: "https://huzi.pk",
-  title: "huzi.pk | Quality & Style, Delivered in Pakistan",
-  description: "Huzi.pk: Your trusted hub for premium quality Pakistani Fashion & Tech Products. Shop confidently with nationwide delivery. Digital Products & E-Books available worldwide! Find quality and style. Shop Now!",
+  name: "HTG",
+  url: "https://htg.com.pk",
+  title: "HTG – Style Without Borders | Shop Premium Clothing",
+  description: "Shop HTG for premium hoodies, jackets, tracksuits & gaming apparel for men, women & kids. Quality craftsmanship meets streetwear style. Shipped worldwide.",
 };
 
 export const metadata: Metadata = {

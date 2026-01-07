@@ -1,7 +1,7 @@
 
 export const dynamic = 'force-static';
 
-const siteUrl = 'https://huzi.pk';
+const siteUrl = 'https://htg.com.pk';
 
 export async function GET() {
     const sitemaps = ['/pages.xml', '/product.xml', '/categories.xml', '/blogs-sitemap.xml'];
